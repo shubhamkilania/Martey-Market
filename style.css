@@ -9,22 +9,24 @@
 }
 
 :root {
-    --purple: #6c4df6;
-    --purple-dark: #5134d9;
-    --purple-light: #eeeaff;
+    --purple: #8B5CF6;
+    --purple-dark: #6D3FD6;
+    --purple-light: #1C1730;
 
-    --black: #111116;
-    --dark: #19191f;
+    --black: #08090D;
+    --dark: #0D0F14;
 
-    --text: #17171d;
-    --muted: #777783;
+    --text: #F5F7FA;
+    --muted: #A1A7B3;
 
-    --background: #f7f7fa;
-    --white: #ffffff;
+    --background: #08090D;
+    --white: #FFFFFF;
 
-    --border: #e8e8ed;
+    --border: #242833;
 
-    --shadow: 0 15px 40px rgba(20, 15, 50, 0.08);
+    --card: #11141B;
+
+    --shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
 }
 
 html {
@@ -59,11 +61,11 @@ a {
 ===================================================== */
 
 .header {
-    background: var(--white);
+    background: #0D0F14;
     position: sticky;
     top: 0;
     z-index: 1000;
-    border-bottom: 1px solid var(--border);
+    border-bottom: 1px solid #242833;
 }
 
 .header-top {
@@ -82,7 +84,7 @@ a {
     font-size: 28px;
     font-weight: 800;
     letter-spacing: -1.5px;
-    color: var(--black);
+    color: #F5F7FA;
     white-space: nowrap;
 }
 
@@ -97,8 +99,8 @@ a {
 
     display: flex;
 
-    background: #f4f4f7;
-    border: 1px solid #e6e6eb;
+   background: #11141B;
+border: 1px solid #242833;
     border-radius: 12px;
     overflow: hidden;
 }
@@ -111,23 +113,23 @@ a {
 
     padding: 0 18px;
     font-size: 14px;
-    color: var(--text);
+    color: #F5F7FA;
 }
 
 .search-area input::placeholder {
-    color: #9a9aa4;
+    color: #737A87;
 }
 
 .search-area button {
     width: 95px;
-    background: var(--purple);
-    color: white;
+    background: #8B5CF6;
+    color: #FFFFFF;
     font-weight: 600;
     transition: 0.2s;
 }
 
 .search-area button:hover {
-    background: var(--purple-dark);
+    background: #A78BFA;
 }
 
 .header-actions {
@@ -153,7 +155,8 @@ a {
 
 .header-btn span {
     font-size: 19px;
-    line-height: 18px;
+    line-height: 18px; 
+    color: #A1A7B3;
 }
 
 .header-btn small {
@@ -162,7 +165,8 @@ a {
 }
 
 .header-btn:hover {
-    color: var(--purple);
+    color: #8B5CF6;
+}
 }
 
 .cart-button b {
@@ -188,8 +192,8 @@ a {
     height: 42px;
     padding: 0 20px;
 
-    background: var(--black);
-    color: white;
+    background: #8B5CF6;
+    color: #FFFFFF;
 
     border-radius: 9px;
 
@@ -200,9 +204,8 @@ a {
 }
 
 .account-btn:hover {
-    background: var(--purple);
+    background: #A78BFA;
 }
-
 
 /* =====================================================
    CATEGORY BAR
