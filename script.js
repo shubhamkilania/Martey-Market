@@ -1,22 +1,20 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-    /* ============================
-       VARIABLES
-    ============================ */
+    // ============================
+    // ELEMENTS
+    // ============================
 
     const searchInput = document.getElementById("searchInput");
     const searchButton = document.getElementById("searchButton");
 
     const productCards = document.querySelectorAll(".product-card");
-    const productGrid = document.getElementById("productGrid");
-
     const categoryLinks = document.querySelectorAll(".category-link");
     const categoryCards = document.querySelectorAll(".category-card");
 
     const cartCount = document.getElementById("cartCount");
+    const cartButton = document.getElementById("cartButton");
 
     const wishlistButton = document.getElementById("wishlistButton");
-    const cartButton = document.getElementById("cartButton");
     const accountButton = document.getElementById("accountButton");
 
     const startShopping = document.getElementById("startShopping");
@@ -28,16 +26,44 @@ document.addEventListener("DOMContentLoaded", () => {
     const toast = document.getElementById("toast");
     const emptyState = document.getElementById("emptyState");
 
+    const productsSection = document.getElementById("products");
 
-    /* ============================
-       CART
-    ============================ */
 
-    let cart = JSON.parse(localStorage.getItem("marteyCart")) || [];
+    // ============================
+    // TOAST
+    // ============================
+
+    let toastTimer;
+
+    function showToast(message) {
+
+        if (!toast) return;
+
+        toast.textContent = message;
+        toast.classList.add("show");
+
+        clearTimeout(toastTimer);
+
+        toastTimer = setTimeout(() => {
+            toast.classList.remove("show");
+        }, 2500);
+    }
+
+
+    // ============================
+    // CART
+    // ============================
+
+    let cart = JSON.parse(
+        localStorage.getItem("marteyCart")
+    ) || [];
+
 
     function updateCartCount() {
 
-        cartCount.textContent = cart.length;
+        if (cartCount) {
+            cartCount.textContent = cart.length;
+        }
 
         localStorage.setItem(
             "marteyCart",
@@ -55,11 +81,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
             const card = button.closest(".product-card");
 
-            const productName =
-                card.querySelector("h3").textContent;
+            if (!card) return;
 
-            const productPrice =
-                card.querySelector(".price-row strong").textContent;
+            const nameElement = card.querySelector("h3");
+            const priceElement = card.querySelector(
+                ".price-row strong"
+            );
+
+            if (!nameElement || !priceElement) return;
+
+            const productName = nameElement.textContent.trim();
+            const productPrice = priceElement.textContent.trim();
 
             cart.push({
                 name: productName,
@@ -69,7 +101,7 @@ document.addEventListener("DOMContentLoaded", () => {
             updateCartCount();
 
             showToast(
-                `${productName} added to cart`
+                productName + " added to cart"
             );
 
         });
@@ -77,12 +109,28 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
 
-    /* ============================
-       WISHLIST
-    ============================ */
+    // ============================
+    // CART PAGE
+    // ============================
 
-    let wishlist =
-        JSON.parse(localStorage.getItem("marteyWishlist")) || [];
+    if (cartButton) {
+
+        cartButton.addEventListener("click", () => {
+
+            window.location.href = "cart.html";
+
+        });
+
+    }
+
+
+    // ============================
+    // WISHLIST
+    // ============================
+
+    let wishlist = JSON.parse(
+        localStorage.getItem("marteyWishlist")
+    ) || [];
 
 
     document.querySelectorAll(".heart-btn").forEach(button => {
@@ -91,8 +139,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
             const card = button.closest(".product-card");
 
+            if (!card) return;
+
+            const nameElement = card.querySelector("h3");
+
+            if (!nameElement) return;
+
             const productName =
-                card.querySelector("h3").textContent;
+                nameElement.textContent.trim();
 
 
             button.classList.toggle("active");
@@ -100,16 +154,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
             if (button.classList.contains("active")) {
 
-                wishlist.push(productName);
+                if (!wishlist.includes(productName)) {
+                    wishlist.push(productName);
+                }
 
                 showToast("Added to wishlist");
 
             } else {
 
-                wishlist =
-                    wishlist.filter(
-                        item => item !== productName
-                    );
+                wishlist = wishlist.filter(
+                    item => item !== productName
+                );
 
                 showToast("Removed from wishlist");
 
@@ -126,31 +181,31 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
 
-    /* ============================
-       SEARCH
-    ============================ */
+    // ============================
+    // SEARCH
+    // ============================
 
     function searchProducts() {
 
-        const query =
-            searchInput.value
-                .toLowerCase()
-                .trim();
+        if (!searchInput) return;
 
+        const query =
+            searchInput.value.toLowerCase().trim();
 
         let visibleProducts = 0;
 
 
         productCards.forEach(card => {
 
+            const nameElement = card.querySelector("h3");
+
+            if (!nameElement) return;
+
             const name =
-                card.querySelector("h3")
-                    .textContent
-                    .toLowerCase();
+                nameElement.textContent.toLowerCase();
 
             const category =
-                card.dataset.category
-                    .toLowerCase();
+                (card.dataset.category || "").toLowerCase();
 
 
             if (
@@ -159,7 +214,6 @@ document.addEventListener("DOMContentLoaded", () => {
             ) {
 
                 card.style.display = "";
-
                 visibleProducts++;
 
             } else {
@@ -171,35 +225,47 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
 
-        emptyState.classList.toggle(
-            "show",
-            visibleProducts === 0
+        if (emptyState) {
+
+            emptyState.classList.toggle(
+                "show",
+                visibleProducts === 0
+            );
+
+        }
+
+    }
+
+
+    if (searchButton) {
+
+        searchButton.addEventListener(
+            "click",
+            searchProducts
         );
 
     }
 
 
-    searchButton.addEventListener(
-        "click",
-        searchProducts
-    );
+    if (searchInput) {
 
+        searchInput.addEventListener(
+            "keydown",
+            event => {
 
-    searchInput.addEventListener(
-        "keydown",
-        event => {
+                if (event.key === "Enter") {
+                    searchProducts();
+                }
 
-            if (event.key === "Enter") {
-                searchProducts();
             }
+        );
 
-        }
-    );
+    }
 
 
-    /* ============================
-       CATEGORY FILTER
-    ============================ */
+    // ============================
+    // CATEGORY FILTER
+    // ============================
 
     function filterCategory(category) {
 
@@ -218,7 +284,6 @@ document.addEventListener("DOMContentLoaded", () => {
             ) {
 
                 card.style.display = "";
-
                 visibleProducts++;
 
             } else {
@@ -230,10 +295,14 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
 
-        emptyState.classList.toggle(
-            "show",
-            visibleProducts === 0
-        );
+        if (emptyState) {
+
+            emptyState.classList.toggle(
+                "show",
+                visibleProducts === 0
+            );
+
+        }
 
     }
 
@@ -249,7 +318,9 @@ document.addEventListener("DOMContentLoaded", () => {
             link.classList.add("active");
 
 
-            searchInput.value = "";
+            if (searchInput) {
+                searchInput.value = "";
+            }
 
 
             filterCategory(
@@ -257,11 +328,13 @@ document.addEventListener("DOMContentLoaded", () => {
             );
 
 
-            document
-                .getElementById("products")
-                .scrollIntoView({
+            if (productsSection) {
+
+                productsSection.scrollIntoView({
                     behavior: "smooth"
                 });
+
+            }
 
         });
 
@@ -289,60 +362,76 @@ document.addEventListener("DOMContentLoaded", () => {
             filterCategory(category);
 
 
-            document
-                .getElementById("products")
-                .scrollIntoView({
+            if (productsSection) {
+
+                productsSection.scrollIntoView({
                     behavior: "smooth"
                 });
+
+            }
 
         });
 
     });
 
 
-    /* ============================
-       VIEW ALL
-    ============================ */
+    // ============================
+    // VIEW ALL
+    // ============================
 
-    clearFilter.addEventListener("click", () => {
+    if (clearFilter) {
 
-        searchInput.value = "";
+        clearFilter.addEventListener("click", () => {
 
-        categoryLinks.forEach(link => {
+            if (searchInput) {
+                searchInput.value = "";
+            }
 
-            link.classList.toggle(
-                "active",
-                link.dataset.category === "all"
-            );
+
+            categoryLinks.forEach(link => {
+
+                link.classList.toggle(
+                    "active",
+                    link.dataset.category === "all"
+                );
+
+            });
+
+
+            filterCategory("all");
 
         });
 
-        filterCategory("all");
-
-    });
+    }
 
 
-    /* ============================
-       START SHOPPING
-    ============================ */
+    // ============================
+    // START SHOPPING
+    // ============================
 
-    startShopping.addEventListener(
-        "click",
-        () => {
+    if (startShopping) {
 
-            document
-                .getElementById("products")
-                .scrollIntoView({
-                    behavior: "smooth"
-                });
+        startShopping.addEventListener(
+            "click",
+            () => {
 
-        }
-    );
+                if (productsSection) {
+
+                    productsSection.scrollIntoView({
+                        behavior: "smooth"
+                    });
+
+                }
+
+            }
+        );
+
+    }
 
 
-    /* ============================
-       SELLER BUTTONS
-    ============================ */
+    // ============================
+    // SELLER BUTTONS
+    // ============================
 
     function sellerMessage() {
 
@@ -353,94 +442,70 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    sellButton.addEventListener(
-        "click",
-        sellerMessage
-    );
-
-    sellerButton.addEventListener(
-        "click",
-        sellerMessage
-    );
+    if (sellButton) {
+        sellButton.addEventListener(
+            "click",
+            sellerMessage
+        );
+    }
 
 
-    /* ============================
-       HEADER BUTTONS
-    ============================ */
-
-    cartButton.addEventListener("click", () => {
-
-        if (cart.length === 0) {
-
-            showToast("Your cart is empty");
-
-        } else {
-
-            showToast(
-                `You have ${cart.length} item(s) in your cart`
-            );
-
-        }
-
-    });
+    if (sellerButton) {
+        sellerButton.addEventListener(
+            "click",
+            sellerMessage
+        );
+    }
 
 
-    wishlistButton.addEventListener(
-        "click",
-        () => {
+    // ============================
+    // WISHLIST HEADER
+    // ============================
 
-            if (wishlist.length === 0) {
+    if (wishlistButton) {
+
+        wishlistButton.addEventListener(
+            "click",
+            () => {
+
+                if (wishlist.length === 0) {
+
+                    showToast(
+                        "Your wishlist is empty"
+                    );
+
+                } else {
+
+                    showToast(
+                        "You have " +
+                        wishlist.length +
+                        " wishlist item(s)"
+                    );
+
+                }
+
+            }
+        );
+
+    }
+
+
+    // ============================
+    // ACCOUNT
+    // ============================
+
+    if (accountButton) {
+
+        accountButton.addEventListener(
+            "click",
+            () => {
 
                 showToast(
-                    "Your wishlist is empty"
-                );
-
-            } else {
-
-                showToast(
-                    `You have ${wishlist.length} wishlist item(s)`
+                    "Account system is coming soon!"
                 );
 
             }
-
-        }
-    );
-
-
-    accountButton.addEventListener(
-        "click",
-        () => {
-
-            showToast(
-                "Account system is coming soon!"
-            );
-
-        }
-    );
-
-
-    /* ============================
-       TOAST
-    ============================ */
-
-    let toastTimer;
-
-
-    function showToast(message) {
-
-        toast.textContent = message;
-
-        toast.classList.add("show");
-
-
-        clearTimeout(toastTimer);
-
-
-        toastTimer = setTimeout(() => {
-
-            toast.classList.remove("show");
-
-        }, 2500);
+        );
 
     }
 
