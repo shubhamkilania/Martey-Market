@@ -1,0 +1,1391 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Your Cart — MARTEY</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --purple: #6c4df6;
+            --purple-dark: #5134d9;
+            --purple-light: #eeeaff;
+
+            --black: #111116;
+            --text: #17171d;
+            --muted: #777783;
+
+            --background: #f7f7fa;
+            --white: #ffffff;
+            --border: #e8e8ed;
+
+            --green: #218542;
+        }
+
+        body {
+            font-family: "DM Sans", sans-serif;
+            background: var(--background);
+            color: var(--text);
+        }
+
+        button {
+            font-family: inherit;
+            border: none;
+            cursor: pointer;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+
+        /* ================= HEADER ================= */
+
+        .header {
+            background: white;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .header-main {
+            max-width: 1380px;
+            height: 80px;
+
+            margin: auto;
+            padding: 0 32px;
+
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .logo {
+            font-family: "Manrope";
+            font-size: 28px;
+            font-weight: 800;
+            letter-spacing: -1.5px;
+        }
+
+        .logo span {
+            color: var(--purple);
+        }
+
+        .search {
+            flex: 1;
+            max-width: 650px;
+
+            height: 46px;
+
+            background: #f4f4f7;
+
+            border: 1px solid var(--border);
+
+            border-radius: 10px;
+
+            display: flex;
+            overflow: hidden;
+        }
+
+        .search input {
+            flex: 1;
+
+            border: none;
+            outline: none;
+
+            background: transparent;
+
+            padding: 0 18px;
+
+            font-size: 14px;
+        }
+
+        .search button {
+            width: 90px;
+
+            background: var(--purple);
+            color: white;
+
+            font-weight: 700;
+        }
+
+        .search button:hover {
+            background: var(--purple-dark);
+        }
+
+        .header-actions {
+            margin-left: auto;
+
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .header-action {
+            background: transparent;
+
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .header-action:hover {
+            color: var(--purple);
+        }
+
+
+        /* ================= PAGE ================= */
+
+        .page {
+            max-width: 1250px;
+
+            margin: 45px auto;
+
+            padding: 0 25px 80px;
+        }
+
+        .breadcrumb {
+            color: var(--muted);
+
+            font-size: 12px;
+
+            margin-bottom: 12px;
+        }
+
+        .breadcrumb span {
+            color: var(--purple);
+        }
+
+        .page-title {
+            font-family: "Manrope";
+
+            font-size: 40px;
+
+            letter-spacing: -1.8px;
+
+            margin-bottom: 35px;
+        }
+
+
+        /* ================= LAYOUT ================= */
+
+        .cart-layout {
+            display: grid;
+
+            grid-template-columns: 1fr 380px;
+
+            gap: 25px;
+
+            align-items: start;
+        }
+
+
+        /* ================= CART PRODUCTS ================= */
+
+        .cart-box {
+            background: white;
+
+            border: 1px solid var(--border);
+
+            border-radius: 16px;
+
+            overflow: hidden;
+        }
+
+        .cart-header {
+            padding: 20px 25px;
+
+            border-bottom: 1px solid var(--border);
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cart-header h2 {
+            font-family: "Manrope";
+
+            font-size: 17px;
+        }
+
+        .item-count {
+            color: var(--muted);
+
+            font-size: 12px;
+        }
+
+
+        /* PRODUCT ROW */
+
+        .cart-item {
+            padding: 22px 25px;
+
+            display: grid;
+
+            grid-template-columns: 100px 1fr auto;
+
+            gap: 20px;
+
+            align-items: center;
+
+            border-bottom: 1px solid var(--border);
+        }
+
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+
+
+        /* PRODUCT IMAGE */
+
+        .cart-image {
+            width: 100px;
+            height: 110px;
+
+            border-radius: 12px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-family: "Manrope";
+
+            font-size: 25px;
+            font-weight: 800;
+
+            color: white;
+        }
+
+        .purple-image {
+            background: linear-gradient(
+                145deg,
+                #927eff,
+                #5134d9
+            );
+        }
+
+        .blue-image {
+            background: linear-gradient(
+                145deg,
+                #62a5ff,
+                #2663c7
+            );
+        }
+
+        .orange-image {
+            background: linear-gradient(
+                145deg,
+                #ffbd6b,
+                #df7118
+            );
+        }
+
+
+        /* PRODUCT DETAILS */
+
+        .cart-product-info h3 {
+            font-family: "Manrope";
+
+            font-size: 16px;
+
+            margin-bottom: 7px;
+        }
+
+        .product-category {
+            color: var(--purple);
+
+            font-size: 9px;
+
+            font-weight: 800;
+
+            letter-spacing: 1px;
+        }
+
+        .cart-product-info p {
+            color: var(--muted);
+
+            font-size: 11px;
+
+            margin-top: 6px;
+        }
+
+        .price {
+            font-size: 16px;
+
+            font-weight: 800;
+
+            margin-top: 12px;
+        }
+
+
+        /* QUANTITY */
+
+        .item-actions {
+            display: flex;
+
+            align-items: center;
+
+            gap: 20px;
+        }
+
+        .quantity {
+            height: 38px;
+
+            display: flex;
+            align-items: center;
+
+            border: 1px solid var(--border);
+
+            border-radius: 7px;
+
+            overflow: hidden;
+        }
+
+        .quantity button {
+            width: 35px;
+            height: 100%;
+
+            background: white;
+
+            font-size: 16px;
+        }
+
+        .quantity button:hover {
+            background: var(--purple-light);
+        }
+
+        .quantity span {
+            width: 35px;
+
+            text-align: center;
+
+            font-size: 12px;
+
+            font-weight: 700;
+        }
+
+        .remove-btn {
+            background: transparent;
+
+            color: #a1a1aa;
+
+            font-size: 11px;
+        }
+
+        .remove-btn:hover {
+            color: #e04444;
+        }
+
+
+        /* ================= SUMMARY ================= */
+
+        .summary {
+            background: white;
+
+            border: 1px solid var(--border);
+
+            border-radius: 16px;
+
+            padding: 25px;
+
+            position: sticky;
+
+            top: 110px;
+        }
+
+        .summary h2 {
+            font-family: "Manrope";
+
+            font-size: 19px;
+
+            margin-bottom: 25px;
+        }
+
+        .summary-row {
+            display: flex;
+
+            justify-content: space-between;
+
+            margin-bottom: 15px;
+
+            font-size: 13px;
+        }
+
+        .summary-row span:last-child {
+            font-weight: 600;
+        }
+
+        .delivery {
+            color: var(--green);
+        }
+
+        .summary-divider {
+            height: 1px;
+
+            background: var(--border);
+
+            margin: 20px 0;
+        }
+
+        .total {
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+        }
+
+        .total span:first-child {
+            font-size: 14px;
+
+            font-weight: 700;
+        }
+
+        .total span:last-child {
+            font-family: "Manrope";
+
+            font-size: 25px;
+
+            font-weight: 800;
+        }
+
+        .checkout-btn {
+            width: 100%;
+
+            height: 52px;
+
+            background: var(--purple);
+
+            color: white;
+
+            border-radius: 9px;
+
+            margin-top: 25px;
+
+            font-size: 14px;
+
+            font-weight: 700;
+
+            transition: 0.2s;
+        }
+
+        .checkout-btn:hover {
+            background: var(--purple-dark);
+
+            transform: translateY(-1px);
+        }
+
+        .continue-btn {
+            width: 100%;
+
+            height: 48px;
+
+            margin-top: 10px;
+
+            background: white;
+
+            border: 1px solid var(--border);
+
+            border-radius: 9px;
+
+            font-size: 12px;
+
+            font-weight: 700;
+        }
+
+        .continue-btn:hover {
+            border-color: var(--purple);
+
+            color: var(--purple);
+        }
+
+
+        /* ================= TRUST ================= */
+
+        .trust {
+            margin-top: 20px;
+
+            padding: 15px;
+
+            background: #f8f8fb;
+
+            border-radius: 9px;
+
+            text-align: center;
+
+            color: var(--muted);
+
+            font-size: 10px;
+
+            line-height: 1.6;
+        }
+
+
+        /* ================= EMPTY CART ================= */
+
+        .empty-cart {
+            display: none;
+
+            background: white;
+
+            border: 1px solid var(--border);
+
+            border-radius: 16px;
+
+            padding: 80px 25px;
+
+            text-align: center;
+        }
+
+        .empty-cart.show {
+            display: block;
+        }
+
+        .empty-icon {
+            width: 75px;
+            height: 75px;
+
+            margin: auto auto 20px;
+
+            background: var(--purple-light);
+
+            border-radius: 50%;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 30px;
+        }
+
+        .empty-cart h2 {
+            font-family: "Manrope";
+
+            font-size: 24px;
+
+            margin-bottom: 8px;
+        }
+
+        .empty-cart p {
+            color: var(--muted);
+
+            font-size: 13px;
+
+            margin-bottom: 25px;
+        }
+
+        .shop-btn {
+            height: 45px;
+
+            padding: 0 25px;
+
+            background: var(--purple);
+
+            color: white;
+
+            border-radius: 8px;
+
+            font-weight: 700;
+        }
+
+
+        /* ================= TOAST ================= */
+
+        .toast {
+            position: fixed;
+
+            right: 25px;
+            bottom: 25px;
+
+            background: var(--black);
+
+            color: white;
+
+            padding: 14px 20px;
+
+            border-radius: 8px;
+
+            font-size: 12px;
+
+            transform: translateY(100px);
+
+            opacity: 0;
+
+            transition: 0.3s;
+
+            z-index: 1000;
+        }
+
+        .toast.show {
+            transform: translateY(0);
+
+            opacity: 1;
+        }
+
+
+        /* ================= RESPONSIVE ================= */
+
+        @media(max-width: 900px) {
+
+            .header-main {
+                padding: 15px;
+
+                height: auto;
+
+                flex-wrap: wrap;
+            }
+
+            .search {
+                order: 3;
+
+                flex-basis: 100%;
+
+                max-width: none;
+            }
+
+            .cart-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .summary {
+                position: static;
+            }
+
+        }
+
+
+        @media(max-width: 600px) {
+
+            .header-actions {
+                display: none;
+            }
+
+            .page {
+                margin-top: 30px;
+
+                padding: 0 15px 60px;
+            }
+
+            .page-title {
+                font-size: 32px;
+            }
+
+            .cart-item {
+                grid-template-columns: 75px 1fr;
+
+                gap: 15px;
+            }
+
+            .cart-image {
+                width: 75px;
+                height: 85px;
+            }
+
+            .item-actions {
+                grid-column: 2;
+
+                justify-content: space-between;
+            }
+
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+
+    <!-- ================= HEADER ================= -->
+
+    <header class="header">
+
+        <div class="header-main">
+
+            <a href="index.html" class="logo">
+                MARTEY<span>.</span>
+            </a>
+
+
+            <div class="search">
+
+                <input
+                    type="text"
+                    id="searchInput"
+                    placeholder="Search products..."
+                >
+
+                <button id="searchButton">
+                    Search
+                </button>
+
+            </div>
+
+
+            <div class="header-actions">
+
+                <button
+                    class="header-action"
+                    onclick="location.href='index.html'"
+                >
+                    Home
+                </button>
+
+                <button class="header-action">
+                    🛒 Cart
+                </button>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- ================= PAGE ================= -->
+
+    <main class="page">
+
+        <div class="breadcrumb">
+
+            Home /
+            <span>Your Cart</span>
+
+        </div>
+
+
+        <h1 class="page-title">
+            Your Cart
+        </h1>
+
+
+        <!-- EMPTY CART -->
+
+        <section class="empty-cart" id="emptyCart">
+
+            <div class="empty-icon">
+                🛒
+            </div>
+
+            <h2>
+                Your cart is empty
+            </h2>
+
+            <p>
+                Looks like you haven't added anything yet.
+            </p>
+
+            <button
+                class="shop-btn"
+                onclick="location.href='index.html'"
+            >
+                Start Shopping →
+            </button>
+
+        </section>
+
+
+        <!-- CART -->
+
+        <div class="cart-layout" id="cartLayout">
+
+
+            <!-- CART ITEMS -->
+
+            <section class="cart-box">
+
+                <div class="cart-header">
+
+                    <h2>
+                        Shopping Bag
+                    </h2>
+
+                    <span
+                        class="item-count"
+                        id="itemCount"
+                    >
+                        0 items
+                    </span>
+
+                </div>
+
+
+                <div id="cartItems">
+                    <!-- JavaScript adds products here -->
+                </div>
+
+            </section>
+
+
+            <!-- SUMMARY -->
+
+            <aside class="summary">
+
+                <h2>
+                    Order Summary
+                </h2>
+
+
+                <div class="summary-row">
+
+                    <span>
+                        Subtotal
+                    </span>
+
+                    <span id="subtotal">
+                        ₹0
+                    </span>
+
+                </div>
+
+
+                <div class="summary-row">
+
+                    <span>
+                        Delivery
+                    </span>
+
+                    <span
+                        class="delivery"
+                        id="delivery"
+                    >
+                        FREE
+                    </span>
+
+                </div>
+
+
+                <div class="summary-row">
+
+                    <span>
+                        Discount
+                    </span>
+
+                    <span id="discount">
+                        − ₹0
+                    </span>
+
+                </div>
+
+
+                <div class="summary-divider"></div>
+
+
+                <div class="total">
+
+                    <span>
+                        Total
+                    </span>
+
+                    <span id="total">
+                        ₹0
+                    </span>
+
+                </div>
+
+
+                <button
+                    class="checkout-btn"
+                    id="checkoutButton"
+                >
+                    Proceed to Checkout →
+                </button>
+
+
+                <button
+                    class="continue-btn"
+                    onclick="location.href='index.html'"
+                >
+                    ← Continue Shopping
+                </button>
+
+
+                <div class="trust">
+
+                    🔒 Secure checkout
+                    <br>
+
+                    Your information is protected.
+
+                </div>
+
+            </aside>
+
+        </div>
+
+    </main>
+
+
+    <div
+        class="toast"
+        id="toast"
+    >
+        Cart updated
+    </div>
+
+
+    <!-- ================= JAVASCRIPT ================= -->
+
+    <script>
+
+        /* =====================================
+           CART DATA
+        ===================================== */
+
+        let cart =
+            JSON.parse(
+                localStorage.getItem("marteyCart")
+            ) || [];
+
+
+        const cartItems =
+            document.getElementById("cartItems");
+
+        const cartLayout =
+            document.getElementById("cartLayout");
+
+        const emptyCart =
+            document.getElementById("emptyCart");
+
+        const itemCount =
+            document.getElementById("itemCount");
+
+        const subtotalElement =
+            document.getElementById("subtotal");
+
+        const totalElement =
+            document.getElementById("total");
+
+        const discountElement =
+            document.getElementById("discount");
+
+        const checkoutButton =
+            document.getElementById("checkoutButton");
+
+        const toast =
+            document.getElementById("toast");
+
+
+        /* =====================================
+           PRODUCT VISUALS
+        ===================================== */
+
+        const productVisuals = [
+            "purple-image",
+            "blue-image",
+            "orange-image"
+        ];
+
+
+        /* =====================================
+           RENDER CART
+        ===================================== */
+
+        function renderCart() {
+
+            cartItems.innerHTML = "";
+
+
+            if (cart.length === 0) {
+
+                cartLayout.style.display = "none";
+
+                emptyCart.classList.add("show");
+
+                return;
+
+            }
+
+
+            cartLayout.style.display = "grid";
+
+            emptyCart.classList.remove("show");
+
+
+            cart.forEach((product, index) => {
+
+                const item = document.createElement("div");
+
+                item.className = "cart-item";
+
+
+                const visualClass =
+                    productVisuals[
+                        index % productVisuals.length
+                    ];
+
+
+                let priceNumber =
+                    parsePrice(product.price);
+
+
+                item.innerHTML = `
+
+                    <div class="cart-image ${visualClass}">
+                        M
+                    </div>
+
+
+                    <div class="cart-product-info">
+
+                        <span class="product-category">
+                            MARTEY PRODUCT
+                        </span>
+
+                        <h3>
+                            ${product.name}
+                        </h3>
+
+                        <p>
+                            Premium marketplace product
+                        </p>
+
+                        <div class="price">
+                            ₹${priceNumber.toLocaleString("en-IN")}
+                        </div>
+
+                    </div>
+
+
+                    <div class="item-actions">
+
+                        <div class="quantity">
+
+                            <button
+                                onclick="decreaseQuantity(${index})"
+                            >
+                                −
+                            </button>
+
+                            <span>
+                                1
+                            </span>
+
+                            <button
+                                onclick="increaseQuantity(${index})"
+                            >
+                                +
+                            </button>
+
+                        </div>
+
+
+                        <button
+                            class="remove-btn"
+                            onclick="removeItem(${index})"
+                        >
+                            Remove
+                        </button>
+
+                    </div>
+
+                `;
+
+
+                cartItems.appendChild(item);
+
+            });
+
+
+            updateSummary();
+
+        }
+
+
+        /* =====================================
+           PRICE
+        ===================================== */
+
+        function parsePrice(price) {
+
+            if (typeof price === "number") {
+
+                return price;
+
+            }
+
+
+            return Number(
+                String(price)
+                    .replace("₹", "")
+                    .replace(/,/g, "")
+                    .trim()
+            ) || 0;
+
+        }
+
+
+        /* =====================================
+           SUMMARY
+        ===================================== */
+
+        function updateSummary() {
+
+            let subtotal = 0;
+
+
+            cart.forEach(product => {
+
+                subtotal +=
+                    parsePrice(product.price);
+
+            });
+
+
+            const delivery =
+                subtotal >= 999
+                    ? 0
+                    : subtotal === 0
+                        ? 0
+                        : 49;
+
+
+            const discount = 0;
+
+            const total =
+                subtotal +
+                delivery -
+                discount;
+
+
+            subtotalElement.textContent =
+                `₹${subtotal.toLocaleString("en-IN")}`;
+
+
+            if (delivery === 0) {
+
+                document.getElementById("delivery")
+                    .textContent = "FREE";
+
+            } else {
+
+                document.getElementById("delivery")
+                    .textContent =
+                    `₹${delivery}`;
+
+            }
+
+
+            discountElement.textContent =
+                `− ₹${discount}`;
+
+
+            totalElement.textContent =
+                `₹${total.toLocaleString("en-IN")}`;
+
+
+            const count = cart.length;
+
+
+            itemCount.textContent =
+                count === 1
+                    ? "1 item"
+                    : `${count} items`;
+
+        }
+
+
+        /* =====================================
+           INCREASE
+        ===================================== */
+
+        function increaseQuantity(index) {
+
+            cart.push({
+                name: cart[index].name,
+                price: cart[index].price
+            });
+
+
+            saveCart();
+
+            renderCart();
+
+            showToast("Quantity increased");
+
+        }
+
+
+        /* =====================================
+           DECREASE
+        ===================================== */
+
+        function decreaseQuantity(index) {
+
+            const productName =
+                cart[index].name;
+
+
+            const sameIndex =
+                cart.findIndex(
+                    (item, i) =>
+                        i !== index &&
+                        item.name === productName
+                );
+
+
+            if (sameIndex !== -1) {
+
+                cart.splice(
+                    sameIndex,
+                    1
+                );
+
+            } else {
+
+                cart.splice(
+                    index,
+                    1
+                );
+
+            }
+
+
+            saveCart();
+
+            renderCart();
+
+            showToast("Quantity decreased");
+
+        }
+
+
+        /* =====================================
+           REMOVE
+        ===================================== */
+
+        function removeItem(index) {
+
+            cart.splice(index, 1);
+
+
+            saveCart();
+
+            renderCart();
+
+            showToast("Product removed");
+
+        }
+
+
+        /* =====================================
+           SAVE
+        ===================================== */
+
+        function saveCart() {
+
+            localStorage.setItem(
+                "marteyCart",
+                JSON.stringify(cart)
+            );
+
+        }
+
+
+        /* =====================================
+           CHECKOUT
+        ===================================== */
+
+        checkoutButton.addEventListener(
+            "click",
+            () => {
+
+                if (cart.length === 0) {
+
+                    showToast(
+                        "Your cart is empty"
+                    );
+
+                    return;
+
+                }
+
+
+                window.location.href =
+                    "checkout.html";
+
+            }
+        );
+
+
+        /* =====================================
+           SEARCH
+        ===================================== */
+
+        document
+            .getElementById("searchButton")
+            .addEventListener(
+                "click",
+                () => {
+
+                    const search =
+                        document
+                            .getElementById("searchInput")
+                            .value
+                            .trim();
+
+
+                    if (search) {
+
+                        window.location.href =
+                            `index.html?search=${encodeURIComponent(search)}`;
+
+                    }
+
+                }
+            );
+
+
+        /* =====================================
+           TOAST
+        ===================================== */
+
+        let toastTimer;
+
+
+        function showToast(message) {
+
+            toast.textContent =
+                message;
+
+            toast.classList.add("show");
+
+
+            clearTimeout(toastTimer);
+
+
+            toastTimer =
+                setTimeout(() => {
+
+                    toast.classList.remove(
+                        "show"
+                    );
+
+                }, 2200);
+
+        }
+
+
+        /* =====================================
+           START
+        ===================================== */
+
+        renderCart();
+
+    </script>
+
+</body>
+
+</html>
