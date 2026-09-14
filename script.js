@@ -1505,6 +1505,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 localStorage.removeItem(
                     "marteyUser"
                 );
+
 // ===============================
 // ACCOUNT BUTTON
 // ===============================
@@ -1516,23 +1517,6 @@ if (accountButton) {
         window.location.href = "account.html";
     });
 }
-
-                updateAccountAvatar();
-
-
-                closeAllModals();
-
-
-                showToast(
-                    "You have been logged out"
-                );
-
-            }
-        );
-
-    }
-
-
     /* =====================================================
        INITIALIZE ACCOUNT STATE
     ===================================================== */
