@@ -1513,7 +1513,7 @@ document.addEventListener("DOMContentLoaded", () => {
 const accountButton = document.getElementById("accountButton");
 
 if (accountButton) {
-    accountButton.addEventListener("click", () => {
+    accountButton.addEventListener("click", function () {
         window.location.href = "account.html";
     });
 }
