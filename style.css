@@ -320,6 +320,9 @@ img {
 .account-button {
     gap: 9px;
     padding: 0 10px;
+     background: var(--primary);
+    color: white;
+
 }
 
 .account-avatar {
