@@ -2,1763 +2,2046 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0, viewport-fit=cover"
-    >
-
-    <meta name="theme-color" content="#111111">
+    <meta name="description" content="MARTEY — Everything. One marketplace.">
+    <meta name="theme-color" content="#08090D">
 
     <title>MARTEY — Everything. For Everyone.</title>
 
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <link
-        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" 
-        rel="stylesheet" 
-    > 
- 
-    <link rel="stylesheet" href="style.css"> 
-</head> 
- 
-<body> 
- 
-<!-- ========================================================= 
-     HEADER 
-========================================================= --> 
- 
-<header class="header"> 
- 
-    <div class="header-top"> 
- 
-        <a href="#" class="logo"> 
-            MARTEY<span>.</span> 
-        </a> 
- 
-        <div class="search-area"> 
- 
-            <input 
-                type="search" 
-                id="searchInput" 
-                placeholder="Search products, brands and categories..." 
-                autocomplete="off" 
-            > 
- 
-            <button id="searchButton"> 
-                Search 
-            </button> 
- 
-        </div> 
- 
-        <div class="header-actions"> 
- 
-            <button 
-                class="header-icon-btn" 
-                id="wishlistButton" 
-                aria-label="Wishlist" 
-            > 
-                <span>♡</span> 
-                <small>Wishlist</small> 
-            </button> 
- 
-            <button 
-                class="header-icon-btn cart-button" 
-                id="cartButton" 
-                aria-label="Cart" 
-            > 
-                <span>🛒</span> 
-                <small>Cart</small> 
-                <b id="cartCount">0</b> 
-            </button> 
- 
-            <!-- ACCOUNT --> 
- 
-            <button 
-                class="account-btn" 
-                id="accountButton" 
-                aria-label="Account" 
-                type="button" 
-            > 
-                <span class="account-avatar" id="accountAvatar"> 
-                    <span class="default-avatar">♙</span> 
-                </span> 
-            </button> 
- 
-        </div> 
- 
-    </div> 
- 
- 
-    <!-- CATEGORY NAVIGATION --> 
- 
-    <nav class="category-bar"> 
- 
-        <div class="category-container"> 
- 
-            <button 
-                class="category-link active" 
-                data-category="all" 
-                type="button" 
-            > 
-                All 
-            </button> 
- 
-            <button 
-                class="category-link" 
-                data-category="fashion" 
-                type="button" 
-            > 
-                Fashion 
-            </button> 
- 
-            <button 
-                class="category-link" 
-                data-category="electronics" 
-                type="button" 
-            > 
-                Electronics 
-            </button> 
- 
-            <button 
-                class="category-link" 
-                data-category="home" 
-                type="button" 
-            > 
-                Home 
-            </button> 
- 
-            <button 
-                class="category-link" 
-                data-category="beauty" 
-                type="button" 
-            > 
-                Beauty 
-            </button> 
- 
-            <button 
-                class="category-link" 
-                data-category="accessories" 
-                type="button" 
-            > 
-                Accessories 
-            </button> 
- 
-            <button 
-                class="category-link" 
-                data-category="sports" 
-                type="button" 
-            > 
-                Sports 
-            </button> 
- 
-            <button 
-                class="category-link" 
-                data-category="gaming" 
-                type="button" 
-            > 
-                Gaming 
-            </button> 
- 
-            <button 
-                class="category-link" 
-                data-category="more" 
-                type="button" 
-            > 
-                More 
-            </button> 
- 
-        </div> 
- 
-    </nav> 
- 
-</header> 
- 
- 
-<!-- ========================================================= 
-     MAIN 
-========================================================= --> 
- 
-<main> 
- 
-    <!-- ===================================================== 
-         HERO 
-    ====================================================== --> 
- 
-    <section class="hero"> 
- 
-        <div class="hero-image"></div> 
- 
-        <div class="hero-overlay"></div> 
- 
-        <div class="hero-content"> 
- 
-            <span class="hero-tag"> 
-                THE NEW MARKETPLACE 
-            </span> 
- 
-            <h1> 
-                Everything you want. 
-                <span>All in one place.</span> 
-            </h1> 
- 
-            <p> 
-                Discover products from brands, creators and independent 
-                sellers — all together on MARTEY. 
-            </p> 
- 
-            <div class="hero-buttons"> 
- 
-                <button 
-                    class="primary-btn" 
-                    id="startShopping" 
-                    type="button" 
-                > 
-                   <a href="shop.html">Shop Now</a>
-                </button> 
- 
-                <button 
-                    class="outline-btn" 
-                    id="sellButton" 
-                    type="button" 
-                > 
-                    Sell on MARTEY 
-                </button> 
- 
-            </div> 
- 
-            <div class="hero-stats"> 
- 
-                <div> 
-                    <strong>10K+</strong> 
-                    <span>Products</span> 
-                </div> 
- 
-                <div> 
-                    <strong>1K+</strong> 
-                    <span>Sellers</span> 
-                </div> 
- 
-                <div> 
-                    <strong>24/7</strong> 
-                    <span>Marketplace</span> 
-                </div> 
- 
-            </div> 
- 
-        </div> 
- 
-    </section> 
- 
- 
-    <!-- ===================================================== 
-         CATEGORIES 
-    ====================================================== --> 
- 
-    <section class="section" id="categories"> 
- 
-        <div class="section-heading"> 
- 
-            <div> 
-                <span class="eyebrow"> 
-                    EXPLORE 
-                </span> 
- 
-                <h2> 
-                    Shop by category 
-                </h2> 
-            </div> 
- 
-            <button 
-                class="text-button" 
-                id="viewAllCategories" 
-                type="button" 
-            > 
-                View all → 
-            </button> 
- 
-        </div> 
- 
- 
-        <div class="category-grid"> 
- 
-            <button 
-                class="category-card category-fashion" 
-                data-category="fashion" 
-                type="button" 
-            > 
-                <div class="category-photo"></div> 
- 
-                <div class="category-card-content"> 
-                    <h3>Fashion</h3> 
-                    <p>Style & clothing</p> 
-                </div> 
-            </button> 
- 
- 
-            <button 
-                class="category-card category-electronics" 
-                data-category="electronics" 
-                type="button" 
-            > 
-                <div class="category-photo"></div> 
- 
-                <div class="category-card-content"> 
-                    <h3>Electronics</h3> 
-                    <p>Tech & gadgets</p> 
-                </div> 
-            </button> 
- 
- 
-            <button 
-                class="category-card category-home" 
-                data-category="home" 
-                type="button" 
-            > 
-                <div class="category-photo"></div> 
- 
-                <div class="category-card-content"> 
-                    <h3>Home</h3> 
-                    <p>Make it yours</p> 
-                </div> 
-            </button> 
- 
- 
-            <button 
-                class="category-card category-beauty" 
-                data-category="beauty" 
-                type="button" 
-            > 
-                <div class="category-photo"></div> 
- 
-                <div class="category-card-content"> 
-                    <h3>Beauty</h3> 
-                    <p>Care & beauty</p> 
-                </div> 
-            </button> 
- 
- 
-            <button 
-                class="category-card category-accessories" 
-                data-category="accessories" 
-                type="button" 
-            > 
-                <div class="category-photo"></div> 
- 
-                <div class="category-card-content"> 
-                    <h3>Accessories</h3> 
-                    <p>Complete your look</p> 
-                </div> 
-            </button> 
- 
- 
-            <button 
-                class="category-card category-sports" 
-                data-category="sports" 
-                type="button" 
-            > 
-                <div class="category-photo"></div> 
- 
-                <div class="category-card-content"> 
-                    <h3>Sports</h3> 
-                    <p>Play better</p> 
-                </div> 
-            </button> 
- 
-        </div> 
- 
-    </section> 
- 
- 
-    <!-- ===================================================== 
-         PRODUCTS 
-    ====================================================== --> 
- 
-    <section 
-        class="section products-section" 
-        id="products" 
-    > 
- 
-        <div class="section-heading"> 
- 
-            <div> 
-                <span class="eyebrow"> 
-                    DISCOVER 
-                </span> 
- 
-                <h2> 
-                    Trending products 
-                </h2> 
-            </div> 
- 
-            <button 
-                class="text-button" 
-                id="clearFilter" 
-                type="button" 
-            > 
-                View all → 
-            </button> 
- 
-        </div> 
- 
- 
-        <div 
-            class="product-grid" 
-            id="productGrid" 
-        > 
- 
-            <!-- PRODUCT 1 --> 
- 
-            <article 
-                class="product-card" 
-                data-category="fashion" 
-            > 
- 
-                <div class="product-image"> 
- 
-                    <span class="product-badge"> 
-                        TRENDING 
-                    </span> 
- 
-                    <button 
-                        class="heart-btn" 
-                        aria-label="Add to wishlist" 
-                        type="button" 
-                    > 
-                        ♡ 
-                    </button> 
- 
-                    <img 
-                        src="images/premium-tshirt.jpg" 
-                        alt="Premium Oversized T-Shirt" 
-                        class="real-product-image" 
-                    > 
- 
-                </div> 
- 
-                <div class="product-info"> 
- 
-                    <span class="product-category"> 
-                        FASHION 
-                    </span> 
- 
-                    <h3> 
-                        Premium Oversized T-Shirt 
-                    </h3> 
- 
-                    <div class="rating"> 
-                        ★★★★★ 
-                        <span>(124)</span> 
-                    </div> 
- 
-                    <div class="price-row"> 
-                        <strong>₹799</strong> 
-                        <del>₹1,299</del> 
-                    </div> 
- 
-                    <button 
-                        class="add-cart" 
-                        type="button" 
-                    > 
-                        Add to Cart 
-                    </button> 
- 
-                </div> 
- 
-            </article> 
- 
- 
-            <!-- PRODUCT 2 --> 
- 
-            <article 
-                class="product-card" 
-                data-category="electronics" 
-            > 
- 
-                <div class="product-image"> 
- 
-                    <span class="product-badge"> 
-                        NEW 
-                    </span> 
- 
-                    <button 
-                        class="heart-btn" 
-                        aria-label="Add to wishlist" 
-                        type="button" 
-                    > 
-                        ♡ 
-                    </button> 
- 
-                    <img 
-                        src="images/wireless-headphones.jpg" 
-                        alt="Wireless Headphones" 
-                        class="real-product-image" 
-                    > 
- 
-                </div> 
- 
-                <div class="product-info"> 
- 
-                    <span class="product-category"> 
-                        ELECTRONICS 
-                    </span> 
- 
-                    <h3> 
-                        Wireless Headphones 
-                    </h3> 
- 
-                    <div class="rating"> 
-                        ★★★★★ 
-                        <span>(89)</span> 
-                    </div> 
- 
-                    <div class="price-row"> 
-                        <strong>₹1,999</strong> 
-                        <del>₹2,999</del> 
-                    </div> 
- 
-                    <button 
-                        class="add-cart" 
-                        type="button" 
-                    > 
-                        Add to Cart 
-                    </button> 
- 
-                </div> 
- 
-            </article> 
- 
- 
-            <!-- PRODUCT 3 --> 
- 
-            <article 
-                class="product-card" 
-                data-category="accessories" 
-            > 
- 
-                <div class="product-image"> 
- 
-                    <span class="product-badge"> 
-                        HOT 
-                    </span> 
- 
-                    <button 
-                        class="heart-btn" 
-                        aria-label="Add to wishlist" 
-                        type="button" 
-                    > 
-                        ♡ 
-                    </button> 
- 
-                    <img 
-                        src="images/minimal-smartwatch.jpg" 
-                        alt="Minimal Smart Watch" 
-                        class="real-product-image" 
-                    > 
- 
-                </div> 
- 
-                <div class="product-info"> 
- 
-                    <span class="product-category"> 
-                        ACCESSORIES 
-                    </span> 
- 
-                    <h3> 
-                        Minimal Smart Watch 
-                    </h3> 
- 
-                    <div class="rating"> 
-                        ★★★★★ 
-                        <span>(211)</span> 
-                    </div> 
- 
-                    <div class="price-row"> 
-                        <strong>₹2,499</strong> 
-                        <del>₹3,499</del> 
-                    </div> 
- 
-                    <button 
-                        class="add-cart" 
-                        type="button" 
-                    > 
-                        Add to Cart 
-                    </button> 
- 
-                </div> 
- 
-            </article> 
- 
- 
-            <!-- PRODUCT 4 --> 
- 
-            <article 
-                class="product-card" 
-                data-category="home" 
-            > 
- 
-                <div class="product-image"> 
- 
-                    <span class="product-badge"> 
-                        DEAL 
-                    </span> 
- 
-                    <button 
-                        class="heart-btn" 
-                        aria-label="Add to wishlist" 
-                        type="button" 
-                    > 
-                        ♡ 
-                    </button> 
- 
-                    <img 
-                        src="images/modern-desk-lamp.jpg" 
-                        alt="Modern Desk Lamp" 
-                        class="real-product-image" 
-                    > 
- 
-                </div> 
- 
-                <div class="product-info"> 
- 
-                    <span class="product-category"> 
-                        HOME 
-                    </span> 
- 
-                    <h3> 
-                        Modern Desk Lamp 
-                    </h3> 
- 
-                    <div class="rating"> 
-                        ★★★★★ 
-                        <span>(76)</span> 
-                    </div> 
- 
-                    <div class="price-row"> 
-                        <strong>₹899</strong> 
-                        <del>₹1,499</del> 
-                    </div> 
- 
-                    <button 
-                        class="add-cart" 
-                        type="button" 
-                    > 
-                        Add to Cart 
-                    </button> 
- 
-                </div> 
- 
-            </article> 
- 
-        </div> 
- 
- 
-        <div 
-            class="empty-state" 
-            id="emptyState" 
-        > 
-            <h3>No products found</h3> 
- 
-            <p> 
-                Try another search or category. 
-            </p> 
-        </div> 
- 
-    </section> 
- 
- 
-    <!-- ===================================================== 
-         SELLER CTA 
-    ====================================================== --> 
- 
-    <section class="seller-section"> 
- 
-        <div class="seller-content"> 
- 
-            <span class="eyebrow light"> 
-                FOR SELLERS 
-            </span> 
- 
-            <h2> 
-                Your products deserve 
-                <span>a bigger marketplace.</span> 
-            </h2> 
- 
-            <p> 
-                Create your store on MARTEY, reach new customers 
-                and grow your business from one simple dashboard. 
-            </p> 
- 
-            <button 
-                class="seller-btn" 
-                id="sellerButton" 
-                type="button" 
-            > 
-                Start Selling → 
-            </button> 
- 
-        </div> 
- 
- 
-        <div class="seller-image"> 
- 
-            <img 
-                src="images/seller-banner.jpg" 
-                alt="MARTEY seller" 
-            > 
- 
-        </div> 
- 
-    </section> 
- 
- 
-    <!-- ===================================================== 
-         FEATURES 
-    ====================================================== --> 
- 
-    <section class="features"> 
- 
-        <div class="feature"> 
-            <div>🛡️</div> 
- 
-            <h3> 
-                Secure Shopping 
-            </h3> 
- 
-            <p> 
-                Your shopping experience comes first. 
-            </p> 
-        </div> 
- 
- 
-        <div class="feature"> 
-            <div>🚚</div> 
- 
-            <h3> 
-                Reliable Delivery 
-            </h3> 
- 
-            <p> 
-                Products delivered to your doorstep. 
-            </p> 
-        </div> 
- 
- 
-        <div class="feature"> 
-            <div>↩️</div> 
- 
-            <h3> 
-                Easy Returns 
-            </h3> 
- 
-            <p> 
-                Simple and transparent return process. 
-            </p> 
-        </div> 
- 
- 
-        <div class="feature"> 
-            <div>💬</div> 
- 
-            <h3> 
-                Seller Support 
-            </h3> 
- 
-            <p> 
-                Support for sellers and customers. 
-            </p> 
-        </div> 
- 
-    </section> 
- 
-</main> 
- 
- 
-<!-- ========================================================= 
-     FOOTER 
-========================================================= --> 
- 
-<footer class="footer"> 
- 
-    <div class="footer-main"> 
- 
-        <div class="footer-brand"> 
- 
-            <a href="#" class="logo footer-logo"> 
-                MARTEY<span>.</span> 
-            </a> 
- 
-            <p> 
-                Everything. One marketplace. 
-            </p> 
- 
-        </div> 
- 
- 
-        <div class="footer-column"> 
- 
-            <h4> 
-                Marketplace 
-            </h4> 
- 
-            <a href="#"> 
-                About MARTEY 
-            </a> 
- 
-            <a href="#products"> 
-                Shop 
-            </a> 
- 
-            <a href="#categories"> 
-                Categories 
-            </a> 
- 
-            <a href="#"> 
-                Deals 
-            </a> 
- 
-        </div> 
- 
- 
-        <div class="footer-column"> 
- 
-            <h4> 
-                For Sellers 
-            </h4> 
- 
-            <a 
-                href="#" 
-                id="footerSellerLink" 
-            > 
-                Start Selling 
-            </a> 
- 
-            <a href="#"> 
-                Seller Dashboard 
-            </a> 
- 
-            <a href="#"> 
-                Seller Guide 
-            </a> 
- 
-            <a href="#"> 
-                Pricing 
-            </a> 
- 
-        </div> 
- 
- 
-        <div class="footer-column"> 
- 
-            <h4> 
-                Help 
-            </h4> 
- 
-            <a href="#"> 
-                Contact 
-            </a> 
- 
-            <a href="#"> 
-                Shipping 
-            </a> 
- 
-            <a href="#"> 
-                Returns 
-            </a> 
- 
-            <a href="#"> 
-                FAQs 
-            </a> 
- 
-        </div> 
- 
-    </div> 
- 
- 
-    <div class="footer-bottom"> 
- 
-        <span> 
-            © 2026 MARTEY. All rights reserved. 
-        </span> 
- 
-        <div> 
- 
-            <a href="#"> 
-                Privacy 
-            </a> 
- 
-            <a href="#"> 
-                Terms 
-            </a> 
- 
-        </div> 
- 
-    </div> 
- 
-</footer> 
- 
- 
-<!-- ========================================================= 
-     AUTH MODAL 
-========================================================= --> 
- 
-<div 
-    class="modal" 
-    id="authModal" 
-    aria-hidden="true" 
-> 
- 
-    <div class="modal-content auth-modal"> 
- 
-        <button 
-            class="modal-close" 
-            data-close-modal="authModal" 
-            aria-label="Close" 
-            type="button" 
-        > 
-            × 
-        </button> 
- 
- 
-        <div class="auth-logo"> 
-            MARTEY<span>.</span> 
-        </div> 
- 
- 
-        <div class="auth-tabs"> 
- 
-            <button 
-                class="auth-tab active" 
-                data-auth="login" 
-                type="button" 
-            > 
-                Login 
-            </button> 
- 
-            <button 
-                class="auth-tab" 
-                data-auth="signup" 
-                type="button" 
-            > 
-                Create Account 
-            </button> 
- 
-        </div> 
- 
- 
-        <!-- LOGIN --> 
- 
-        <div 
-            class="auth-view" 
-            id="loginView" 
-        > 
- 
-            <div class="modal-header"> 
- 
-                <h2> 
-                    Welcome back 
-                </h2> 
- 
-                <p> 
-                    Login to your MARTEY account. 
-                </p> 
- 
-            </div> 
- 
- 
-            <form id="loginForm"> 
- 
-                <div class="form-group"> 
- 
-                    <label for="loginEmail"> 
-                        Email 
-                    </label> 
- 
-                    <input 
-                        type="email" 
-                        id="loginEmail" 
-                        placeholder="Enter your email" 
-                        autocomplete="email" 
-                        required 
-                    > 
- 
-                </div> 
- 
- 
-                <div class="form-group"> 
- 
-                    <label for="loginPassword"> 
-                        Password 
-                    </label> 
- 
-                    <input 
-                        type="password" 
-                        id="loginPassword" 
-                        placeholder="Enter your password" 
-                        autocomplete="current-password" 
-                        required 
-                    > 
- 
-                </div> 
- 
- 
-                <button 
-                    type="submit" 
-                    class="primary-btn full-btn" 
-                > 
-                    Login 
-                </button> 
- 
-            </form> 
- 
- 
-            <p class="auth-switch"> 
- 
-                Don't have an account? 
- 
-                <button 
-                    type="button" 
-                    data-auth-switch="signup" 
-                > 
-                    Create Account 
-                </button> 
- 
-            </p> 
- 
-        </div> 
- 
- 
-        <!-- SIGNUP --> 
- 
-        <div 
-            class="auth-view hidden" 
-            id="signupView" 
-        > 
- 
-            <div class="modal-header"> 
- 
-                <h2> 
-                    Create your account 
-                </h2> 
- 
-                <p> 
-                    Join MARTEY as a customer, seller or delivery partner. 
-                </p> 
- 
-            </div> 
- 
- 
-            <div class="form-group"> 
- 
-                <label> 
-                    I want to join as 
-                </label> 
- 
- 
-                <div class="role-selector"> 
- 
-                    <button 
-                        class="role-option selected" 
-                        data-role="customer" 
-                        type="button" 
-                    > 
- 
-                        <span class="role-icon"> 
-                            🛍️ 
-                        </span> 
- 
-                        <strong> 
-                            Customer 
-                        </strong> 
- 
-                        <small> 
-                            Shop products 
-                        </small> 
- 
-                    </button> 
- 
- 
-                    <button 
-                        class="role-option" 
-                        data-role="seller" 
-                        type="button" 
-                    > 
- 
-                        <span class="role-icon"> 
-                            🏪 
-                        </span> 
- 
-                        <strong> 
-                            Seller 
-                        </strong> 
- 
-                        <small> 
-                            Sell products 
-                        </small> 
- 
-                    </button> 
- 
- 
-                    <button 
-                        class="role-option" 
-                        data-role="delivery" 
-                        type="button" 
-                    > 
- 
-                        <span class="role-icon"> 
-                            🛵 
-                        </span> 
- 
-                        <strong> 
-                            Delivery Partner 
-                        </strong> 
- 
-                        <small> 
-                            Deliver orders 
-                        </small> 
- 
-                    </button> 
- 
-                </div> 
- 
-            </div> 
- 
- 
-            <form id="signupForm"> 
- 
-                <input 
-                    type="hidden" 
-                    id="signupRole" 
-                    value="customer" 
-                > 
- 
- 
-                <div class="form-group"> 
- 
-                    <label for="signupName"> 
-                        Full Name 
-                    </label> 
- 
-                    <input 
-                        type="text" 
-                        id="signupName" 
-                        placeholder="Enter your full name" 
-                        autocomplete="name" 
-                        required 
-                    > 
- 
-                </div> 
- 
- 
-                <div 
-                    class="form-group seller-only-field hidden" 
-                    id="storeNameGroup" 
-                > 
- 
-                    <label for="signupStoreName"> 
-                        Store / Brand Name 
-                    </label> 
- 
-                    <input 
-                        type="text" 
-                        id="signupStoreName" 
-                        placeholder="Enter your store name" 
-                    > 
- 
-                </div> 
- 
- 
-                <div class="form-group"> 
- 
-                    <label for="signupEmail"> 
-                        Email 
-                    </label> 
- 
-                    <input 
-                        type="email" 
-                        id="signupEmail" 
-                        placeholder="Enter your email" 
-                        autocomplete="email" 
-                        required 
-                    > 
- 
-                </div> 
- 
- 
-                <div class="form-group"> 
- 
-                    <label for="signupPhone"> 
-                        Phone Number 
-                    </label> 
- 
-                    <input 
-                        type="tel" 
-                        id="signupPhone" 
-                        placeholder="Enter your phone number" 
-                        autocomplete="tel" 
-                        required 
-                    > 
- 
-                </div> 
- 
- 
-                <div class="form-group"> 
- 
-                    <label for="signupPassword"> 
-                        Password 
-                    </label> 
- 
-                    <input 
-                        type="password" 
-                        id="signupPassword" 
-                        placeholder="Create a password" 
-                        autocomplete="new-password" 
-                        minlength="6" 
-                        required 
-                    > 
- 
-                </div> 
- 
- 
-                <button 
-                    type="submit" 
-                    class="primary-btn full-btn" 
-                > 
-                    Create Account 
-                </button> 
- 
-            </form> 
- 
- 
-            <p class="auth-switch"> 
- 
-                Already have an account? 
- 
-                <button 
-                    type="button" 
-                    data-auth-switch="login" 
-                > 
-                    Login 
-                </button> 
- 
-            </p> 
- 
-        </div> 
- 
-    </div> 
- 
-</div> 
- 
- 
-<!-- ========================================================= 
-     ACCOUNT MODAL 
-========================================================= --> 
- 
-<div 
-    class="modal" 
-    id="accountModal" 
-    aria-hidden="true" 
-> 
- 
-    <div class="modal-content account-modal"> 
- 
-        <button 
-            class="modal-close" 
-            data-close-modal="accountModal" 
-            aria-label="Close" 
-            type="button" 
-        > 
-            × 
-        </button> 
- 
- 
-        <div class="account-profile"> 
- 
-            <div 
-                class="account-profile-avatar" 
-                id="accountProfileAvatar" 
-            > 
-                <span class="default-avatar"> 
-                    ♙ 
-                </span> 
-            </div> 
- 
- 
-            <div> 
- 
-                <h2 id="accountName"> 
-                    User 
-                </h2> 
- 
-                <p id="accountEmail"> 
-                    user@example.com 
-                </p> 
- 
-                <p id="accountPhone"> 
-                    — 
-                </p> 
- 
-                <span 
-                    class="account-role" 
-                    id="accountRole" 
-                > 
-                    Customer 
-                </span> 
- 
-            </div> 
- 
-        </div> 
- 
- 
-        <button 
-            class="edit-profile-btn" 
-            id="editProfileButton" 
-            type="button" 
-        > 
-            ✏️ Edit Profile 
-        </button> 
- 
- 
-        <div class="account-menu"> 
- 
-            <button 
-                type="button" 
-                id="ordersButton" 
-            > 
-                <span>📦</span> 
-                <span>My Orders</span> 
-            </button> 
- 
- 
-            <button 
-                type="button" 
-                id="wishlistAccountButton" 
-            > 
-                <span>❤️</span> 
-                <span>My Wishlist</span> 
-            </button> 
- 
- 
-            <button 
-                type="button" 
-                id="cartAccountButton" 
-            > 
-                <span>🛒</span> 
-                <span>My Cart</span> 
-            </button> 
- 
- 
-            <button 
-                type="button" 
-                id="reviewsButton" 
-            > 
-                <span>⭐</span> 
-                <span>My Reviews</span> 
-            </button> 
- 
- 
-            <button 
-                type="button" 
-                id="recentButton" 
-            > 
-                <span>👁</span> 
-                <span>Recently Viewed</span> 
-            </button> 
- 
-        </div> 
- 
- 
-        <div class="account-divider"></div> 
- 
- 
-        <button 
-            class="account-menu-single" 
-            id="settingsButton" 
-            type="button" 
-        > 
-            <span>⚙️</span> 
-            <span>Settings</span> 
-        </button> 
- 
- 
-        <button 
-            class="account-menu-single seller-entry" 
-            id="sellerEntry" 
-            type="button" 
-        > 
-            <span>🏪</span> 
-            <span>Become a Seller</span> 
-        </button> 
- 
- 
-        <button 
-            class="account-menu-single delivery-entry" 
-            id="deliveryEntry" 
-            type="button" 
-        > 
-            <span>🛵</span> 
-            <span>Become a Delivery Partner</span> 
-        </button> 
- 
- 
-        <button 
-            class="logout-btn" 
-            id="logoutButton" 
-            type="button" 
-        > 
-            🚪 Logout 
-        </button> 
- 
-    </div> 
- 
-</div> 
- 
- 
-<!-- ========================================================= 
-     SETTINGS MODAL 
-========================================================= --> 
- 
-<div 
-    class="modal" 
-    id="settingsModal" 
-    aria-hidden="true" 
-> 
- 
-    <div class="modal-content settings-modal"> 
- 
-        <button 
-            class="modal-close" 
-            data-close-modal="settingsModal" 
-            aria-label="Close" 
-            type="button" 
-        > 
-            × 
-        </button> 
- 
- 
-        <div class="modal-header"> 
- 
-            <span class="eyebrow"> 
-                MARTEY 
-            </span> 
- 
-            <h2> 
-                Settings 
-            </h2> 
- 
-            <p> 
-                Manage your account preferences. 
-            </p> 
- 
-        </div> 
- 
- 
-        <div class="settings-list"> 
- 
- 
-            <!-- ACCOUNT --> 
- 
-            <div class="settings-group"> 
- 
-                <h3> 
-                    Account 
-                </h3> 
- 
- 
-                <button 
-                    id="settingsEditProfile" 
-                    type="button" 
-                > 
- 
-                    <span> 
-                        ✏️ 
-                        <strong> 
-                            Edit Profile 
-                        </strong> 
-                    </span> 
- 
-                    <b>›</b> 
- 
-                </button> 
- 
- 
-                <button 
-                    type="button" 
-                    id="loginSecurityButton" 
-                > 
- 
-                    <span> 
-                        🔐 
-                        <strong> 
-                            Login & Security 
-                        </strong> 
-                    </span> 
- 
-                    <b>›</b> 
- 
-                </button> 
- 
- 
-                <button 
-                    type="button" 
-                    id="addressButton" 
-                > 
- 
-                    <span> 
-                        📍 
-                        <strong> 
-                            Manage Addresses 
-                        </strong> 
-                    </span> 
- 
-                    <b>›</b> 
- 
-                </button> 
- 
-            </div> 
- 
- 
-            <!-- NOTIFICATIONS --> 
- 
-            <div class="settings-group"> 
- 
-                <h3> 
-                    Notifications 
-                </h3> 
- 
- 
-                <button 
-                    type="button" 
-                    id="notificationsButton" 
-                > 
- 
-                    <span> 
-                        🔔 
-                        <strong> 
-                            Notifications 
-                        </strong> 
-                    </span> 
- 
-                    <b>›</b> 
- 
-                </button> 
- 
- 
-                <button 
-                    type="button" 
-                    id="orderUpdatesButton" 
-                > 
- 
-                    <span> 
-                        📦 
-                        <strong> 
-                            Order Updates 
-                        </strong> 
-                    </span> 
- 
-                    <b>›</b> 
- 
-                </button> 
- 
-            </div> 
- 
- 
-            <!-- APPEARANCE --> 
- 
-            <div class="settings-group"> 
- 
-                <h3> 
-                    Appearance 
-                </h3> 
- 
- 
-                <div class="theme-setting"> 
- 
-                    <div> 
- 
-                        <strong> 
-                            Theme 
-                        </strong> 
- 
-                        <small> 
-                            Choose how MARTEY looks 
-                        </small> 
- 
-                    </div> 
- 
- 
-                    <select id="themeSelect"> 
- 
-                        <option value="system"> 
-                            System 
-                        </option> 
- 
-                        <option value="light"> 
-                            Light 
-                        </option> 
- 
-                        <option value="dark"> 
-                            Dark 
-                        </option> 
- 
-                    </select> 
- 
-                </div> 
- 
-            </div> 
- 
- 
-            <!-- SUPPORT --> 
- 
-            <div class="settings-group"> 
- 
-                <h3> 
-                    Support 
-                </h3> 
- 
- 
-                <button 
-                    type="button" 
-                    id="helpButton" 
-                > 
- 
-                    <span> 
-                        💬 
-                        <strong> 
-                            Help & Support 
-                        </strong> 
-                    </span> 
- 
-                    <b>›</b> 
- 
-                </button> 
- 
- 
-                <button 
-                    type="button" 
-                    id="reportButton" 
-                > 
- 
-                    <span> 
-                        ⚠️ 
-                        <strong> 
-                            Report a Problem 
-                        </strong> 
-                    </span> 
- 
-                    <b>›</b> 
- 
-                </button> 
- 
-            </div> 
- 
- 
-            <!-- LEGAL --> 
- 
-            <div class="settings-group"> 
- 
-                <h3> 
-                    Legal 
-                </h3> 
- 
- 
-                <button 
-                    type="button" 
-                    id="privacyButton" 
-                > 
- 
-                    <span> 
-                        🔒 
-                        <strong> 
-                            Privacy Policy 
-                        </strong> 
-                    </span> 
- 
-                    <b>›</b> 
- 
-                </button> 
- 
- 
-                <button 
-                    type="button" 
-                    id="termsButton" 
-                > 
- 
-                    <span> 
-                        📄 
-                        <strong> 
-                            Terms & Conditions 
-                        </strong> 
-                    </span> 
- 
-                    <b>›</b> 
- 
-                </button> 
- 
-            </div> 
- 
- 
-            <!-- DANGER --> 
- 
-            <div class="settings-group danger-group"> 
- 
-                <button 
-                    type="button" 
-                    id="settingsLogoutButton" 
-                > 
- 
-                    <span> 
-                        🚪 
-                        <strong> 
-                            Logout 
-                        </strong> 
-                    </span> 
- 
-                </button> 
- 
- 
-                <button 
-                    class="danger" 
-                    type="button" 
-                    id="deleteAccountButton" 
-                > 
- 
-                    <span> 
-                        🗑️ 
-                        <strong> 
-                            Delete Account 
-                        </strong> 
-                    </span> 
- 
-                </button> 
- 
-            </div> 
- 
-        </div> 
- 
-    </div> 
- 
-</div> 
- 
- 
-<!-- ========================================================= 
-     TOAST 
-========================================================= --> 
- 
-<div 
-    class="toast" 
-    id="toast" 
-> 
-    Product added to cart 
-</div> 
- 
- 
-<!-- ========================================================= 
-     JAVASCRIPT 
-========================================================= --> 
- 
-<script src="script.js"></script> 
- 
-</body> 
-</html> 
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- =========================================================
+     HEADER
+========================================================= -->
+
+<header class="header">
+
+    <div class="header-top">
+
+        <!-- LOGO -->
+        <a href="index.html" class="logo" aria-label="MARTEY Home">
+            MARTEY<span>.</span>
+        </a>
+
+
+        <!-- SEARCH -->
+        <div class="search-area">
+
+            <input
+                type="search"
+                id="searchInput"
+                placeholder="Search products, brands and categories..."
+                autocomplete="off"
+                aria-label="Search products"
+            >
+
+            <button
+                id="searchButton"
+                type="button"
+                aria-label="Search"
+            >
+                Search
+            </button>
+
+        </div>
+
+
+        <!-- HEADER ACTIONS -->
+        <div class="header-actions">
+
+            <!-- Wishlist -->
+            <button
+                class="header-icon-btn"
+                id="wishlistButton"
+                type="button"
+                aria-label="Wishlist"
+            >
+                <span aria-hidden="true">
+                    <svg
+                        viewBox="0 0 24 24"
+                        width="21"
+                        height="21"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.8"
+                    >
+                        <path d="M20.8 8.7c0 5.5-8.8 10.3-8.8 10.3S3.2 14.2 3.2 8.7A4.7 4.7 0 0 1 12 6.2a4.7 4.7 0 0 1 8.8 2.5Z"/>
+                    </svg>
+                </span>
+
+                <small>Wishlist</small>
+            </button>
+
+
+            <!-- Cart -->
+            <button
+                class="header-icon-btn cart-button"
+                id="cartButton"
+                type="button"
+                aria-label="Cart"
+            >
+                <span aria-hidden="true">
+                    <svg
+                        viewBox="0 0 24 24"
+                        width="21"
+                        height="21"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.8"
+                    >
+                        <path d="M3 4h2l2.1 11.2a2 2 0 0 0 2 1.6h7.8a2 2 0 0 0 1.9-1.4L21 8H6"/>
+                        <circle cx="10" cy="20" r="1"/>
+                        <circle cx="18" cy="20" r="1"/>
+                    </svg>
+                </span>
+
+                <small>Cart</small>
+
+                <b id="cartCount">0</b>
+            </button>
+
+
+            <!-- Account -->
+            <button
+                class="account-btn"
+                id="accountButton"
+                type="button"
+                aria-label="Account"
+            >
+                <span
+                    class="account-avatar"
+                    id="accountAvatar"
+                >
+                    <span class="default-avatar">M</span>
+                </span>
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- CATEGORY BAR -->
+    <nav
+        class="category-bar"
+        aria-label="Product categories"
+    >
+
+        <div class="category-container">
+
+            <button
+                class="category-link active"
+                data-category="all"
+                type="button"
+            >
+                All
+            </button>
+
+            <button
+                class="category-link"
+                data-category="fashion"
+                type="button"
+            >
+                Fashion
+            </button>
+
+            <button
+                class="category-link"
+                data-category="electronics"
+                type="button"
+            >
+                Electronics
+            </button>
+
+            <button
+                class="category-link"
+                data-category="home"
+                type="button"
+            >
+                Home
+            </button>
+
+            <button
+                class="category-link"
+                data-category="beauty"
+                type="button"
+            >
+                Beauty
+            </button>
+
+            <button
+                class="category-link"
+                data-category="accessories"
+                type="button"
+            >
+                Accessories
+            </button>
+
+            <button
+                class="category-link"
+                data-category="sports"
+                type="button"
+            >
+                Sports
+            </button>
+
+            <button
+                class="category-link"
+                data-category="gaming"
+                type="button"
+            >
+                Gaming
+            </button>
+
+            <button
+                class="category-link"
+                data-category="more"
+                type="button"
+            >
+                More
+            </button>
+
+        </div>
+
+    </nav>
+
+</header>
+
+
+
+<!-- =========================================================
+     MAIN
+========================================================= -->
+
+<main>
+
+
+<!-- =========================================================
+     HERO
+========================================================= -->
+
+<section class="hero">
+
+    <div class="hero-image"></div>
+
+    <div class="hero-overlay"></div>
+
+
+    <div class="hero-content">
+
+        <span class="hero-tag">
+            THE NEW MARKETPLACE
+        </span>
+
+
+        <h1>
+            Everything you want.
+            <span>All in one place.</span>
+        </h1>
+
+
+        <p>
+            Discover products from brands, creators and independent
+            sellers — all together on MARTEY.
+        </p>
+
+
+        <div class="hero-buttons">
+
+            <!-- FIXED: No nested button + anchor -->
+            <a
+                href="#products"
+                class="primary-btn"
+                id="startShopping"
+            >
+                Explore Marketplace →
+            </a>
+
+
+            <button
+                class="outline-btn"
+                id="sellButton"
+                type="button"
+            >
+                Sell on MARTEY
+            </button>
+
+        </div>
+
+
+        <!-- STATS -->
+        <div class="hero-stats">
+
+            <div>
+                <strong>10K+</strong>
+                <span>Products</span>
+            </div>
+
+            <div>
+                <strong>1K+</strong>
+                <span>Sellers</span>
+            </div>
+
+            <div>
+                <strong>24/7</strong>
+                <span>Marketplace</span>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     CATEGORIES
+========================================================= -->
+
+<section
+    class="section"
+    id="categories"
+>
+
+    <div class="section-heading">
+
+        <div>
+
+            <span class="eyebrow">
+                EXPLORE
+            </span>
+
+            <h2>
+                Shop by category
+            </h2>
+
+        </div>
+
+
+        <button
+            class="text-button"
+            id="viewAllCategories"
+            type="button"
+        >
+            View all →
+        </button>
+
+    </div>
+
+
+
+    <div class="category-grid">
+
+
+        <!-- FASHION -->
+        <button
+            class="category-card category-fashion"
+            data-category="fashion"
+            type="button"
+        >
+
+            <div class="category-photo"></div>
+
+            <div class="category-card-content">
+
+                <h3>Fashion</h3>
+
+                <p>
+                    Style & clothing
+                </p>
+
+            </div>
+
+        </button>
+
+
+
+        <!-- ELECTRONICS -->
+        <button
+            class="category-card category-electronics"
+            data-category="electronics"
+            type="button"
+        >
+
+            <div class="category-photo"></div>
+
+            <div class="category-card-content">
+
+                <h3>Electronics</h3>
+
+                <p>
+                    Tech & gadgets
+                </p>
+
+            </div>
+
+        </button>
+
+
+
+        <!-- HOME -->
+        <button
+            class="category-card category-home"
+            data-category="home"
+            type="button"
+        >
+
+            <div class="category-photo"></div>
+
+            <div class="category-card-content">
+
+                <h3>Home</h3>
+
+                <p>
+                    Make it yours
+                </p>
+
+            </div>
+
+        </button>
+
+
+
+        <!-- BEAUTY -->
+        <button
+            class="category-card category-beauty"
+            data-category="beauty"
+            type="button"
+        >
+
+            <div class="category-photo"></div>
+
+            <div class="category-card-content">
+
+                <h3>Beauty</h3>
+
+                <p>
+                    Care & beauty
+                </p>
+
+            </div>
+
+        </button>
+
+
+
+        <!-- ACCESSORIES -->
+        <button
+            class="category-card category-accessories"
+            data-category="accessories"
+            type="button"
+        >
+
+            <div class="category-photo"></div>
+
+            <div class="category-card-content">
+
+                <h3>Accessories</h3>
+
+                <p>
+                    Complete your look
+                </p>
+
+            </div>
+
+        </button>
+
+
+
+        <!-- SPORTS -->
+        <button
+            class="category-card category-sports"
+            data-category="sports"
+            type="button"
+        >
+
+            <div class="category-photo"></div>
+
+            <div class="category-card-content">
+
+                <h3>Sports</h3>
+
+                <p>
+                    Play better
+                </p>
+
+            </div>
+
+        </button>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     PRODUCTS / MARKETPLACE
+========================================================= -->
+
+<section
+    class="section products-section"
+    id="products"
+>
+
+    <div class="section-heading">
+
+        <div>
+
+            <span class="eyebrow">
+                DISCOVER
+            </span>
+
+            <h2>
+                Trending products
+            </h2>
+
+        </div>
+
+
+        <button
+            class="text-button"
+            id="clearFilter"
+            type="button"
+        >
+            View all →
+        </button>
+
+    </div>
+
+
+
+    <!-- PRODUCT GRID -->
+    <div
+        class="product-grid"
+        id="productGrid"
+    >
+
+
+        <!-- PRODUCT 1 -->
+        <article
+            class="product-card"
+            data-category="fashion"
+        >
+
+            <div class="product-image">
+
+                <span class="product-badge">
+                    TRENDING
+                </span>
+
+
+                <button
+                    class="heart-btn"
+                    type="button"
+                    aria-label="Add to wishlist"
+                >
+                    ♡
+                </button>
+
+
+                <img
+                    src="images/premium-tshirt.jpg"
+                    alt="Premium Oversized T-Shirt"
+                    class="real-product-image"
+                >
+
+            </div>
+
+
+            <div class="product-info">
+
+                <span class="product-category">
+                    FASHION
+                </span>
+
+                <h3>
+                    Premium Oversized T-Shirt
+                </h3>
+
+
+                <div class="rating">
+                    ★★★★★
+                    <span>(124)</span>
+                </div>
+
+
+                <div class="price-row">
+
+                    <strong>
+                        ₹799
+                    </strong>
+
+                    <del>
+                        ₹1,299
+                    </del>
+
+                </div>
+
+
+                <button
+                    class="add-cart"
+                    type="button"
+                >
+                    Add to Cart
+                </button>
+
+            </div>
+
+        </article>
+
+
+
+        <!-- PRODUCT 2 -->
+        <article
+            class="product-card"
+            data-category="electronics"
+        >
+
+            <div class="product-image">
+
+                <span class="product-badge">
+                    NEW
+                </span>
+
+
+                <button
+                    class="heart-btn"
+                    type="button"
+                    aria-label="Add to wishlist"
+                >
+                    ♡
+                </button>
+
+
+                <img
+                    src="images/wireless-headphones.jpg"
+                    alt="Wireless Headphones"
+                    class="real-product-image"
+                >
+
+            </div>
+
+
+            <div class="product-info">
+
+                <span class="product-category">
+                    ELECTRONICS
+                </span>
+
+                <h3>
+                    Wireless Headphones
+                </h3>
+
+
+                <div class="rating">
+                    ★★★★★
+                    <span>(89)</span>
+                </div>
+
+
+                <div class="price-row">
+
+                    <strong>
+                        ₹1,999
+                    </strong>
+
+                    <del>
+                        ₹2,999
+                    </del>
+
+                </div>
+
+
+                <button
+                    class="add-cart"
+                    type="button"
+                >
+                    Add to Cart
+                </button>
+
+            </div>
+
+        </article>
+
+
+
+        <!-- PRODUCT 3 -->
+        <article
+            class="product-card"
+            data-category="accessories"
+        >
+
+            <div class="product-image">
+
+                <span class="product-badge">
+                    HOT
+                </span>
+
+
+                <button
+                    class="heart-btn"
+                    type="button"
+                    aria-label="Add to wishlist"
+                >
+                    ♡
+                </button>
+
+
+                <img
+                    src="images/minimal-smartwatch.jpg"
+                    alt="Minimal Smart Watch"
+                    class="real-product-image"
+                >
+
+            </div>
+
+
+            <div class="product-info">
+
+                <span class="product-category">
+                    ACCESSORIES
+                </span>
+
+                <h3>
+                    Minimal Smart Watch
+                </h3>
+
+
+                <div class="rating">
+                    ★★★★★
+                    <span>(211)</span>
+                </div>
+
+
+                <div class="price-row">
+
+                    <strong>
+                        ₹2,499
+                    </strong>
+
+                    <del>
+                        ₹3,499
+                    </del>
+
+                </div>
+
+
+                <button
+                    class="add-cart"
+                    type="button"
+                >
+                    Add to Cart
+                </button>
+
+            </div>
+
+        </article>
+
+
+
+        <!-- PRODUCT 4 -->
+        <article
+            class="product-card"
+            data-category="home"
+        >
+
+            <div class="product-image">
+
+                <span class="product-badge">
+                    DEAL
+                </span>
+
+
+                <button
+                    class="heart-btn"
+                    type="button"
+                    aria-label="Add to wishlist"
+                >
+                    ♡
+                </button>
+
+
+                <img
+                    src="images/modern-desk-lamp.jpg"
+                    alt="Modern Desk Lamp"
+                    class="real-product-image"
+                >
+
+            </div>
+
+
+            <div class="product-info">
+
+                <span class="product-category">
+                    HOME
+                </span>
+
+                <h3>
+                    Modern Desk Lamp
+                </h3>
+
+
+                <div class="rating">
+                    ★★★★★
+                    <span>(76)</span>
+                </div>
+
+
+                <div class="price-row">
+
+                    <strong>
+                        ₹899
+                    </strong>
+
+                    <del>
+                        ₹1,499
+                    </del>
+
+                </div>
+
+
+                <button
+                    class="add-cart"
+                    type="button"
+                >
+                    Add to Cart
+                </button>
+
+            </div>
+
+        </article>
+
+    </div>
+
+
+
+    <!-- EMPTY STATE -->
+    <div
+        class="empty-state"
+        id="emptyState"
+    >
+
+        <h3>
+            No products found
+        </h3>
+
+        <p>
+            Try another search or category.
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     SELLER CTA
+========================================================= -->
+
+<section class="seller-section">
+
+    <div class="seller-content">
+
+        <span class="eyebrow light">
+            FOR SELLERS
+        </span>
+
+
+        <h2>
+            Your products deserve
+            <span>a bigger marketplace.</span>
+        </h2>
+
+
+        <p>
+            Create your store on MARTEY, reach new customers
+            and grow your business from one simple dashboard.
+        </p>
+
+
+        <button
+            class="seller-btn"
+            id="sellerButton"
+            type="button"
+        >
+            Start Selling →
+        </button>
+
+    </div>
+
+
+    <div class="seller-image">
+
+        <img
+            src="images/seller-banner.jpg"
+            alt="Sell products on MARTEY"
+        >
+
+    </div>
+
+</section>
+
+
+
+<!-- =========================================================
+     FEATURES
+========================================================= -->
+
+<section class="features">
+
+
+    <!-- FEATURE 1 -->
+    <div class="feature">
+
+        <div aria-hidden="true">
+
+            <svg
+                viewBox="0 0 24 24"
+                width="30"
+                height="30"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.7"
+            >
+                <path d="M12 3 20 6v5c0 5-3.4 8.3-8 10-4.6-1.7-8-5-8-10V6l8-3Z"/>
+                <path d="m9 12 2 2 4-4"/>
+            </svg>
+
+        </div>
+
+        <h3>
+            Secure Shopping
+        </h3>
+
+        <p>
+            Your shopping experience comes first.
+        </p>
+
+    </div>
+
+
+
+    <!-- FEATURE 2 -->
+    <div class="feature">
+
+        <div aria-hidden="true">
+
+            <svg
+                viewBox="0 0 24 24"
+                width="30"
+                height="30"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.7"
+            >
+                <path d="M3 6h11v10H3zM14 9h4l3 3v4h-7z"/>
+                <circle cx="7" cy="18" r="2"/>
+                <circle cx="18" cy="18" r="2"/>
+            </svg>
+
+        </div>
+
+        <h3>
+            Reliable Delivery
+        </h3>
+
+        <p>
+            Products delivered to your doorstep.
+        </p>
+
+    </div>
+
+
+
+    <!-- FEATURE 3 -->
+    <div class="feature">
+
+        <div aria-hidden="true">
+
+            <svg
+                viewBox="0 0 24 24"
+                width="30"
+                height="30"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.7"
+            >
+                <path d="M3 12a9 9 0 1 0 3-6.7"/>
+                <path d="M3 4v5h5"/>
+                <path d="M12 8v5l3 2"/>
+            </svg>
+
+        </div>
+
+        <h3>
+            Easy Returns
+        </h3>
+
+        <p>
+            Simple and transparent return process.
+        </p>
+
+    </div>
+
+
+
+    <!-- FEATURE 4 -->
+    <div class="feature">
+
+        <div aria-hidden="true">
+
+            <svg
+                viewBox="0 0 24 24"
+                width="30"
+                height="30"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.7"
+            >
+                <path d="M4 5h16v11H8l-4 4V5Z"/>
+                <path d="M8 9h8M8 12h5"/>
+            </svg>
+
+        </div>
+
+        <h3>
+            Seller Support
+        </h3>
+
+        <p>
+            Support for sellers and customers.
+        </p>
+
+    </div>
+
+</section>
+
+</main>
+
+
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
+<footer class="footer">
+
+    <div class="footer-main">
+
+
+        <!-- BRAND -->
+        <div class="footer-brand">
+
+            <a
+                href="index.html"
+                class="logo footer-logo"
+            >
+                MARTEY<span>.</span>
+            </a>
+
+            <p>
+                Everything. One marketplace.
+            </p>
+
+        </div>
+
+
+
+        <!-- MARKETPLACE -->
+        <div class="footer-column">
+
+            <h4>
+                Marketplace
+            </h4>
+
+            <a href="#">
+                About MARTEY
+            </a>
+
+            <a href="#products">
+                Marketplace
+            </a>
+
+            <a href="#categories">
+                Categories
+            </a>
+
+            <a href="#products">
+                Deals
+            </a>
+
+        </div>
+
+
+
+        <!-- SELLERS -->
+        <div class="footer-column">
+
+            <h4>
+                For Sellers
+            </h4>
+
+            <a
+                href="#"
+                id="footerSellerLink"
+            >
+                Start Selling
+            </a>
+
+            <a href="#">
+                Seller Dashboard
+            </a>
+
+            <a href="#">
+                Seller Guide
+            </a>
+
+            <a href="#">
+                Pricing
+            </a>
+
+        </div>
+
+
+
+        <!-- HELP -->
+        <div class="footer-column">
+
+            <h4>
+                Help
+            </h4>
+
+            <a href="#">
+                Contact
+            </a>
+
+            <a href="#">
+                Shipping
+            </a>
+
+            <a href="#">
+                Returns
+            </a>
+
+            <a href="#">
+                FAQs
+            </a>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="footer-bottom">
+
+        <span>
+            © 2026 MARTEY. All rights reserved.
+        </span>
+
+
+        <div>
+
+            <a href="#">
+                Privacy
+            </a>
+
+            <a href="#">
+                Terms
+            </a>
+
+        </div>
+
+    </div>
+
+</footer>
+
+
+
+<!-- =========================================================
+     AUTH MODAL
+========================================================= -->
+
+<div
+    class="modal"
+    id="authModal"
+    aria-hidden="true"
+>
+
+    <div class="modal-content auth-modal">
+
+        <button
+            class="modal-close"
+            data-close-modal="authModal"
+            aria-label="Close"
+            type="button"
+        >
+            ×
+        </button>
+
+
+        <div class="auth-logo">
+            MARTEY<span>.</span>
+        </div>
+
+
+        <!-- AUTH TABS -->
+        <div class="auth-tabs">
+
+            <button
+                class="auth-tab active"
+                data-auth="login"
+                type="button"
+            >
+                Login
+            </button>
+
+            <button
+                class="auth-tab"
+                data-auth="signup"
+                type="button"
+            >
+                Create Account
+            </button>
+
+        </div>
+
+
+
+        <!-- LOGIN VIEW -->
+        <div
+            class="auth-view"
+            id="loginView"
+        >
+
+            <div class="modal-header">
+
+                <h2>
+                    Welcome back
+                </h2>
+
+                <p>
+                    Login to your MARTEY account.
+                </p>
+
+            </div>
+
+
+            <form id="loginForm">
+
+                <div class="form-group">
+
+                    <label for="loginEmail">
+                        Email
+                    </label>
+
+                    <input
+                        type="email"
+                        id="loginEmail"
+                        placeholder="Enter your email"
+                        autocomplete="email"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="loginPassword">
+                        Password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="loginPassword"
+                        placeholder="Enter your password"
+                        autocomplete="current-password"
+                        required
+                    >
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="primary-btn full-btn"
+                >
+                    Login
+                </button>
+
+            </form>
+
+
+            <p class="auth-switch">
+
+                Don't have an account?
+
+                <button
+                    type="button"
+                    data-auth-switch="signup"
+                >
+                    Create Account
+                </button>
+
+            </p>
+
+        </div>
+
+
+
+        <!-- SIGNUP VIEW -->
+        <div
+            class="auth-view hidden"
+            id="signupView"
+        >
+
+            <div class="modal-header">
+
+                <h2>
+                    Create your account
+                </h2>
+
+                <p>
+                    Join MARTEY as a customer, seller or delivery partner.
+                </p>
+
+            </div>
+
+
+
+            <!-- ROLE -->
+            <div class="form-group">
+
+                <label>
+                    I want to join as
+                </label>
+
+
+                <div class="role-selector">
+
+
+                    <!-- CUSTOMER -->
+                    <button
+                        class="role-option selected"
+                        data-role="customer"
+                        type="button"
+                    >
+
+                        <span
+                            class="role-icon"
+                            aria-hidden="true"
+                        >
+
+                            <svg
+                                viewBox="0 0 24 24"
+                                width="24"
+                                height="24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="1.7"
+                            >
+                                <path d="M4 5h16v11H4z"/>
+                                <path d="M8 9h8M8 12h5"/>
+                            </svg>
+
+                        </span>
+
+                        <strong>
+                            Customer
+                        </strong>
+
+                        <small>
+                            Shop products
+                        </small>
+
+                    </button>
+
+
+
+                    <!-- SELLER -->
+                    <button
+                        class="role-option"
+                        data-role="seller"
+                        type="button"
+                    >
+
+                        <span
+                            class="role-icon"
+                            aria-hidden="true"
+                        >
+
+                            <svg
+                                viewBox="0 0 24 24"
+                                width="24"
+                                height="24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="1.7"
+                            >
+                                <path d="M4 10h16l-1-5H5l-1 5Z"/>
+                                <path d="M5 10v9h14v-9M9 19v-5h6v5"/>
+                            </svg>
+
+                        </span>
+
+                        <strong>
+                            Seller
+                        </strong>
+
+                        <small>
+                            Sell products
+                        </small>
+
+                    </button>
+
+
+
+                    <!-- DELIVERY -->
+                    <button
+                        class="role-option"
+                        data-role="delivery"
+                        type="button"
+                    >
+
+                        <span
+                            class="role-icon"
+                            aria-hidden="true"
+                        >
+
+                            <svg
+                                viewBox="0 0 24 24"
+                                width="24"
+                                height="24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="1.7"
+                            >
+                                <path d="M3 6h11v10H3zM14 9h4l3 3v4h-7z"/>
+                                <circle cx="7" cy="18" r="2"/>
+                                <circle cx="18" cy="18" r="2"/>
+                            </svg>
+
+                        </span>
+
+                        <strong>
+                            Delivery Partner
+                        </strong>
+
+                        <small>
+                            Deliver orders
+                        </small>
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+
+            <form id="signupForm">
+
+                <input
+                    type="hidden"
+                    id="signupRole"
+                    value="customer"
+                >
+
+
+                <div class="form-group">
+
+                    <label for="signupName">
+                        Full Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="signupName"
+                        placeholder="Enter your full name"
+                        autocomplete="name"
+                        required
+                    >
+
+                </div>
+
+
+
+                <div
+                    class="form-group seller-only-field hidden"
+                    id="storeNameGroup"
+                >
+
+                    <label for="signupStoreName">
+                        Store / Brand Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="signupStoreName"
+                        placeholder="Enter your store name"
+                    >
+
+                </div>
+
+
+
+                <div class="form-group">
+
+                    <label for="signupEmail">
+                        Email
+                    </label>
+
+                    <input
+                        type="email"
+                        id="signupEmail"
+                        placeholder="Enter your email"
+                        autocomplete="email"
+                        required
+                    >
+
+                </div>
+
+
+
+                <div class="form-group">
+
+                    <label for="signupPhone">
+                        Phone Number
+                    </label>
+
+                    <input
+                        type="tel"
+                        id="signupPhone"
+                        placeholder="Enter your phone number"
+                        autocomplete="tel"
+                        required
+                    >
+
+                </div>
+
+
+
+                <div class="form-group">
+
+                    <label for="signupPassword">
+                        Password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="signupPassword"
+                        placeholder="Create a password"
+                        autocomplete="new-password"
+                        minlength="6"
+                        required
+                    >
+
+                </div>
+
+
+
+                <button
+                    type="submit"
+                    class="primary-btn full-btn"
+                >
+                    Create Account
+                </button>
+
+            </form>
+
+
+
+            <p class="auth-switch">
+
+                Already have an account?
+
+                <button
+                    type="button"
+                    data-auth-switch="login"
+                >
+                    Login
+                </button>
+
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================================================
+     ACCOUNT MODAL
+========================================================= -->
+
+<div
+    class="modal"
+    id="accountModal"
+    aria-hidden="true"
+>
+
+    <div class="modal-content account-modal">
+
+        <button
+            class="modal-close"
+            data-close-modal="accountModal"
+            aria-label="Close"
+            type="button"
+        >
+            ×
+        </button>
+
+
+        <div class="account-profile">
+
+            <div
+                class="account-profile-avatar"
+                id="accountProfileAvatar"
+            >
+                <span class="default-avatar">
+                    M
+                </span>
+            </div>
+
+
+            <div>
+
+                <h2 id="accountName">
+                    User
+                </h2>
+
+                <p id="accountEmail">
+                    user@example.com
+                </p>
+
+                <p id="accountPhone">
+                    —
+                </p>
+
+                <span
+                    class="account-role"
+                    id="accountRole"
+                >
+                    Customer
+                </span>
+
+            </div>
+
+        </div>
+
+
+
+        <button
+            class="edit-profile-btn"
+            id="editProfileButton"
+            type="button"
+        >
+            Edit Profile
+        </button>
+
+
+
+        <div class="account-menu">
+
+            <button
+                type="button"
+                id="ordersButton"
+            >
+                <span>My Orders</span>
+            </button>
+
+
+            <button
+                type="button"
+                id="wishlistAccountButton"
+            >
+                <span>My Wishlist</span>
+            </button>
+
+
+            <button
+                type="button"
+                id="cartAccountButton"
+            >
+                <span>My Cart</span>
+            </button>
+
+
+            <button
+                type="button"
+                id="reviewsButton"
+            >
+                <span>My Reviews</span>
+            </button>
+
+
+            <button
+                type="button"
+                id="recentButton"
+            >
+                <span>Recently Viewed</span>
+            </button>
+
+        </div>
+
+
+
+        <div class="account-divider"></div>
+
+
+
+        <button
+            class="account-menu-single"
+            id="settingsButton"
+            type="button"
+        >
+            <span>Settings</span>
+        </button>
+
+
+        <button
+            class="account-menu-single seller-entry"
+            id="sellerEntry"
+            type="button"
+        >
+            <span>Become a Seller</span>
+        </button>
+
+
+        <button
+            class="account-menu-single delivery-entry"
+            id="deliveryEntry"
+            type="button"
+        >
+            <span>Become a Delivery Partner</span>
+        </button>
+
+
+        <button
+            class="logout-btn"
+            id="logoutButton"
+            type="button"
+        >
+            Logout
+        </button>
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================================================
+     SETTINGS MODAL
+========================================================= -->
+
+<div
+    class="modal"
+    id="settingsModal"
+    aria-hidden="true"
+>
+
+    <div class="modal-content settings-modal">
+
+        <button
+            class="modal-close"
+            data-close-modal="settingsModal"
+            aria-label="Close"
+            type="button"
+        >
+            ×
+        </button>
+
+
+        <div class="modal-header">
+
+            <span class="eyebrow">
+                MARTEY
+            </span>
+
+            <h2>
+                Settings
+            </h2>
+
+            <p>
+                Manage your account preferences.
+            </p>
+
+        </div>
+
+
+
+        <div class="settings-list">
+
+
+            <!-- ACCOUNT -->
+            <div class="settings-group">
+
+                <h3>
+                    Account
+                </h3>
+
+
+                <button
+                    id="settingsEditProfile"
+                    type="button"
+                >
+                    <span>
+                        <strong>Edit Profile</strong>
+                    </span>
+
+                    <b>›</b>
+                </button>
+
+
+                <button
+                    type="button"
+                    id="loginSecurityButton"
+                >
+                    <span>
+                        <strong>Login & Security</strong>
+                    </span>
+
+                    <b>›</b>
+                </button>
+
+
+                <button
+                    type="button"
+                    id="addressButton"
+                >
+                    <span>
+                        <strong>Manage Addresses</strong>
+                    </span>
+
+                    <b>›</b>
+                </button>
+
+            </div>
+
+
+
+            <!-- NOTIFICATIONS -->
+            <div class="settings-group">
+
+                <h3>
+                    Notifications
+                </h3>
+
+
+                <button
+                    type="button"
+                    id="notificationsButton"
+                >
+                    <span>
+                        <strong>Notifications</strong>
+                    </span>
+
+                    <b>›</b>
+                </button>
+
+
+                <button
+                    type="button"
+                    id="orderUpdatesButton"
+                >
+                    <span>
+                        <strong>Order Updates</strong>
+                    </span>
+
+                    <b>›</b>
+                </button>
+
+            </div>
+
+
+
+            <!-- APPEARANCE -->
+            <div class="settings-group">
+
+                <h3>
+                    Appearance
+                </h3>
+
+
+                <div class="theme-setting">
+
+                    <div>
+
+                        <strong>
+                            Theme
+                        </strong>
+
+                        <small>
+                            Choose how MARTEY looks
+                        </small>
+
+                    </div>
+
+
+                    <select id="themeSelect">
+
+                        <option value="system">
+                            System
+                        </option>
+
+                        <option value="light">
+                            Light
+                        </option>
+
+                        <option value="dark">
+                            Dark
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- SUPPORT -->
+            <div class="settings-group">
+
+                <h3>
+                    Support
+                </h3>
+
+
+                <button
+                    type="button"
+                    id="helpButton"
+                >
+                    <span>
+                        <strong>Help & Support</strong>
+                    </span>
+
+                    <b>›</b>
+                </button>
+
+
+                <button
+                    type="button"
+                    id="reportButton"
+                >
+                    <span>
+                        <strong>Report a Problem</strong>
+                    </span>
+
+                    <b>›</b>
+                </button>
+
+            </div>
+
+
+
+            <!-- LEGAL -->
+            <div class="settings-group">
+
+                <h3>
+                    Legal
+                </h3>
+
+
+                <button
+                    type="button"
+                    id="privacyButton"
+                >
+                    <span>
+                        <strong>Privacy Policy</strong>
+                    </span>
+
+                    <b>›</b>
+                </button>
+
+
+                <button
+                    type="button"
+                    id="termsButton"
+                >
+                    <span>
+                        <strong>Terms & Conditions</strong>
+                    </span>
+
+                    <b>›</b>
+                </button>
+
+            </div>
+
+
+
+            <!-- DANGER -->
+            <div class="settings-group danger-group">
+
+                <button
+                    type="button"
+                    id="settingsLogoutButton"
+                >
+                    <span>
+                        <strong>Logout</strong>
+                    </span>
+                </button>
+
+
+                <button
+                    class="danger"
+                    type="button"
+                    id="deleteAccountButton"
+                >
+                    <span>
+                        <strong>Delete Account</strong>
+                    </span>
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================================================
+     TOAST
+========================================================= -->
+
+<div
+    class="toast"
+    id="toast"
+>
+    Product added to cart
+</div>
+
+
+
+<!-- =========================================================
+     JAVASCRIPT
+========================================================= -->
+
+<script src="script.js"></script>
+
+</body>
+</html>
