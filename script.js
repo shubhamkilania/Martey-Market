@@ -1505,7 +1505,17 @@ document.addEventListener("DOMContentLoaded", () => {
                 localStorage.removeItem(
                     "marteyUser"
                 );
+// ===============================
+// ACCOUNT BUTTON
+// ===============================
 
+const accountButton = document.getElementById("accountButton");
+
+if (accountButton) {
+    accountButton.addEventListener("click", () => {
+        window.location.href = "account.html";
+    });
+}
 
                 updateAccountAvatar();
 
