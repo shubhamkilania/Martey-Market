@@ -1482,49 +1482,47 @@ document.addEventListener("DOMContentLoaded", () => {
         );
 
 
-    /* =====================================================
-       LOGOUT
-    ===================================================== */
+  /* =====================================================
+   LOGOUT
+===================================================== */
 
-    const logoutButton =
-        document.getElementById(
-            "logoutButton"
-        );
+const logoutButton =
+    document.getElementById("logoutButton");
 
+if (logoutButton) {
 
-    if (logoutButton) {
+    logoutButton.addEventListener(
+        "click",
+        () => {
 
-        logoutButton.addEventListener(
-            "click",
-            () => {
+            marteyUser = null;
 
-                marteyUser = null;
+            localStorage.removeItem(
+                "marteyUser"
+            );
 
+            updateAccountAvatar();
 
-                localStorage.removeItem(
-                    "marteyUser"
-                );
+            closeAllModals();
 
-// ===============================
-// ACCOUNT BUTTON
-// ===============================
+            showToast(
+                "Logged out successfully"
+            );
 
-const accountButton = document.getElementById("accountButton");
+        }
+    );
 
-if (accountButton) {
-    accountButton.addEventListener("click", function () {
-        window.location.href = "account.html";
-    });
 }
-    /* =====================================================
-       INITIALIZE ACCOUNT STATE
-    ===================================================== */
 
-    if (marteyUser) {
 
-        updateAccountAvatar();
+/* =====================================================
+   INITIALIZE ACCOUNT STATE
+===================================================== */
 
-    }
+if (marteyUser) {
 
+    updateAccountAvatar();
+
+}
 
 });
