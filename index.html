@@ -35,15 +35,13 @@
 
 <header class="site-header">
 
+    <!-- HEADER ROW -->
     <div class="header-inner">
 
         <!-- LOGO -->
         <a href="index.html" class="brand">
             <span class="brand-mark">M</span>
-
-            <span class="brand-name">
-                MARTEY
-            </span>
+            <span class="brand-name">MARTEY</span>
         </a>
 
 
@@ -52,19 +50,9 @@
 
             <div class="search-box">
 
-                <svg
-                    viewBox="0 0 24 24"
-                    aria-hidden="true"
-                >
-                    <circle
-                        cx="11"
-                        cy="11"
-                        r="7"
-                    ></circle>
-
-                    <path
-                        d="M16.5 16.5L21 21"
-                    ></path>
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <circle cx="11" cy="11" r="7"></circle>
+                    <path d="M16.5 16.5L21 21"></path>
                 </svg>
 
                 <input
@@ -121,44 +109,46 @@
                 <span
                     class="cart-count"
                     id="cartCount"
-                >
-                    0
-                </span>
+                >0</span>
             </button>
 
 
-            <!-- Account -->
-           <button
-    class="header-account-btn"
-    id="accountButton"
-    type="button"
-    aria-label="Open Account"
->
-    <span
-        class="account-avatar"
-        id="accountAvatar"
-    >
-        <svg
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="1.8"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-        >
-            <circle cx="12" cy="8" r="3.5"></circle>
-            <path d="M5 20c.8-3.2 3.1-5 7-5s6.2 1.8 7 5"></path>
-        </svg>
-    </span>
-</button>
-            
-</div>
-        
-    <!-- =====================================================
-         CATEGORIES — OUTSIDE HEADER ROW
-         ===================================================== -->
+            <!-- ACCOUNT -->
+            <button
+                class="header-account-btn"
+                id="accountButton"
+                type="button"
+                aria-label="Open Account"
+            >
+                <span
+                    class="account-avatar"
+                    id="accountAvatar"
+                >
+                    <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.8"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                    >
+                        <circle cx="12" cy="8" r="3.5"></circle>
+                        <path d="M5 20c.8-3.2 3.1-5 7-5s6.2 1.8 7 5"></path>
+                    </svg>
+                </span>
+            </button>
 
-    <nav class="category-nav" aria-label="Product categories">
+        </div>
+
+    </div>
+    <!-- IMPORTANT: header-inner ENDS HERE -->
+
+
+    <!-- CATEGORY NAV -->
+    <nav
+        class="category-nav"
+        aria-label="Product categories"
+    >
 
         <div class="category-nav-inner">
 
@@ -246,7 +236,6 @@
 
     </nav>
 
-            
 </header>
          
 <!-- =========================================================
