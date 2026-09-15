@@ -318,37 +318,44 @@ img {
 }
 
 /* =========================================================
-   MARTEY ACCOUNT AVATAR — FIX
+   ACCOUNT BUTTON — FINAL FIX
    ========================================================= */
 
 .header-account-btn {
-    width: 42px;
-    height: 42px;
+    position: relative;
+    z-index: 50;
+
+    width: 44px;
+    height: 44px;
+
     padding: 0;
-    border: 0;
+    margin: 0;
+
+    border: none;
+    outline: none;
+
     background: transparent;
-    display: inline-flex;
+
+    display: flex;
     align-items: center;
     justify-content: center;
-    cursor: pointer;
-    border-radius: 50%;
-}
 
-.header-account-btn:hover {
-    background: rgba(139, 92, 246, 0.12);
+    cursor: pointer;
+
+    border-radius: 50%;
+
+    pointer-events: auto;
 }
 
 .account-avatar {
     width: 40px;
     height: 40px;
-    min-width: 40px;
-    min-height: 40px;
-
-    border-radius: 50%;
 
     display: flex;
     align-items: center;
     justify-content: center;
+
+    border-radius: 50%;
 
     background: linear-gradient(
         135deg,
@@ -359,33 +366,37 @@ img {
     color: #ffffff;
 
     font-family: "Manrope", sans-serif;
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 800;
 
-    border: 2px solid rgba(255, 255, 255, 0.12);
+    border: 2px solid rgba(255,255,255,0.12);
 
-    box-shadow:
-        0 5px 18px rgba(139, 92, 246, 0.28);
+    cursor: pointer;
+
+    pointer-events: auto;
 
     overflow: hidden;
+
+    transition: all 0.2s ease;
 }
 
 .account-avatar svg {
     width: 21px;
     height: 21px;
-    display: block;
+
+    pointer-events: none;
 }
 
 .header-account-btn:hover .account-avatar {
-    transform: translateY(-1px);
+    transform: scale(1.06);
+
     box-shadow:
-        0 7px 22px rgba(139, 92, 246, 0.4);
+        0 0 0 4px rgba(139,92,246,0.12),
+        0 8px 25px rgba(139,92,246,0.30);
 }
 
-.account-avatar {
-    transition:
-        transform 0.2s ease,
-        box-shadow 0.2s ease;
+.header-account-btn:active .account-avatar {
+    transform: scale(0.95);
 }
 /* =========================================================
    CATEGORY NAV
@@ -2353,85 +2364,4 @@ input:focus-visible {
         grid-template-columns: 1fr 1fr;
         gap: 30px 20px;
     }
-}
-/* =========================================================
-   ACCOUNT BUTTON — FINAL FIX
-   ========================================================= */
-
-.header-account-btn {
-    position: relative;
-    z-index: 50;
-
-    width: 44px;
-    height: 44px;
-
-    padding: 0;
-    margin: 0;
-
-    border: none;
-    outline: none;
-
-    background: transparent;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    cursor: pointer;
-
-    border-radius: 50%;
-
-    pointer-events: auto;
-}
-
-.account-avatar {
-    width: 40px;
-    height: 40px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    border-radius: 50%;
-
-    background: linear-gradient(
-        135deg,
-        #8B5CF6,
-        #6D3FF2
-    );
-
-    color: #ffffff;
-
-    font-family: "Manrope", sans-serif;
-    font-size: 14px;
-    font-weight: 800;
-
-    border: 2px solid rgba(255,255,255,0.12);
-
-    cursor: pointer;
-
-    pointer-events: auto;
-
-    overflow: hidden;
-
-    transition: all 0.2s ease;
-}
-
-.account-avatar svg {
-    width: 21px;
-    height: 21px;
-
-    pointer-events: none;
-}
-
-.header-account-btn:hover .account-avatar {
-    transform: scale(1.06);
-
-    box-shadow:
-        0 0 0 4px rgba(139,92,246,0.12),
-        0 8px 25px rgba(139,92,246,0.30);
-}
-
-.header-account-btn:active .account-avatar {
-    transform: scale(0.95);
 }
