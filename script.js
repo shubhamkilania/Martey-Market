@@ -1,830 +1,645 @@
 /* =========================================================
-   MARTEY — Main Script
-   Homepage functionality
+   MARTEY — Homepage Controller
+   Prototype frontend: accounts, categories, search, wishlist,
+   cart counter, product navigation and account avatar.
    ========================================================= */
-
-document.addEventListener("DOMContentLoaded", () => {
+(() => {
   "use strict";
 
-  /* =========================================================
-     HELPERS
-     ========================================================= */
+  const $ = (selector, root = document) => root.querySelector(selector);
+  const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
 
-  const $ = (selector, parent = document) => parent.querySelector(selector);
+  const STORAGE = {
+    accounts: "marteyAccounts",
+    currentUser: "marteyCurrentUser",
+    legacyUser: "marteyUser",
+    cart: "marteyCart",
+    wishlist: "marteyWishlist",
+    recent: "marteyRecentlyViewed",
+    theme: "marteyTheme"
+  };
 
-  const $$ = (selector, parent = document) =>
-    Array.from(parent.querySelectorAll(selector));
-
-  const safeJSONParse = (value, fallback) => {
+  const readJSON = (key, fallback) => {
     try {
-      return value ? JSON.parse(value) : fallback;
+      const raw = localStorage.getItem(key);
+      return raw ? JSON.parse(raw) : fallback;
     } catch {
       return fallback;
     }
   };
 
-  const getStorage = (key, fallback) => {
-    return safeJSONParse(localStorage.getItem(key), fallback);
-  };
-
-  const setStorage = (key, value) => {
+  const writeJSON = (key, value) => {
     localStorage.setItem(key, JSON.stringify(value));
   };
 
-  /* =========================================================
-     STORAGE KEYS
-     ========================================================= */
-
-  const STORAGE = {
-    USER: "marteyUser",
-    CART: "marteyCart",
-    WISHLIST: "marteyWishlist",
-    THEME: "marteyTheme",
-    NOTIFICATIONS: "marteyNotifications",
-    RECENT: "marteyRecentlyViewed"
+  const toast = (message) => {
+    const el = $("#toast");
+    if (!el) return;
+    el.textContent = message;
+    el.classList.add("show");
+    clearTimeout(window.__marteyToastTimer);
+    window.__marteyToastTimer = setTimeout(() => el.classList.remove("show"), 2400);
   };
 
   /* =========================================================
-     BASIC ELEMENTS
+     ACCOUNT DATA / MIGRATION
      ========================================================= */
 
-  const body = document.body;
+  function getAccounts() {
+    let accounts = readJSON(STORAGE.accounts, []);
+    if (!Array.isArray(accounts)) accounts = [];
 
-  const searchInput = $("#searchInput");
-  const searchButton = $("#searchButton");
-
-  const cartButton = $("#cartButton");
-  const wishlistButton = $("#wishlistButton");
-  const accountButton = $("#accountButton");
-
-  const cartCount = $("#cartCount");
-
-  const productGrid = $("#productGrid");
-  const emptyState = $("#emptyState");
-
-  /* =========================================================
-     TOAST
-     ========================================================= */
-
-  let toastTimer = null;
-
-  function showToast(message) {
-    let toast = $("#marteyToast");
-
-    if (!toast) {
-      toast = document.createElement("div");
-      toast.id = "marteyToast";
-      toast.className = "martey-toast";
-
-      Object.assign(toast.style, {
-        position: "fixed",
-        left: "50%",
-        bottom: "28px",
-        transform: "translateX(-50%) translateY(20px)",
-        zIndex: "99999",
-        opacity: "0",
-        pointerEvents: "none",
-        padding: "12px 18px",
-        borderRadius: "12px",
-        background: "#17131f",
-        color: "#ffffff",
-        border: "1px solid rgba(139,92,246,.35)",
-        boxShadow: "0 12px 35px rgba(0,0,0,.35)",
-        fontSize: "14px",
-        transition: "all .25s ease"
-      });
-
-      body.appendChild(toast);
+    // Migrate the previous single-user storage format automatically.
+    const legacy = readJSON(STORAGE.legacyUser, null);
+    if (legacy && legacy.email && !accounts.some(a => a.email === legacy.email)) {
+      accounts.push(legacy);
+      writeJSON(STORAGE.accounts, accounts);
     }
 
-    toast.textContent = message;
+    return accounts;
+  }
 
-    clearTimeout(toastTimer);
+  function getCurrentUser() {
+    const current = readJSON(STORAGE.currentUser, null);
+    if (current && current.email) return current;
 
-    requestAnimationFrame(() => {
-      toast.style.opacity = "1";
-      toast.style.transform = "translateX(-50%) translateY(0)";
-    });
+    const legacy = readJSON(STORAGE.legacyUser, null);
+    if (legacy && legacy.email) {
+      writeJSON(STORAGE.currentUser, legacy);
+      return legacy;
+    }
 
-    toastTimer = setTimeout(() => {
-      toast.style.opacity = "0";
-      toast.style.transform = "translateX(-50%) translateY(20px)";
-    }, 2500);
+    return null;
+  }
+
+  function saveCurrentUser(user) {
+    if (user) {
+      writeJSON(STORAGE.currentUser, user);
+      writeJSON(STORAGE.legacyUser, user);
+    } else {
+      localStorage.removeItem(STORAGE.currentUser);
+      localStorage.removeItem(STORAGE.legacyUser);
+    }
+  }
+
+  function initials(name = "") {
+    const parts = name.trim().split(/\s+/).filter(Boolean);
+    if (!parts.length) return "M";
+    return parts.slice(0, 2).map(part => part[0]).join("").toUpperCase();
+  }
+
+  function updateAvatar(user = getCurrentUser()) {
+    const avatar = $("#accountAvatar");
+    const profileAvatar = $("#accountProfileAvatar");
+
+    const render = (element) => {
+      if (!element) return;
+      element.innerHTML = "";
+
+      if (user?.profileImage) {
+        const img = document.createElement("img");
+        img.src = user.profileImage;
+        img.alt = "Profile picture";
+        img.className = "user-dp";
+        element.appendChild(img);
+      } else if (user?.name) {
+        const span = document.createElement("span");
+        span.className = "user-initials";
+        span.textContent = initials(user.name);
+        element.appendChild(span);
+      } else {
+        const span = document.createElement("span");
+        span.className = "default-avatar";
+        span.textContent = "♙";
+        element.appendChild(span);
+      }
+    };
+
+    render(avatar);
+    render(profileAvatar);
+  }
+
+  function updateAccountModal(user = getCurrentUser()) {
+    const name = $("#accountName");
+    const email = $("#accountEmail");
+    const phone = $("#accountPhone");
+    const role = $("#accountRole");
+
+    if (!user) return;
+
+    if (name) name.textContent = user.name || "MARTEY User";
+    if (email) email.textContent = user.email || "";
+    if (phone) phone.textContent = user.phone || "—";
+    if (role) {
+      const labels = {
+        customer: "Customer",
+        seller: "Seller",
+        delivery: "Delivery Partner"
+      };
+      role.textContent = labels[user.role] || "Customer";
+    }
+
+    updateAvatar(user);
   }
 
   /* =========================================================
      MODALS
      ========================================================= */
 
-  const modalIds = [
-    "#authModal",
-    "#accountModal",
-    "#settingsModal"
-  ];
+  const modalIds = ["authModal", "accountModal", "settingsModal"];
 
-  function closeAllModals() {
-    modalIds.forEach((id) => {
-      const modal = $(id);
-
-      if (modal) {
-        modal.hidden = true;
-        modal.classList.remove("active", "open");
-      }
-    });
-
-    body.classList.remove("modal-open");
+  function closeModal(id) {
+    const modal = $("#" + id);
+    if (!modal) return;
+    modal.classList.remove("open");
+    modal.setAttribute("aria-hidden", "true");
   }
 
-  function openModal(selector) {
-    const modal = $(selector);
+  function closeAllModals() {
+    modalIds.forEach(closeModal);
+    document.body.classList.remove("modal-open");
+  }
 
+  function openModal(id) {
+    const modal = $("#" + id);
     if (!modal) return;
 
     closeAllModals();
-
-    modal.hidden = false;
-    modal.classList.add("active", "open");
-
-    body.classList.add("modal-open");
+    modal.classList.add("open");
+    modal.setAttribute("aria-hidden", "false");
+    document.body.classList.add("modal-open");
   }
 
-  $$("[data-close-modal]").forEach((button) => {
-    button.addEventListener("click", closeAllModals);
+  $$('[data-close-modal]').forEach(button => {
+    button.addEventListener("click", () => closeModal(button.dataset.closeModal));
   });
 
-  modalIds.forEach((id) => {
-    const modal = $(id);
-
-    if (!modal) return;
-
-    modal.addEventListener("click", (event) => {
-      if (event.target === modal) {
-        closeAllModals();
-      }
+  $$(".modal").forEach(modal => {
+    modal.addEventListener("click", event => {
+      if (event.target === modal) closeModal(modal.id);
     });
   });
 
-  document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") {
-      closeAllModals();
-    }
+  document.addEventListener("keydown", event => {
+    if (event.key === "Escape") closeAllModals();
   });
 
   /* =========================================================
-     AUTH MODAL
+     AUTH LOGIN / CREATE ACCOUNT
      ========================================================= */
 
-  function switchAuth(type) {
-    const loginForm = $("#loginForm");
-    const signupForm = $("#signupForm");
-
-    const loginTab = $('[data-auth="login"]');
-    const signupTab = $('[data-auth="signup"]');
-
-    if (type === "signup") {
-      if (loginForm) loginForm.hidden = true;
-      if (signupForm) signupForm.hidden = false;
-
-      if (loginTab) loginTab.setAttribute("aria-selected", "false");
-      if (signupTab) signupTab.setAttribute("aria-selected", "true");
-    } else {
-      if (loginForm) loginForm.hidden = false;
-      if (signupForm) signupForm.hidden = true;
-
-      if (loginTab) loginTab.setAttribute("aria-selected", "true");
-      if (signupTab) signupTab.setAttribute("aria-selected", "false");
-    }
-  }
-
-  $$("[data-auth]").forEach((button) => {
-    button.addEventListener("click", () => {
-      const type = button.dataset.auth;
-
-      if (type) {
-        switchAuth(type);
-      }
-    });
-  });
-
-  $$("[data-auth-switch]").forEach((button) => {
-    button.addEventListener("click", () => {
-      const type = button.dataset.authSwitch;
-
-      if (type) {
-        switchAuth(type);
-      }
-    });
-  });
-
-  /* =========================================================
-     ACCOUNT BUTTON
-     ========================================================= */
-
-  if (accountButton) {
-    accountButton.addEventListener("click", () => {
-      const user = getStorage(STORAGE.USER, null);
-
-      if (user && user.loggedIn) {
-        openModal("#accountModal");
-      } else {
-        switchAuth("login");
-        openModal("#authModal");
-      }
-    });
-  }
-
-  /* =========================================================
-     SELLER / DELIVERY BUTTONS
-     ========================================================= */
-
-  function openSellerSignup() {
-    switchAuth("signup");
-
-    const sellerRole = $('[data-role="seller"]');
-
-    if (sellerRole) {
-      sellerRole.click();
-    }
-
-    openModal("#authModal");
-  }
-
-  function openDeliverySignup() {
-    switchAuth("signup");
-
-    const deliveryRole = $('[data-role="delivery"]');
-
-    if (deliveryRole) {
-      deliveryRole.click();
-    }
-
-    openModal("#authModal");
-  }
-
-  const sellerButton = $("#sellerButton");
-  const footerSellerLink = $("#footerSellerLink");
-
-  if (sellerButton) {
-    sellerButton.addEventListener("click", openSellerSignup);
-  }
-
-  if (footerSellerLink) {
-    footerSellerLink.addEventListener("click", (event) => {
-      event.preventDefault();
-      openSellerSignup();
-    });
-  }
-
-  const deliveryButton = $("#deliveryButton");
-
-  if (deliveryButton) {
-    deliveryButton.addEventListener("click", openDeliverySignup);
-  }
-
-  /* =========================================================
-     ROLE SELECTION
-     ========================================================= */
-
-  const roleButtons = $$("[data-role]");
+  const loginView = $("#loginView");
+  const signupView = $("#signupView");
+  const signupRole = $("#signupRole");
   const storeNameGroup = $("#storeNameGroup");
+  const storeNameInput = $("#signupStoreName");
 
-  function updateRole(role) {
-    roleButtons.forEach((button) => {
-      const active = button.dataset.role === role;
+  function switchAuth(view) {
+    const signup = view === "signup";
 
-      button.classList.toggle("active", active);
-      button.setAttribute("aria-pressed", String(active));
+    if (loginView) loginView.classList.toggle("hidden", signup);
+    if (signupView) signupView.classList.toggle("hidden", !signup);
+
+    $$('[data-auth]').forEach(tab => {
+      const active = tab.dataset.auth === view;
+      tab.classList.toggle("active", active);
+      tab.setAttribute("aria-selected", String(active));
     });
-
-    if (storeNameGroup) {
-      storeNameGroup.hidden = role !== "seller";
-    }
   }
 
-  roleButtons.forEach((button) => {
-    button.addEventListener("click", () => {
-      updateRole(button.dataset.role);
-    });
+  function openAuth(view = "login") {
+    switchAuth(view);
+    openModal("authModal");
+  }
+
+  // Event delegation keeps Login/Create Account working even after UI changes.
+  document.addEventListener("click", event => {
+    const tab = event.target.closest("[data-auth]");
+    if (tab) {
+      switchAuth(tab.dataset.auth);
+      return;
+    }
+
+    const switchButton = event.target.closest("[data-auth-switch]");
+    if (switchButton) {
+      switchAuth(switchButton.dataset.authSwitch);
+    }
+  });
+
+  $("#accountButton")?.addEventListener("click", () => {
+    const user = getCurrentUser();
+    if (user) {
+      updateAccountModal(user);
+      openModal("accountModal");
+    } else {
+      openAuth("login");
+    }
   });
 
   /* =========================================================
-     SIGN UP
+     ROLE SELECTOR
      ========================================================= */
 
-  const signupForm = $("#signupForm");
+  function setRole(role) {
+    if (signupRole) signupRole.value = role;
 
-  if (signupForm) {
-    signupForm.addEventListener("submit", (event) => {
-      event.preventDefault();
+    $$('[data-role]').forEach(button => {
+      const selected = button.dataset.role === role;
+      button.classList.toggle("selected", selected);
+      button.setAttribute("aria-pressed", String(selected));
+    });
 
-      const nameInput = $("#signupName");
-      const emailInput = $("#signupEmail");
-      const phoneInput = $("#signupPhone");
-      const passwordInput = $("#signupPassword");
-      const storeInput = $("#signupStoreName");
+    const seller = role === "seller";
+    if (storeNameGroup) storeNameGroup.classList.toggle("hidden", !seller);
+    if (storeNameInput) storeNameInput.required = seller;
+  }
 
-      const name = nameInput ? nameInput.value.trim() : "";
-      const email = emailInput ? emailInput.value.trim() : "";
-      const phone = phoneInput ? phoneInput.value.trim() : "";
-      const password = passwordInput ? passwordInput.value : "";
-      const storeName = storeInput ? storeInput.value.trim() : "";
+  $$('[data-role]').forEach(button => {
+    button.addEventListener("click", () => setRole(button.dataset.role));
+  });
 
-      const selectedRole =
-        $('[data-role].active')?.dataset.role ||
-        $('[data-role][aria-pressed="true"]')?.dataset.role ||
-        "customer";
+  setRole(signupRole?.value || "customer");
 
-      if (!name || !email || !password) {
-        showToast("Please fill all required fields.");
-        return;
-      }
+  /* =========================================================
+     PROFILE PHOTO
+     ========================================================= */
 
+  function readProfileImage(file, callback) {
+    if (!file) {
+      callback("");
+      return;
+    }
+
+    if (!file.type.startsWith("image/")) {
+      toast("Please select an image file.");
+      callback("");
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = () => callback(String(reader.result || ""));
+    reader.onerror = () => callback("");
+    reader.readAsDataURL(file);
+  }
+
+  /* =========================================================
+     CREATE ACCOUNT
+     ========================================================= */
+
+  $("#signupForm")?.addEventListener("submit", event => {
+    event.preventDefault();
+
+    const role = signupRole?.value || "customer";
+    const name = $("#signupName")?.value.trim() || "";
+    const email = $("#signupEmail")?.value.trim().toLowerCase() || "";
+    const phone = $("#signupPhone")?.value.trim() || "";
+    const password = $("#signupPassword")?.value || "";
+    const storeName = storeNameInput?.value.trim() || "";
+    const imageInput = $("#signupProfileImage");
+
+    if (!name || !email || !phone || password.length < 6) {
+      toast("Please complete all required fields.");
+      return;
+    }
+
+    if (role === "seller" && !storeName) {
+      toast("Please enter your store or brand name.");
+      return;
+    }
+
+    const accounts = getAccounts();
+
+    if (accounts.some(account => account.email === email)) {
+      toast("An account with this email already exists.");
+      switchAuth("login");
+      $("#loginEmail") && ($("#loginEmail").value = email);
+      return;
+    }
+
+    readProfileImage(imageInput?.files?.[0], profileImage => {
       const user = {
+        id: "u_" + Date.now(),
         name,
         email,
         phone,
         password,
-        role: selectedRole,
+        role,
         storeName,
-        loggedIn: true,
+        profileImage,
         createdAt: new Date().toISOString()
       };
 
-      setStorage(STORAGE.USER, user);
-
-      updateAccountUI();
-
+      accounts.push(user);
+      writeJSON(STORAGE.accounts, accounts);
+      saveCurrentUser(user);
+      updateAccountModal(user);
+      updateAvatar(user);
       closeAllModals();
-
-      showToast("Welcome to MARTEY, " + name + "!");
+      toast("Account created successfully.");
     });
-  }
+  });
 
   /* =========================================================
      LOGIN
      ========================================================= */
 
-  const loginForm = $("#loginForm");
+  $("#loginForm")?.addEventListener("submit", event => {
+    event.preventDefault();
 
-  if (loginForm) {
-    loginForm.addEventListener("submit", (event) => {
-      event.preventDefault();
+    const email = $("#loginEmail")?.value.trim().toLowerCase() || "";
+    const password = $("#loginPassword")?.value || "";
 
-      const emailInput = $("#loginEmail");
-      const passwordInput = $("#loginPassword");
+    if (!email || !password) {
+      toast("Please enter your email and password.");
+      return;
+    }
 
-      const email = emailInput ? emailInput.value.trim() : "";
-      const password = passwordInput ? passwordInput.value : "";
+    const accounts = getAccounts();
+    const account = accounts.find(item => item.email === email && item.password === password);
 
-      if (!email || !password) {
-        showToast("Please enter email and password.");
+    if (!account) {
+      toast("Email or password is incorrect.");
+      return;
+    }
+
+    saveCurrentUser(account);
+    updateAccountModal(account);
+    updateAvatar(account);
+    closeAllModals();
+    toast("Welcome back to MARTEY.");
+  });
+
+  /* =========================================================
+     SELLER / DELIVERY ENTRY
+     ========================================================= */
+
+  function openSellerSignup() {
+    openAuth("signup");
+    setRole("seller");
+  }
+
+  function openDeliverySignup() {
+    openAuth("signup");
+    setRole("delivery");
+  }
+
+  $("#sellButton")?.addEventListener("click", openSellerSignup);
+  $("#sellerButton")?.addEventListener("click", openSellerSignup);
+  $("#sellerEntry")?.addEventListener("click", openSellerSignup);
+  $("#deliveryEntry")?.addEventListener("click", openDeliverySignup);
+
+  $("#footerSellerLink")?.addEventListener("click", event => {
+    event.preventDefault();
+    openSellerSignup();
+  });
+
+  /* =========================================================
+     CATEGORY NAV + SEARCH
+     ========================================================= */
+
+  const productCards = $$(".product-card");
+  const productGrid = $("#productGrid");
+  const emptyState = $("#emptyState");
+  const searchInput = $("#searchInput");
+
+  let activeCategory = "all";
+  let activeQuery = "";
+
+  function productText(card) {
+    return [
+      card.dataset.name || "",
+      card.dataset.category || "",
+      $(".product-category", card)?.textContent || "",
+      $("h3", card)?.textContent || "",
+      $(".product-badge", card)?.textContent || ""
+    ].join(" ").toLowerCase();
+  }
+
+  function filterProducts(scroll = false) {
+    let visible = 0;
+
+    productCards.forEach(card => {
+      const categoryMatch = activeCategory === "all" || card.dataset.category === activeCategory;
+      const queryMatch = !activeQuery || productText(card).includes(activeQuery);
+      const show = categoryMatch && queryMatch;
+
+      card.classList.toggle("is-hidden", !show);
+      card.setAttribute("aria-hidden", String(!show));
+      if (show) visible++;
+    });
+
+    if (emptyState) emptyState.classList.toggle("hidden", visible !== 0);
+    if (productGrid) productGrid.classList.toggle("has-results", visible !== 0);
+
+    if (scroll) $("#products")?.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+  function setCategory(category, scroll = true) {
+    activeCategory = category;
+
+    $$(".category-link").forEach(button => {
+      const active = button.dataset.category === category;
+      button.classList.toggle("active", active);
+      button.setAttribute("aria-pressed", String(active));
+    });
+
+    filterProducts(scroll);
+  }
+
+  $$(".category-link").forEach(button => {
+    button.addEventListener("click", () => {
+      const category = button.dataset.category;
+
+      if (category === "more") {
+        toast("More categories will be added as MARTEY grows.");
         return;
       }
 
-      const existingUser = getStorage(STORAGE.USER, null);
-
-      const user = existingUser || {
-        name: email.split("@")[0],
-        email,
-        role: "customer"
-      };
-
-      user.email = email;
-      user.loggedIn = true;
-
-      setStorage(STORAGE.USER, user);
-
-      updateAccountUI();
-
-      closeAllModals();
-
-      showToast("Login successful.");
-    });
-  }
-
-  /* =========================================================
-     ACCOUNT UI
-     ========================================================= */
-
-  function getInitials(name) {
-    if (!name) return "M";
-
-    const parts = name
-      .trim()
-      .split(/\s+/)
-      .filter(Boolean);
-
-    if (parts.length === 1) {
-      return parts[0].charAt(0).toUpperCase();
-    }
-
-    return (
-      parts[0].charAt(0) +
-      parts[parts.length - 1].charAt(0)
-    ).toUpperCase();
-  }
-
-  function updateAccountUI() {
-    const user = getStorage(STORAGE.USER, null);
-
-    const avatarElements = $$(".avatar, [data-avatar]");
-    const nameElements = $$("[data-user-name]");
-    const emailElements = $$("[data-user-email]");
-
-    if (user && user.loggedIn) {
-      const initials = getInitials(user.name);
-
-      avatarElements.forEach((element) => {
-        element.textContent = initials;
-      });
-
-      nameElements.forEach((element) => {
-        element.textContent = user.name || "MARTEY User";
-      });
-
-      emailElements.forEach((element) => {
-        element.textContent = user.email || "";
-      });
-    }
-  }
-
-  /* =========================================================
-     LOGOUT
-     ========================================================= */
-
-  function logout() {
-    const user = getStorage(STORAGE.USER, null);
-
-    if (user) {
-      user.loggedIn = false;
-      setStorage(STORAGE.USER, user);
-    }
-
-    closeAllModals();
-
-    showToast("You have been logged out.");
-
-    setTimeout(() => {
-      updateAccountUI();
-    }, 100);
-  }
-
-  const logoutButton = $("#logoutButton");
-  const settingsLogoutButton = $("#settingsLogoutButton");
-
-  if (logoutButton) {
-    logoutButton.addEventListener("click", logout);
-  }
-
-  if (settingsLogoutButton) {
-    settingsLogoutButton.addEventListener("click", logout);
-  }
-
-  /* =========================================================
-     SEARCH
-     ========================================================= */
-
-  function getProductCards() {
-    if (!productGrid) return [];
-
-    return $$(".product-card", productGrid);
-  }
-
-  function filterProducts(searchTerm = "") {
-    const term = searchTerm.trim().toLowerCase();
-
-    const cards = getProductCards();
-
-    let visibleCount = 0;
-
-    cards.forEach((card) => {
-      const searchableText = (
-        card.textContent +
-        " " +
-        (card.dataset.category || "") +
-        " " +
-        (card.dataset.name || "")
-      ).toLowerCase();
-
-      const matches = !term || searchableText.includes(term);
-
-      card.hidden = !matches;
-
-      if (matches) {
-        visibleCount++;
-      }
-    });
-
-    if (emptyState) {
-      emptyState.hidden = visibleCount !== 0;
-    }
-  }
-
-  if (searchButton) {
-    searchButton.addEventListener("click", () => {
-      filterProducts(searchInput ? searchInput.value : "");
-
-      if (productGrid) {
-        productGrid.scrollIntoView({
-          behavior: "smooth",
-          block: "start"
-        });
-      }
-    });
-  }
-
-  if (searchInput) {
-    searchInput.addEventListener("input", () => {
-      filterProducts(searchInput.value);
-    });
-
-    searchInput.addEventListener("keydown", (event) => {
-      if (event.key === "Enter") {
-        event.preventDefault();
-
-        filterProducts(searchInput.value);
-
-        if (productGrid) {
-          productGrid.scrollIntoView({
-            behavior: "smooth",
-            block: "start"
-          });
-        }
-      }
-    });
-  }
-
-  /* =========================================================
-     CATEGORY FILTERING
-     ========================================================= */
-
-  $$("[data-category-filter]").forEach((button) => {
-    button.addEventListener("click", (event) => {
-      event.preventDefault();
-
-      const category = button.dataset.categoryFilter;
-
-      if (!category || category === "all") {
-        filterProducts("");
-      } else {
-        filterProducts(category);
-      }
-
-      if (productGrid) {
-        productGrid.scrollIntoView({
-          behavior: "smooth",
-          block: "start"
-        });
-      }
+      setCategory(category, true);
     });
   });
 
-  /* =========================================================
-     VIEW ALL
-     ========================================================= */
-
-  $$("[data-view-all]").forEach((button) => {
-    button.addEventListener("click", () => {
-      filterProducts("");
-
-      if (productGrid) {
-        productGrid.scrollIntoView({
-          behavior: "smooth",
-          block: "start"
-        });
-      }
-    });
+  $$(".category-card").forEach(card => {
+    card.addEventListener("click", () => setCategory(card.dataset.category, true));
   });
 
-  $$("[data-view-all-categories]").forEach((button) => {
-    button.addEventListener("click", () => {
-      const categorySection =
-        $("#categories") ||
-        $(".categories-section") ||
-        $("[data-categories-section]");
-
-      if (categorySection) {
-        categorySection.scrollIntoView({
-          behavior: "smooth",
-          block: "start"
-        });
-      }
-    });
-  });
-
-  /* =========================================================
-     PRODUCT CARD NAVIGATION
-     ========================================================= */
-
-  function openProduct(productId) {
-    if (!productId) return;
-
-    saveRecentlyViewed(productId);
-
-    window.location.href =
-      "product.html?id=" +
-      encodeURIComponent(productId);
+  function performSearch() {
+    activeQuery = searchInput?.value.trim().toLowerCase() || "";
+    filterProducts(true);
   }
 
-  getProductCards().forEach((card) => {
-    const productId = card.dataset.productId;
+  $("#searchButton")?.addEventListener("click", performSearch);
+  searchInput?.addEventListener("keydown", event => {
+    if (event.key === "Enter") performSearch();
+  });
+  searchInput?.addEventListener("input", () => {
+    activeQuery = searchInput.value.trim().toLowerCase();
+    filterProducts(false);
+  });
 
-    if (!productId) return;
+  $("#clearFilter")?.addEventListener("click", () => {
+    activeQuery = "";
+    if (searchInput) searchInput.value = "";
+    setCategory("all", true);
+  });
 
-    card.addEventListener("click", (event) => {
-      const interactive = event.target.closest(
-        "button, a, input, select, textarea"
-      );
+  $("#viewAllCategories")?.addEventListener("click", () => {
+    setCategory("all", true);
+  });
 
-      if (interactive) return;
+  $("#startShopping")?.addEventListener("click", () => {
+    $("#products")?.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
 
-      openProduct(productId);
+  /* =========================================================
+     PRODUCT NAVIGATION
+     ========================================================= */
+
+  function openProduct(card) {
+    const id = card.dataset.productId;
+    if (!id) {
+      toast("This product is not configured yet.");
+      return;
+    }
+
+    const recent = readJSON(STORAGE.recent, []);
+    const next = [id, ...recent.filter(item => String(item) !== String(id))].slice(0, 10);
+    writeJSON(STORAGE.recent, next);
+
+    window.location.href = `product.html?id=${encodeURIComponent(id)}`;
+  }
+
+  productCards.forEach(card => {
+    card.setAttribute("tabindex", "0");
+    card.setAttribute("role", "link");
+
+    card.addEventListener("click", event => {
+      if (event.target.closest(".heart-btn")) return;
+      openProduct(card);
     });
 
-    card.addEventListener("keydown", (event) => {
+    card.addEventListener("keydown", event => {
       if (event.key === "Enter" || event.key === " ") {
         event.preventDefault();
-        openProduct(productId);
+        openProduct(card);
       }
     });
   });
-
-  /* =========================================================
-     RECENTLY VIEWED
-     ========================================================= */
-
-  function saveRecentlyViewed(productId) {
-    let recent = getStorage(STORAGE.RECENT, []);
-
-    if (!Array.isArray(recent)) {
-      recent = [];
-    }
-
-    recent = recent.filter(
-      (id) => String(id) !== String(productId)
-    );
-
-    recent.unshift(productId);
-
-    recent = recent.slice(0, 10);
-
-    setStorage(STORAGE.RECENT, recent);
-  }
 
   /* =========================================================
      WISHLIST
      ========================================================= */
 
   function getWishlist() {
-    const wishlist = getStorage(STORAGE.WISHLIST, []);
-
-    return Array.isArray(wishlist) ? wishlist : [];
+    const value = readJSON(STORAGE.wishlist, []);
+    return Array.isArray(value) ? value.map(String) : [];
   }
 
-  function saveWishlist(wishlist) {
-    setStorage(STORAGE.WISHLIST, wishlist);
+  function updateWishlistButton(button, active) {
+    if (!button) return;
+    button.textContent = active ? "♥" : "♡";
+    button.classList.toggle("active", active);
+    button.setAttribute("aria-pressed", String(active));
+    button.setAttribute("aria-label", active ? "Remove from wishlist" : "Add to wishlist");
   }
 
-  function updateWishlistButtons() {
+  function syncWishlist() {
     const wishlist = getWishlist();
-
-    $$("[data-wishlist]").forEach((button) => {
-      const id = button.dataset.wishlist;
-
-      const active = wishlist.some(
-        (item) => String(item) === String(id)
-      );
-
-      button.classList.toggle("active", active);
-      button.setAttribute("aria-pressed", String(active));
+    $$(".heart-btn").forEach(button => {
+      const card = button.closest(".product-card");
+      updateWishlistButton(button, wishlist.includes(String(card?.dataset.productId)));
     });
   }
 
-  $$("[data-wishlist]").forEach((button) => {
-    button.addEventListener("click", (event) => {
-      event.preventDefault();
+  $$(".heart-btn").forEach(button => {
+    button.addEventListener("click", event => {
       event.stopPropagation();
 
-      const id = button.dataset.wishlist;
-
+      const card = button.closest(".product-card");
+      const id = card?.dataset.productId;
       if (!id) return;
 
-      let wishlist = getWishlist();
+      const wishlist = getWishlist();
+      const index = wishlist.indexOf(String(id));
 
-      const exists = wishlist.some(
-        (item) => String(item) === String(id)
-      );
-
-      if (exists) {
-        wishlist = wishlist.filter(
-          (item) => String(item) !== String(id)
-        );
-
-        showToast("Removed from wishlist.");
+      if (index >= 0) {
+        wishlist.splice(index, 1);
+        updateWishlistButton(button, false);
+        toast("Removed from wishlist.");
       } else {
-        wishlist.push(id);
-
-        showToast("Added to wishlist.");
+        wishlist.unshift(String(id));
+        updateWishlistButton(button, true);
+        toast("Added to wishlist.");
       }
 
-      saveWishlist(wishlist);
-      updateWishlistButtons();
+      writeJSON(STORAGE.wishlist, wishlist);
     });
   });
 
-  if (wishlistButton) {
-    wishlistButton.addEventListener("click", () => {
-      const wishlist = getWishlist();
-
-      if (wishlist.length === 0) {
-        showToast("Your wishlist is empty.");
-        return;
-      }
-
-      showToast(
-        `${wishlist.length} item${wishlist.length > 1 ? "s" : ""} in wishlist.`
-      );
-    });
-  }
+  $("#wishlistButton")?.addEventListener("click", () => {
+    const count = getWishlist().length;
+    toast(count ? `${count} item${count === 1 ? "" : "s"} in your wishlist.` : "Your wishlist is empty.");
+  });
 
   /* =========================================================
      CART
      ========================================================= */
 
-  function getCart() {
-    const cart = getStorage(STORAGE.CART, []);
-
-    return Array.isArray(cart) ? cart : [];
-  }
-
   function updateCartCount() {
-    const cart = getCart();
-
-    const total = cart.reduce((sum, item) => {
-      const quantity = Number(item.quantity || 1);
-      return sum + quantity;
-    }, 0);
-
-    if (cartCount) {
-      cartCount.textContent = total;
-      cartCount.hidden = total === 0;
-    }
+    const cart = readJSON(STORAGE.cart, []);
+    const items = Array.isArray(cart) ? cart : [];
+    const count = items.reduce((sum, item) => sum + Number(item.quantity || 1), 0);
+    const badge = $("#cartCount");
+    if (badge) badge.textContent = String(count);
   }
 
-  function addToCart(productId, quantity = 1) {
-    if (!productId) return;
-
-    const cart = getCart();
-
-    const existing = cart.find(
-      (item) => String(item.id) === String(productId)
-    );
-
-    if (existing) {
-      existing.quantity =
-        Number(existing.quantity || 1) + Number(quantity);
-    } else {
-      cart.push({
-        id: productId,
-        quantity: Number(quantity)
-      });
-    }
-
-    setStorage(STORAGE.CART, cart);
-
-    updateCartCount();
-
-    showToast("Added to cart.");
-  }
-
-  $$("[data-add-to-cart]").forEach((button) => {
-    button.addEventListener("click", (event) => {
-      event.preventDefault();
-      event.stopPropagation();
-
-      const productId = button.dataset.addToCart;
-
-      addToCart(productId);
-    });
+  $("#cartButton")?.addEventListener("click", () => {
+    window.location.href = "cart.html";
   });
 
-  if (cartButton) {
-    cartButton.addEventListener("click", () => {
-      window.location.href = "cart.html";
-    });
-  }
-
   /* =========================================================
-     SETTINGS
+     ACCOUNT MODAL ACTIONS
      ========================================================= */
 
-  const settingsButton = $("#settingsButton");
+  $("#settingsButton")?.addEventListener("click", () => {
+    closeModal("accountModal");
+    openModal("settingsModal");
+  });
 
-  if (settingsButton) {
-    settingsButton.addEventListener("click", () => {
-      openModal("#settingsModal");
-    });
+  function logout() {
+    saveCurrentUser(null);
+    updateAvatar(null);
+    closeAllModals();
+    toast("You have been logged out.");
   }
+
+  $("#logoutButton")?.addEventListener("click", logout);
+  $("#settingsLogoutButton")?.addEventListener("click", logout);
+
+  $("#ordersButton")?.addEventListener("click", () => toast("Orders will be connected with the database later."));
+  $("#wishlistAccountButton")?.addEventListener("click", () => toast(`${getWishlist().length} item(s) in wishlist.`));
+  $("#cartAccountButton")?.addEventListener("click", () => { window.location.href = "cart.html"; });
+  $("#reviewsButton")?.addEventListener("click", () => toast("Reviews will be connected later."));
+  $("#recentButton")?.addEventListener("click", () => {
+    const recent = readJSON(STORAGE.recent, []);
+    toast(recent.length ? `${recent.length} recently viewed product(s).` : "No recently viewed products.");
+  });
+
+  ["#editProfileButton", "#settingsEditProfile", "#loginSecurityButton", "#addressButton", "#notificationsButton", "#orderUpdatesButton", "#helpButton", "#reportButton", "#privacyButton", "#termsButton"].forEach(selector => {
+    $(selector)?.addEventListener("click", () => toast("This section will be connected with the database later."));
+  });
+
+  $("#deleteAccountButton")?.addEventListener("click", () => {
+    const user = getCurrentUser();
+    if (!user) return;
+
+    const accounts = getAccounts().filter(account => account.email !== user.email);
+    writeJSON(STORAGE.accounts, accounts);
+    saveCurrentUser(null);
+    updateAvatar(null);
+    closeAllModals();
+    toast("Account removed from this browser.");
+  });
 
   /* =========================================================
      THEME
@@ -833,234 +648,31 @@ document.addEventListener("DOMContentLoaded", () => {
   const themeSelect = $("#themeSelect");
 
   function applyTheme(theme) {
-    if (theme === "light") {
-      document.documentElement.setAttribute("data-theme", "light");
-      return;
-    }
+    const finalTheme = theme === "system"
+      ? (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light")
+      : theme;
 
-    if (theme === "dark") {
-      document.documentElement.setAttribute("data-theme", "dark");
-      return;
-    }
-
-    document.documentElement.removeAttribute("data-theme");
+    document.body.classList.toggle("light-theme", finalTheme === "light");
+    if (themeSelect) themeSelect.value = theme;
   }
 
-  if (themeSelect) {
-    const savedTheme =
-      localStorage.getItem(STORAGE.THEME) || "dark";
+  const savedTheme = localStorage.getItem(STORAGE.theme) || "dark";
+  applyTheme(savedTheme);
 
-    themeSelect.value = savedTheme;
-
-    applyTheme(savedTheme);
-
-    themeSelect.addEventListener("change", () => {
-      const theme = themeSelect.value;
-
-      localStorage.setItem(STORAGE.THEME, theme);
-
-      applyTheme(theme);
-    });
-  } else {
-    const savedTheme =
-      localStorage.getItem(STORAGE.THEME) || "dark";
-
-    applyTheme(savedTheme);
-  }
-
-  /* =========================================================
-     HERO SHOP NOW
-     ========================================================= */
-
-  const startShopping = $("#startShopping");
-
-  if (startShopping) {
-    startShopping.addEventListener("click", () => {
-      const productSection =
-        $("#products") ||
-        $("#productGrid") ||
-        $(".products-section");
-
-      if (productSection) {
-        productSection.scrollIntoView({
-          behavior: "smooth",
-          block: "start"
-        });
-      }
-    });
-  }
-
-  /* =========================================================
-     GENERIC ACCOUNT BUTTONS
-     ========================================================= */
-
-  const ordersButton = $("#ordersButton");
-
-  if (ordersButton) {
-    ordersButton.addEventListener("click", () => {
-      window.location.href = "orders.html";
-    });
-  }
-
-  const wishlistAccountButton = $("#wishlistAccountButton");
-
-  if (wishlistAccountButton) {
-    wishlistAccountButton.addEventListener("click", () => {
-      const wishlist = getWishlist();
-
-      if (wishlist.length) {
-        showToast(
-          `${wishlist.length} item${wishlist.length > 1 ? "s" : ""} saved in wishlist.`
-        );
-      } else {
-        showToast("Your wishlist is empty.");
-      }
-    });
-  }
-
-  const cartAccountButton = $("#cartAccountButton");
-
-  if (cartAccountButton) {
-    cartAccountButton.addEventListener("click", () => {
-      window.location.href = "cart.html";
-    });
-  }
-
-  const recentButton = $("#recentButton");
-
-  if (recentButton) {
-    recentButton.addEventListener("click", () => {
-      const recent = getStorage(STORAGE.RECENT, []);
-
-      if (recent.length === 0) {
-        showToast("No recently viewed products.");
-      } else {
-        showToast(
-          `${recent.length} recently viewed product${recent.length > 1 ? "s" : ""}.`
-        );
-      }
-    });
-  }
-
-  /* =========================================================
-     PROFILE / SETTINGS PLACEHOLDERS
-     ========================================================= */
-
-  const editProfileButton = $("#editProfileButton");
-  const settingsEditProfile = $("#settingsEditProfile");
-
-  [editProfileButton, settingsEditProfile].forEach((button) => {
-    if (!button) return;
-
-    button.addEventListener("click", () => {
-      showToast("Profile editing will be connected with the database later.");
-    });
-  });
-
-  const loginSecurityButton = $("#loginSecurityButton");
-
-  if (loginSecurityButton) {
-    loginSecurityButton.addEventListener("click", () => {
-      showToast("Security settings will be available after database setup.");
-    });
-  }
-
-  const addressButton = $("#addressButton");
-
-  if (addressButton) {
-    addressButton.addEventListener("click", () => {
-      showToast("Address management will be connected later.");
-    });
-  }
-
-  const notificationsButton = $("#notificationsButton");
-
-  if (notificationsButton) {
-    notificationsButton.addEventListener("click", () => {
-      showToast("Notification settings opened.");
-    });
-  }
-
-  const orderUpdatesButton = $("#orderUpdatesButton");
-
-  if (orderUpdatesButton) {
-    orderUpdatesButton.addEventListener("click", () => {
-      showToast("Order notification settings will be connected later.");
-    });
-  }
-
-  const helpButton = $("#helpButton");
-
-  if (helpButton) {
-    helpButton.addEventListener("click", () => {
-      showToast("MARTEY Help Center will be added later.");
-    });
-  }
-
-  const reportButton = $("#reportButton");
-
-  if (reportButton) {
-    reportButton.addEventListener("click", () => {
-      showToast("Report system will be connected later.");
-    });
-  }
-
-  const privacyButton = $("#privacyButton");
-
-  if (privacyButton) {
-    privacyButton.addEventListener("click", () => {
-      showToast("Privacy Policy page will be added later.");
-    });
-  }
-
-  const termsButton = $("#termsButton");
-
-  if (termsButton) {
-    termsButton.addEventListener("click", () => {
-      showToast("Terms & Conditions page will be added later.");
-    });
-  }
-
-  const deleteAccountButton = $("#deleteAccountButton");
-
-  if (deleteAccountButton) {
-    deleteAccountButton.addEventListener("click", () => {
-      const confirmed = window.confirm(
-        "Are you sure you want to remove the local MARTEY account data?"
-      );
-
-      if (!confirmed) return;
-
-      localStorage.removeItem(STORAGE.USER);
-
-      closeAllModals();
-
-      showToast("Local account data removed.");
-    });
-  }
-
-  /* =========================================================
-     IMAGE ERROR HANDLING
-     ========================================================= */
-
-  $$("img").forEach((image) => {
-    image.addEventListener("error", () => {
-      image.classList.add("image-error");
-    });
+  themeSelect?.addEventListener("change", () => {
+    localStorage.setItem(STORAGE.theme, themeSelect.value);
+    applyTheme(themeSelect.value);
   });
 
   /* =========================================================
      INITIAL STATE
      ========================================================= */
 
-  updateAccountUI();
+  updateAvatar();
+  updateAccountModal();
   updateCartCount();
-  updateWishlistButtons();
+  syncWishlist();
+  setCategory("all", false);
 
-  /*
-     Do NOT automatically filter products on page load.
-     Homepage should show all products.
-  */
-
-  console.log("MARTEY script loaded successfully.");
-});
+  console.log("MARTEY: homepage script loaded successfully.");
+})();

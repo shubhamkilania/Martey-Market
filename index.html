@@ -117,6 +117,14 @@
  
             <button 
                 class="category-link" 
+                data-category="shoes"
+                type="button"
+            >
+                Shoes
+            </button>
+
+            <button 
+                class="category-link" 
                 data-category="electronics" 
                 type="button" 
             > 
@@ -413,7 +421,9 @@
             <!-- PRODUCT 1 --> 
  
             <article 
-                class="product-card" 
+                class="product-card"
+                data-product-id="1001"
+                data-name="Premium Oversized T-Shirt"
                 data-category="fashion" 
             > 
  
@@ -467,7 +477,9 @@
             <!-- PRODUCT 2 --> 
  
             <article 
-                class="product-card" 
+                class="product-card"
+                data-product-id="1002"
+                data-name="Wireless Headphones"
                 data-category="electronics" 
             > 
  
@@ -521,7 +533,9 @@
             <!-- PRODUCT 3 --> 
  
             <article 
-                class="product-card" 
+                class="product-card"
+                data-product-id="1003"
+                data-name="Minimal Smart Watch"
                 data-category="accessories" 
             > 
  
@@ -575,7 +589,9 @@
             <!-- PRODUCT 4 --> 
  
             <article 
-                class="product-card" 
+                class="product-card"
+                data-product-id="1004"
+                data-name="Modern Desk Lamp"
                 data-category="home" 
             > 
  
@@ -691,59 +707,38 @@
          FEATURES 
     ====================================================== --> 
  
-    <section class="features"> 
- 
-        <div class="feature"> 
-            <div>🛡️</div> 
- 
-            <h3> 
-                Secure Shopping 
-            </h3> 
- 
-            <p> 
-                Your shopping experience comes first. 
-            </p> 
-        </div> 
- 
- 
-        <div class="feature"> 
-            <div>🚚</div> 
- 
-            <h3> 
-                Reliable Delivery 
-            </h3> 
- 
-            <p> 
-                Products delivered to your doorstep. 
-            </p> 
-        </div> 
- 
- 
-        <div class="feature"> 
-            <div>↩️</div> 
- 
-            <h3> 
-                Easy Returns 
-            </h3> 
- 
-            <p> 
-                Simple and transparent return process. 
-            </p> 
-        </div> 
- 
- 
-        <div class="feature"> 
-            <div>💬</div> 
- 
-            <h3> 
-                Seller Support 
-            </h3> 
- 
-            <p> 
-                Support for sellers and customers. 
-            </p> 
-        </div> 
- 
+    <section class="features">
+        <div class="feature">
+            <div class="feature-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg>
+            </div>
+            <h3>Secure Shopping</h3>
+            <p>Your shopping experience comes first.</p>
+        </div>
+
+        <div class="feature">
+            <div class="feature-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 7h11v10H3z"/><path d="M14 10h4l3 3v4h-7z"/><circle cx="7" cy="18" r="2"/><circle cx="18" cy="18" r="2"/></svg>
+            </div>
+            <h3>Reliable Delivery</h3>
+            <p>Products delivered to your doorstep.</p>
+        </div>
+
+        <div class="feature">
+            <div class="feature-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 12a8 8 0 1 1-2.34-5.66"/><path d="M20 5v6h-6"/><path d="M8 16l-3 3"/></svg>
+            </div>
+            <h3>Easy Returns</h3>
+            <p>Simple and transparent return process.</p>
+        </div>
+
+        <div class="feature">
+            <div class="feature-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="3"/><path d="M5 20c.8-3.5 3.1-5.5 7-5.5s6.2 2 7 5.5"/></svg>
+            </div>
+            <h3>Personalized Experience</h3>
+            <p>Your profile helps MARTEY personalize your shopping.</p>
+        </div>
     </section> 
  
 </main> 
@@ -1177,6 +1172,21 @@
                 </div> 
  
  
+                <div class="form-group">
+
+                    <label for="signupProfileImage">
+                        Profile Picture <span class="optional-label">(optional)</span>
+                    </label>
+
+                    <input
+                        type="file"
+                        id="signupProfileImage"
+                        accept="image/*"
+                    >
+
+                </div>
+
+
                 <div class="form-group"> 
  
                     <label for="signupPassword"> 
