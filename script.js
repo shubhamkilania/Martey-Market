@@ -268,18 +268,16 @@ document.addEventListener("DOMContentLoaded", () => {
        ACCOUNT BUTTON
        ========================================================= */
 
-  if (accountButton) {
+ if (accountButton) {
     accountButton.addEventListener("click", () => {
         const user = getUser();
 
-        // User logged out → Login / Signup
         if (!user) {
             openModal(authModal);
             switchAuthTab("login");
             return;
         }
 
-        // User logged in → Account modal for now
         if (accountModal) {
             openModal(accountModal);
         } else {
