@@ -1,1573 +1,1113 @@
 document.addEventListener("DOMContentLoaded", () => {
+    /* =========================================================
+       MARTEY — Main Frontend Script
+       ========================================================= */
 
-    /* =====================================================
+    // ---------- Helpers ----------
+    const $ = (selector) => document.querySelector(selector);
+    const $$ = (selector) => document.querySelectorAll(selector);
+
+    const getJSON = (key, fallback) => {
+        try {
+            const data = localStorage.getItem(key);
+            return data ? JSON.parse(data) : fallback;
+        } catch {
+            return fallback;
+        }
+    };
+
+    const setJSON = (key, value) => {
+        localStorage.setItem(key, JSON.stringify(value));
+    };
+
+
+    /* =========================================================
        ELEMENTS
-    ===================================================== */
+       ========================================================= */
 
-    const searchInput = document.getElementById("searchInput");
-    const searchButton = document.getElementById("searchButton");
+    const authModal = $("#authModal");
+    const accountModal = $("#accountModal");
+    const settingsModal = $("#settingsModal");
+    const toast = $("#toast");
+    const toastMessage = $("#toastMessage");
 
-    const productCards =
-        document.querySelectorAll(".product-card");
+    const accountButton = $("#accountButton");
+    const accountAvatar = $("#accountAvatar");
 
-    const categoryLinks =
-        document.querySelectorAll(".category-link");
+    const cartButton = $("#cartButton");
+    const cartCount = $("#cartCount");
 
-    const categoryCards =
-        document.querySelectorAll(".category-card");
+    const wishlistButton = $("#wishlistButton");
 
-    const cartCount =
-        document.getElementById("cartCount");
+    const searchInput = $("#searchInput");
+    const searchButton = $("#searchButton");
 
-    const cartButton =
-        document.getElementById("cartButton");
+    const productGrid = $("#productGrid");
+    const emptyState = $("#emptyState");
 
-    const wishlistButton =
-        document.getElementById("wishlistButton");
+    const viewAllProducts = $("#viewAllProducts");
 
-    const accountButton =
-        document.getElementById("accountButton");
+    const startShopping = $("#startShopping");
 
-    const startShopping =
-        document.getElementById("startShopping");
+    const sellButton = $("#sellButton");
+    const footerSellerLink = $("#footerSellerLink");
+    const footerSellerButton = $("#footerSellerButton");
+    const footerSellerHelp = $("#footerSellerHelp");
 
-    const sellButton =
-        document.getElementById("sellButton");
+    const loginForm = $("#loginForm");
+    const signupForm = $("#signupForm");
 
-    const sellerButton =
-        document.getElementById("sellerButton");
+    const loginEmail = $("#loginEmail");
+    const loginPassword = $("#loginPassword");
 
-    const clearFilter =
-        document.getElementById("clearFilter");
+    const signupName = $("#signupName");
+    const signupEmail = $("#signupEmail");
+    const signupPassword = $("#signupPassword");
+    const signupRole = $("#signupRole");
 
-    const toast =
-        document.getElementById("toast");
+    const storeNameGroup = $("#storeNameGroup");
+    const storeName = $("#storeName");
 
-    const emptyState =
-        document.getElementById("emptyState");
-
-    const productsSection =
-        document.getElementById("products");
+    const themeToggle = $("#themeToggle");
+    const notificationToggle = $("#notificationToggle");
 
 
-    /* =====================================================
+    /* =========================================================
        TOAST
-    ===================================================== */
-
-    let toastTimer;
+       ========================================================= */
 
     function showToast(message) {
-
         if (!toast) return;
 
-        toast.textContent = message;
+        if (toastMessage) {
+            toastMessage.textContent = message;
+        } else {
+            toast.textContent = message;
+        }
 
         toast.classList.add("show");
 
-        clearTimeout(toastTimer);
+        clearTimeout(window.marteyToastTimer);
 
-        toastTimer = setTimeout(() => {
-
+        window.marteyToastTimer = setTimeout(() => {
             toast.classList.remove("show");
-
         }, 2500);
     }
 
 
-    /* =====================================================
-       CART
-    ===================================================== */
+    /* =========================================================
+       MODALS
+       ========================================================= */
 
-    let cart =
-        JSON.parse(
-            localStorage.getItem("marteyCart")
-        ) || [];
+    function openModal(modal) {
+        if (!modal) return;
+
+        modal.classList.remove("hidden");
+        modal.classList.add("show");
+
+        modal.setAttribute("aria-hidden", "false");
+        document.body.classList.add("modal-open");
+    }
+
+
+    function closeModal(modal) {
+        if (!modal) return;
+
+        modal.classList.remove("show");
+        modal.classList.add("hidden");
+
+        modal.setAttribute("aria-hidden", "true");
+
+        if (
+            (!authModal || authModal.classList.contains("hidden")) &&
+            (!accountModal || accountModal.classList.contains("hidden")) &&
+            (!settingsModal || settingsModal.classList.contains("hidden"))
+        ) {
+            document.body.classList.remove("modal-open");
+        }
+    }
+
+
+    // Close buttons
+    $$(".modal-close").forEach((button) => {
+        button.addEventListener("click", () => {
+            const modal = button.closest(".modal");
+
+            if (modal) {
+                closeModal(modal);
+            }
+        });
+    });
+
+
+    // Click outside modal
+    $$(".modal").forEach((modal) => {
+        modal.addEventListener("click", (event) => {
+            if (event.target === modal) {
+                closeModal(modal);
+            }
+        });
+    });
+
+
+    // ESC key
+    document.addEventListener("keydown", (event) => {
+        if (event.key !== "Escape") return;
+
+        closeModal(authModal);
+        closeModal(accountModal);
+        closeModal(settingsModal);
+    });
+
+
+    /* =========================================================
+       AUTH TABS
+       ========================================================= */
+
+    const authTabs = $$(".auth-tab");
+    const authViews = $$(".auth-view");
+
+    function switchAuthTab(type) {
+        authTabs.forEach((tab) => {
+            tab.classList.toggle(
+                "active",
+                tab.dataset.authTab === type
+            );
+        });
+
+        authViews.forEach((view) => {
+            view.classList.add("hidden");
+        });
+
+        const selectedView = $(
+            type === "login" ? "#loginView" : "#signupView"
+        );
+
+        if (selectedView) {
+            selectedView.classList.remove("hidden");
+        }
+    }
+
+
+    authTabs.forEach((tab) => {
+        tab.addEventListener("click", () => {
+            const type = tab.dataset.authTab;
+
+            if (type) {
+                switchAuthTab(type);
+            }
+        });
+    });
+
+
+    // Buttons such as "Create account" / "Already have account"
+    $$("[data-auth-switch]").forEach((button) => {
+        button.addEventListener("click", () => {
+            const type = button.dataset.authSwitch;
+
+            if (type) {
+                switchAuthTab(type);
+            }
+        });
+    });
+
+
+    /* =========================================================
+       USER DATA
+       ========================================================= */
+
+    function getUser() {
+        return getJSON("marteyUser", null);
+    }
+
+
+    function saveUser(user) {
+        setJSON("marteyUser", user);
+    }
+
+
+    function updateAccountAvatar() {
+        if (!accountAvatar) return;
+
+        const user = getUser();
+
+        if (!user) {
+            accountAvatar.innerHTML = `
+                <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    aria-hidden="true"
+                >
+                    <circle cx="12" cy="8" r="3.5"></circle>
+                    <path d="M5 20c.8-3.2 3.1-5 7-5s6.2 1.8 7 5"></path>
+                </svg>
+            `;
+
+            return;
+        }
+
+        const name = user.name || "User";
+
+        const initials = name
+            .split(" ")
+            .filter(Boolean)
+            .slice(0, 2)
+            .map((word) => word[0])
+            .join("")
+            .toUpperCase();
+
+        accountAvatar.textContent = initials || "U";
+    }
+
+
+    /* =========================================================
+       ACCOUNT BUTTON
+       ========================================================= */
+
+    if (accountButton) {
+        accountButton.addEventListener("click", () => {
+            const user = getUser();
+
+            if (!user) {
+                openModal(authModal);
+                switchAuthTab("login");
+                return;
+            }
+
+            // Logged-in customer → account page
+            window.location.href = "account.html";
+        });
+    }
+
+
+    /* =========================================================
+       LOGIN
+       ========================================================= */
+
+    if (loginForm) {
+        loginForm.addEventListener("submit", (event) => {
+            event.preventDefault();
+
+            const email = loginEmail?.value.trim();
+            const password = loginPassword?.value.trim();
+
+            if (!email || !password) {
+                showToast("Please enter email and password.");
+                return;
+            }
+
+            const savedUser = getUser();
+
+            /*
+             * Frontend demo login.
+             * Real authentication will be connected
+             * after backend/database is created.
+             */
+
+            if (
+                savedUser &&
+                savedUser.email &&
+                savedUser.email.toLowerCase() !== email.toLowerCase()
+            ) {
+                showToast("No account found with this email.");
+                return;
+            }
+
+            const user = savedUser || {
+                name: email.split("@")[0],
+                email: email,
+                role: "customer"
+            };
+
+            saveUser(user);
+
+            closeModal(authModal);
+
+            updateAccountAvatar();
+
+            showToast("Welcome back to MARTEY!");
+
+            loginForm.reset();
+        });
+    }
+
+
+    /* =========================================================
+       SIGNUP ROLE
+       ========================================================= */
+
+    const roleOptions = $$(".role-option");
+
+    function selectRole(role) {
+        if (!role) return;
+
+        roleOptions.forEach((option) => {
+            const optionRole = option.dataset.role;
+
+            option.classList.toggle(
+                "active",
+                optionRole === role
+            );
+
+            option.classList.toggle(
+                "selected",
+                optionRole === role
+            );
+        });
+
+        if (signupRole) {
+            signupRole.value = role;
+        }
+
+        // Store name only needed for seller
+        if (storeNameGroup) {
+            storeNameGroup.classList.toggle(
+                "hidden",
+                role !== "seller"
+            );
+        }
+    }
+
+
+    roleOptions.forEach((option) => {
+        option.addEventListener("click", () => {
+            selectRole(option.dataset.role);
+        });
+    });
+
+
+    // Default role
+    if (signupRole?.value) {
+        selectRole(signupRole.value);
+    } else {
+        selectRole("customer");
+    }
+
+
+    /* =========================================================
+       OPEN SIGNUP
+       ========================================================= */
+
+    function openSignup(role = "customer") {
+        openModal(authModal);
+
+        switchAuthTab("signup");
+
+        selectRole(role);
+    }
+
+
+    // Sell buttons
+    if (sellButton) {
+        sellButton.addEventListener("click", () => {
+            openSignup("seller");
+        });
+    }
+
+
+    if (footerSellerLink) {
+        footerSellerLink.addEventListener("click", () => {
+            openSignup("seller");
+        });
+    }
+
+
+    if (footerSellerButton) {
+        footerSellerButton.addEventListener("click", () => {
+            openSignup("seller");
+        });
+    }
+
+
+    if (footerSellerHelp) {
+        footerSellerHelp.addEventListener("click", () => {
+            showToast("Seller help center will be available soon.");
+        });
+    }
+
+
+    /* =========================================================
+       SIGNUP
+       ========================================================= */
+
+    if (signupForm) {
+        signupForm.addEventListener("submit", (event) => {
+            event.preventDefault();
+
+            const name = signupName?.value.trim();
+            const email = signupEmail?.value.trim();
+            const password = signupPassword?.value.trim();
+
+            const role =
+                signupRole?.value ||
+                "customer";
+
+            const sellerStoreName =
+                storeName?.value.trim() || "";
+
+            if (!name || !email || !password) {
+                showToast("Please fill all required fields.");
+                return;
+            }
+
+            if (password.length < 6) {
+                showToast(
+                    "Password should be at least 6 characters."
+                );
+                return;
+            }
+
+            if (
+                role === "seller" &&
+                !sellerStoreName
+            ) {
+                showToast("Please enter your store name.");
+                return;
+            }
+
+            const user = {
+                name,
+                email,
+                role,
+                storeName:
+                    role === "seller"
+                        ? sellerStoreName
+                        : "",
+                createdAt:
+                    new Date().toISOString()
+            };
+
+            saveUser(user);
+
+            updateAccountAvatar();
+
+            signupForm.reset();
+
+            selectRole("customer");
+
+            closeModal(authModal);
+
+            showToast(
+                "MARTEY account created successfully!"
+            );
+        });
+    }
+
+
+    /* =========================================================
+       CART
+       ========================================================= */
+
+    function getCart() {
+        return getJSON("marteyCart", []);
+    }
 
 
     function updateCartCount() {
+        if (!cartCount) return;
 
-        if (cartCount) {
+        const cart = getCart();
 
-            cartCount.textContent =
-                cart.length;
+        let count = 0;
 
+        cart.forEach((item) => {
+            count += Number(item.quantity) || 1;
+        });
+
+        cartCount.textContent = count;
+
+        if (count > 0) {
+            cartCount.classList.add("has-items");
+        } else {
+            cartCount.classList.remove("has-items");
         }
+    }
 
-        localStorage.setItem(
-            "marteyCart",
-            JSON.stringify(cart)
-        );
+
+    if (cartButton) {
+        cartButton.addEventListener("click", () => {
+            window.location.href = "cart.html";
+        });
     }
 
 
     updateCartCount();
 
 
-    document.querySelectorAll(".add-cart")
-        .forEach(button => {
+    /* =========================================================
+       WISHLIST
+       ========================================================= */
 
-            button.addEventListener(
-                "click",
-                () => {
-
-                    const card =
-                        button.closest(
-                            ".product-card"
-                        );
-
-                    if (!card) return;
-
-
-                    const nameElement =
-                        card.querySelector("h3");
-
-                    const priceElement =
-                        card.querySelector(
-                            ".price-row strong"
-                        );
-
-
-                    if (
-                        !nameElement ||
-                        !priceElement
-                    ) {
-                        return;
-                    }
-
-
-                    const productName =
-                        nameElement.textContent.trim();
-
-                    const productPrice =
-                        priceElement.textContent.trim();
-
-
-                    cart.push({
-
-                        name: productName,
-
-                        price: productPrice
-
-                    });
-
-
-                    updateCartCount();
-
-
-                    showToast(
-                        productName +
-                        " added to cart"
-                    );
-
-                }
-            );
-
-        });
-
-
-    if (cartButton) {
-
-        cartButton.addEventListener(
-            "click",
-            () => {
-
-                window.location.href =
-                    "cart.html";
-
-            }
-        );
-
+    function getWishlist() {
+        return getJSON("marteyWishlist", []);
     }
 
 
-    /* =====================================================
-       WISHLIST
-    ===================================================== */
-
-    let wishlist =
-        JSON.parse(
-            localStorage.getItem(
-                "marteyWishlist"
-            )
-        ) || [];
+    function saveWishlist(wishlist) {
+        setJSON("marteyWishlist", wishlist);
+    }
 
 
-    document.querySelectorAll(".heart-btn")
-        .forEach(button => {
+    function isWishlisted(productId) {
+        const wishlist = getWishlist();
 
-            const card =
-                button.closest(
-                    ".product-card"
-                );
+        return wishlist.some(
+            (id) => String(id) === String(productId)
+        );
+    }
+
+
+    function updateWishlistButtons() {
+        $$(".heart-btn").forEach((button) => {
+            const productId =
+                button.dataset.productId ||
+                button.closest(".product-card")?.dataset.productId;
+
+            if (!productId) return;
+
+            const active = isWishlisted(productId);
+
+            button.classList.toggle("active", active);
+
+            button.setAttribute(
+                "aria-pressed",
+                active ? "true" : "false"
+            );
+
+            button.textContent = active
+                ? "♥"
+                : "♡";
+        });
+    }
+
+
+    $$(".heart-btn").forEach((button) => {
+        button.addEventListener("click", (event) => {
+            event.preventDefault();
+            event.stopPropagation();
+
+            const card = button.closest(".product-card");
 
             if (!card) return;
 
+            const productId =
+                card.dataset.productId;
 
-            const nameElement =
-                card.querySelector("h3");
+            if (!productId) return;
 
-            if (!nameElement) return;
+            let wishlist = getWishlist();
 
-
-            const productName =
-                nameElement.textContent.trim();
-
-
-            /*
-               Restore wishlist state
-            */
-
-            if (
-                wishlist.includes(
-                    productName
-                )
-            ) {
-
-                button.classList.add(
-                    "active"
+            const existingIndex =
+                wishlist.findIndex(
+                    (id) =>
+                        String(id) ===
+                        String(productId)
                 );
 
-                button.textContent = "♥";
+            if (existingIndex !== -1) {
+                wishlist.splice(existingIndex, 1);
 
+                showToast(
+                    "Removed from wishlist."
+                );
+            } else {
+                wishlist.push(productId);
+
+                showToast(
+                    "Added to wishlist."
+                );
             }
 
+            saveWishlist(wishlist);
 
-            button.addEventListener(
-                "click",
-                () => {
-
-                    button.classList.toggle(
-                        "active"
-                    );
+            updateWishlistButtons();
+        });
+    });
 
 
-                    if (
-                        button.classList.contains(
-                            "active"
-                        )
-                    ) {
-
-                        button.textContent =
-                            "♥";
+    updateWishlistButtons();
 
 
-                        if (
-                            !wishlist.includes(
-                                productName
-                            )
-                        ) {
+    if (wishlistButton) {
+        wishlistButton.addEventListener("click", () => {
+            const wishlist = getWishlist();
 
-                            wishlist.push(
-                                productName
-                            );
+            if (wishlist.length === 0) {
+                showToast("Your wishlist is empty.");
+                return;
+            }
 
-                        }
-
-
-                        showToast(
-                            "Added to wishlist"
-                        );
-
-                    } else {
-
-                        button.textContent =
-                            "♡";
+            window.location.href =
+                "account.html#wishlist";
+        });
+    }
 
 
-                        wishlist =
-                            wishlist.filter(
-                                item =>
-                                    item !==
-                                    productName
-                            );
+    /* =========================================================
+       SEARCH
+       ========================================================= */
 
+    function filterProducts(searchTerm = "") {
+        if (!productGrid) return;
 
-                        showToast(
-                            "Removed from wishlist"
-                        );
+        const term =
+            searchTerm.trim().toLowerCase();
 
-                    }
-
-
-                    localStorage.setItem(
-                        "marteyWishlist",
-                        JSON.stringify(
-                            wishlist
-                        )
-                    );
-
-                }
+        const cards =
+            productGrid.querySelectorAll(
+                ".product-card"
             );
 
-        });
+        let visibleCount = 0;
 
-
-    /* =====================================================
-       SEARCH
-    ===================================================== */
-
-    function searchProducts() {
-
-        if (!searchInput) return;
-
-
-        const query =
-            searchInput.value
-                .toLowerCase()
-                .trim();
-
-
-        let visibleProducts = 0;
-
-
-        productCards.forEach(card => {
-
-            const nameElement =
-                card.querySelector("h3");
-
-            if (!nameElement) return;
-
-
+        cards.forEach((card) => {
             const name =
-                nameElement.textContent
-                    .toLowerCase();
-
+                card.dataset.name ||
+                card.querySelector(
+                    ".product-name"
+                )?.textContent ||
+                "";
 
             const category =
-                (
-                    card.dataset.category ||
-                    ""
-                ).toLowerCase();
+                card.dataset.category || "";
 
+            const searchableText =
+                `${name} ${category}`.toLowerCase();
 
-            if (
-                name.includes(query) ||
-                category.includes(query)
-            ) {
+            const matches =
+                !term ||
+                searchableText.includes(term);
 
-                card.style.display = "";
+            card.style.display =
+                matches ? "" : "none";
 
-                visibleProducts++;
-
-            } else {
-
-                card.style.display =
-                    "none";
-
+            if (matches) {
+                visibleCount++;
             }
-
         });
 
-
         if (emptyState) {
-
             emptyState.classList.toggle(
-                "show",
-                visibleProducts === 0
+                "hidden",
+                visibleCount !== 0
             );
-
         }
-
     }
 
 
     if (searchButton) {
+        searchButton.addEventListener("click", () => {
+            filterProducts(
+                searchInput?.value || ""
+            );
 
-        searchButton.addEventListener(
-            "click",
-            searchProducts
-        );
-
+            document
+                .getElementById("products")
+                ?.scrollIntoView({
+                    behavior: "smooth"
+                });
+        });
     }
 
 
     if (searchInput) {
-
         searchInput.addEventListener(
             "keydown",
-            event => {
-
+            (event) => {
                 if (event.key === "Enter") {
+                    filterProducts(
+                        searchInput.value
+                    );
 
-                    searchProducts();
-
+                    document
+                        .getElementById("products")
+                        ?.scrollIntoView({
+                            behavior: "smooth"
+                        });
                 }
-
             }
         );
-
     }
 
 
-    /* =====================================================
+    /* =========================================================
        CATEGORY FILTER
-    ===================================================== */
+       ========================================================= */
 
-    function filterCategory(category) {
+    function filterByCategory(category) {
+        if (!productGrid) return;
 
-        let visibleProducts = 0;
+        const cards =
+            productGrid.querySelectorAll(
+                ".product-card"
+            );
 
+        let visibleCount = 0;
 
-        productCards.forEach(card => {
-
+        cards.forEach((card) => {
             const cardCategory =
-                card.dataset.category;
+                (
+                    card.dataset.category || ""
+                ).toLowerCase();
 
+            const wantedCategory =
+                String(category).toLowerCase();
 
-            if (
-                category === "all" ||
-                cardCategory === category
-            ) {
+            const matches =
+                wantedCategory === "all" ||
+                wantedCategory === "more" ||
+                cardCategory === wantedCategory;
 
-                card.style.display = "";
+            card.style.display =
+                matches ? "" : "none";
 
-                visibleProducts++;
-
-            } else {
-
-                card.style.display =
-                    "none";
-
+            if (matches) {
+                visibleCount++;
             }
-
         });
-
 
         if (emptyState) {
-
             emptyState.classList.toggle(
-                "show",
-                visibleProducts === 0
+                "hidden",
+                visibleCount !== 0
             );
-
         }
-
-    }
-
-
-    categoryLinks.forEach(link => {
-
-        link.addEventListener(
-            "click",
-            () => {
-
-                categoryLinks.forEach(item => {
-
-                    item.classList.remove(
-                        "active"
-                    );
-
-                });
-
-
-                link.classList.add(
-                    "active"
-                );
-
-
-                if (searchInput) {
-
-                    searchInput.value = "";
-
-                }
-
-
-                filterCategory(
-                    link.dataset.category
-                );
-
-
-                if (productsSection) {
-
-                    productsSection.scrollIntoView({
-                        behavior: "smooth"
-                    });
-
-                }
-
-            }
-        );
-
-    });
-
-
-    categoryCards.forEach(card => {
-
-        card.addEventListener(
-            "click",
-            () => {
-
-                const category =
-                    card.dataset.category;
-
-
-                categoryLinks.forEach(link => {
-
-                    link.classList.toggle(
-                        "active",
-                        link.dataset.category ===
-                        category
-                    );
-
-                });
-
-
-                filterCategory(category);
-
-
-                if (productsSection) {
-
-                    productsSection.scrollIntoView({
-                        behavior: "smooth"
-                    });
-
-                }
-
-            }
-        );
-
-    });
-
-
-    /* =====================================================
-       VIEW ALL
-    ===================================================== */
-
-    if (clearFilter) {
-
-        clearFilter.addEventListener(
-            "click",
-            () => {
-
-                if (searchInput) {
-
-                    searchInput.value = "";
-
-                }
-
-
-                categoryLinks.forEach(link => {
-
-                    link.classList.toggle(
-                        "active",
-                        link.dataset.category ===
-                        "all"
-                    );
-
-                });
-
-
-                filterCategory("all");
-
-            }
-        );
-
-    }
-
-
-    /* =====================================================
-       START SHOPPING
-    ===================================================== */
-
-    if (startShopping) {
-
-        startShopping.addEventListener(
-            "click",
-            () => {
-
-                if (productsSection) {
-
-                    productsSection.scrollIntoView({
-                        behavior: "smooth"
-                    });
-
-                }
-
-            }
-        );
-
-    }
-
-
-    /* =====================================================
-       ACCOUNT SYSTEM
-    ===================================================== */
-
-    let marteyUser =
-        JSON.parse(
-            localStorage.getItem(
-                "marteyUser"
-            )
-        ) || null;
-
-
-    function getInitials(name) {
-
-        if (!name) return "M";
-
-
-        const words =
-            name.trim().split(" ");
-
-
-        if (words.length === 1) {
-
-            return words[0]
-                .substring(0, 2)
-                .toUpperCase();
-
-        }
-
-
-        return (
-            words[0][0] +
-            words[1][0]
-        ).toUpperCase();
-
-    }
-
-    /* =====================================================
-       ACCOUNT AVATAR
-    ===================================================== */
-
-    function updateAccountAvatar() {
-
-        if (!accountButton) return;
-
-
-        let avatar =
-            accountButton.querySelector(
-                ".account-avatar"
-            );
-
-
-        /*
-           If new HTML does not yet contain
-           .account-avatar, create it.
-        */
-
-        if (!avatar) {
-
-            avatar =
-                document.createElement(
-                    "div"
-                );
-
-            avatar.className =
-                "account-avatar";
-
-            accountButton.innerHTML = "";
-
-            accountButton.appendChild(
-                avatar
-            );
-
-        }
-
-
-        if (
-            marteyUser &&
-            marteyUser.avatar
-        ) {
-
-            avatar.innerHTML =
-                `<img src="${marteyUser.avatar}"
-                 alt="Profile picture">`;
-
-        } else if (marteyUser) {
-
-            avatar.textContent =
-                getInitials(
-                    marteyUser.name
-                );
-
-        } else {
-
-            avatar.textContent = "M";
-
-        }
-
-    }
-
-
-    updateAccountAvatar();
-
-
-    /* =====================================================
-       FIND MODALS
-    ===================================================== */
-
-    const authModal =
-        document.getElementById(
-            "authModal"
-        );
-
-    const accountModal =
-        document.getElementById(
-            "accountModal"
-        );
-
-    const settingsModal =
-        document.getElementById(
-            "settingsModal"
-        );
-
-
-    function openModal(modal) {
-
-        if (!modal) return;
-
-        modal.classList.add("show");
-
-        document.body.style.overflow =
-            "hidden";
-
-    }
-
-
-    function closeModal(modal) {
-
-        if (!modal) return;
-
-        modal.classList.remove("show");
-
-        document.body.style.overflow =
-            "";
-
-    }
-
-
-    function closeAllModals() {
 
         document
-            .querySelectorAll(".modal.show")
-            .forEach(modal => {
+            .getElementById("products")
+            ?.scrollIntoView({
+                behavior: "smooth"
+            });
+    }
 
-                modal.classList.remove(
-                    "show"
-                );
 
+    // Header categories
+    $$(".category-link").forEach((button) => {
+        button.addEventListener("click", () => {
+            const category =
+                button.dataset.category;
+
+            if (!category) return;
+
+            $$(".category-link").forEach((item) => {
+                item.classList.remove("active");
             });
 
-        document.body.style.overflow =
-            "";
+            button.classList.add("active");
 
-    }
-
-
-    /* =====================================================
-       CLOSE BUTTONS
-    ===================================================== */
-
-    document
-        .querySelectorAll(".modal-close")
-        .forEach(button => {
-
-            button.addEventListener(
-                "click",
-                () => {
-
-                    closeAllModals();
-
-                }
-            );
-
+            filterByCategory(category);
         });
-
-
-    /*
-       Close when clicking outside modal
-    */
-
-    document
-        .querySelectorAll(".modal")
-        .forEach(modal => {
-
-            modal.addEventListener(
-                "click",
-                event => {
-
-                    if (
-                        event.target === modal
-                    ) {
-
-                        closeModal(modal);
-
-                    }
-
-                }
-            );
-
-        });
-
-
-    /*
-       Escape key
-    */
-
-    document.addEventListener(
-        "keydown",
-        event => {
-
-            if (event.key === "Escape") {
-
-                closeAllModals();
-
-            }
-
-        }
-    );
-
-
-    /* =====================================================
-       ACCOUNT BUTTON
-    ===================================================== */
-
-    if (accountButton) {
-
-        accountButton.addEventListener(
-            "click",
-            () => {
-
-                if (marteyUser) {
-
-                    if (accountModal) {
-
-                        updateAccountPanel();
-
-                        openModal(
-                            accountModal
-                        );
-
-                    } else {
-
-                        showToast(
-                            "Account panel is being prepared"
-                        );
-
-                    }
-
-                } else {
-
-                    if (authModal) {
-
-                        openModal(authModal);
-
-                    } else {
-
-                        showToast(
-                            "Login / Signup is being prepared"
-                        );
-
-                    }
-
-                }
-
-            }
-        );
-
-    }
-
-
-    /* =====================================================
-       AUTH TABS
-    ===================================================== */
-
-    const authTabs =
-        document.querySelectorAll(
-            ".auth-tab"
-        );
-
-    const loginForm =
-        document.getElementById(
-            "loginForm"
-        );
-
-    const signupForm =
-        document.getElementById(
-            "signupForm"
-        );
-
-
-    authTabs.forEach(tab => {
-
-        tab.addEventListener(
-            "click",
-            () => {
-
-                authTabs.forEach(item => {
-
-                    item.classList.remove(
-                        "active"
-                    );
-
-                });
-
-
-                tab.classList.add(
-                    "active"
-                );
-
-
-                const type =
-                    tab.dataset.auth;
-
-
-                if (loginForm) {
-
-                    loginForm.style.display =
-                        type === "login"
-                            ? "block"
-                            : "none";
-
-                }
-
-
-                if (signupForm) {
-
-                    signupForm.style.display =
-                        type === "signup"
-                            ? "block"
-                            : "none";
-
-                }
-
-            }
-        );
-
     });
 
 
-    /* =====================================================
-       ROLE SELECTION
-    ===================================================== */
+    // Homepage category cards
+    $$(".category-card").forEach((card) => {
+        card.addEventListener("click", () => {
+            const category =
+                card.dataset.categoryCard;
 
-    let selectedRole = "customer";
+            if (!category) return;
 
-
-    const roleOptions =
-        document.querySelectorAll(
-            ".role-option"
-        );
-
-
-    roleOptions.forEach(option => {
-
-        option.addEventListener(
-            "click",
-            () => {
-
-                roleOptions.forEach(item => {
-
-                    item.classList.remove(
-                        "active"
-                    );
-
-                });
-
-
-                option.classList.add(
-                    "active"
-                );
-
-
-                selectedRole =
-                    option.dataset.role ||
-                    "customer";
-
-            }
-        );
-
+            filterByCategory(category);
+        });
     });
 
 
-    /* =====================================================
-       OPEN SIGNUP WITH SPECIFIC ROLE
-    ===================================================== */
+    /* =========================================================
+       VIEW ALL PRODUCTS
+       ========================================================= */
 
-    function openSignup(role = "customer") {
-
-        selectedRole = role;
-
-
-        if (authModal) {
-
-            openModal(authModal);
-
-        }
-
-
-        /*
-           Switch to signup tab
-        */
-
-        const signupTab =
-            document.querySelector(
-                '.auth-tab[data-auth="signup"]'
-            );
-
-
-        if (signupTab) {
-
-            signupTab.click();
-
-        }
-
-
-        /*
-           Select role
-        */
-
-        roleOptions.forEach(option => {
-
-            const isSelected =
-                option.dataset.role ===
-                role;
-
-
-            option.classList.toggle(
-                "active",
-                isSelected
-            );
-
-        });
-
-    }
-
-
-    if (sellButton) {
-
-        sellButton.addEventListener(
+    if (viewAllProducts) {
+        viewAllProducts.addEventListener(
             "click",
             () => {
-
-                openSignup("seller");
-
-            }
-        );
-
-    }
-
-
-    if (sellerButton) {
-
-        sellerButton.addEventListener(
-            "click",
-            () => {
-
-                openSignup("seller");
-
-            }
-        );
-
-    }
-
-
-    /* =====================================================
-       SIGNUP
-    ===================================================== */
-
-    if (signupForm) {
-
-        signupForm.addEventListener(
-            "submit",
-            event => {
-
-                event.preventDefault();
-
-
-                const name =
-                    document.getElementById(
-                        "signupName"
-                    )?.value.trim();
-
-
-                const email =
-                    document.getElementById(
-                        "signupEmail"
-                    )?.value.trim();
-
-
-                const phone =
-                    document.getElementById(
-                        "signupPhone"
-                    )?.value.trim();
-
-
-                if (!name || !email) {
-
-                    showToast(
-                        "Please enter your name and email"
-                    );
-
-                    return;
-
+                if (searchInput) {
+                    searchInput.value = "";
                 }
 
+                $$(".product-card").forEach(
+                    (card) => {
+                        card.style.display = "";
+                    }
+                );
 
-                /*
-                   Demo frontend account.
+                if (emptyState) {
+                    emptyState.classList.add(
+                        "hidden"
+                    );
+                }
 
-                   Passwords are intentionally
-                   NOT stored in localStorage.
-                   Real authentication will be
-                   added with the backend later.
-                */
+                $$(".category-link").forEach(
+                    (item) => {
+                        item.classList.remove(
+                            "active"
+                        );
+                    }
+                );
 
-                marteyUser = {
-
-                    name: name,
-
-                    email: email,
-
-                    phone: phone || "",
-
-                    role: selectedRole,
-
-                    avatar: "",
-
-                    createdAt:
-                        new Date().toISOString()
-
-                };
-
-
-                localStorage.setItem(
-                    "marteyUser",
-                    JSON.stringify(
-                        marteyUser
+                document
+                    .querySelector(
+                        '.category-link[data-category="all"]'
                     )
-                );
+                    ?.classList.add("active");
 
-
-                updateAccountAvatar();
-
-
-                closeModal(authModal);
-
-
-                showToast(
-                    "Welcome to MARTEY, " +
-                    name
-                );
-
+                document
+                    .getElementById("products")
+                    ?.scrollIntoView({
+                        behavior: "smooth"
+                    });
             }
         );
-
     }
 
 
-    /* =====================================================
-       LOGIN
-    ===================================================== */
+    /* =========================================================
+       HERO BUTTON
+       ========================================================= */
 
-    if (loginForm) {
-
-        loginForm.addEventListener(
-            "submit",
-            event => {
-
-                event.preventDefault();
-
-
-                const email =
+    if (startShopping) {
+        startShopping.addEventListener(
+            "click",
+            (event) => {
+                const target =
                     document.getElementById(
-                        "loginEmail"
-                    )?.value.trim();
-
-
-                if (!email) {
-
-                    showToast(
-                        "Please enter your email"
+                        "products"
                     );
 
-                    return;
+                if (target) {
+                    event.preventDefault();
 
+                    target.scrollIntoView({
+                        behavior: "smooth"
+                    });
                 }
-
-
-                /*
-                   Frontend demo login.
-
-                   Real password authentication
-                   will be connected to backend
-                   later.
-                */
-
-                if (
-                    marteyUser &&
-                    marteyUser.email === email
-                ) {
-
-                    closeModal(authModal);
-
-                    updateAccountAvatar();
-
-                    showToast(
-                        "Welcome back!"
-                    );
-
-                } else {
-
-                    showToast(
-                        "Account not found. Please sign up first."
-                    );
-
-                }
-
             }
         );
-
     }
 
 
-    /* =====================================================
-       ACCOUNT PANEL
-    ===================================================== */
+    /* =========================================================
+       PRODUCT CARD NAVIGATION
+       ========================================================= */
 
-    function updateAccountPanel() {
-
-        if (!marteyUser) return;
-
-
-        const name =
-            document.getElementById(
-                "accountName"
+    $$(".product-card").forEach((card) => {
+        const productLink =
+            card.querySelector(
+                'a[href*="product.html"]'
             );
 
-        const email =
-            document.getElementById(
-                "accountEmail"
-            );
+        if (!productLink) return;
 
-        const phone =
-            document.getElementById(
-                "accountPhone"
-            );
-
-        const role =
-            document.getElementById(
-                "accountRole"
-            );
-
-        const avatar =
-            document.getElementById(
-                "accountProfileAvatar"
-            );
-
-
-        if (name) {
-
-            name.textContent =
-                marteyUser.name || "MARTEY User";
-
-        }
-
-
-        if (email) {
-
-            email.textContent =
-                marteyUser.email || "";
-
-        }
-
-
-        if (phone) {
-
-            phone.textContent =
-                marteyUser.phone || "";
-
-        }
-
-
-        if (role) {
-
-            role.textContent =
-                marteyUser.role ||
-                "customer";
-
-        }
-
-
-        if (avatar) {
-
-            if (marteyUser.avatar) {
-
-                avatar.innerHTML =
-                    `<img src="${marteyUser.avatar}"
-                     alt="Profile picture">`;
-
-            } else {
-
-                avatar.textContent =
-                    getInitials(
-                        marteyUser.name
-                    );
-
+        card.addEventListener("click", (event) => {
+            // Don't interfere with wishlist button
+            if (
+                event.target.closest(".heart-btn")
+            ) {
+                return;
             }
 
-        }
+            // If user clicked another actual link,
+            // let normal browser behavior happen.
+            if (
+                event.target.closest("a")
+            ) {
+                return;
+            }
 
-    }
+            window.location.href =
+                productLink.href;
+        });
+    });
 
 
-    /* =====================================================
-       EDIT PROFILE
-    ===================================================== */
+    /* =========================================================
+       ACCOUNT MODAL — OPTIONAL / FUTURE
+       ========================================================= */
 
-    const editProfileButton =
-        document.getElementById(
-            "editProfileButton"
-        );
+    const accountOrders =
+        $("#accountOrders");
+
+    const accountWishlist =
+        $("#accountWishlist");
+
+    const accountSettings =
+        $("#accountSettings");
+
+    const accountLogout =
+        $("#accountLogout");
 
 
-    if (editProfileButton) {
-
-        editProfileButton.addEventListener(
+    if (accountOrders) {
+        accountOrders.addEventListener(
             "click",
             () => {
-
-                /*
-                   We will create profile.html
-                   separately.
-                */
-
                 window.location.href =
-                    "profile.html";
-
+                    "orders.html";
             }
         );
-
     }
 
 
-    /* =====================================================
-       SETTINGS
-    ===================================================== */
-
-    const settingsButton =
-        document.getElementById(
-            "settingsButton"
-        );
-
-
-    if (settingsButton) {
-
-        settingsButton.addEventListener(
+    if (accountWishlist) {
+        accountWishlist.addEventListener(
             "click",
             () => {
+                window.location.href =
+                    "account.html#wishlist";
+            }
+        );
+    }
 
+
+    if (accountSettings) {
+        accountSettings.addEventListener(
+            "click",
+            () => {
                 closeModal(accountModal);
-
                 openModal(settingsModal);
-
             }
         );
-
     }
 
 
-    /* =====================================================
-       THEME SYSTEM
-    ===================================================== */
-
-    const savedTheme =
-        localStorage.getItem(
-            "marteyTheme"
-        ) || "dark";
-
-
-    function applyTheme(theme) {
-
-        if (theme === "light") {
-
-            document.body.classList.add(
-                "light-theme"
-            );
-
-        } else if (theme === "system") {
-
-            const prefersLight =
-                window.matchMedia(
-                    "(prefers-color-scheme: light)"
-                ).matches;
-
-
-            document.body.classList.toggle(
-                "light-theme",
-                prefersLight
-            );
-
-        } else {
-
-            document.body.classList.remove(
-                "light-theme"
-            );
-
-        }
-
-    }
-
-
-    applyTheme(savedTheme);
-
-
-    const themeSelect =
-        document.getElementById(
-            "themeSelect"
-        );
-
-
-    if (themeSelect) {
-
-        themeSelect.value =
-            savedTheme;
-
-
-        themeSelect.addEventListener(
-            "change",
-            () => {
-
-                const theme =
-                    themeSelect.value;
-
-
-                localStorage.setItem(
-                    "marteyTheme",
-                    theme
-                );
-
-
-                applyTheme(theme);
-
-
-                showToast(
-                    "Theme updated"
-                );
-
-            }
-        );
-
-    }
-
-
-    /*
-       Update automatically if
-       system theme changes.
-    */
-
-    window
-        .matchMedia(
-            "(prefers-color-scheme: light)"
-        )
-        .addEventListener(
-            "change",
-            () => {
-
-                const currentTheme =
-                    localStorage.getItem(
-                        "marteyTheme"
-                    );
-
-                if (
-                    currentTheme === "system"
-                ) {
-
-                    applyTheme("system");
-
-                }
-
-            }
-        );
-
-
-    /* =====================================================
-       LOGOUT
-    ===================================================== */
-
-    const logoutButton =
-        document.getElementById("logoutButton");
-
-    if (logoutButton) {
-
-        logoutButton.addEventListener(
+    if (accountLogout) {
+        accountLogout.addEventListener(
             "click",
             () => {
-
-                marteyUser = null;
-
                 localStorage.removeItem(
                     "marteyUser"
                 );
 
-                closeAllModals();
-
                 updateAccountAvatar();
 
-                showToast(
-                    "Logged out successfully"
-                );
+                closeModal(accountModal);
 
+                showToast(
+                    "You have been logged out."
+                );
             }
         );
-
     }
 
 
-    /* =====================================================
-       ACCOUNT BUTTON — FINAL
-    ===================================================== */
+    /* =========================================================
+       SETTINGS — THEME
+       ========================================================= */
 
-    if (accountButton) {
+    function applyTheme(theme) {
+        if (theme === "light") {
+            document.body.classList.add(
+                "light-theme"
+            );
+        } else {
+            document.body.classList.remove(
+                "light-theme"
+            );
+        }
 
-        accountButton.addEventListener(
+        localStorage.setItem(
+            "marteyTheme",
+            theme
+        );
+    }
+
+
+    const savedTheme =
+        localStorage.getItem(
+            "marteyTheme"
+        );
+
+    if (savedTheme) {
+        applyTheme(savedTheme);
+    }
+
+
+    if (themeToggle) {
+        themeToggle.addEventListener(
             "click",
             () => {
+                const isLight =
+                    document.body.classList.contains(
+                        "light-theme"
+                    );
 
-                /*
-                   NEW USER
-                   → Login / Signup modal
-                */
+                applyTheme(
+                    isLight
+                        ? "dark"
+                        : "light"
+                );
 
-                if (!marteyUser) {
-
-                    if (authModal) {
-
-                        openModal(authModal);
-
-                    } else {
-
-                        showToast(
-                            "Login / Signup is unavailable"
-                        );
-
-                    }
-
-                    return;
-
-                }
-
-
-                /*
-                   EXISTING USER
-                   → Open account.html
-                */
-
-                window.location.href =
-                    "account.html";
-
+                showToast(
+                    isLight
+                        ? "Dark theme enabled."
+                        : "Light theme enabled."
+                );
             }
         );
-
     }
 
 
-    /* =====================================================
-       INITIALIZE ACCOUNT STATE
-    ===================================================== */
+    /* =========================================================
+       SETTINGS — NOTIFICATIONS
+       ========================================================= */
+
+    if (notificationToggle) {
+        notificationToggle.addEventListener(
+            "click",
+            () => {
+                const current =
+                    localStorage.getItem(
+                        "marteyNotifications"
+                    ) !== "false";
+
+                localStorage.setItem(
+                    "marteyNotifications",
+                    String(!current)
+                );
+
+                showToast(
+                    !current
+                        ? "Notifications enabled."
+                        : "Notifications disabled."
+                );
+            }
+        );
+    }
+
+
+    /* =========================================================
+       PRODUCT IMAGE ERROR HANDLING
+       ========================================================= */
+
+    $$("img").forEach((image) => {
+        image.addEventListener(
+            "error",
+            () => {
+                image.classList.add(
+                    "image-error"
+                );
+            }
+        );
+    });
+
+
+    /* =========================================================
+       INITIAL STATE
+       ========================================================= */
 
     updateAccountAvatar();
 
+    // Make sure empty state is hidden initially
+    if (emptyState) {
+        emptyState.classList.add("hidden");
+    }
 
+
+    console.log(
+        "MARTEY frontend initialized successfully."
+    );
 });
