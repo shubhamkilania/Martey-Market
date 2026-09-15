@@ -1,331 +1,175 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <title>Add Product — MARTEY Seller Center</title>
 
-    <title>Add Product — MARTEY Seller</title>
-
-    <link
-        rel="preconnect"
-        href="https://fonts.googleapis.com"
-    >
-
-    <link
-        rel="preconnect"
-        href="https://fonts.gstatic.com"
-        crossorigin
-    >
+    <!-- Same fonts as MARTEY -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <link
         href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap"
         rel="stylesheet"
     >
 
-    <style>
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        :root {
-            --bg: #080808;
-            --card: #111114;
-            --card2: #15151a;
-            --border: rgba(255,255,255,.08);
-            --text: #f5f5f5;
-            --muted: #96969f;
-            --purple: #8B5CF6;
-            --purple-dark: #7044d8;
-        }
-
-        body {
-            font-family: "DM Sans", sans-serif;
-            background: var(--bg);
-            color: var(--text);
-            min-height: 100vh;
-        }
-
-        .add-product-header {
-            height: 72px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 35px;
-            border-bottom: 1px solid var(--border);
-            background: #0b0b0d;
-        }
-
-        .logo {
-            text-decoration: none;
-            color: white;
-            font-family: Manrope, sans-serif;
-            font-size: 24px;
-            font-weight: 800;
-        }
-
-        .logo span {
-            color: var(--purple);
-        }
-
-        .back-button {
-            border: 1px solid var(--border);
-            background: var(--card);
-            color: var(--text);
-            padding: 9px 14px;
-            border-radius: 9px;
-            cursor: pointer;
-            font-weight: 600;
-        }
-
-        .page {
-            max-width: 1100px;
-            margin: auto;
-            padding: 35px 22px 60px;
-        }
-
-        .page-heading {
-            margin-bottom: 25px;
-        }
-
-        .eyebrow {
-            color: var(--purple);
-            font-size: 11px;
-            font-weight: 800;
-            letter-spacing: 1px;
-        }
-
-        h1 {
-            font-family: Manrope, sans-serif;
-            font-size: 30px;
-            margin-top: 7px;
-        }
-
-        .page-heading p {
-            color: var(--muted);
-            margin-top: 6px;
-            font-size: 14px;
-        }
-
-        .product-form {
-            display: grid;
-            gap: 18px;
-        }
-
-        .form-card {
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 24px;
-        }
-
-        .form-card h2 {
-            font-family: Manrope, sans-serif;
-            font-size: 17px;
-            margin-bottom: 20px;
-        }
-
-        .form-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 17px;
-        }
-
-        .form-group {
-            display: flex;
-            flex-direction: column;
-            gap: 7px;
-        }
-
-        .full {
-            grid-column: 1 / -1;
-        }
-
-        label {
-            font-size: 12px;
-            font-weight: 700;
-            color: #d8d8dd;
-        }
-
-        input,
-        textarea,
-        select {
-            width: 100%;
-            border: 1px solid var(--border);
-            background: #0b0b0e;
-            color: white;
-            border-radius: 9px;
-            padding: 12px;
-            outline: none;
-            font-family: inherit;
-        }
-
-        textarea {
-            min-height: 130px;
-            resize: vertical;
-        }
-
-        input:focus,
-        textarea:focus,
-        select:focus {
-            border-color: rgba(139,92,246,.7);
-        }
-
-        .image-upload {
-            border: 1px dashed rgba(139,92,246,.45);
-            background: rgba(139,92,246,.05);
-            border-radius: 12px;
-            padding: 30px;
-            text-align: center;
-        }
-
-        .image-upload strong {
-            display: block;
-            margin-bottom: 6px;
-        }
-
-        .image-upload p {
-            color: var(--muted);
-            font-size: 12px;
-            margin-bottom: 15px;
-        }
-
-        .image-upload input {
-            border: none;
-            background: transparent;
-            padding: 0;
-        }
-
-        .form-actions {
-            display: flex;
-            justify-content: flex-end;
-            gap: 10px;
-        }
-
-        .cancel-btn,
-        .submit-btn {
-            padding: 12px 20px;
-            border-radius: 9px;
-            font-family: inherit;
-            font-weight: 700;
-            cursor: pointer;
-        }
-
-        .cancel-btn {
-            background: var(--card2);
-            color: white;
-            border: 1px solid var(--border);
-        }
-
-        .submit-btn {
-            border: none;
-            background: var(--purple);
-            color: white;
-        }
-
-        .submit-btn:hover {
-            background: var(--purple-dark);
-        }
-
-        @media (max-width: 700px) {
-
-            .add-product-header {
-                padding: 0 15px;
-            }
-
-            .page {
-                padding: 25px 14px;
-            }
-
-            .form-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .full {
-                grid-column: auto;
-            }
-
-            .form-actions {
-                flex-direction: column;
-            }
-
-            .cancel-btn,
-            .submit-btn {
-                width: 100%;
-            }
-
-        }
-
-    </style>
-
+    <link rel="stylesheet" href="add-product.css">
 </head>
 
 <body>
 
-<header class="add-product-header">
+<div class="add-product-app">
 
-    <a
-        href="seller.html"
-        class="logo"
-    >
-        MARTEY<span>.</span>
-    </a>
+    <!-- =========================================
+         TOPBAR
+    ========================================== -->
 
-    <button
-        class="back-button"
-        onclick="window.location.href='seller.html'"
-    >
-        ← Back to Seller
-    </button>
+    <header class="add-product-topbar">
 
-</header>
+        <div class="topbar-left">
 
+            <a href="seller.html" class="back-button">
+                ←
+            </a>
 
-<main class="page">
+            <div>
+                <span class="topbar-label">MARTEY SELLER CENTER</span>
+                <h1>Add Product</h1>
+            </div>
 
-    <div class="page-heading">
+        </div>
 
-        <span class="eyebrow">
-            PRODUCT CATALOG
-        </span>
+        <a href="index.html" class="shop-button">
+            Shop MARTEY
+        </a>
 
-        <h1>
-            Add Product
-        </h1>
-
-        <p>
-            Add a new product to your MARTEY store.
-        </p>
-
-    </div>
+    </header>
 
 
-    <form
-        class="product-form"
-        id="productForm"
-    >
+    <!-- =========================================
+         MAIN CONTENT
+    ========================================== -->
 
-        <!-- BASIC INFORMATION -->
+    <main class="add-product-content">
 
-        <div class="form-card">
+        <div class="page-intro">
 
-            <h2>
-                Basic Information
-            </h2>
+            <div>
+                <span class="section-eyebrow">PRODUCT MANAGEMENT</span>
+
+                <h2>
+                    Add a new product
+                </h2>
+
+                <p>
+                    Add your product information, images, pricing and inventory.
+                </p>
+            </div>
+
+        </div>
+
+
+        <!-- =====================================
+             PRODUCT IMAGES
+        ====================================== -->
+
+        <section class="product-form-card">
+
+            <div class="form-card-header">
+
+                <div>
+                    <span class="form-step">01</span>
+
+                    <div>
+                        <h3>Product Images</h3>
+
+                        <p>
+                            Upload clear images of your product.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="image-upload-area">
+
+                <label
+                    for="productImages"
+                    class="image-upload-box"
+                >
+
+                    <div class="upload-icon">
+                        +
+                    </div>
+
+                    <strong>
+                        Upload product images
+                    </strong>
+
+                    <span>
+                        PNG, JPG or WEBP
+                    </span>
+
+                    <small>
+                        You can upload multiple images
+                    </small>
+
+                </label>
+
+                <input
+                    type="file"
+                    id="productImages"
+                    accept="image/png,image/jpeg,image/webp"
+                    multiple
+                    hidden
+                >
+
+            </div>
+
+
+            <!-- Image previews will appear here -->
+
+            <div
+                id="imagePreview"
+                class="image-preview-grid"
+            ></div>
+
+        </section>
+
+
+        <!-- =====================================
+             BASIC INFORMATION
+        ====================================== -->
+
+        <section class="product-form-card">
+
+            <div class="form-card-header">
+
+                <div>
+                    <span class="form-step">02</span>
+
+                    <div>
+                        <h3>Basic Information</h3>
+
+                        <p>
+                            Tell customers about your product.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
 
             <div class="form-grid">
 
-                <div class="form-group full">
+                <!-- Product Name -->
 
-                    <label>
+                <div class="form-group full-width">
+
+                    <label for="productName">
                         Product Name
                     </label>
 
@@ -333,56 +177,62 @@
                         type="text"
                         id="productName"
                         placeholder="Enter product name"
-                        required
                     >
 
                 </div>
 
 
+                <!-- Category -->
+
                 <div class="form-group">
 
-                    <label>
+                    <label for="productCategory">
                         Category
                     </label>
 
-                    <select
-                        id="productCategory"
-                        required
-                    >
+                    <select id="productCategory">
 
                         <option value="">
                             Select category
                         </option>
 
-                        <option>
+                        <option value="fashion">
                             Fashion
                         </option>
 
-                        <option>
+                        <option value="electronics">
                             Electronics
                         </option>
 
-                        <option>
-                            Home
-                        </option>
-
-                        <option>
+                        <option value="beauty">
                             Beauty
                         </option>
 
-                        <option>
+                        <option value="home">
+                            Home & Living
+                        </option>
+
+                        <option value="accessories">
                             Accessories
                         </option>
 
-                        <option>
+                        <option value="shoes">
+                            Shoes
+                        </option>
+
+                        <option value="sports">
                             Sports
                         </option>
 
-                        <option>
-                            Gaming
+                        <option value="toys">
+                            Toys
                         </option>
 
-                        <option>
+                        <option value="grocery">
+                            Grocery
+                        </option>
+
+                        <option value="other">
                             Other
                         </option>
 
@@ -391,9 +241,129 @@
                 </div>
 
 
+                <!-- SKU -->
+
                 <div class="form-group">
 
-                    <label>
+                    <label for="productSKU">
+                        SKU
+                    </label>
+
+                    <input
+                        type="text"
+                        id="productSKU"
+                        placeholder="Example: MAR-TS-001"
+                    >
+
+                </div>
+
+
+                <!-- Description -->
+
+                <div class="form-group full-width">
+
+                    <label for="productDescription">
+                        Product Description
+                    </label>
+
+                    <textarea
+                        id="productDescription"
+                        rows="6"
+                        placeholder="Describe your product..."
+                    ></textarea>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================
+             PRICE & INVENTORY
+        ====================================== -->
+
+        <section class="product-form-card">
+
+            <div class="form-card-header">
+
+                <div>
+                    <span class="form-step">03</span>
+
+                    <div>
+                        <h3>Price & Inventory</h3>
+
+                        <p>
+                            Set your selling price and available stock.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="form-grid">
+
+                <!-- Price -->
+
+                <div class="form-group">
+
+                    <label for="productPrice">
+                        Price (₹)
+                    </label>
+
+                    <input
+                        type="number"
+                        id="productPrice"
+                        min="0"
+                        placeholder="999"
+                    >
+
+                </div>
+
+
+                <!-- Discount -->
+
+                <div class="form-group">
+
+                    <label for="productDiscount">
+                        Discount (%)
+                    </label>
+
+                    <input
+                        type="number"
+                        id="productDiscount"
+                        min="0"
+                        max="100"
+                        placeholder="10"
+                    >
+
+                </div>
+
+
+                <!-- Stock -->
+
+                <div class="form-group">
+
+                    <label for="productStock">
+                        Stock Quantity
+                    </label>
+
+                    <input
+                        type="number"
+                        id="productStock"
+                        min="0"
+                        placeholder="100"
+                    >
+
+                </div>
+
+
+                <!-- Brand -->
+
+                <div class="form-group">
+
+                    <label for="productBrand">
                         Brand
                     </label>
 
@@ -405,227 +375,244 @@
 
                 </div>
 
+            </div>
 
-                <div class="form-group full">
+        </section>
 
-                    <label>
-                        Product Description
-                    </label>
 
-                    <textarea
-                        id="productDescription"
-                        placeholder="Describe your product..."
-                        required
-                    ></textarea>
+        <!-- =====================================
+             VARIANTS
+        ====================================== -->
 
+        <section class="product-form-card">
+
+            <div class="form-card-header">
+
+                <div>
+                    <span class="form-step">04</span>
+
+                    <div>
+                        <h3>Product Variants</h3>
+
+                        <p>
+                            Add sizes and colors if your product has variants.
+                        </p>
+                    </div>
                 </div>
 
             </div>
 
-        </div>
-
-
-        <!-- IMAGES -->
-
-        <div class="form-card">
-
-            <h2>
-                Product Images
-            </h2>
-
-            <div class="image-upload">
-
-                <strong>
-                    Upload Product Images
-                </strong>
-
-                <p>
-                    Add clear images of your product.
-                </p>
-
-                <input
-                    type="file"
-                    id="productImages"
-                    accept="image/*"
-                    multiple
-                >
-
-            </div>
-
-        </div>
-
-
-        <!-- PRICE -->
-
-        <div class="form-card">
-
-            <h2>
-                Pricing & Inventory
-            </h2>
 
             <div class="form-grid">
 
-                <div class="form-group">
-
-                    <label>
-                        Selling Price (₹)
-                    </label>
-
-                    <input
-                        type="number"
-                        id="sellingPrice"
-                        min="0"
-                        placeholder="799"
-                        required
-                    >
-
-                </div>
-
+                <!-- Sizes -->
 
                 <div class="form-group">
 
-                    <label>
-                        MRP (₹)
-                    </label>
-
-                    <input
-                        type="number"
-                        id="mrp"
-                        min="0"
-                        placeholder="1299"
-                    >
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label>
-                        Stock Quantity
-                    </label>
-
-                    <input
-                        type="number"
-                        id="stock"
-                        min="0"
-                        placeholder="50"
-                        required
-                    >
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label>
-                        SKU
+                    <label for="productSizes">
+                        Sizes
                     </label>
 
                     <input
                         type="text"
-                        id="sku"
-                        placeholder="MT-1001"
-                    >
-
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <!-- VARIANTS -->
-
-        <div class="form-card">
-
-            <h2>
-                Variants
-            </h2>
-
-            <div class="form-grid">
-
-                <div class="form-group">
-
-                    <label>
-                        Available Sizes
-                    </label>
-
-                    <input
-                        type="text"
-                        id="sizes"
+                        id="productSizes"
                         placeholder="S, M, L, XL"
                     >
 
+                    <small class="field-help">
+                        Separate sizes with commas.
+                    </small>
+
                 </div>
 
 
+                <!-- Colors -->
+
                 <div class="form-group">
 
-                    <label>
-                        Available Colors
+                    <label for="productColors">
+                        Colors
                     </label>
 
                     <input
                         type="text"
-                        id="colors"
-                        placeholder="Black, White"
+                        id="productColors"
+                        placeholder="Black, White, Blue"
                     >
+
+                    <small class="field-help">
+                        Separate colors with commas.
+                    </small>
 
                 </div>
 
             </div>
 
-        </div>
+        </section>
 
 
-        <!-- ACTIONS -->
+        <!-- =====================================
+             PRODUCT SPECIFICATIONS
+        ====================================== -->
 
-        <div class="form-actions">
+        <section class="product-form-card">
 
-            <button
-                type="button"
-                class="cancel-btn"
-                onclick="window.location.href='seller.html'"
-            >
-                Cancel
-            </button>
+            <div class="form-card-header">
 
-            <button
-                type="submit"
-                class="submit-btn"
-            >
-                Publish Product
-            </button>
+                <div>
+                    <span class="form-step">05</span>
 
-        </div>
+                    <div>
+                        <h3>Product Specifications</h3>
 
-    </form>
+                        <p>
+                            Add important technical or product details.
+                        </p>
+                    </div>
+                </div>
 
-</main>
+            </div>
 
 
-<script>
+            <div class="form-group">
 
-    const productForm =
-        document.getElementById("productForm");
+                <label for="productSpecifications">
+                    Specifications
+                </label>
+
+                <textarea
+                    id="productSpecifications"
+                    rows="6"
+                    placeholder="Material: Cotton&#10;Weight: 250g&#10;Warranty: 1 Year"
+                ></textarea>
+
+            </div>
+
+        </section>
 
 
-    productForm.addEventListener(
-        "submit",
-        event => {
+        <!-- =====================================
+             SHIPPING
+        ====================================== -->
 
-            event.preventDefault();
+        <section class="product-form-card">
+
+            <div class="form-card-header">
+
+                <div>
+                    <span class="form-step">06</span>
+
+                    <div>
+                        <h3>Shipping Information</h3>
+
+                        <p>
+                            Provide basic information about shipping.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
 
 
-            alert(
-                "Product form is ready. Database connection will publish this product to MARTEY."
-            );
+            <div class="form-grid">
 
-        }
-    );
+                <!-- Weight -->
 
-</script>
+                <div class="form-group">
+
+                    <label for="productWeight">
+                        Product Weight (kg)
+                    </label>
+
+                    <input
+                        type="number"
+                        id="productWeight"
+                        min="0"
+                        step="0.01"
+                        placeholder="0.50"
+                    >
+
+                </div>
+
+
+                <!-- Shipping -->
+
+                <div class="form-group">
+
+                    <label for="shippingType">
+                        Shipping Type
+                    </label>
+
+                    <select id="shippingType">
+
+                        <option value="">
+                            Select shipping type
+                        </option>
+
+                        <option value="martey">
+                            MARTEY Delivery
+                        </option>
+
+                        <option value="seller">
+                            Seller Delivery
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================
+             ACTION BAR
+        ====================================== -->
+
+        <section class="product-action-card">
+
+            <div>
+
+                <strong>
+                    Ready to list your product?
+                </strong>
+
+                <p>
+                    Save it as a draft or publish it on MARTEY.
+                </p>
+
+            </div>
+
+
+            <div class="product-actions">
+
+                <button
+                    type="button"
+                    id="saveDraftButton"
+                    class="secondary-seller-btn"
+                >
+                    Save Draft
+                </button>
+
+                <button
+                    type="button"
+                    id="publishProductButton"
+                    class="primary-seller-btn"
+                >
+                    Publish Product
+                </button>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<script src="add-product.js"></script>
 
 </body>
-
 </html>
