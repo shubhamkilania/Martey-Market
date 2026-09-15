@@ -1482,47 +1482,92 @@ document.addEventListener("DOMContentLoaded", () => {
         );
 
 
-  /* =====================================================
-   LOGOUT
-===================================================== */
+    /* =====================================================
+       LOGOUT
+    ===================================================== */
 
-const logoutButton =
-    document.getElementById("logoutButton");
+    const logoutButton =
+        document.getElementById("logoutButton");
 
-if (logoutButton) {
+    if (logoutButton) {
 
-    logoutButton.addEventListener(
-        "click",
-        () => {
+        logoutButton.addEventListener(
+            "click",
+            () => {
 
-            marteyUser = null;
+                marteyUser = null;
 
-            localStorage.removeItem(
-                "marteyUser"
-            );
+                localStorage.removeItem(
+                    "marteyUser"
+                );
 
-            updateAccountAvatar();
+                closeAllModals();
 
-            closeAllModals();
+                updateAccountAvatar();
 
-            showToast(
-                "Logged out successfully"
-            );
+                showToast(
+                    "Logged out successfully"
+                );
 
-        }
-    );
+            }
+        );
 
-}
+    }
 
 
-/* =====================================================
-   INITIALIZE ACCOUNT STATE
-===================================================== */
+    /* =====================================================
+       ACCOUNT BUTTON — FINAL
+    ===================================================== */
 
-if (marteyUser) {
+    if (accountButton) {
+
+        accountButton.addEventListener(
+            "click",
+            () => {
+
+                /*
+                   NEW USER
+                   → Login / Signup modal
+                */
+
+                if (!marteyUser) {
+
+                    if (authModal) {
+
+                        openModal(authModal);
+
+                    } else {
+
+                        showToast(
+                            "Login / Signup is unavailable"
+                        );
+
+                    }
+
+                    return;
+
+                }
+
+
+                /*
+                   EXISTING USER
+                   → Open account.html
+                */
+
+                window.location.href =
+                    "account.html";
+
+            }
+        );
+
+    }
+
+
+    /* =====================================================
+       INITIALIZE ACCOUNT STATE
+    ===================================================== */
 
     updateAccountAvatar();
 
-}
 
 });
