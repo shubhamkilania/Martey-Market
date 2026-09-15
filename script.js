@@ -268,21 +268,25 @@ document.addEventListener("DOMContentLoaded", () => {
        ACCOUNT BUTTON
        ========================================================= */
 
-    if (accountButton) {
-        accountButton.addEventListener("click", () => {
-            const user = getUser();
+  if (accountButton) {
+    accountButton.addEventListener("click", () => {
+        const user = getUser();
 
-            if (!user) {
-                openModal(authModal);
-                switchAuthTab("login");
-                return;
-            }
+        // User logged out → Login / Signup
+        if (!user) {
+            openModal(authModal);
+            switchAuthTab("login");
+            return;
+        }
 
-            // Logged-in customer → account page
-            window.location.href = "account.html";
-        });
-    }
-
+        // User logged in → Account modal for now
+        if (accountModal) {
+            openModal(accountModal);
+        } else {
+            showToast("Account page is coming soon.");
+        }
+    });
+}
 
     /* =========================================================
        LOGIN
