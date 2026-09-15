@@ -1,1085 +1,1066 @@
+/* =========================================================
+   MARTEY — Main Script
+   Homepage functionality
+   ========================================================= */
+
 document.addEventListener("DOMContentLoaded", () => {
-    "use strict";
+  "use strict";
 
-    /* =========================================================
-       MARTEY - FRONTEND SCRIPT
-       Current stage:
-       Frontend + localStorage
-       Backend / Database will be connected later.
-    ========================================================= */
+  /* =========================================================
+     HELPERS
+     ========================================================= */
 
-    /* =========================================================
-       HELPERS
-    ========================================================= */
+  const $ = (selector, parent = document) => parent.querySelector(selector);
 
-    const $ = (selector, parent = document) =>
-        parent.querySelector(selector);
+  const $$ = (selector, parent = document) =>
+    Array.from(parent.querySelectorAll(selector));
 
-    const $$ = (selector, parent = document) =>
-        Array.from(parent.querySelectorAll(selector));
+  const safeJSONParse = (value, fallback) => {
+    try {
+      return value ? JSON.parse(value) : fallback;
+    } catch {
+      return fallback;
+    }
+  };
 
-    const getJSON = (key, fallback = null) => {
-        try {
-            const value = localStorage.getItem(key);
-            return value ? JSON.parse(value) : fallback;
-        } catch (error) {
-            console.warn(`MARTEY: Could not read ${key}`, error);
-            return fallback;
-        }
-    };
+  const getStorage = (key, fallback) => {
+    return safeJSONParse(localStorage.getItem(key), fallback);
+  };
 
-    const setJSON = (key, value) => {
-        try {
-            localStorage.setItem(key, JSON.stringify(value));
-            return true;
-        } catch (error) {
-            console.warn(`MARTEY: Could not save ${key}`, error);
-            return false;
-        }
-    };
+  const setStorage = (key, value) => {
+    localStorage.setItem(key, JSON.stringify(value));
+  };
 
-    const removeStorage = (key) => {
-        try {
-            localStorage.removeItem(key);
-        } catch (error) {
-            console.warn(`MARTEY: Could not remove ${key}`, error);
-        }
-    };
+  /* =========================================================
+     STORAGE KEYS
+     ========================================================= */
 
+  const STORAGE = {
+    USER: "marteyUser",
+    CART: "marteyCart",
+    WISHLIST: "marteyWishlist",
+    THEME: "marteyTheme",
+    NOTIFICATIONS: "marteyNotifications",
+    RECENT: "marteyRecentlyViewed"
+  };
 
-    /* =========================================================
-       ELEMENTS
-    ========================================================= */
+  /* =========================================================
+     BASIC ELEMENTS
+     ========================================================= */
 
-    const authModal = $("#authModal");
-    const accountModal = $("#accountModal");
-    const settingsModal = $("#settingsModal");
+  const body = document.body;
 
-    const accountButton = $("#accountButton");
-    const accountAvatar = $("#accountAvatar");
+  const searchInput = $("#searchInput");
+  const searchButton = $("#searchButton");
 
-    const cartButton = $("#cartButton");
-    const cartCount = $("#cartCount");
+  const cartButton = $("#cartButton");
+  const wishlistButton = $("#wishlistButton");
+  const accountButton = $("#accountButton");
 
-    const wishlistButton = $("#wishlistButton");
+  const cartCount = $("#cartCount");
 
-    const searchInput = $("#searchInput");
-    const searchButton = $("#searchButton");
+  const productGrid = $("#productGrid");
+  const emptyState = $("#emptyState");
 
-    const productGrid = $("#productGrid");
-    const emptyState = $("#emptyState");
+  /* =========================================================
+     TOAST
+     ========================================================= */
 
-    const startShopping = $("#startShopping");
+  let toastTimer = null;
 
-    const sellButton = $("#sellButton");
-    const footerSellerButton = $("#footerSellerButton");
-    const footerSellerHelp = $("#footerSellerHelp");
-    const footerSellerLink = $("#footerSellerLink");
+  function showToast(message) {
+    let toast = $("#marteyToast");
 
+    if (!toast) {
+      toast = document.createElement("div");
+      toast.id = "marteyToast";
+      toast.className = "martey-toast";
+
+      Object.assign(toast.style, {
+        position: "fixed",
+        left: "50%",
+        bottom: "28px",
+        transform: "translateX(-50%) translateY(20px)",
+        zIndex: "99999",
+        opacity: "0",
+        pointerEvents: "none",
+        padding: "12px 18px",
+        borderRadius: "12px",
+        background: "#17131f",
+        color: "#ffffff",
+        border: "1px solid rgba(139,92,246,.35)",
+        boxShadow: "0 12px 35px rgba(0,0,0,.35)",
+        fontSize: "14px",
+        transition: "all .25s ease"
+      });
+
+      body.appendChild(toast);
+    }
+
+    toast.textContent = message;
+
+    clearTimeout(toastTimer);
+
+    requestAnimationFrame(() => {
+      toast.style.opacity = "1";
+      toast.style.transform = "translateX(-50%) translateY(0)";
+    });
+
+    toastTimer = setTimeout(() => {
+      toast.style.opacity = "0";
+      toast.style.transform = "translateX(-50%) translateY(20px)";
+    }, 2500);
+  }
+
+  /* =========================================================
+     MODALS
+     ========================================================= */
+
+  const modalIds = [
+    "#authModal",
+    "#accountModal",
+    "#settingsModal"
+  ];
+
+  function closeAllModals() {
+    modalIds.forEach((id) => {
+      const modal = $(id);
+
+      if (modal) {
+        modal.hidden = true;
+        modal.classList.remove("active", "open");
+      }
+    });
+
+    body.classList.remove("modal-open");
+  }
+
+  function openModal(selector) {
+    const modal = $(selector);
+
+    if (!modal) return;
+
+    closeAllModals();
+
+    modal.hidden = false;
+    modal.classList.add("active", "open");
+
+    body.classList.add("modal-open");
+  }
+
+  $$("[data-close-modal]").forEach((button) => {
+    button.addEventListener("click", closeAllModals);
+  });
+
+  modalIds.forEach((id) => {
+    const modal = $(id);
+
+    if (!modal) return;
+
+    modal.addEventListener("click", (event) => {
+      if (event.target === modal) {
+        closeAllModals();
+      }
+    });
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      closeAllModals();
+    }
+  });
+
+  /* =========================================================
+     AUTH MODAL
+     ========================================================= */
+
+  function switchAuth(type) {
     const loginForm = $("#loginForm");
     const signupForm = $("#signupForm");
 
-    const loginEmail = $("#loginEmail");
-    const loginPassword = $("#loginPassword");
-
-    const signupName = $("#signupName");
-    const signupEmail = $("#signupEmail");
-    const signupPassword = $("#signupPassword");
-    const signupRole = $("#signupRole");
-    const storeName = $("#storeName");
-    const storeNameGroup = $("#storeNameGroup");
-
-    const themeToggle = $("#themeToggle");
-    const notificationToggle = $("#notificationToggle");
-
-    const toast = $("#toast");
-    const toastMessage = $("#toastMessage");
-
-
-    /* =========================================================
-       TOAST
-    ========================================================= */
-
-    let toastTimer = null;
-
-    function showToast(message, duration = 2600) {
-        if (!toast || !toastMessage) {
-            console.log(message);
-            return;
-        }
-
-        toastMessage.textContent = message;
-
-        toast.classList.add("show");
-
-        clearTimeout(toastTimer);
-
-        toastTimer = setTimeout(() => {
-            toast.classList.remove("show");
-        }, duration);
-    }
-
-
-    /* =========================================================
-       MODAL SYSTEM
-    ========================================================= */
-
-    function getOverlay(element) {
-        if (!element) return null;
-
-        if (element.classList.contains("modal-overlay")) {
-            return element;
-        }
-
-        return element.closest(".modal-overlay");
-    }
-
-    function openModal(modal) {
-        const overlay = getOverlay(modal);
-
-        if (!overlay) return;
-
-        overlay.classList.remove("hidden");
-        overlay.classList.add("show");
-        overlay.setAttribute("aria-hidden", "false");
-
-        document.body.classList.add("modal-open");
-    }
-
-    function closeModal(modal) {
-        const overlay = getOverlay(modal);
-
-        if (!overlay) return;
-
-        overlay.classList.remove("show");
-        overlay.classList.add("hidden");
-        overlay.setAttribute("aria-hidden", "true");
-
-        const anyOpenModal = $$(".modal-overlay.show").length > 0;
-
-        if (!anyOpenModal) {
-            document.body.classList.remove("modal-open");
-        }
-    }
-
-    function closeAllModals() {
-        $$(".modal-overlay").forEach((overlay) => {
-            overlay.classList.remove("show");
-            overlay.classList.add("hidden");
-            overlay.setAttribute("aria-hidden", "true");
-        });
-
-        document.body.classList.remove("modal-open");
-    }
-
-    // Normalize modals when page loads
-    $$(".modal-overlay").forEach((overlay) => {
-        overlay.classList.remove("show");
-        overlay.classList.add("hidden");
-        overlay.setAttribute("aria-hidden", "true");
-    });
-
-    // Close buttons
-    $$(".modal-close").forEach((button) => {
-        button.addEventListener("click", () => {
-            const overlay = button.closest(".modal-overlay");
-
-            if (overlay) {
-                closeModal(overlay);
-            }
-        });
-    });
-
-    // Click outside modal
-    $$(".modal-overlay").forEach((overlay) => {
-        overlay.addEventListener("click", (event) => {
-            if (event.target === overlay) {
-                closeModal(overlay);
-            }
-        });
-    });
-
-    // ESC closes modal
-    document.addEventListener("keydown", (event) => {
-        if (event.key === "Escape") {
-            closeAllModals();
-        }
-    });
-
-
-    /* =========================================================
-       AUTH TABS
-    ========================================================= */
-
-    const authTabs = $$(".auth-tab");
-    const loginView = $("#loginView");
-    const signupView = $("#signupView");
-
-    function switchAuthTab(tabName = "login") {
-        authTabs.forEach((tab) => {
-            const active = tab.dataset.authTab === tabName;
-
-            tab.classList.toggle("active", active);
-            tab.setAttribute("aria-selected", active ? "true" : "false");
-        });
-
-        if (loginView) {
-            loginView.classList.toggle(
-                "hidden",
-                tabName !== "login"
-            );
-        }
-
-        if (signupView) {
-            signupView.classList.toggle(
-                "hidden",
-                tabName !== "signup"
-            );
-        }
-    }
-
-    authTabs.forEach((tab) => {
-        tab.addEventListener("click", () => {
-            const tabName = tab.dataset.authTab || "login";
-            switchAuthTab(tabName);
-        });
-    });
-
-
-    /* =========================================================
-       USER SYSTEM - TEMPORARY LOCAL STORAGE
-    ========================================================= */
-
-    const USER_KEY = "marteyUser";
-
-    function getUser() {
-        return getJSON(USER_KEY, null);
-    }
-
-    function saveUser(user) {
-        return setJSON(USER_KEY, user);
-    }
-
-    function updateAccountAvatar() {
-        if (!accountAvatar) return;
-
-        const user = getUser();
-
-        if (!user) {
-            accountAvatar.innerHTML = `
-                <svg
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    aria-hidden="true"
-                >
-                    <path
-                        d="M20 21C20 17.6863 17.3137 15 14 15H10C6.68629 15 4 17.6863 4 21"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                    />
-                    <circle
-                        cx="12"
-                        cy="7"
-                        r="4"
-                        stroke="currentColor"
-                        stroke-width="2"
-                    />
-                </svg>
-            `;
-
-            return;
-        }
-
-        const name =
-            user.name ||
-            user.email?.split("@")[0] ||
-            "M";
-
-        const initials = name
-            .trim()
-            .split(/\s+/)
-            .map((word) => word.charAt(0))
-            .join("")
-            .substring(0, 2)
-            .toUpperCase();
-
-        accountAvatar.textContent = initials || "M";
-    }
-
-
-    /* =========================================================
-       ACCOUNT BUTTON
-       CURRENT STAGE:
-       ALWAYS OPENS LOGIN / SIGNUP MODAL
-    ========================================================= */
-
-    if (accountButton) {
-        accountButton.addEventListener("click", () => {
-            if (!authModal) {
-                showToast("Login system is loading...");
-                return;
-            }
-
-            openModal(authModal);
-            switchAuthTab("login");
-        });
-    }
-
-
-    /* =========================================================
-       LOGIN
-    ========================================================= */
-
-    if (loginForm) {
-        loginForm.addEventListener("submit", (event) => {
-            event.preventDefault();
-
-            const email = loginEmail?.value.trim() || "";
-            const password = loginPassword?.value || "";
-
-            if (!email) {
-                showToast("Please enter your email.");
-                loginEmail?.focus();
-                return;
-            }
-
-            if (!email.includes("@")) {
-                showToast("Please enter a valid email.");
-                loginEmail?.focus();
-                return;
-            }
-
-            if (!password) {
-                showToast("Please enter your password.");
-                loginPassword?.focus();
-                return;
-            }
-
-            if (password.length < 6) {
-                showToast("Password must be at least 6 characters.");
-                loginPassword?.focus();
-                return;
-            }
-
-            const existingUser = getUser();
-
-            if (
-                existingUser &&
-                existingUser.email &&
-                existingUser.email.toLowerCase() !== email.toLowerCase()
-            ) {
-                showToast(
-                    "No local account found with this email. Please sign up."
-                );
-                return;
-            }
-
-            const user = existingUser || {
-                name: email.split("@")[0],
-                email,
-                role: "customer"
-            };
-
-            user.email = email;
-
-            saveUser(user);
-            updateAccountAvatar();
-
-            closeModal(authModal);
-
-            loginForm.reset();
-
-            showToast("Login successful! Welcome to MARTEY.");
-        });
-    }
-
-
-    /* =========================================================
-       SIGNUP ROLE SYSTEM
-    ========================================================= */
-
-    const roleOptions = $$(".role-option");
-
-    function selectRole(role) {
-        if (!signupRole) return;
-
-        signupRole.value = role;
-
-        roleOptions.forEach((option) => {
-            const isSelected = option.dataset.role === role;
-
-            option.classList.toggle("active", isSelected);
-            option.classList.toggle("selected", isSelected);
-
-            option.setAttribute(
-                "aria-pressed",
-                isSelected ? "true" : "false"
-            );
-        });
-
-        if (storeNameGroup) {
-            storeNameGroup.classList.toggle(
-                "hidden",
-                role !== "seller"
-            );
-        }
-
-        if (role !== "seller" && storeName) {
-            storeName.value = "";
-        }
-    }
-
-    roleOptions.forEach((option) => {
-        option.addEventListener("click", () => {
-            selectRole(option.dataset.role || "customer");
-        });
-    });
-
-    // Default role
-    if (signupRole?.value) {
-        selectRole(signupRole.value);
+    const loginTab = $('[data-auth="login"]');
+    const signupTab = $('[data-auth="signup"]');
+
+    if (type === "signup") {
+      if (loginForm) loginForm.hidden = true;
+      if (signupForm) signupForm.hidden = false;
+
+      if (loginTab) loginTab.setAttribute("aria-selected", "false");
+      if (signupTab) signupTab.setAttribute("aria-selected", "true");
     } else {
-        selectRole("customer");
+      if (loginForm) loginForm.hidden = false;
+      if (signupForm) signupForm.hidden = true;
+
+      if (loginTab) loginTab.setAttribute("aria-selected", "true");
+      if (signupTab) signupTab.setAttribute("aria-selected", "false");
+    }
+  }
+
+  $$("[data-auth]").forEach((button) => {
+    button.addEventListener("click", () => {
+      const type = button.dataset.auth;
+
+      if (type) {
+        switchAuth(type);
+      }
+    });
+  });
+
+  $$("[data-auth-switch]").forEach((button) => {
+    button.addEventListener("click", () => {
+      const type = button.dataset.authSwitch;
+
+      if (type) {
+        switchAuth(type);
+      }
+    });
+  });
+
+  /* =========================================================
+     ACCOUNT BUTTON
+     ========================================================= */
+
+  if (accountButton) {
+    accountButton.addEventListener("click", () => {
+      const user = getStorage(STORAGE.USER, null);
+
+      if (user && user.loggedIn) {
+        openModal("#accountModal");
+      } else {
+        switchAuth("login");
+        openModal("#authModal");
+      }
+    });
+  }
+
+  /* =========================================================
+     SELLER / DELIVERY BUTTONS
+     ========================================================= */
+
+  function openSellerSignup() {
+    switchAuth("signup");
+
+    const sellerRole = $('[data-role="seller"]');
+
+    if (sellerRole) {
+      sellerRole.click();
     }
 
+    openModal("#authModal");
+  }
 
-    /* =========================================================
-       SIGNUP
-    ========================================================= */
+  function openDeliverySignup() {
+    switchAuth("signup");
 
-    if (signupForm) {
-        signupForm.addEventListener("submit", (event) => {
-            event.preventDefault();
+    const deliveryRole = $('[data-role="delivery"]');
 
-            const name = signupName?.value.trim() || "";
-            const email = signupEmail?.value.trim() || "";
-            const password = signupPassword?.value || "";
-            const role = signupRole?.value || "customer";
-            const sellerStoreName = storeName?.value.trim() || "";
+    if (deliveryRole) {
+      deliveryRole.click();
+    }
 
-            if (!name) {
-                showToast("Please enter your name.");
-                signupName?.focus();
-                return;
-            }
+    openModal("#authModal");
+  }
 
-            if (!email || !email.includes("@")) {
-                showToast("Please enter a valid email.");
-                signupEmail?.focus();
-                return;
-            }
+  const sellerButton = $("#sellerButton");
+  const footerSellerLink = $("#footerSellerLink");
 
-            if (!password) {
-                showToast("Please create a password.");
-                signupPassword?.focus();
-                return;
-            }
+  if (sellerButton) {
+    sellerButton.addEventListener("click", openSellerSignup);
+  }
 
-            if (password.length < 6) {
-                showToast("Password must be at least 6 characters.");
-                signupPassword?.focus();
-                return;
-            }
+  if (footerSellerLink) {
+    footerSellerLink.addEventListener("click", (event) => {
+      event.preventDefault();
+      openSellerSignup();
+    });
+  }
 
-            if (role === "seller" && !sellerStoreName) {
-                showToast("Please enter your store name.");
-                storeName?.focus();
-                return;
-            }
+  const deliveryButton = $("#deliveryButton");
 
-            const user = {
-                name,
-                email,
-                role,
-                storeName:
-                    role === "seller"
-                        ? sellerStoreName
-                        : "",
-                createdAt: new Date().toISOString()
-            };
+  if (deliveryButton) {
+    deliveryButton.addEventListener("click", openDeliverySignup);
+  }
 
-            saveUser(user);
-            updateAccountAvatar();
+  /* =========================================================
+     ROLE SELECTION
+     ========================================================= */
 
-            closeModal(authModal);
+  const roleButtons = $$("[data-role]");
+  const storeNameGroup = $("#storeNameGroup");
 
-            signupForm.reset();
+  function updateRole(role) {
+    roleButtons.forEach((button) => {
+      const active = button.dataset.role === role;
 
-            selectRole("customer");
+      button.classList.toggle("active", active);
+      button.setAttribute("aria-pressed", String(active));
+    });
 
-            showToast("Account created successfully!");
+    if (storeNameGroup) {
+      storeNameGroup.hidden = role !== "seller";
+    }
+  }
+
+  roleButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      updateRole(button.dataset.role);
+    });
+  });
+
+  /* =========================================================
+     SIGN UP
+     ========================================================= */
+
+  const signupForm = $("#signupForm");
+
+  if (signupForm) {
+    signupForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      const nameInput = $("#signupName");
+      const emailInput = $("#signupEmail");
+      const phoneInput = $("#signupPhone");
+      const passwordInput = $("#signupPassword");
+      const storeInput = $("#signupStoreName");
+
+      const name = nameInput ? nameInput.value.trim() : "";
+      const email = emailInput ? emailInput.value.trim() : "";
+      const phone = phoneInput ? phoneInput.value.trim() : "";
+      const password = passwordInput ? passwordInput.value : "";
+      const storeName = storeInput ? storeInput.value.trim() : "";
+
+      const selectedRole =
+        $('[data-role].active')?.dataset.role ||
+        $('[data-role][aria-pressed="true"]')?.dataset.role ||
+        "customer";
+
+      if (!name || !email || !password) {
+        showToast("Please fill all required fields.");
+        return;
+      }
+
+      const user = {
+        name,
+        email,
+        phone,
+        password,
+        role: selectedRole,
+        storeName,
+        loggedIn: true,
+        createdAt: new Date().toISOString()
+      };
+
+      setStorage(STORAGE.USER, user);
+
+      updateAccountUI();
+
+      closeAllModals();
+
+      showToast("Welcome to MARTEY, " + name + "!");
+    });
+  }
+
+  /* =========================================================
+     LOGIN
+     ========================================================= */
+
+  const loginForm = $("#loginForm");
+
+  if (loginForm) {
+    loginForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      const emailInput = $("#loginEmail");
+      const passwordInput = $("#loginPassword");
+
+      const email = emailInput ? emailInput.value.trim() : "";
+      const password = passwordInput ? passwordInput.value : "";
+
+      if (!email || !password) {
+        showToast("Please enter email and password.");
+        return;
+      }
+
+      const existingUser = getStorage(STORAGE.USER, null);
+
+      const user = existingUser || {
+        name: email.split("@")[0],
+        email,
+        role: "customer"
+      };
+
+      user.email = email;
+      user.loggedIn = true;
+
+      setStorage(STORAGE.USER, user);
+
+      updateAccountUI();
+
+      closeAllModals();
+
+      showToast("Login successful.");
+    });
+  }
+
+  /* =========================================================
+     ACCOUNT UI
+     ========================================================= */
+
+  function getInitials(name) {
+    if (!name) return "M";
+
+    const parts = name
+      .trim()
+      .split(/\s+/)
+      .filter(Boolean);
+
+    if (parts.length === 1) {
+      return parts[0].charAt(0).toUpperCase();
+    }
+
+    return (
+      parts[0].charAt(0) +
+      parts[parts.length - 1].charAt(0)
+    ).toUpperCase();
+  }
+
+  function updateAccountUI() {
+    const user = getStorage(STORAGE.USER, null);
+
+    const avatarElements = $$(".avatar, [data-avatar]");
+    const nameElements = $$("[data-user-name]");
+    const emailElements = $$("[data-user-email]");
+
+    if (user && user.loggedIn) {
+      const initials = getInitials(user.name);
+
+      avatarElements.forEach((element) => {
+        element.textContent = initials;
+      });
+
+      nameElements.forEach((element) => {
+        element.textContent = user.name || "MARTEY User";
+      });
+
+      emailElements.forEach((element) => {
+        element.textContent = user.email || "";
+      });
+    }
+  }
+
+  /* =========================================================
+     LOGOUT
+     ========================================================= */
+
+  function logout() {
+    const user = getStorage(STORAGE.USER, null);
+
+    if (user) {
+      user.loggedIn = false;
+      setStorage(STORAGE.USER, user);
+    }
+
+    closeAllModals();
+
+    showToast("You have been logged out.");
+
+    setTimeout(() => {
+      updateAccountUI();
+    }, 100);
+  }
+
+  const logoutButton = $("#logoutButton");
+  const settingsLogoutButton = $("#settingsLogoutButton");
+
+  if (logoutButton) {
+    logoutButton.addEventListener("click", logout);
+  }
+
+  if (settingsLogoutButton) {
+    settingsLogoutButton.addEventListener("click", logout);
+  }
+
+  /* =========================================================
+     SEARCH
+     ========================================================= */
+
+  function getProductCards() {
+    if (!productGrid) return [];
+
+    return $$(".product-card", productGrid);
+  }
+
+  function filterProducts(searchTerm = "") {
+    const term = searchTerm.trim().toLowerCase();
+
+    const cards = getProductCards();
+
+    let visibleCount = 0;
+
+    cards.forEach((card) => {
+      const searchableText = (
+        card.textContent +
+        " " +
+        (card.dataset.category || "") +
+        " " +
+        (card.dataset.name || "")
+      ).toLowerCase();
+
+      const matches = !term || searchableText.includes(term);
+
+      card.hidden = !matches;
+
+      if (matches) {
+        visibleCount++;
+      }
+    });
+
+    if (emptyState) {
+      emptyState.hidden = visibleCount !== 0;
+    }
+  }
+
+  if (searchButton) {
+    searchButton.addEventListener("click", () => {
+      filterProducts(searchInput ? searchInput.value : "");
+
+      if (productGrid) {
+        productGrid.scrollIntoView({
+          behavior: "smooth",
+          block: "start"
         });
-    }
+      }
+    });
+  }
 
+  if (searchInput) {
+    searchInput.addEventListener("input", () => {
+      filterProducts(searchInput.value);
+    });
 
-    /* =========================================================
-       OPEN SIGNUP MODAL
-    ========================================================= */
+    searchInput.addEventListener("keydown", (event) => {
+      if (event.key === "Enter") {
+        event.preventDefault();
 
-    function openSignup(role = "customer") {
-        if (!authModal) return;
+        filterProducts(searchInput.value);
 
-        openModal(authModal);
-        switchAuthTab("signup");
-        selectRole(role);
-    }
+        if (productGrid) {
+          productGrid.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+          });
+        }
+      }
+    });
+  }
 
+  /* =========================================================
+     CATEGORY FILTERING
+     ========================================================= */
 
-    /* =========================================================
-       SELLER BUTTONS
-    ========================================================= */
+  $$("[data-category-filter]").forEach((button) => {
+    button.addEventListener("click", (event) => {
+      event.preventDefault();
 
-    [sellButton, footerSellerButton, footerSellerHelp, footerSellerLink]
-        .filter(Boolean)
-        .forEach((button) => {
-            button.addEventListener("click", (event) => {
-                event.preventDefault();
-                openSignup("seller");
-            });
+      const category = button.dataset.categoryFilter;
+
+      if (!category || category === "all") {
+        filterProducts("");
+      } else {
+        filterProducts(category);
+      }
+
+      if (productGrid) {
+        productGrid.scrollIntoView({
+          behavior: "smooth",
+          block: "start"
         });
+      }
+    });
+  });
 
+  /* =========================================================
+     VIEW ALL
+     ========================================================= */
 
-    /* =========================================================
-       CART
-    ========================================================= */
+  $$("[data-view-all]").forEach((button) => {
+    button.addEventListener("click", () => {
+      filterProducts("");
 
-    function getCart() {
-        return getJSON("marteyCart", []);
-    }
-
-    function updateCartCount() {
-        if (!cartCount) return;
-
-        const cart = getCart();
-
-        const count = cart.reduce((total, item) => {
-            const quantity = Number(item.quantity) || 1;
-            return total + quantity;
-        }, 0);
-
-        cartCount.textContent = count;
-        cartCount.hidden = count <= 0;
-    }
-
-    if (cartButton) {
-        cartButton.addEventListener("click", () => {
-            window.location.href = "cart.html";
+      if (productGrid) {
+        productGrid.scrollIntoView({
+          behavior: "smooth",
+          block: "start"
         });
+      }
+    });
+  });
+
+  $$("[data-view-all-categories]").forEach((button) => {
+    button.addEventListener("click", () => {
+      const categorySection =
+        $("#categories") ||
+        $(".categories-section") ||
+        $("[data-categories-section]");
+
+      if (categorySection) {
+        categorySection.scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+      }
+    });
+  });
+
+  /* =========================================================
+     PRODUCT CARD NAVIGATION
+     ========================================================= */
+
+  function openProduct(productId) {
+    if (!productId) return;
+
+    saveRecentlyViewed(productId);
+
+    window.location.href =
+      "product.html?id=" +
+      encodeURIComponent(productId);
+  }
+
+  getProductCards().forEach((card) => {
+    const productId = card.dataset.productId;
+
+    if (!productId) return;
+
+    card.addEventListener("click", (event) => {
+      const interactive = event.target.closest(
+        "button, a, input, select, textarea"
+      );
+
+      if (interactive) return;
+
+      openProduct(productId);
+    });
+
+    card.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        openProduct(productId);
+      }
+    });
+  });
+
+  /* =========================================================
+     RECENTLY VIEWED
+     ========================================================= */
+
+  function saveRecentlyViewed(productId) {
+    let recent = getStorage(STORAGE.RECENT, []);
+
+    if (!Array.isArray(recent)) {
+      recent = [];
     }
+
+    recent = recent.filter(
+      (id) => String(id) !== String(productId)
+    );
+
+    recent.unshift(productId);
+
+    recent = recent.slice(0, 10);
+
+    setStorage(STORAGE.RECENT, recent);
+  }
+
+  /* =========================================================
+     WISHLIST
+     ========================================================= */
+
+  function getWishlist() {
+    const wishlist = getStorage(STORAGE.WISHLIST, []);
+
+    return Array.isArray(wishlist) ? wishlist : [];
+  }
+
+  function saveWishlist(wishlist) {
+    setStorage(STORAGE.WISHLIST, wishlist);
+  }
+
+  function updateWishlistButtons() {
+    const wishlist = getWishlist();
+
+    $$("[data-wishlist]").forEach((button) => {
+      const id = button.dataset.wishlist;
+
+      const active = wishlist.some(
+        (item) => String(item) === String(id)
+      );
+
+      button.classList.toggle("active", active);
+      button.setAttribute("aria-pressed", String(active));
+    });
+  }
+
+  $$("[data-wishlist]").forEach((button) => {
+    button.addEventListener("click", (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+
+      const id = button.dataset.wishlist;
+
+      if (!id) return;
+
+      let wishlist = getWishlist();
+
+      const exists = wishlist.some(
+        (item) => String(item) === String(id)
+      );
+
+      if (exists) {
+        wishlist = wishlist.filter(
+          (item) => String(item) !== String(id)
+        );
+
+        showToast("Removed from wishlist.");
+      } else {
+        wishlist.push(id);
+
+        showToast("Added to wishlist.");
+      }
+
+      saveWishlist(wishlist);
+      updateWishlistButtons();
+    });
+  });
+
+  if (wishlistButton) {
+    wishlistButton.addEventListener("click", () => {
+      const wishlist = getWishlist();
+
+      if (wishlist.length === 0) {
+        showToast("Your wishlist is empty.");
+        return;
+      }
+
+      showToast(
+        `${wishlist.length} item${wishlist.length > 1 ? "s" : ""} in wishlist.`
+      );
+    });
+  }
+
+  /* =========================================================
+     CART
+     ========================================================= */
+
+  function getCart() {
+    const cart = getStorage(STORAGE.CART, []);
+
+    return Array.isArray(cart) ? cart : [];
+  }
+
+  function updateCartCount() {
+    const cart = getCart();
+
+    const total = cart.reduce((sum, item) => {
+      const quantity = Number(item.quantity || 1);
+      return sum + quantity;
+    }, 0);
+
+    if (cartCount) {
+      cartCount.textContent = total;
+      cartCount.hidden = total === 0;
+    }
+  }
+
+  function addToCart(productId, quantity = 1) {
+    if (!productId) return;
+
+    const cart = getCart();
+
+    const existing = cart.find(
+      (item) => String(item.id) === String(productId)
+    );
+
+    if (existing) {
+      existing.quantity =
+        Number(existing.quantity || 1) + Number(quantity);
+    } else {
+      cart.push({
+        id: productId,
+        quantity: Number(quantity)
+      });
+    }
+
+    setStorage(STORAGE.CART, cart);
 
     updateCartCount();
 
+    showToast("Added to cart.");
+  }
 
-    /* =========================================================
-       WISHLIST
-    ========================================================= */
+  $$("[data-add-to-cart]").forEach((button) => {
+    button.addEventListener("click", (event) => {
+      event.preventDefault();
+      event.stopPropagation();
 
-    function getWishlist() {
-        return getJSON("marteyWishlist", []);
+      const productId = button.dataset.addToCart;
+
+      addToCart(productId);
+    });
+  });
+
+  if (cartButton) {
+    cartButton.addEventListener("click", () => {
+      window.location.href = "cart.html";
+    });
+  }
+
+  /* =========================================================
+     SETTINGS
+     ========================================================= */
+
+  const settingsButton = $("#settingsButton");
+
+  if (settingsButton) {
+    settingsButton.addEventListener("click", () => {
+      openModal("#settingsModal");
+    });
+  }
+
+  /* =========================================================
+     THEME
+     ========================================================= */
+
+  const themeSelect = $("#themeSelect");
+
+  function applyTheme(theme) {
+    if (theme === "light") {
+      document.documentElement.setAttribute("data-theme", "light");
+      return;
     }
 
-    function saveWishlist(wishlist) {
-        setJSON("marteyWishlist", wishlist);
+    if (theme === "dark") {
+      document.documentElement.setAttribute("data-theme", "dark");
+      return;
     }
 
-    function isInWishlist(productId) {
-        return getWishlist().some(
-            (id) => String(id) === String(productId)
+    document.documentElement.removeAttribute("data-theme");
+  }
+
+  if (themeSelect) {
+    const savedTheme =
+      localStorage.getItem(STORAGE.THEME) || "dark";
+
+    themeSelect.value = savedTheme;
+
+    applyTheme(savedTheme);
+
+    themeSelect.addEventListener("change", () => {
+      const theme = themeSelect.value;
+
+      localStorage.setItem(STORAGE.THEME, theme);
+
+      applyTheme(theme);
+    });
+  } else {
+    const savedTheme =
+      localStorage.getItem(STORAGE.THEME) || "dark";
+
+    applyTheme(savedTheme);
+  }
+
+  /* =========================================================
+     HERO SHOP NOW
+     ========================================================= */
+
+  const startShopping = $("#startShopping");
+
+  if (startShopping) {
+    startShopping.addEventListener("click", () => {
+      const productSection =
+        $("#products") ||
+        $("#productGrid") ||
+        $(".products-section");
+
+      if (productSection) {
+        productSection.scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+      }
+    });
+  }
+
+  /* =========================================================
+     GENERIC ACCOUNT BUTTONS
+     ========================================================= */
+
+  const ordersButton = $("#ordersButton");
+
+  if (ordersButton) {
+    ordersButton.addEventListener("click", () => {
+      window.location.href = "orders.html";
+    });
+  }
+
+  const wishlistAccountButton = $("#wishlistAccountButton");
+
+  if (wishlistAccountButton) {
+    wishlistAccountButton.addEventListener("click", () => {
+      const wishlist = getWishlist();
+
+      if (wishlist.length) {
+        showToast(
+          `${wishlist.length} item${wishlist.length > 1 ? "s" : ""} saved in wishlist.`
         );
-    }
-
-    function updateWishlistButtons() {
-        $$(".heart-btn").forEach((button) => {
-            const card = button.closest(".product-card");
-
-            if (!card) return;
-
-            const productId = card.dataset.productId;
-
-            const active = isInWishlist(productId);
-
-            button.classList.toggle("active", active);
-            button.setAttribute(
-                "aria-pressed",
-                active ? "true" : "false"
-            );
-
-            button.textContent = active ? "♥" : "♡";
-        });
-    }
-
-    $$(".heart-btn").forEach((button) => {
-        button.addEventListener("click", (event) => {
-            event.preventDefault();
-            event.stopPropagation();
-
-            const card = button.closest(".product-card");
-
-            if (!card) return;
-
-            const productId = card.dataset.productId;
-
-            if (!productId) return;
-
-            let wishlist = getWishlist();
-
-            const index = wishlist.findIndex(
-                (id) => String(id) === String(productId)
-            );
-
-            if (index >= 0) {
-                wishlist.splice(index, 1);
-                showToast("Removed from wishlist.");
-            } else {
-                wishlist.push(productId);
-                showToast("Added to wishlist.");
-            }
-
-            saveWishlist(wishlist);
-            updateWishlistButtons();
-        });
+      } else {
+        showToast("Your wishlist is empty.");
+      }
     });
+  }
 
-    if (wishlistButton) {
-        wishlistButton.addEventListener("click", () => {
-            const wishlist = getWishlist();
+  const cartAccountButton = $("#cartAccountButton");
 
-            if (!wishlist.length) {
-                showToast("Your wishlist is empty.");
-                return;
-            }
-
-            showToast(
-                `${wishlist.length} item${wishlist.length > 1 ? "s" : ""} in your wishlist. Wishlist page is coming soon.`
-            );
-        });
-    }
-
-    updateWishlistButtons();
-
-
-    /* =========================================================
-       PRODUCT FILTERING
-    ========================================================= */
-
-    let activeCategory = "all";
-    let activeSearch = "";
-
-    function getProductName(card) {
-        return (
-            card.dataset.name ||
-            $(".product-info h3", card)?.textContent ||
-            $("h3", card)?.textContent ||
-            ""
-        )
-            .trim()
-            .toLowerCase();
-    }
-
-    function getProductCategory(card) {
-        return (
-            card.dataset.category ||
-            ""
-        )
-            .trim()
-            .toLowerCase();
-    }
-
-    function filterProducts() {
-        const cards = $$(".product-card");
-
-        let visibleCount = 0;
-
-        cards.forEach((card) => {
-            const name = getProductName(card);
-            const category = getProductCategory(card);
-
-            const matchesSearch =
-                !activeSearch ||
-                name.includes(activeSearch) ||
-                category.includes(activeSearch);
-
-            const matchesCategory =
-                activeCategory === "all" ||
-                activeCategory === "more" ||
-                category === activeCategory;
-
-            const visible =
-                matchesSearch &&
-                matchesCategory;
-
-            card.style.display = visible ? "" : "none";
-
-            if (visible) {
-                visibleCount++;
-            }
-        });
-
-        if (emptyState) {
-            emptyState.classList.toggle(
-                "hidden",
-                visibleCount > 0
-            );
-        }
-
-        return visibleCount;
-    }
-
-
-    /* =========================================================
-       SEARCH
-    ========================================================= */
-
-    function performSearch() {
-        activeSearch =
-            searchInput?.value.trim().toLowerCase() || "";
-
-        filterProducts();
-
-        const productsSection = $("#products");
-
-        if (productsSection && activeSearch) {
-            productsSection.scrollIntoView({
-                behavior: "smooth",
-                block: "start"
-            });
-        }
-    }
-
-    if (searchButton) {
-        searchButton.addEventListener("click", performSearch);
-    }
-
-    if (searchInput) {
-        searchInput.addEventListener("keydown", (event) => {
-            if (event.key === "Enter") {
-                performSearch();
-            }
-
-            if (event.key === "Escape") {
-                searchInput.value = "";
-                activeSearch = "";
-                filterProducts();
-            }
-        });
-
-        searchInput.addEventListener("input", () => {
-            if (!searchInput.value.trim()) {
-                activeSearch = "";
-                filterProducts();
-            }
-        });
-    }
-
-
-    /* =========================================================
-       CATEGORY NAVIGATION
-    ========================================================= */
-
-    $$(".category-link").forEach((button) => {
-        button.addEventListener("click", () => {
-            const category =
-                button.dataset.category || "all";
-
-            activeCategory = category.toLowerCase();
-
-            $$(".category-link").forEach((item) => {
-                item.classList.toggle(
-                    "active",
-                    item === button
-                );
-            });
-
-            filterProducts();
-
-            const productsSection = $("#products");
-
-            if (productsSection) {
-                productsSection.scrollIntoView({
-                    behavior: "smooth",
-                    block: "start"
-                });
-            }
-        });
+  if (cartAccountButton) {
+    cartAccountButton.addEventListener("click", () => {
+      window.location.href = "cart.html";
     });
+  }
 
+  const recentButton = $("#recentButton");
 
-    /* =========================================================
-       CATEGORY CARDS
-    ========================================================= */
+  if (recentButton) {
+    recentButton.addEventListener("click", () => {
+      const recent = getStorage(STORAGE.RECENT, []);
 
-    $$("[data-category-card]").forEach((card) => {
-        card.addEventListener("click", () => {
-            const category =
-                card.dataset.categoryCard || "all";
-
-            activeCategory = category.toLowerCase();
-
-            const matchingButton = $(
-                `.category-link[data-category="${category}"]`
-            );
-
-            if (matchingButton) {
-                $$(".category-link").forEach((item) => {
-                    item.classList.toggle(
-                        "active",
-                        item === matchingButton
-                    );
-                });
-            }
-
-            filterProducts();
-
-            const productsSection = $("#products");
-
-            if (productsSection) {
-                productsSection.scrollIntoView({
-                    behavior: "smooth",
-                    block: "start"
-                });
-            }
-        });
-    });
-
-
-    /* =========================================================
-       VIEW ALL / MORE BUTTONS
-    ========================================================= */
-
-    $$("[data-view-all]").forEach((button) => {
-        button.addEventListener("click", () => {
-            activeCategory = "all";
-            activeSearch = "";
-
-            if (searchInput) {
-                searchInput.value = "";
-            }
-
-            $$(".category-link").forEach((item) => {
-                item.classList.toggle(
-                    "active",
-                    item.dataset.category === "all"
-                );
-            });
-
-            filterProducts();
-
-            const productsSection = $("#products");
-
-            if (productsSection) {
-                productsSection.scrollIntoView({
-                    behavior: "smooth",
-                    block: "start"
-                });
-            }
-        });
-    });
-
-
-    /* =========================================================
-       PRODUCT CARD NAVIGATION
-    ========================================================= */
-
-    $$(".product-card").forEach((card) => {
-        const productLink = card.querySelector(
-            'a[href*="product.html"]'
+      if (recent.length === 0) {
+        showToast("No recently viewed products.");
+      } else {
+        showToast(
+          `${recent.length} recently viewed product${recent.length > 1 ? "s" : ""}.`
         );
-
-        function openProduct() {
-            if (productLink?.href) {
-                window.location.href = productLink.href;
-                return;
-            }
-
-            const productId = card.dataset.productId;
-
-            if (productId) {
-                window.location.href =
-                    `product.html?id=${encodeURIComponent(productId)}`;
-            }
-        }
-
-        card.addEventListener("click", (event) => {
-            if (
-                event.target.closest(".heart-btn") ||
-                event.target.closest("a") ||
-                event.target.closest("button")
-            ) {
-                return;
-            }
-
-            openProduct();
-        });
-
-        card.addEventListener("keydown", (event) => {
-            if (
-                event.key === "Enter" ||
-                event.key === " "
-            ) {
-                event.preventDefault();
-                openProduct();
-            }
-        });
+      }
     });
+  }
 
+  /* =========================================================
+     PROFILE / SETTINGS PLACEHOLDERS
+     ========================================================= */
 
-    /* =========================================================
-       HERO CTA
-    ========================================================= */
+  const editProfileButton = $("#editProfileButton");
+  const settingsEditProfile = $("#settingsEditProfile");
 
-    if (startShopping) {
-        startShopping.addEventListener("click", (event) => {
-            const productsSection = $("#products");
+  [editProfileButton, settingsEditProfile].forEach((button) => {
+    if (!button) return;
 
-            if (!productsSection) return;
-
-            event.preventDefault();
-
-            productsSection.scrollIntoView({
-                behavior: "smooth",
-                block: "start"
-            });
-        });
-    }
-
-
-    /* =========================================================
-       ACCOUNT MODAL
-       FUTURE USE ONLY
-    ========================================================= */
-
-    const accountOrders = $("#accountOrders");
-    const accountWishlist = $("#accountWishlist");
-    const accountSettings = $("#accountSettings");
-    const accountLogout = $("#accountLogout");
-
-    if (accountOrders) {
-        accountOrders.addEventListener("click", () => {
-            showToast("Orders page will be connected after database setup.");
-        });
-    }
-
-    if (accountWishlist) {
-        accountWishlist.addEventListener("click", () => {
-            showToast("Wishlist page will be connected later.");
-        });
-    }
-
-    if (accountSettings) {
-        accountSettings.addEventListener("click", () => {
-            closeModal(accountModal);
-
-            if (settingsModal) {
-                openModal(settingsModal);
-            }
-        });
-    }
-
-    if (accountLogout) {
-        accountLogout.addEventListener("click", () => {
-            removeStorage(USER_KEY);
-
-            updateAccountAvatar();
-
-            closeModal(accountModal);
-
-            showToast("You have been logged out.");
-        });
-    }
-
-
-    /* =========================================================
-       SETTINGS
-    ========================================================= */
-
-    const SETTINGS_KEY = "marteySettings";
-
-    const settings = getJSON(SETTINGS_KEY, {
-        darkMode: true,
-        notifications: true
+    button.addEventListener("click", () => {
+      showToast("Profile editing will be connected with the database later.");
     });
+  });
 
-    function saveSettings() {
-        setJSON(SETTINGS_KEY, settings);
-    }
+  const loginSecurityButton = $("#loginSecurityButton");
 
-    if (themeToggle) {
-        themeToggle.checked = Boolean(settings.darkMode);
-
-        themeToggle.addEventListener("change", () => {
-            settings.darkMode = themeToggle.checked;
-
-            document.body.classList.toggle(
-                "light-theme",
-                !settings.darkMode
-            );
-
-            saveSettings();
-
-            showToast(
-                settings.darkMode
-                    ? "Dark mode enabled."
-                    : "Light mode enabled."
-            );
-        });
-    }
-
-    if (notificationToggle) {
-        notificationToggle.checked =
-            Boolean(settings.notifications);
-
-        notificationToggle.addEventListener("change", () => {
-            settings.notifications =
-                notificationToggle.checked;
-
-            saveSettings();
-
-            showToast(
-                settings.notifications
-                    ? "Notifications enabled."
-                    : "Notifications disabled."
-            );
-        });
-    }
-
-    // Apply saved theme
-    document.body.classList.toggle(
-        "light-theme",
-        !settings.darkMode
-    );
-
-
-    /* =========================================================
-       IMAGE ERROR PROTECTION
-    ========================================================= */
-
-    $$("img").forEach((image) => {
-        image.addEventListener("error", () => {
-            image.classList.add("image-error");
-
-            image.alt = "MARTEY product image";
-        });
+  if (loginSecurityButton) {
+    loginSecurityButton.addEventListener("click", () => {
+      showToast("Security settings will be available after database setup.");
     });
+  }
 
+  const addressButton = $("#addressButton");
 
-    /* =========================================================
-       INITIAL STATE
-    ========================================================= */
+  if (addressButton) {
+    addressButton.addEventListener("click", () => {
+      showToast("Address management will be connected later.");
+    });
+  }
 
-    updateAccountAvatar();
-    updateCartCount();
-    updateWishlistButtons();
-    filterProducts();
+  const notificationsButton = $("#notificationsButton");
 
+  if (notificationsButton) {
+    notificationsButton.addEventListener("click", () => {
+      showToast("Notification settings opened.");
+    });
+  }
 
-    /* =========================================================
-       DEBUG
-    ========================================================= */
+  const orderUpdatesButton = $("#orderUpdatesButton");
 
-    console.log(
-        "MARTEY frontend initialized successfully."
-    );
+  if (orderUpdatesButton) {
+    orderUpdatesButton.addEventListener("click", () => {
+      showToast("Order notification settings will be connected later.");
+    });
+  }
+
+  const helpButton = $("#helpButton");
+
+  if (helpButton) {
+    helpButton.addEventListener("click", () => {
+      showToast("MARTEY Help Center will be added later.");
+    });
+  }
+
+  const reportButton = $("#reportButton");
+
+  if (reportButton) {
+    reportButton.addEventListener("click", () => {
+      showToast("Report system will be connected later.");
+    });
+  }
+
+  const privacyButton = $("#privacyButton");
+
+  if (privacyButton) {
+    privacyButton.addEventListener("click", () => {
+      showToast("Privacy Policy page will be added later.");
+    });
+  }
+
+  const termsButton = $("#termsButton");
+
+  if (termsButton) {
+    termsButton.addEventListener("click", () => {
+      showToast("Terms & Conditions page will be added later.");
+    });
+  }
+
+  const deleteAccountButton = $("#deleteAccountButton");
+
+  if (deleteAccountButton) {
+    deleteAccountButton.addEventListener("click", () => {
+      const confirmed = window.confirm(
+        "Are you sure you want to remove the local MARTEY account data?"
+      );
+
+      if (!confirmed) return;
+
+      localStorage.removeItem(STORAGE.USER);
+
+      closeAllModals();
+
+      showToast("Local account data removed.");
+    });
+  }
+
+  /* =========================================================
+     IMAGE ERROR HANDLING
+     ========================================================= */
+
+  $$("img").forEach((image) => {
+    image.addEventListener("error", () => {
+      image.classList.add("image-error");
+    });
+  });
+
+  /* =========================================================
+     INITIAL STATE
+     ========================================================= */
+
+  updateAccountUI();
+  updateCartCount();
+  updateWishlistButtons();
+
+  /*
+     Do NOT automatically filter products on page load.
+     Homepage should show all products.
+  */
+
+  console.log("MARTEY script loaded successfully.");
 });
