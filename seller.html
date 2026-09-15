@@ -1,0 +1,1319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta name="theme-color" content="#111111">
+
+    <title>MARTEY Seller Dashboard</title>
+
+    <!-- Same MARTEY fonts as homepage -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- Seller-specific CSS -->
+    <link rel="stylesheet" href="seller.css">
+</head>
+
+<body>
+
+    <!-- =====================================================
+         SELLER DASHBOARD
+    ====================================================== -->
+
+    <div class="seller-app">
+
+        <!-- =================================================
+             SIDEBAR
+        ================================================== -->
+
+        <aside class="seller-sidebar">
+
+            <!-- Logo -->
+            <div class="seller-logo">
+                <a href="index.html">
+                    MARTEY<span>.</span>
+                </a>
+
+                <small>SELLER</small>
+            </div>
+
+
+            <!-- Navigation -->
+            <nav class="seller-nav">
+
+                <button
+                    class="seller-nav-item active"
+                    data-section="dashboard"
+                    type="button"
+                >
+                    <span class="nav-icon">⌂</span>
+                    <span>Dashboard</span>
+                </button>
+
+
+                <button
+                    class="seller-nav-item"
+                    data-section="products"
+                    type="button"
+                >
+                    <span class="nav-icon">▣</span>
+                    <span>Products</span>
+                </button>
+
+
+                <button
+                    class="seller-nav-item"
+                    data-section="orders"
+                    type="button"
+                >
+                    <span class="nav-icon">▤</span>
+                    <span>Orders</span>
+                </button>
+
+
+                <button
+                    class="seller-nav-item"
+                    data-section="inventory"
+                    type="button"
+                >
+                    <span class="nav-icon">▥</span>
+                    <span>Inventory</span>
+                </button>
+
+
+                <button
+                    class="seller-nav-item"
+                    data-section="earnings"
+                    type="button"
+                >
+                    <span class="nav-icon">₹</span>
+                    <span>Earnings</span>
+                </button>
+
+
+                <button
+                    class="seller-nav-item"
+                    data-section="analytics"
+                    type="button"
+                >
+                    <span class="nav-icon">⌁</span>
+                    <span>Analytics</span>
+                </button>
+
+
+                <button
+                    class="seller-nav-item"
+                    data-section="promotions"
+                    type="button"
+                >
+                    <span class="nav-icon">%</span>
+                    <span>Promotions</span>
+                </button>
+
+
+                <button
+                    class="seller-nav-item"
+                    data-section="reviews"
+                    type="button"
+                >
+                    <span class="nav-icon">☆</span>
+                    <span>Reviews</span>
+                </button>
+
+
+                <button
+                    class="seller-nav-item"
+                    data-section="store"
+                    type="button"
+                >
+                    <span class="nav-icon">⌂</span>
+                    <span>My Store</span>
+                </button>
+
+
+                <button
+                    class="seller-nav-item"
+                    data-section="settings"
+                    type="button"
+                >
+                    <span class="nav-icon">⚙</span>
+                    <span>Settings</span>
+                </button>
+
+            </nav>
+
+
+            <!-- Bottom Sidebar -->
+            <div class="sidebar-bottom">
+
+                <button
+                    class="shop-martey-btn"
+                    id="shopMarteyButton"
+                    type="button"
+                >
+                    <span>🛍️</span>
+                    <span>Shop MARTEY</span>
+                </button>
+
+
+                <button
+                    class="sidebar-help"
+                    type="button"
+                    id="sellerHelpButton"
+                >
+                    <span>?</span>
+                    Help & Support
+                </button>
+
+            </div>
+
+        </aside>
+
+
+        <!-- =================================================
+             MAIN AREA
+        ================================================== -->
+
+        <main class="seller-main">
+
+            <!-- =================================================
+                 TOP BAR
+            ================================================== -->
+
+            <header class="seller-topbar">
+
+                <div class="topbar-left">
+
+                    <button
+                        class="mobile-menu-btn"
+                        id="mobileMenuButton"
+                        type="button"
+                        aria-label="Open menu"
+                    >
+                        ☰
+                    </button>
+
+
+                    <div class="page-title">
+
+                        <span class="topbar-label">
+                            MARTEY SELLER
+                        </span>
+
+                        <h1 id="pageTitle">
+                            Dashboard
+                        </h1>
+
+                    </div>
+
+                </div>
+
+
+                <div class="topbar-right">
+
+                    <!-- Search -->
+                    <div class="seller-search">
+
+                        <span>⌕</span>
+
+                        <input
+                            type="search"
+                            id="sellerSearch"
+                            placeholder="Search..."
+                            autocomplete="off"
+                        >
+
+                    </div>
+
+
+                    <!-- Notifications -->
+                    <button
+                        class="topbar-icon"
+                        id="notificationButton"
+                        type="button"
+                        aria-label="Notifications"
+                    >
+                        🔔
+                        <span class="notification-dot"></span>
+                    </button>
+
+
+                    <!-- Shop -->
+                    <button
+                        class="topbar-shop"
+                        id="topShopButton"
+                        type="button"
+                    >
+                        🛍️
+                        <span>Shop</span>
+                    </button>
+
+
+                    <!-- Seller Profile -->
+                    <button
+                        class="seller-profile"
+                        id="sellerProfileButton"
+                        type="button"
+                    >
+
+                        <div class="seller-avatar">
+                            M
+                        </div>
+
+                        <div class="seller-profile-text">
+
+                            <strong id="sellerName">
+                                Seller
+                            </strong>
+
+                            <small>
+                                Seller Account
+                            </small>
+
+                        </div>
+
+                        <span class="profile-arrow">
+                            ▾
+                        </span>
+
+                    </button>
+
+                </div>
+
+            </header>
+
+
+            <!-- =================================================
+                 CONTENT
+            ================================================== -->
+
+            <div class="seller-content">
+
+
+                <!-- =================================================
+                     DASHBOARD SECTION
+                ================================================== -->
+
+                <section
+                    class="seller-section active"
+                    id="dashboardSection"
+                    data-page-section="dashboard"
+                >
+
+                    <div class="welcome-row">
+
+                        <div>
+
+                            <span class="section-eyebrow">
+                                OVERVIEW
+                            </span>
+
+                            <h2>
+                                Welcome back 👋
+                            </h2>
+
+                            <p>
+                                Here's what's happening with your store today.
+                            </p>
+
+                        </div>
+
+
+                        <button
+                            class="primary-seller-btn"
+                            id="addProductButton"
+                            type="button"
+                        >
+                            + Add Product
+                        </button>
+
+                    </div>
+
+
+                    <!-- Stats -->
+
+                    <div class="seller-stats-grid">
+
+
+                        <div class="seller-stat-card">
+
+                            <div class="stat-card-top">
+
+                                <span>
+                                    Today's Sales
+                                </span>
+
+                                <div class="stat-icon purple">
+                                    ₹
+                                </div>
+
+                            </div>
+
+                            <strong>
+                                ₹12,480
+                            </strong>
+
+                            <small class="stat-positive">
+                                ↑ 12.5% from yesterday
+                            </small>
+
+                        </div>
+
+
+                        <div class="seller-stat-card">
+
+                            <div class="stat-card-top">
+
+                                <span>
+                                    Total Orders
+                                </span>
+
+                                <div class="stat-icon blue">
+                                    ▤
+                                </div>
+
+                            </div>
+
+                            <strong>
+                                48
+                            </strong>
+
+                            <small class="stat-positive">
+                                ↑ 8 new orders today
+                            </small>
+
+                        </div>
+
+
+                        <div class="seller-stat-card">
+
+                            <div class="stat-card-top">
+
+                                <span>
+                                    Products
+                                </span>
+
+                                <div class="stat-icon green">
+                                    ▣
+                                </div>
+
+                            </div>
+
+                            <strong>
+                                126
+                            </strong>
+
+                            <small>
+                                9 low stock
+                            </small>
+
+                        </div>
+
+
+                        <div class="seller-stat-card">
+
+                            <div class="stat-card-top">
+
+                                <span>
+                                    Pending Orders
+                                </span>
+
+                                <div class="stat-icon orange">
+                                    ◷
+                                </div>
+
+                            </div>
+
+                            <strong>
+                                12
+                            </strong>
+
+                            <small>
+                                Need your attention
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Main Dashboard Grid -->
+
+                    <div class="dashboard-grid">
+
+
+                        <!-- Sales Overview -->
+
+                        <div class="seller-panel sales-panel">
+
+                            <div class="panel-header">
+
+                                <div>
+
+                                    <span class="panel-eyebrow">
+                                        PERFORMANCE
+                                    </span>
+
+                                    <h3>
+                                        Sales Overview
+                                    </h3>
+
+                                </div>
+
+
+                                <select
+                                    id="salesPeriod"
+                                    class="panel-select"
+                                >
+                                    <option>Last 7 days</option>
+                                    <option>Last 30 days</option>
+                                    <option>Last 3 months</option>
+                                </select>
+
+                            </div>
+
+
+                            <!-- Chart Placeholder -->
+
+                            <div class="sales-chart">
+
+                                <div class="chart-y-axis">
+
+                                    <span>₹20k</span>
+                                    <span>₹15k</span>
+                                    <span>₹10k</span>
+                                    <span>₹5k</span>
+                                    <span>₹0</span>
+
+                                </div>
+
+
+                                <div class="chart-area">
+
+                                    <div class="chart-grid-line"></div>
+                                    <div class="chart-grid-line"></div>
+                                    <div class="chart-grid-line"></div>
+                                    <div class="chart-grid-line"></div>
+
+
+                                    <div class="chart-bars">
+
+                                        <div class="chart-bar" style="height: 45%;">
+                                            <span>Mon</span>
+                                        </div>
+
+                                        <div class="chart-bar" style="height: 62%;">
+                                            <span>Tue</span>
+                                        </div>
+
+                                        <div class="chart-bar" style="height: 51%;">
+                                            <span>Wed</span>
+                                        </div>
+
+                                        <div class="chart-bar" style="height: 78%;">
+                                            <span>Thu</span>
+                                        </div>
+
+                                        <div class="chart-bar" style="height: 66%;">
+                                            <span>Fri</span>
+                                        </div>
+
+                                        <div class="chart-bar" style="height: 88%;">
+                                            <span>Sat</span>
+                                        </div>
+
+                                        <div class="chart-bar" style="height: 72%;">
+                                            <span>Sun</span>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- Store Performance -->
+
+                        <div class="seller-panel performance-panel">
+
+                            <div class="panel-header">
+
+                                <div>
+
+                                    <span class="panel-eyebrow">
+                                        STORE
+                                    </span>
+
+                                    <h3>
+                                        Store Performance
+                                    </h3>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="performance-list">
+
+                                <div class="performance-item">
+
+                                    <div>
+
+                                        <span>
+                                            Product Views
+                                        </span>
+
+                                        <strong>
+                                            8,421
+                                        </strong>
+
+                                    </div>
+
+                                    <span class="performance-change">
+                                        +18%
+                                    </span>
+
+                                </div>
+
+
+                                <div class="performance-item">
+
+                                    <div>
+
+                                        <span>
+                                            Add to Cart
+                                        </span>
+
+                                        <strong>
+                                            1,284
+                                        </strong>
+
+                                    </div>
+
+                                    <span class="performance-change">
+                                        +11%
+                                    </span>
+
+                                </div>
+
+
+                                <div class="performance-item">
+
+                                    <div>
+
+                                        <span>
+                                            Orders
+                                        </span>
+
+                                        <strong>
+                                            348
+                                        </strong>
+
+                                    </div>
+
+                                    <span class="performance-change">
+                                        +9%
+                                    </span>
+
+                                </div>
+
+
+                                <div class="performance-item">
+
+                                    <div>
+
+                                        <span>
+                                            Conversion Rate
+                                        </span>
+
+                                        <strong>
+                                            4.13%
+                                        </strong>
+
+                                    </div>
+
+                                    <span class="performance-change">
+                                        +0.8%
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Bottom Dashboard Grid -->
+
+                    <div class="dashboard-bottom-grid">
+
+
+                        <!-- Recent Orders -->
+
+                        <div class="seller-panel orders-panel">
+
+                            <div class="panel-header">
+
+                                <div>
+
+                                    <span class="panel-eyebrow">
+                                        ORDERS
+                                    </span>
+
+                                    <h3>
+                                        Recent Orders
+                                    </h3>
+
+                                </div>
+
+
+                                <button
+                                    class="panel-link"
+                                    data-open-section="orders"
+                                    type="button"
+                                >
+                                    View all →
+                                </button>
+
+                            </div>
+
+
+                            <div class="orders-table-wrapper">
+
+                                <table class="orders-table">
+
+                                    <thead>
+
+                                        <tr>
+
+                                            <th>
+                                                Order
+                                            </th>
+
+                                            <th>
+                                                Product
+                                            </th>
+
+                                            <th>
+                                                Amount
+                                            </th>
+
+                                            <th>
+                                                Status
+                                            </th>
+
+                                        </tr>
+
+                                    </thead>
+
+
+                                    <tbody>
+
+                                        <tr>
+
+                                            <td>
+                                                #MT10241
+                                            </td>
+
+                                            <td>
+                                                Premium Oversized T-Shirt
+                                            </td>
+
+                                            <td>
+                                                ₹799
+                                            </td>
+
+                                            <td>
+                                                <span class="status pending">
+                                                    Pending
+                                                </span>
+                                            </td>
+
+                                        </tr>
+
+
+                                        <tr>
+
+                                            <td>
+                                                #MT10240
+                                            </td>
+
+                                            <td>
+                                                Wireless Headphones
+                                            </td>
+
+                                            <td>
+                                                ₹1,999
+                                            </td>
+
+                                            <td>
+                                                <span class="status confirmed">
+                                                    Confirmed
+                                                </span>
+                                            </td>
+
+                                        </tr>
+
+
+                                        <tr>
+
+                                            <td>
+                                                #MT10239
+                                            </td>
+
+                                            <td>
+                                                Minimal Smart Watch
+                                            </td>
+
+                                            <td>
+                                                ₹2,499
+                                            </td>
+
+                                            <td>
+                                                <span class="status shipped">
+                                                    Shipped
+                                                </span>
+                                            </td>
+
+                                        </tr>
+
+
+                                        <tr>
+
+                                            <td>
+                                                #MT10238
+                                            </td>
+
+                                            <td>
+                                                Modern Desk Lamp
+                                            </td>
+
+                                            <td>
+                                                ₹899
+                                            </td>
+
+                                            <td>
+                                                <span class="status delivered">
+                                                    Delivered
+                                                </span>
+                                            </td>
+
+                                        </tr>
+
+                                    </tbody>
+
+                                </table>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- Low Stock -->
+
+                        <div class="seller-panel low-stock-panel">
+
+                            <div class="panel-header">
+
+                                <div>
+
+                                    <span class="panel-eyebrow">
+                                        INVENTORY
+                                    </span>
+
+                                    <h3>
+                                        Low Stock
+                                    </h3>
+
+                                </div>
+
+
+                                <button
+                                    class="panel-link"
+                                    data-open-section="inventory"
+                                    type="button"
+                                >
+                                    Manage →
+                                </button>
+
+                            </div>
+
+
+                            <div class="low-stock-list">
+
+
+                                <div class="stock-item">
+
+                                    <div class="stock-product-image">
+                                        T
+                                    </div>
+
+                                    <div class="stock-product-info">
+
+                                        <strong>
+                                            Premium Oversized T-Shirt
+                                        </strong>
+
+                                        <span>
+                                            Black / XL
+                                        </span>
+
+                                    </div>
+
+                                    <b>
+                                        4 left
+                                    </b>
+
+                                </div>
+
+
+                                <div class="stock-item">
+
+                                    <div class="stock-product-image">
+                                        H
+                                    </div>
+
+                                    <div class="stock-product-info">
+
+                                        <strong>
+                                            Wireless Headphones
+                                        </strong>
+
+                                        <span>
+                                            Black
+                                        </span>
+
+                                    </div>
+
+                                    <b>
+                                        3 left
+                                    </b>
+
+                                </div>
+
+
+                                <div class="stock-item">
+
+                                    <div class="stock-product-image">
+                                        W
+                                    </div>
+
+                                    <div class="stock-product-info">
+
+                                        <strong>
+                                            Minimal Smart Watch
+                                        </strong>
+
+                                        <span>
+                                            Midnight
+                                        </span>
+
+                                    </div>
+
+                                    <b>
+                                        2 left
+                                    </b>
+
+                                </div>
+
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- =================================================
+                     OTHER SECTIONS
+                     These will be developed step-by-step
+                ================================================== -->
+
+                <section
+                    class="seller-section"
+                    id="productsSection"
+                    data-page-section="products"
+                >
+
+                    <div class="section-page-heading">
+
+                        <span class="section-eyebrow">
+                            CATALOG
+                        </span>
+
+                        <h2>
+                            Products
+                        </h2>
+
+                        <p>
+                            Manage the products you sell on MARTEY.
+                        </p>
+
+                    </div>
+
+                    <div class="coming-soon-panel">
+
+                        <span>▣</span>
+
+                        <h3>
+                            Product Management
+                        </h3>
+
+                        <p>
+                            Add, edit and manage your products here.
+                        </p>
+
+                        <button
+                            class="primary-seller-btn"
+                            id="productsAddButton"
+                            type="button"
+                        >
+                            + Add Product
+                        </button>
+
+                    </div>
+
+                </section>
+
+
+                <section
+                    class="seller-section"
+                    id="ordersSection"
+                    data-page-section="orders"
+                >
+
+                    <div class="section-page-heading">
+
+                        <span class="section-eyebrow">
+                            SALES
+                        </span>
+
+                        <h2>
+                            Orders
+                        </h2>
+
+                        <p>
+                            Manage customer orders and order status.
+                        </p>
+
+                    </div>
+
+                    <div class="coming-soon-panel">
+
+                        <span>▤</span>
+
+                        <h3>
+                            Seller Orders
+                        </h3>
+
+                        <p>
+                            Your customer orders will appear here.
+                        </p>
+
+                    </div>
+
+                </section>
+
+
+                <section
+                    class="seller-section"
+                    id="inventorySection"
+                    data-page-section="inventory"
+                >
+
+                    <div class="section-page-heading">
+
+                        <span class="section-eyebrow">
+                            STOCK
+                        </span>
+
+                        <h2>
+                            Inventory
+                        </h2>
+
+                        <p>
+                            Keep track of your product stock.
+                        </p>
+
+                    </div>
+
+                    <div class="coming-soon-panel">
+
+                        <span>▥</span>
+
+                        <h3>
+                            Inventory Management
+                        </h3>
+
+                        <p>
+                            Stock management will be built here.
+                        </p>
+
+                    </div>
+
+                </section>
+
+
+                <section
+                    class="seller-section"
+                    id="earningsSection"
+                    data-page-section="earnings"
+                >
+
+                    <div class="section-page-heading">
+
+                        <span class="section-eyebrow">
+                            MONEY
+                        </span>
+
+                        <h2>
+                            Earnings
+                        </h2>
+
+                        <p>
+                            Track your sales, commission and payouts.
+                        </p>
+
+                    </div>
+
+                    <div class="coming-soon-panel">
+
+                        <span>₹</span>
+
+                        <h3>
+                            Earnings & Payouts
+                        </h3>
+
+                        <p>
+                            Your earnings system will be connected later.
+                        </p>
+
+                    </div>
+
+                </section>
+
+
+                <section
+                    class="seller-section"
+                    id="analyticsSection"
+                    data-page-section="analytics"
+                >
+
+                    <div class="section-page-heading">
+
+                        <span class="section-eyebrow">
+                            INSIGHTS
+                        </span>
+
+                        <h2>
+                            Analytics
+                        </h2>
+
+                        <p>
+                            Understand how your store is performing.
+                        </p>
+
+                    </div>
+
+                    <div class="coming-soon-panel">
+
+                        <span>⌁</span>
+
+                        <h3>
+                            Store Analytics
+                        </h3>
+
+                        <p>
+                            Detailed analytics will be added here.
+                        </p>
+
+                    </div>
+
+                </section>
+
+
+                <section
+                    class="seller-section"
+                    id="promotionsSection"
+                    data-page-section="promotions"
+                >
+
+                    <div class="section-page-heading">
+
+                        <span class="section-eyebrow">
+                            GROW
+                        </span>
+
+                        <h2>
+                            Promotions
+                        </h2>
+
+                        <p>
+                            Create offers and promote your products.
+                        </p>
+
+                    </div>
+
+                    <div class="coming-soon-panel">
+
+                        <span>%</span>
+
+                        <h3>
+                            Promotions
+                        </h3>
+
+                        <p>
+                            Discounts and promoted listings will be added here.
+                        </p>
+
+                    </div>
+
+                </section>
+
+
+                <section
+                    class="seller-section"
+                    id="reviewsSection"
+                    data-page-section="reviews"
+                >
+
+                    <div class="section-page-heading">
+
+                        <span class="section-eyebrow">
+                            CUSTOMERS
+                        </span>
+
+                        <h2>
+                            Reviews
+                        </h2>
+
+                        <p>
+                            See what customers think about your products.
+                        </p>
+
+                    </div>
+
+                    <div class="coming-soon-panel">
+
+                        <span>☆</span>
+
+                        <h3>
+                            Customer Reviews
+                        </h3>
+
+                        <p>
+                            Product reviews and customer images will appear here.
+                        </p>
+
+                    </div>
+
+                </section>
+
+
+                <section
+                    class="seller-section"
+                    id="storeSection"
+                    data-page-section="store"
+                >
+
+                    <div class="section-page-heading">
+
+                        <span class="section-eyebrow">
+                            YOUR BUSINESS
+                        </span>
+
+                        <h2>
+                            My Store
+                        </h2>
+
+                        <p>
+                            Manage how your store appears on MARTEY.
+                        </p>
+
+                    </div>
+
+                    <div class="coming-soon-panel">
+
+                        <span>⌂</span>
+
+                        <h3>
+                            Store Settings
+                        </h3>
+
+                        <p>
+                            Your store profile and storefront will be built here.
+                        </p>
+
+                    </div>
+
+                </section>
+
+
+                <section
+                    class="seller-section"
+                    id="settingsSection"
+                    data-page-section="settings"
+                >
+
+                    <div class="section-page-heading">
+
+                        <span class="section-eyebrow">
+                            ACCOUNT
+                        </span>
+
+                        <h2>
+                            Settings
+                        </h2>
+
+                        <p>
+                            Manage your seller account settings.
+                        </p>
+
+                    </div>
+
+                    <div class="coming-soon-panel">
+
+                        <span>⚙</span>
+
+                        <h3>
+                            Seller Settings
+                        </h3>
+
+                        <p>
+                            Account and store settings will be added here.
+                        </p>
+
+                    </div>
+
+                </section>
+
+            </div>
+
+        </main>
+
+    </div>
+
+
+    <!-- Seller JavaScript -->
+    <script src="seller.js"></script>
+
+</body>
+</html>
