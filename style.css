@@ -2365,3 +2365,86 @@ input:focus-visible {
         gap: 30px 20px;
     }
 }
+/* =========================================================
+   MARTEY HEADER — FINAL POSITION FIX
+   ========================================================= */
+
+.site-header .header-inner {
+    width: 100%;
+    display: flex !important;
+    align-items: center;
+    gap: 24px;
+}
+
+/* Logo stays left */
+.site-header .header-brand {
+    flex: 0 0 auto;
+}
+
+/* Search takes the middle space */
+.site-header .header-search {
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+/* All icons stay on the RIGHT */
+.site-header .header-actions {
+    margin-left: auto !important;
+
+    flex: 0 0 auto;
+
+    display: flex !important;
+    align-items: center;
+    justify-content: flex-end;
+
+    gap: 14px;
+
+    position: relative;
+    z-index: 20;
+}
+
+/* Account stays inside right-side actions */
+.site-header .header-actions .header-account-btn {
+    position: relative;
+
+    width: 42px;
+    height: 42px;
+
+    flex: 0 0 42px;
+
+    margin: 0;
+    padding: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 0;
+    background: transparent;
+
+    cursor: pointer;
+}
+
+/* Account circle */
+.site-header .header-actions .account-avatar {
+    width: 40px;
+    height: 40px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #8B5CF6;
+    color: #fff;
+
+    overflow: hidden;
+
+    pointer-events: none;
+}
+
+.site-header .header-actions .account-avatar svg {
+    width: 21px;
+    height: 21px;
+}
