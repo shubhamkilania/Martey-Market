@@ -181,7 +181,7 @@ img {
     padding-left: 15px;
 
     background: var(--surface);
-    border: 1px solid var(--border);
+    border: 1px solid rgba(255,255,255,0.10);
 
     border-radius: 13px;
 
@@ -200,7 +200,7 @@ img {
     flex-shrink: 0;
 
     fill: none;
-    stroke: var(--muted);
+    stroke: rgba(255,255,255,0.55);
     stroke-width: 1.8;
 }
 
@@ -220,7 +220,7 @@ img {
 }
 
 .search-box input::placeholder {
-    color: var(--muted-2);
+    color: rgba(255,255,255,0.42);
 }
 
 .search-box button {
