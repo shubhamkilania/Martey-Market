@@ -91,123 +91,156 @@ img {
     background: rgba(139,92,246,0.35);
     color: white;
 }
-
-
 /* =========================================================
    HEADER
 ========================================================= */
 
 .site-header {
-    width: 100%;
-    position: relative;
+    position: sticky;
+    top: 0;
     z-index: 1000;
-    background: #08090D;
+
+    background: rgba(8,9,13,0.92);
+    border-bottom: 1px solid var(--border);
+
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
 }
 
-
-/* HEADER ROW */
-
 .header-inner {
-    width: min(1400px, calc(100% - 40px));
-    min-height: 76px;
-    margin: 0 auto;
+    width: min(calc(100% - 48px), var(--container));
+    min-height: 78px;
+    margin: auto;
 
     display: flex;
     align-items: center;
-
-    gap: 24px;
+    gap: 34px;
 }
 
 
-/* BRAND */
+/* =========================================================
+   BRAND
+========================================================= */
 
-.header-inner .brand {
-    flex: 0 0 auto;
-
+.brand {
     display: inline-flex;
     align-items: center;
     gap: 10px;
+    flex-shrink: 0;
+}
 
-    text-decoration: none;
+.brand-mark {
+    width: 36px;
+    height: 36px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 10px;
+
+    background: linear-gradient(
+        135deg,
+        #8b5cf6,
+        #6d42dc
+    );
+
+    color: white;
+
+    font-family: "Manrope", sans-serif;
+    font-size: 17px;
+    font-weight: 800;
+
+    box-shadow:
+        0 8px 25px rgba(139,92,246,0.25);
+}
+
+.brand-name {
+    font-family: "Manrope", sans-serif;
+    font-size: 20px;
+    font-weight: 800;
+    letter-spacing: -0.7px;
 }
 
 
-/* SEARCH */
+/* =========================================================
+   SEARCH
+========================================================= */
 
 .header-search {
-    flex: 1 1 auto;
-    min-width: 0;
+    flex: 1;
+    max-width: 610px;
+    margin-left: auto;
 }
 
 .search-box {
-    width: 100%;
+    height: 46px;
 
     display: flex;
     align-items: center;
 
-    height: 46px;
+    padding-left: 15px;
 
-    border: 1px solid rgba(255,255,255,0.10);
-    border-radius: 12px;
+    background: var(--surface);
+    border: 1px solid var(--border);
 
-    background: rgba(255,255,255,0.05);
+    border-radius: 13px;
 
-    overflow: hidden;
+    transition: 0.2s ease;
+}
+
+.search-box:focus-within {
+    border-color: rgba(139,92,246,0.65);
+    box-shadow: 0 0 0 4px rgba(139,92,246,0.08);
 }
 
 .search-box svg {
-    width: 19px;
-    height: 19px;
+    width: 18px;
+    height: 18px;
 
-    margin-left: 15px;
+    flex-shrink: 0;
 
     fill: none;
-    stroke: rgba(255,255,255,0.55);
+    stroke: var(--muted);
     stroke-width: 1.8;
-
-    flex: 0 0 auto;
 }
 
 .search-box input {
-    flex: 1;
-
-    min-width: 0;
-
+    width: 100%;
     height: 100%;
 
+    padding: 0 13px;
+
     border: 0;
-    outline: none;
+    outline: 0;
 
     background: transparent;
+    color: var(--text);
 
-    color: #fff;
-
-    padding: 0 14px;
-
-    font-family: "DM Sans", sans-serif;
-    font-size: 14px;
+    font-size: 13px;
 }
 
 .search-box input::placeholder {
-    color: rgba(255,255,255,0.42);
+    color: var(--muted-2);
 }
 
 .search-box button {
     height: 36px;
-
     margin-right: 5px;
-    padding: 0 16px;
+    padding: 0 17px;
 
-    border: 0;
-    border-radius: 8px;
+    border-radius: 9px;
 
-    background: #8B5CF6;
-    color: #fff;
+    background: var(--primary);
+    color: white;
 
-    font-family: "DM Sans", sans-serif;
-    font-weight: 600;
+    font-size: 12px;
+    font-weight: 700;
 
-    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.search-box button:hover {
+    background: var(--primary-hover);
 }
 
 
