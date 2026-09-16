@@ -2,1737 +2,169 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>My Account — MARTEY</title>
 
-    <meta
-        name="description"
-        content="Manage your MARTEY account, orders, wishlist, addresses and settings."
-    >
-
-    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link
-        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap"
-        rel="stylesheet"
-    >
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
 
-    <style>
-
-        /* =====================================================
-           ROOT
-        ===================================================== */
-
-        :root {
-            --bg: #08090d;
-            --bg-soft: #0d0f15;
-            --surface: #11131a;
-            --surface-2: #171923;
-            --surface-3: #1c1f29;
-
-            --border: rgba(255,255,255,0.08);
-            --border-hover: rgba(255,255,255,0.15);
-
-            --text: #ffffff;
-            --text-soft: #b6bac7;
-            --text-muted: #7e8493;
-
-            --primary: #8b5cf6;
-            --primary-hover: #a78bfa;
-            --primary-soft: rgba(139,92,246,0.12);
-
-            --success: #22c55e;
-            --danger: #ef4444;
-
-            --radius: 16px;
-            --radius-sm: 11px;
-
-            --shadow:
-                0 20px 60px rgba(0,0,0,0.35);
-        }
-
-
-        /* =====================================================
-           RESET
-        ===================================================== */
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            min-height: 100vh;
-
-            background: var(--bg);
-            color: var(--text);
-
-            font-family: "DM Sans", sans-serif;
-
-            line-height: 1.5;
-        }
-
-        button,
-        input,
-        select {
-            font: inherit;
-        }
-
-        button {
-            cursor: pointer;
-        }
-
-        a {
-            color: inherit;
-            text-decoration: none;
-        }
-
-
-        /* =====================================================
-           HEADER
-        ===================================================== */
-
-        .site-header {
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-
-            background: rgba(8,9,13,0.88);
-
-            border-bottom: 1px solid var(--border);
-
-            backdrop-filter: blur(18px);
-            -webkit-backdrop-filter: blur(18px);
-        }
-
-        .header-inner {
-            width: min(1400px, calc(100% - 40px));
-
-            min-height: 76px;
-
-            margin: auto;
-
-            display: flex;
-            align-items: center;
-            gap: 28px;
-        }
-
-
-        /* =====================================================
-           LOGO
-        ===================================================== */
-
-        .logo {
-            flex-shrink: 0;
-
-            font-family: "Manrope", sans-serif;
-
-            font-size: 26px;
-            font-weight: 800;
-
-            letter-spacing: -1.2px;
-
-            color: #fff;
-        }
-
-        .logo span {
-            color: var(--primary);
-        }
-
-
-        /* =====================================================
-           SEARCH
-        ===================================================== */
-
-        .header-search {
-            flex: 1;
-
-            max-width: 650px;
-
-            margin-left: auto;
-            margin-right: auto;
-
-            position: relative;
-        }
-
-        .header-search input {
-            width: 100%;
-            height: 46px;
-
-            padding: 0 52px 0 18px;
-
-            border: 1px solid var(--border);
-            border-radius: 12px;
-
-            outline: none;
-
-            background: var(--surface);
-
-            color: var(--text);
-
-            transition: 0.2s ease;
-        }
-
-        .header-search input::placeholder {
-            color: var(--text-muted);
-        }
-
-        .header-search input:focus {
-            border-color: rgba(139,92,246,0.7);
-
-            box-shadow:
-                0 0 0 3px rgba(139,92,246,0.10);
-        }
-
-        .search-btn {
-            position: absolute;
-
-            right: 7px;
-            top: 7px;
-
-            width: 32px;
-            height: 32px;
-
-            display: grid;
-            place-items: center;
-
-            border: 0;
-            border-radius: 9px;
-
-            background: var(--primary);
-            color: #fff;
-        }
-
-        .search-btn svg {
-            width: 17px;
-            height: 17px;
-
-            fill: none;
-            stroke: currentColor;
-            stroke-width: 2;
-        }
-
-
-        /* =====================================================
-           HEADER ACTIONS
-        ===================================================== */
-
-        .header-actions {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .header-action {
-            position: relative;
-
-            width: 43px;
-            height: 43px;
-
-            display: grid;
-            place-items: center;
-
-            border: 1px solid transparent;
-            border-radius: 12px;
-
-            background: transparent;
-            color: var(--text-soft);
-
-            transition: 0.2s ease;
-        }
-
-        .header-action:hover {
-            background: var(--surface);
-            border-color: var(--border);
-            color: #fff;
-        }
-
-        .header-action svg {
-            width: 21px;
-            height: 21px;
-
-            fill: none;
-            stroke: currentColor;
-            stroke-width: 1.8;
-
-            stroke-linecap: round;
-            stroke-linejoin: round;
-        }
-
-        .cart-count {
-            position: absolute;
-
-            top: 2px;
-            right: 2px;
-
-            min-width: 18px;
-            height: 18px;
-
-            padding: 0 5px;
-
-            display: grid;
-            place-items: center;
-
-            border-radius: 50%;
-
-            background: var(--primary);
-            color: #fff;
-
-            font-size: 10px;
-            font-weight: 700;
-        }
-
-
-        /* =====================================================
-           ACCOUNT HEADER BUTTON
-        ===================================================== */
-
-        .header-account-btn {
-            min-height: 43px;
-
-            display: flex;
-            align-items: center;
-            gap: 9px;
-
-            padding: 5px 11px 5px 5px;
-
-            border: 1px solid var(--border);
-            border-radius: 12px;
-
-            background: var(--surface);
-
-            color: #fff;
-
-            transition: 0.2s ease;
-        }
-
-        .header-account-btn:hover {
-            border-color: var(--border-hover);
-            background: var(--surface-2);
-        }
-
-        .account-avatar {
-            width: 33px;
-            height: 33px;
-
-            flex-shrink: 0;
-
-            display: grid;
-            place-items: center;
-
-            border-radius: 50%;
-
-            background:
-                linear-gradient(
-                    135deg,
-                    var(--primary),
-                    #5b21b6
-                );
-
-            color: #fff;
-
-            font-size: 11px;
-            font-weight: 700;
-
-            overflow: hidden;
-        }
-
-        .account-avatar svg {
-            width: 18px;
-            height: 18px;
-
-            fill: none;
-            stroke: currentColor;
-            stroke-width: 1.8;
-        }
-
-        .account-avatar img {
-            width: 100%;
-            height: 100%;
-
-            object-fit: cover;
-        }
-
-        .account-label {
-            font-size: 13px;
-            font-weight: 600;
-        }
-
-
-        /* =====================================================
-           PAGE
-        ===================================================== */
-
-        .page {
-            width: min(1200px, calc(100% - 40px));
-
-            margin: auto;
-
-            padding: 35px 0 80px;
-        }
-
-
-        /* =====================================================
-           BREADCRUMB
-        ===================================================== */
-
-        .breadcrumb {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-
-            margin-bottom: 24px;
-
-            color: var(--text-muted);
-
-            font-size: 13px;
-        }
-
-        .breadcrumb a:hover {
-            color: #fff;
-        }
-
-        .breadcrumb-current {
-            color: var(--text-soft);
-        }
-
-
-        /* =====================================================
-           ACCOUNT HERO
-        ===================================================== */
-
-        .account-hero {
-            padding: 30px;
-
-            display: flex;
-            align-items: center;
-            gap: 20px;
-
-            border: 1px solid var(--border);
-            border-radius: 20px;
-
-            background:
-                radial-gradient(
-                    circle at 90% 10%,
-                    rgba(139,92,246,0.14),
-                    transparent 35%
-                ),
-                var(--surface);
-
-            box-shadow: var(--shadow);
-
-            margin-bottom: 25px;
-        }
-
-        .profile-avatar-large {
-            width: 76px;
-            height: 76px;
-
-            flex-shrink: 0;
-
-            display: grid;
-            place-items: center;
-
-            border-radius: 50%;
-
-            background:
-                linear-gradient(
-                    135deg,
-                    var(--primary),
-                    #5b21b6
-                );
-
-            font-family: "Manrope", sans-serif;
-
-            font-size: 23px;
-            font-weight: 800;
-
-            overflow: hidden;
-        }
-
-        .profile-avatar-large img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .account-hero-content {
-            flex: 1;
-        }
-
-        .account-hero-content h1 {
-            font-family: "Manrope", sans-serif;
-
-            font-size: clamp(25px, 4vw, 34px);
-
-            letter-spacing: -1px;
-
-            margin-bottom: 4px;
-        }
-
-        .account-hero-content p {
-            color: var(--text-muted);
-
-            font-size: 14px;
-        }
-
-        .edit-profile-btn {
-            padding: 11px 17px;
-
-            border: 1px solid var(--border-hover);
-            border-radius: 10px;
-
-            background: var(--surface-2);
-
-            color: #fff;
-
-            font-weight: 600;
-
-            transition: 0.2s ease;
-        }
-
-        .edit-profile-btn:hover {
-            border-color: var(--primary);
-            color: var(--primary-hover);
-        }
-
-
-        /* =====================================================
-           ACCOUNT LAYOUT
-        ===================================================== */
-
-        .account-layout {
-            display: grid;
-
-            grid-template-columns: 240px 1fr;
-
-            gap: 24px;
-
-            align-items: start;
-        }
-
-
-        /* =====================================================
-           SIDEBAR
-        ===================================================== */
-
-        .account-sidebar {
-            position: sticky;
-            top: 100px;
-
-            padding: 10px;
-
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-
-            background: var(--surface);
-        }
-
-        .sidebar-item {
-            width: 100%;
-
-            min-height: 45px;
-
-            display: flex;
-            align-items: center;
-            gap: 12px;
-
-            padding: 0 13px;
-
-            margin-bottom: 4px;
-
-            border: 0;
-            border-radius: 10px;
-
-            background: transparent;
-
-            color: var(--text-soft);
-
-            text-align: left;
-
-            transition: 0.2s ease;
-        }
-
-        .sidebar-item:last-child {
-            margin-bottom: 0;
-        }
-
-        .sidebar-item:hover {
-            background: var(--surface-2);
-            color: #fff;
-        }
-
-        .sidebar-item.active {
-            background: var(--primary-soft);
-            color: var(--primary-hover);
-        }
-
-        .sidebar-item svg {
-            width: 18px;
-            height: 18px;
-
-            flex-shrink: 0;
-
-            fill: none;
-            stroke: currentColor;
-            stroke-width: 1.8;
-
-            stroke-linecap: round;
-            stroke-linejoin: round;
-        }
-
-        .sidebar-divider {
-            height: 1px;
-
-            margin: 9px 4px;
-
-            background: var(--border);
-        }
-
-        .logout-item {
-            color: #f87171;
-        }
-
-        .logout-item:hover {
-            color: #fca5a5;
-            background: rgba(239,68,68,0.08);
-        }
-
-
-        /* =====================================================
-           MAIN CONTENT
-        ===================================================== */
-
-        .account-main {
-            min-width: 0;
-        }
-
-        .section-card {
-            padding: 24px;
-
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-
-            background: var(--surface);
-
-            margin-bottom: 20px;
-        }
-
-        .section-card:last-child {
-            margin-bottom: 0;
-        }
-
-        .section-title {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-
-            gap: 15px;
-
-            margin-bottom: 20px;
-        }
-
-        .section-title h2 {
-            font-family: "Manrope", sans-serif;
-
-            font-size: 19px;
-
-            letter-spacing: -0.4px;
-        }
-
-        .section-title p {
-            color: var(--text-muted);
-            font-size: 13px;
-        }
-
-        .section-link {
-            color: var(--primary-hover);
-
-            font-size: 13px;
-            font-weight: 600;
-        }
-
-        .section-link:hover {
-            text-decoration: underline;
-        }
-
-
-        /* =====================================================
-           STATS
-        ===================================================== */
-
-        .stats-grid {
-            display: grid;
-
-            grid-template-columns:
-                repeat(3, 1fr);
-
-            gap: 14px;
-
-            margin-bottom: 20px;
-        }
-
-        .stat-card {
-            padding: 20px;
-
-            border: 1px solid var(--border);
-            border-radius: 14px;
-
-            background: var(--surface);
-        }
-
-        .stat-icon {
-            width: 38px;
-            height: 38px;
-
-            display: grid;
-            place-items: center;
-
-            margin-bottom: 13px;
-
-            border-radius: 10px;
-
-            background: var(--primary-soft);
-
-            color: var(--primary-hover);
-        }
-
-        .stat-icon svg {
-            width: 19px;
-            height: 19px;
-
-            fill: none;
-            stroke: currentColor;
-            stroke-width: 1.8;
-        }
-
-        .stat-value {
-            display: block;
-
-            margin-bottom: 2px;
-
-            font-family: "Manrope", sans-serif;
-
-            font-size: 23px;
-            font-weight: 800;
-        }
-
-        .stat-label {
-            color: var(--text-muted);
-
-            font-size: 12px;
-        }
-
-
-        /* =====================================================
-           PROFILE INFO
-        ===================================================== */
-
-        .profile-grid {
-            display: grid;
-
-            grid-template-columns:
-                repeat(2, 1fr);
-
-            gap: 14px;
-        }
-
-        .info-box {
-            padding: 16px;
-
-            border: 1px solid var(--border);
-            border-radius: 12px;
-
-            background: var(--bg-soft);
-        }
-
-        .info-label {
-            display: block;
-
-            margin-bottom: 5px;
-
-            color: var(--text-muted);
-
-            font-size: 12px;
-        }
-
-        .info-value {
-            color: #fff;
-
-            font-size: 14px;
-            font-weight: 600;
-
-            word-break: break-word;
-        }
-
-
-        /* =====================================================
-           EMPTY STATE
-        ===================================================== */
-
-        .empty-state {
-            padding: 42px 20px;
-
-            text-align: center;
-
-            border: 1px dashed var(--border-hover);
-            border-radius: 14px;
-
-            background: var(--bg-soft);
-        }
-
-        .empty-icon {
-            width: 55px;
-            height: 55px;
-
-            margin: 0 auto 14px;
-
-            display: grid;
-            place-items: center;
-
-            border-radius: 15px;
-
-            background: var(--primary-soft);
-
-            color: var(--primary-hover);
-        }
-
-        .empty-icon svg {
-            width: 25px;
-            height: 25px;
-
-            fill: none;
-            stroke: currentColor;
-            stroke-width: 1.6;
-
-            stroke-linecap: round;
-            stroke-linejoin: round;
-        }
-
-        .empty-state h3 {
-            margin-bottom: 5px;
-
-            font-family: "Manrope", sans-serif;
-
-            font-size: 16px;
-        }
-
-        .empty-state p {
-            max-width: 430px;
-
-            margin: auto auto 18px;
-
-            color: var(--text-muted);
-
-            font-size: 13px;
-        }
-
-        .primary-btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-
-            min-height: 42px;
-
-            padding: 0 17px;
-
-            border: 0;
-            border-radius: 10px;
-
-            background: var(--primary);
-
-            color: #fff;
-
-            font-size: 13px;
-            font-weight: 700;
-
-            transition: 0.2s ease;
-        }
-
-        .primary-btn:hover {
-            background: var(--primary-hover);
-            color: #08090d;
-
-            transform: translateY(-1px);
-        }
-
-
-        /* =====================================================
-           ORDERS
-        ===================================================== */
-
-        .order-list {
-            display: grid;
-            gap: 10px;
-        }
-
-        .order-row {
-            display: grid;
-
-            grid-template-columns:
-                1fr auto auto;
-
-            gap: 20px;
-
-            align-items: center;
-
-            padding: 16px;
-
-            border: 1px solid var(--border);
-            border-radius: 12px;
-
-            background: var(--bg-soft);
-        }
-
-        .order-product {
-            display: flex;
-            align-items: center;
-            gap: 13px;
-        }
-
-        .order-image {
-            width: 54px;
-            height: 54px;
-
-            flex-shrink: 0;
-
-            border-radius: 10px;
-
-            background: var(--surface-3);
-
-            overflow: hidden;
-        }
-
-        .order-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .order-name {
-            font-size: 13px;
-            font-weight: 700;
-        }
-
-        .order-id {
-            margin-top: 3px;
-
-            color: var(--text-muted);
-
-            font-size: 11px;
-        }
-
-        .order-price {
-            font-weight: 700;
-            font-size: 13px;
-        }
-
-        .order-status {
-            padding: 6px 9px;
-
-            border-radius: 999px;
-
-            background: rgba(34,197,94,0.10);
-
-            color: #4ade80;
-
-            font-size: 11px;
-            font-weight: 700;
-        }
-
-
-        /* =====================================================
-           ADDRESS / PAYMENT CARDS
-        ===================================================== */
-
-        .mini-grid {
-            display: grid;
-
-            grid-template-columns:
-                repeat(2, 1fr);
-
-            gap: 14px;
-        }
-
-        .mini-card {
-            min-height: 130px;
-
-            padding: 18px;
-
-            border: 1px solid var(--border);
-            border-radius: 13px;
-
-            background: var(--bg-soft);
-        }
-
-        .mini-card-icon {
-            width: 35px;
-            height: 35px;
-
-            display: grid;
-            place-items: center;
-
-            margin-bottom: 12px;
-
-            border-radius: 9px;
-
-            background: var(--surface-3);
-
-            color: var(--primary-hover);
-        }
-
-        .mini-card-icon svg {
-            width: 18px;
-            height: 18px;
-
-            fill: none;
-            stroke: currentColor;
-            stroke-width: 1.7;
-
-            stroke-linecap: round;
-            stroke-linejoin: round;
-        }
-
-        .mini-card h3 {
-            margin-bottom: 3px;
-
-            font-size: 14px;
-        }
-
-        .mini-card p {
-            color: var(--text-muted);
-
-            font-size: 12px;
-        }
-
-
-        /* =====================================================
-           SETTINGS
-        ===================================================== */
-
-        .settings-list {
-            display: grid;
-            gap: 3px;
-        }
-
-        .setting-row {
-            min-height: 64px;
-
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-
-            gap: 20px;
-
-            padding: 10px 0;
-
-            border-bottom: 1px solid var(--border);
-        }
-
-        .setting-row:last-child {
-            border-bottom: 0;
-        }
-
-        .setting-info h3 {
-            margin-bottom: 3px;
-
-            font-size: 14px;
-        }
-
-        .setting-info p {
-            color: var(--text-muted);
-
-            font-size: 12px;
-        }
-
-        .toggle {
-            position: relative;
-
-            width: 44px;
-            height: 24px;
-
-            flex-shrink: 0;
-        }
-
-        .toggle input {
-            opacity: 0;
-
-            width: 0;
-            height: 0;
-        }
-
-        .toggle-slider {
-            position: absolute;
-
-            inset: 0;
-
-            border-radius: 999px;
-
-            background: var(--surface-3);
-
-            border: 1px solid var(--border-hover);
-
-            transition: 0.2s ease;
-        }
-
-        .toggle-slider::before {
-            content: "";
-
-            position: absolute;
-
-            width: 18px;
-            height: 18px;
-
-            left: 2px;
-            top: 2px;
-
-            border-radius: 50%;
-
-            background: #fff;
-
-            transition: 0.2s ease;
-        }
-
-        .toggle input:checked + .toggle-slider {
-            background: var(--primary);
-            border-color: var(--primary);
-        }
-
-        .toggle input:checked + .toggle-slider::before {
-            transform: translateX(20px);
-        }
-
-
-        /* =====================================================
-           FOOTER
-        ===================================================== */
-
-        .site-footer {
-            border-top: 1px solid var(--border);
-
-            background: #06070a;
-        }
-
-        .footer-inner {
-            width: min(1200px, calc(100% - 40px));
-
-            margin: auto;
-
-            padding: 30px 0;
-
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-
-            gap: 20px;
-        }
-
-        .footer-brand {
-            font-family: "Manrope", sans-serif;
-
-            font-size: 18px;
-            font-weight: 800;
-        }
-
-        .footer-brand span {
-            color: var(--primary);
-        }
-
-        .footer-copy {
-            color: var(--text-muted);
-
-            font-size: 12px;
-        }
-
-        .footer-links {
-            display: flex;
-            gap: 18px;
-
-            color: var(--text-muted);
-
-            font-size: 12px;
-        }
-
-        .footer-links a:hover {
-            color: #fff;
-        }
-
-
-        /* =====================================================
-           MOBILE
-        ===================================================== */
-
-        @media (max-width: 950px) {
-
-            .header-inner {
-                gap: 14px;
-            }
-
-            .header-search {
-                max-width: none;
-            }
-
-            .account-label {
-                display: none;
-            }
-
-            .header-account-btn {
-                padding-right: 5px;
-            }
-
-            .account-layout {
-                grid-template-columns: 1fr;
-            }
-
-            .account-sidebar {
-                position: static;
-
-                display: flex;
-
-                overflow-x: auto;
-
-                padding: 7px;
-
-                gap: 5px;
-            }
-
-            .sidebar-item {
-                width: auto;
-
-                flex-shrink: 0;
-
-                padding: 0 14px;
-
-                white-space: nowrap;
-            }
-
-            .sidebar-divider {
-                width: 1px;
-                height: 30px;
-
-                margin: 7px 3px;
-            }
-
-        }
-
-
-        @media (max-width: 700px) {
-
-            .header-inner {
-                min-height: 68px;
-
-                width: min(
-                    100% - 24px,
-                    600px
-                );
-
-                flex-wrap: wrap;
-
-                padding: 10px 0;
-            }
-
-            .logo {
-                font-size: 23px;
-            }
-
-            .header-search {
-                order: 3;
-
-                flex-basis: 100%;
-
-                margin: 0;
-            }
-
-            .page {
-                width: min(
-                    100% - 24px,
-                    600px
-                );
-
-                padding-top: 25px;
-            }
-
-            .account-hero {
-                padding: 22px;
-
-                align-items: flex-start;
-
-                flex-wrap: wrap;
-            }
-
-            .edit-profile-btn {
-                width: 100%;
-            }
-
-            .stats-grid {
-                grid-template-columns:
-                    repeat(3, 1fr);
-
-                gap: 8px;
-            }
-
-            .stat-card {
-                padding: 13px;
-            }
-
-            .stat-icon {
-                width: 32px;
-                height: 32px;
-            }
-
-            .stat-value {
-                font-size: 18px;
-            }
-
-            .stat-label {
-                font-size: 10px;
-            }
-
-            .profile-grid,
-            .mini-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .order-row {
-                grid-template-columns: 1fr auto;
-            }
-
-            .order-price {
-                grid-column: 1;
-            }
-
-            .order-status {
-                grid-column: 2;
-                grid-row: 1;
-            }
-
-            .footer-inner {
-                flex-direction: column;
-
-                align-items: flex-start;
-            }
-
-            .footer-links {
-                flex-wrap: wrap;
-            }
-
-        }
-
-
-        @media (max-width: 480px) {
-
-            .header-actions {
-                gap: 2px;
-            }
-
-            .header-action {
-                width: 38px;
-                height: 38px;
-            }
-
-            .header-account-btn {
-                min-height: 38px;
-            }
-
-            .account-avatar {
-                width: 29px;
-                height: 29px;
-            }
-
-            .account-hero {
-                gap: 14px;
-            }
-
-            .profile-avatar-large {
-                width: 62px;
-                height: 62px;
-
-                font-size: 19px;
-            }
-
-            .section-card {
-                padding: 18px;
-            }
-
-            .stats-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .stat-card {
-                display: flex;
-                align-items: center;
-                gap: 12px;
-            }
-
-            .stat-icon {
-                margin: 0;
-            }
-
-        }
-
-    </style>
+    <link rel="stylesheet" href="account.css">
 </head>
-
 
 <body>
 
+    <!-- ================= HEADER ================= -->
 
-    <!-- =====================================================
-         HEADER
-    ====================================================== -->
+    <header class="account-header">
 
-    <header class="site-header">
+        <a href="index.html" class="account-logo">
+            <span>MARTEY</span><b>.</b>
+        </a>
 
-        <div class="header-inner">
+        <div class="account-header-actions">
 
-
-            <!-- LOGO -->
-
-            <a
-                href="index.html"
-                class="logo"
-                aria-label="MARTEY Home"
-            >
-                MARTE<span>Y</span>
+            <a href="index.html" class="shop-button">
+                Shop MARTEY
             </a>
 
+            <a href="cart.html" class="header-icon-button" aria-label="Cart">
 
-            <!-- SEARCH -->
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M3 4h2l2.1 10.2a2 2 0 0 0 2 1.6h7.8a2 2 0 0 0 1.9-1.4L21 7H6"/>
+                    <circle cx="10" cy="20" r="1.3"/>
+                    <circle cx="18" cy="20" r="1.3"/>
+                </svg>
 
-            <form
-                class="header-search"
-                id="accountSearchForm"
-            >
+                <span class="cart-count" id="accountCartCount">0</span>
 
-                <input
-                    type="search"
-                    id="accountSearchInput"
-                    placeholder="Search products, categories..."
-                    autocomplete="off"
-                >
-
-                <button
-                    type="submit"
-                    class="search-btn"
-                    aria-label="Search"
-                >
-
-                    <svg viewBox="0 0 24 24">
-                        <circle
-                            cx="11"
-                            cy="11"
-                            r="6.5"
-                        ></circle>
-
-                        <path
-                            d="m16 16 5 5"
-                        ></path>
-                    </svg>
-
-                </button>
-
-            </form>
-
-
-            <!-- ACTIONS -->
-
-            <div class="header-actions">
-
-
-                <!-- Wishlist -->
-
-                <button
-                    class="header-action"
-                    id="wishlistButton"
-                    type="button"
-                    aria-label="Wishlist"
-                    title="Wishlist"
-                >
-
-                    <svg viewBox="0 0 24 24">
-
-                        <path
-                            d="M20.8 8.6c0 5.2-8.8 10.2-8.8 10.2S3.2 13.8 3.2 8.6A4.6 4.6 0 0 1 12 6.2a4.6 4.6 0 0 1 8.8 2.4Z"
-                        ></path>
-
-                    </svg>
-
-                </button>
-
-
-                <!-- Cart -->
-
-                <button
-                    class="header-action"
-                    id="cartButton"
-                    type="button"
-                    aria-label="Cart"
-                    title="Cart"
-                >
-
-                    <svg viewBox="0 0 24 24">
-
-                        <path
-                            d="M3 4h2l2.2 11.2a2 2 0 0 0 2 1.6h7.9a2 2 0 0 0 1.9-1.5L21 8H6"
-                        ></path>
-
-                        <circle
-                            cx="9"
-                            cy="20"
-                            r="1"
-                        ></circle>
-
-                        <circle
-                            cx="18"
-                            cy="20"
-                            r="1"
-                        ></circle>
-
-                    </svg>
-
-                    <span
-                        class="cart-count"
-                        id="cartCount"
-                    >0</span>
-
-                </button>
-
-
-                <!-- Account -->
-
-                <button
-                    class="header-account-btn"
-                    id="accountButton"
-                    type="button"
-                >
-
-                    <span
-                        class="account-avatar"
-                        id="accountAvatar"
-                    >
-
-                        <svg viewBox="0 0 24 24">
-
-                            <circle
-                                cx="12"
-                                cy="8"
-                                r="3.5"
-                            ></circle>
-
-                            <path
-                                d="M5 20c.8-4 3.1-6 7-6s6.2 2 7 6"
-                            ></path>
-
-                        </svg>
-
-                    </span>
-
-                    <span class="account-label">
-                        Account
-                    </span>
-
-                </button>
-
-            </div>
+            </a>
 
         </div>
 
     </header>
 
 
+    <!-- ================= MAIN ================= -->
 
-    <!-- =====================================================
-         MAIN
-    ====================================================== -->
+    <main class="account-page">
 
-    <main class="page">
+        <section class="account-heading">
 
+            <div>
+                <p class="account-eyebrow">ACCOUNT</p>
 
-        <!-- BREADCRUMB -->
+                <h1>My Account</h1>
 
-        <nav class="breadcrumb">
-
-            <a href="index.html">
-                Home
-            </a>
-
-            <span>›</span>
-
-            <span class="breadcrumb-current">
-                My Account
-            </span>
-
-        </nav>
-
-
-
-        <!-- ACCOUNT HERO -->
-
-        <section class="account-hero">
-
-
-            <div
-                class="profile-avatar-large"
-                id="accountProfileAvatar"
-            >
-                M
-            </div>
-
-
-            <div class="account-hero-content">
-
-                <h1>
-                    Welcome back,
-                    <span id="accountName">
-                        MARTEY User
-                    </span>
-                </h1>
-
-                <p id="accountEmail">
-                    Manage your MARTEY account
-                    and orders.
+                <p class="account-subtitle">
+                    Manage your MARTEY account and shopping activity.
                 </p>
-
             </div>
-
-
-            <button
-                class="edit-profile-btn"
-                id="editProfileButton"
-                type="button"
-            >
-                Edit Profile
-            </button>
 
         </section>
 
 
+        <section class="account-layout">
 
-        <!-- ACCOUNT LAYOUT -->
-
-        <div class="account-layout">
-
-
-            <!-- =================================================
-                 SIDEBAR
-            ================================================== -->
+            <!-- ================= SIDEBAR ================= -->
 
             <aside class="account-sidebar">
 
-
-                <button
-                    class="sidebar-item active"
-                    data-section="overview"
-                    type="button"
-                >
+                <button class="account-nav-item active" data-section="profile">
 
                     <svg viewBox="0 0 24 24">
-                        <rect
-                            x="3"
-                            y="3"
-                            width="7"
-                            height="7"
-                            rx="1"
-                        ></rect>
-
-                        <rect
-                            x="14"
-                            y="3"
-                            width="7"
-                            height="7"
-                            rx="1"
-                        ></rect>
-
-                        <rect
-                            x="3"
-                            y="14"
-                            width="7"
-                            height="7"
-                            rx="1"
-                        ></rect>
-
-                        <rect
-                            x="14"
-                            y="14"
-                            width="7"
-                            height="7"
-                            rx="1"
-                        ></rect>
+                        <circle cx="12" cy="8" r="3.5"/>
+                        <path d="M5 20c.8-3.2 3.1-5 7-5s6.2 1.8 7 5"/>
                     </svg>
 
-                    Overview
+                    <span>Profile</span>
 
                 </button>
 
 
-                <button
-                    class="sidebar-item"
-                    data-section="profile"
-                    type="button"
-                >
+                <button class="account-nav-item" data-section="orders">
 
                     <svg viewBox="0 0 24 24">
-                        <circle
-                            cx="12"
-                            cy="8"
-                            r="3"
-                        ></circle>
-
-                        <path
-                            d="M5 20c.8-3.8 3.1-6 7-6s6.2 2.2 7 6"
-                        ></path>
+                        <path d="M6 4h12v16H6z"/>
+                        <path d="M9 8h6M9 12h6M9 16h4"/>
                     </svg>
 
-                    My Profile
+                    <span>My Orders</span>
 
                 </button>
 
 
-                <button
-                    class="sidebar-item"
-                    data-section="orders"
-                    type="button"
-                >
+                <button class="account-nav-item" data-section="wishlist">
 
                     <svg viewBox="0 0 24 24">
-                        <path
-                            d="M6 7h12l1 13H5L6 7Z"
-                        ></path>
-
-                        <path
-                            d="M9 7a3 3 0 0 1 6 0"
-                        ></path>
+                        <path d="M20.8 8.8c0 5.4-8.8 10-8.8 10s-8.8-4.6-8.8-10A4.8 4.8 0 0 1 12 6.1a4.8 4.8 0 0 1 8.8 2.7Z"/>
                     </svg>
 
-                    My Orders
+                    <span>Wishlist</span>
 
                 </button>
 
 
-                <button
-                    class="sidebar-item"
-                    data-section="wishlist"
-                    type="button"
-                >
+                <button class="account-nav-item" data-section="cart">
 
                     <svg viewBox="0 0 24 24">
-                        <path
-                            d="M20.8 8.6c0 5.2-8.8 10.2-8.8 10.2S3.2 13.8 3.2 8.6A4.6 4.6 0 0 1 12 6.2a4.6 4.6 0 0 1 8.8 2.4Z"
-                        ></path>
+                        <path d="M3 4h2l2.1 10.2a2 2 0 0 0 2 1.6h7.8a2 2 0 0 0 1.9-1.4L21 7H6"/>
+                        <circle cx="10" cy="20" r="1.3"/>
+                        <circle cx="18" cy="20" r="1.3"/>
                     </svg>
 
-                    Wishlist
+                    <span>My Cart</span>
+
+                </button>
+
+
+                <button class="account-nav-item" data-section="addresses">
+
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12 21s7-5.2 7-11a7 7 0 0 0-14 0c0 5.8 7 11 7 11Z"/>
+                        <circle cx="12" cy="10" r="2.3"/>
+                    </svg>
+
+                    <span>Addresses</span>
+
+                </button>
+
+
+                <button class="account-nav-item" data-section="payments">
+
+                    <svg viewBox="0 0 24 24">
+                        <rect x="3" y="6" width="18" height="13" rx="2"/>
+                        <path d="M3 10h18"/>
+                        <path d="M7 15h4"/>
+                    </svg>
+
+                    <span>Payment Methods</span>
+
+                </button>
+
+
+                <button class="account-nav-item" data-section="notifications">
+
+                    <svg viewBox="0 0 24 24">
+                        <path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"/>
+                        <path d="M10 21h4"/>
+                    </svg>
+
+                    <span>Notifications</span>
+
+                </button>
+
+
+                <button class="account-nav-item" data-section="settings">
+
+                    <svg viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="3"/>
+                        <path d="M19.4 15a1.7 1.7 0 0 0 .3 1.9l.1.1-1.8 1.8-.1-.1a1.7 1.7 0 0 0-1.9-.3 1.7 1.7 0 0 0-1 1.5v.2h-2.5v-.2a1.7 1.7 0 0 0-1-1.5 1.7 1.7 0 0 0-1.9.3l-.1.1-1.8-1.8.1-.1A1.7 1.7 0 0 0 8.1 15a1.7 1.7 0 0 0-1.5-1H6.4v-2.5h.2a1.7 1.7 0 0 0 1.5-1 1.7 1.7 0 0 0-.3-1.9l-.1-.1 1.8-1.8.1.1a1.7 1.7 0 0 0 1.9.3 1.7 1.7 0 0 0 1-1.5v-.2H15v.2a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.9-.3l.1-.1 1.8 1.8-.1.1a1.7 1.7 0 0 0-.3 1.9 1.7 1.7 0 0 0 1.5 1h.2V14h-.2a1.7 1.7 0 0 0-1.5 1Z"/>
+                    </svg>
+
+                    <span>Settings</span>
 
                 </button>
 
@@ -1740,790 +172,486 @@
                 <div class="sidebar-divider"></div>
 
 
-                <button
-                    class="sidebar-item"
-                    data-section="addresses"
-                    type="button"
-                >
+                <button class="account-nav-item logout-item" id="logoutButton">
 
                     <svg viewBox="0 0 24 24">
-                        <path
-                            d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"
-                        ></path>
-
-                        <circle
-                            cx="12"
-                            cy="10"
-                            r="2.5"
-                        ></circle>
+                        <path d="M10 5H5v14h5"/>
+                        <path d="M13 8l4 4-4 4"/>
+                        <path d="M17 12H9"/>
                     </svg>
 
-                    Addresses
-
-                </button>
-
-
-                <button
-                    class="sidebar-item"
-                    data-section="payments"
-                    type="button"
-                >
-
-                    <svg viewBox="0 0 24 24">
-                        <rect
-                            x="3"
-                            y="5"
-                            width="18"
-                            height="14"
-                            rx="2"
-                        ></rect>
-
-                        <path
-                            d="M3 10h18"
-                        ></path>
-                    </svg>
-
-                    Payments
-
-                </button>
-
-
-                <button
-                    class="sidebar-item"
-                    data-section="settings"
-                    type="button"
-                >
-
-                    <svg viewBox="0 0 24 24">
-                        <path
-                            d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6 7 7M17 17l1.4 1.4M18.4 5.6 17 7M7 17l-1.4 1.4"
-                        ></path>
-
-                        <circle
-                            cx="12"
-                            cy="12"
-                            r="3"
-                        ></circle>
-                    </svg>
-
-                    Settings
-
-                </button>
-
-
-                <div class="sidebar-divider"></div>
-
-
-                <button
-                    class="sidebar-item logout-item"
-                    id="logoutButton"
-                    type="button"
-                >
-
-                    <svg viewBox="0 0 24 24">
-                        <path
-                            d="M10 17l5-5-5-5"
-                        ></path>
-
-                        <path
-                            d="M15 12H3"
-                        ></path>
-
-                        <path
-                            d="M13 4h5a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2h-5"
-                        ></path>
-                    </svg>
-
-                    Logout
+                    <span>Logout</span>
 
                 </button>
 
             </aside>
 
 
+            <!-- ================= CONTENT ================= -->
 
-            <!-- =================================================
-                 CONTENT
-            ================================================== -->
-
-            <section class="account-main">
-
-
-                <!-- OVERVIEW -->
-
-                <div
-                    class="account-section"
-                    id="section-overview"
-                >
-
-                    <div class="stats-grid">
-
-
-                        <div class="stat-card">
-
-                            <div class="stat-icon">
-
-                                <svg viewBox="0 0 24 24">
-                                    <path
-                                        d="M6 7h12l1 13H5L6 7Z"
-                                    ></path>
-
-                                    <path
-                                        d="M9 7a3 3 0 0 1 6 0"
-                                    ></path>
-                                </svg>
-
-                            </div>
-
-                            <div>
-
-                                <span
-                                    class="stat-value"
-                                    id="orderCount"
-                                >
-                                    0
-                                </span>
-
-                                <span class="stat-label">
-                                    Total Orders
-                                </span>
-
-                            </div>
-
-                        </div>
-
-
-                        <div class="stat-card">
-
-                            <div class="stat-icon">
-
-                                <svg viewBox="0 0 24 24">
-                                    <path
-                                        d="M20.8 8.6c0 5.2-8.8 10.2-8.8 10.2S3.2 13.8 3.2 8.6A4.6 4.6 0 0 1 12 6.2a4.6 4.6 0 0 1 8.8 2.4Z"
-                                    ></path>
-                                </svg>
-
-                            </div>
-
-                            <div>
-
-                                <span
-                                    class="stat-value"
-                                    id="wishlistCount"
-                                >
-                                    0
-                                </span>
-
-                                <span class="stat-label">
-                                    Wishlist Items
-                                </span>
-
-                            </div>
-
-                        </div>
-
-
-                        <div class="stat-card">
-
-                            <div class="stat-icon">
-
-                                <svg viewBox="0 0 24 24">
-                                    <circle
-                                        cx="12"
-                                        cy="12"
-                                        r="8"
-                                    ></circle>
-
-                                    <path
-                                        d="M12 8v4l2.5 2"
-                                    ></path>
-                                </svg>
-
-                            </div>
-
-                            <div>
-
-                                <span
-                                    class="stat-value"
-                                    id="accountSince"
-                                >
-                                    —
-                                </span>
-
-                                <span class="stat-label">
-                                    Member Since
-                                </span>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-
-
-                    <div class="section-card">
-
-                        <div class="section-title">
-
-                            <div>
-
-                                <h2>
-                                    Recent Orders
-                                </h2>
-
-                                <p>
-                                    Your latest purchases will appear here.
-                                </p>
-
-                            </div>
-
-                            <button
-                                class="section-link"
-                                data-open-section="orders"
-                                type="button"
-                            >
-                                View All
-                            </button>
-
-                        </div>
-
-
-                        <div
-                            class="empty-state"
-                            id="recentOrdersEmpty"
-                        >
-
-                            <div class="empty-icon">
-
-                                <svg viewBox="0 0 24 24">
-                                    <path
-                                        d="M6 7h12l1 13H5L6 7Z"
-                                    ></path>
-
-                                    <path
-                                        d="M9 7a3 3 0 0 1 6 0"
-                                    ></path>
-                                </svg>
-
-                            </div>
-
-                            <h3>
-                                No orders yet
-                            </h3>
-
-                            <p>
-                                Once you purchase something
-                                from MARTEY, your orders will
-                                appear here.
-                            </p>
-
-                            <a
-                                href="index.html#products"
-                                class="primary-btn"
-                            >
-                                Start Shopping
-                            </a>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
+            <section class="account-content">
 
 
                 <!-- PROFILE -->
 
-                <div
-                    class="account-section"
-                    id="section-profile"
-                    hidden
-                >
+                <div class="account-section active" id="profileSection">
 
-                    <div class="section-card">
+                    <div class="section-top">
 
-                        <div class="section-title">
+                        <div>
+                            <p class="section-eyebrow">PERSONAL INFORMATION</p>
+                            <h2>Profile</h2>
+                            <p>Manage your basic account information.</p>
+                        </div>
 
-                            <div>
+                        <button class="outline-button" id="editProfileButton">
+                            Edit Profile
+                        </button>
 
-                                <h2>
-                                    My Profile
-                                </h2>
+                    </div>
 
-                                <p>
-                                    Your personal account information.
-                                </p>
 
-                            </div>
+                    <div class="profile-card">
 
+                        <div class="profile-avatar" id="profileAvatar">
+                            <span id="profileAvatarLetter">M</span>
+                            <img id="profileAvatarImage" alt="Profile picture">
                         </div>
 
 
-                        <div class="profile-grid">
+                        <div class="profile-main-info">
 
-                            <div class="info-box">
+                            <h3 id="profileName">MARTEY Customer</h3>
 
-                                <span class="info-label">
-                                    Full Name
-                                </span>
-
-                                <span
-                                    class="info-value"
-                                    id="profileName"
-                                >
-                                    —
-                                </span>
-
-                            </div>
-
-
-                            <div class="info-box">
-
-                                <span class="info-label">
-                                    Email Address
-                                </span>
-
-                                <span
-                                    class="info-value"
-                                    id="profileEmail"
-                                >
-                                    —
-                                </span>
-
-                            </div>
-
-
-                            <div class="info-box">
-
-                                <span class="info-label">
-                                    Phone Number
-                                </span>
-
-                                <span
-                                    class="info-value"
-                                    id="accountPhone"
-                                >
-                                    —
-                                </span>
-
-                            </div>
-
-
-                            <div class="info-box">
-
-                                <span class="info-label">
-                                    Account Type
-                                </span>
-
-                                <span
-                                    class="info-value"
-                                    id="accountRole"
-                                >
-                                    Customer
-                                </span>
-
-                            </div>
+                            <p id="profileEmail">
+                                Your email will appear here
+                            </p>
 
                         </div>
 
                     </div>
 
-                </div>
 
+                    <div class="information-grid">
+
+                        <div class="information-card">
+                            <span>FULL NAME</span>
+                            <strong id="displayName">Not added</strong>
+                        </div>
+
+                        <div class="information-card">
+                            <span>EMAIL</span>
+                            <strong id="displayEmail">Not added</strong>
+                        </div>
+
+                        <div class="information-card">
+                            <span>MOBILE</span>
+                            <strong id="displayMobile">Not added</strong>
+                        </div>
+
+                        <div class="information-card">
+                            <span>ACCOUNT TYPE</span>
+                            <strong>Customer</strong>
+                        </div>
+
+                    </div>
+
+
+                    <div class="edit-profile-card" id="editProfileCard">
+
+                        <div class="edit-card-heading">
+                            <h3>Edit Profile</h3>
+                            <p>Update your account information.</p>
+                        </div>
+
+
+                        <form id="profileForm">
+
+                            <div class="form-grid">
+
+                                <div class="form-field">
+                                    <label for="profileNameInput">Full Name</label>
+                                    <input
+                                        type="text"
+                                        id="profileNameInput"
+                                        placeholder="Enter your name"
+                                    >
+                                </div>
+
+
+                                <div class="form-field">
+                                    <label for="profileEmailInput">Email</label>
+                                    <input
+                                        type="email"
+                                        id="profileEmailInput"
+                                        placeholder="Enter your email"
+                                    >
+                                </div>
+
+
+                                <div class="form-field">
+                                    <label for="profileMobileInput">Mobile</label>
+                                    <input
+                                        type="tel"
+                                        id="profileMobileInput"
+                                        placeholder="Enter mobile number"
+                                    >
+                                </div>
+
+                            </div>
+
+
+                            <div class="form-actions">
+
+                                <button
+                                    type="button"
+                                    class="secondary-button"
+                                    id="cancelProfileButton"
+                                >
+                                    Cancel
+                                </button>
+
+                                <button
+                                    type="submit"
+                                    class="primary-button"
+                                >
+                                    Save Changes
+                                </button>
+
+                            </div>
+
+                        </form>
+
+                    </div>
+
+                </div>
 
 
                 <!-- ORDERS -->
 
-                <div
-                    class="account-section"
-                    id="section-orders"
-                    hidden
-                >
+                <div class="account-section" id="ordersSection">
 
-                    <div class="section-card">
+                    <div class="section-top">
 
-                        <div class="section-title">
+                        <div>
+                            <p class="section-eyebrow">SHOPPING ACTIVITY</p>
+                            <h2>My Orders</h2>
+                            <p>Track and manage your MARTEY purchases.</p>
+                        </div>
 
-                            <div>
+                    </div>
 
-                                <h2>
-                                    My Orders
-                                </h2>
 
-                                <p>
-                                    Track and manage your purchases.
-                                </p>
+                    <div class="empty-account-state">
 
-                            </div>
+                        <div class="empty-icon">
+
+                            <svg viewBox="0 0 24 24">
+                                <path d="M6 4h12v16H6z"/>
+                                <path d="M9 8h6M9 12h6M9 16h4"/>
+                            </svg>
 
                         </div>
 
+                        <h3>No orders yet</h3>
 
-                        <div
-                            class="empty-state"
-                            id="ordersEmpty"
-                        >
+                        <p>
+                            Your MARTEY purchases will appear here.
+                        </p>
 
-                            <div class="empty-icon">
-
-                                <svg viewBox="0 0 24 24">
-                                    <path
-                                        d="M6 7h12l1 13H5L6 7Z"
-                                    ></path>
-
-                                    <path
-                                        d="M9 7a3 3 0 0 1 6 0"
-                                    ></path>
-                                </svg>
-
-                            </div>
-
-                            <h3>
-                                You haven't placed any orders
-                            </h3>
-
-                            <p>
-                                Your order history will appear
-                                here after your first purchase.
-                            </p>
-
-                            <a
-                                href="index.html#products"
-                                class="primary-btn"
-                            >
-                                Explore Products
-                            </a>
-
-                        </div>
-
-
-                        <div
-                            class="order-list"
-                            id="orderList"
-                            hidden
-                        ></div>
+                        <a href="index.html" class="primary-button">
+                            Start Shopping
+                        </a>
 
                     </div>
 
                 </div>
-
 
 
                 <!-- WISHLIST -->
 
-                <div
-                    class="account-section"
-                    id="section-wishlist"
-                    hidden
-                >
+                <div class="account-section" id="wishlistSection">
 
-                    <div class="section-card">
+                    <div class="section-top">
 
-                        <div class="section-title">
-
-                            <div>
-
-                                <h2>
-                                    Wishlist
-                                </h2>
-
-                                <p>
-                                    Products you saved for later.
-                                </p>
-
-                            </div>
-
-                        </div>
-
-
-                        <div
-                            class="empty-state"
-                            id="wishlistEmpty"
-                        >
-
-                            <div class="empty-icon">
-
-                                <svg viewBox="0 0 24 24">
-                                    <path
-                                        d="M20.8 8.6c0 5.2-8.8 10.2-8.8 10.2S3.2 13.8 3.2 8.6A4.6 4.6 0 0 1 12 6.2a4.6 4.6 0 0 1 8.8 2.4Z"
-                                    ></path>
-                                </svg>
-
-                            </div>
-
-                            <h3>
-                                Your wishlist is empty
-                            </h3>
-
-                            <p>
-                                Save products you love and
-                                find them here later.
-                            </p>
-
-                            <a
-                                href="index.html#products"
-                                class="primary-btn"
-                            >
-                                Discover Products
-                            </a>
-
+                        <div>
+                            <p class="section-eyebrow">SAVED PRODUCTS</p>
+                            <h2>Wishlist</h2>
+                            <p>Products you have saved for later.</p>
                         </div>
 
                     </div>
 
+
+                    <div class="empty-account-state" id="wishlistEmptyState">
+
+                        <div class="empty-icon">
+
+                            <svg viewBox="0 0 24 24">
+                                <path d="M20.8 8.8c0 5.4-8.8 10-8.8 10s-8.8-4.6-8.8-10A4.8 4.8 0 0 1 12 6.1a4.8 4.8 0 0 1 8.8 2.7Z"/>
+                            </svg>
+
+                        </div>
+
+                        <h3>Your wishlist is empty</h3>
+
+                        <p>
+                            Save products you like and find them here later.
+                        </p>
+
+                        <a href="index.html" class="primary-button">
+                            Explore Products
+                        </a>
+
+                    </div>
+
+
+                    <div class="wishlist-grid" id="wishlistGrid"></div>
+
                 </div>
 
+
+                <!-- CART -->
+
+                <div class="account-section" id="cartSection">
+
+                    <div class="section-top">
+
+                        <div>
+                            <p class="section-eyebrow">YOUR SHOPPING BAG</p>
+                            <h2>My Cart</h2>
+                            <p>View the products currently in your cart.</p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="empty-account-state">
+
+                        <div class="empty-icon">
+
+                            <svg viewBox="0 0 24 24">
+                                <path d="M3 4h2l2.1 10.2a2 2 0 0 0 2 1.6h7.8a2 2 0 0 0 1.9-1.4L21 7H6"/>
+                                <circle cx="10" cy="20" r="1.3"/>
+                                <circle cx="18" cy="20" r="1.3"/>
+                            </svg>
+
+                        </div>
+
+                        <h3>Open your cart</h3>
+
+                        <p>
+                            Continue shopping or review the products you added.
+                        </p>
+
+                        <a href="cart.html" class="primary-button">
+                            View Cart
+                        </a>
+
+                    </div>
+
+                </div>
 
 
                 <!-- ADDRESSES -->
 
-                <div
-                    class="account-section"
-                    id="section-addresses"
-                    hidden
-                >
+                <div class="account-section" id="addressesSection">
 
-                    <div class="section-card">
+                    <div class="section-top">
 
-                        <div class="section-title">
+                        <div>
+                            <p class="section-eyebrow">DELIVERY INFORMATION</p>
+                            <h2>Saved Addresses</h2>
+                            <p>Manage addresses for your MARTEY orders.</p>
+                        </div>
 
-                            <div>
+                        <button class="primary-button" id="addAddressButton">
+                            Add Address
+                        </button>
 
-                                <h2>
-                                    Saved Addresses
-                                </h2>
+                    </div>
 
-                                <p>
-                                    Manage your delivery addresses.
-                                </p>
 
-                            </div>
+                    <div class="address-list" id="addressList"></div>
 
+
+                    <div class="address-form-card" id="addressFormCard">
+
+                        <div class="edit-card-heading">
+                            <h3>Add New Address</h3>
+                            <p>Save an address for future orders.</p>
                         </div>
 
 
-                        <div class="mini-grid">
+                        <form id="addressForm">
 
-                            <div class="mini-card">
+                            <div class="form-grid">
 
-                                <div class="mini-card-icon">
-
-                                    <svg viewBox="0 0 24 24">
-                                        <path
-                                            d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0Z"
-                                        ></path>
-
-                                        <circle
-                                            cx="12"
-                                            cy="10"
-                                            r="2.5"
-                                        ></circle>
-                                    </svg>
-
+                                <div class="form-field">
+                                    <label for="addressName">Full Name</label>
+                                    <input id="addressName" type="text" required>
                                 </div>
 
-                                <h3>
-                                    No saved address
-                                </h3>
+                                <div class="form-field">
+                                    <label for="addressPhone">Mobile</label>
+                                    <input id="addressPhone" type="tel" required>
+                                </div>
 
-                                <p>
-                                    Add an address during checkout.
-                                </p>
+                                <div class="form-field full-field">
+                                    <label for="addressLine">Address</label>
+                                    <input id="addressLine" type="text" required>
+                                </div>
+
+                                <div class="form-field">
+                                    <label for="addressCity">City</label>
+                                    <input id="addressCity" type="text" required>
+                                </div>
+
+                                <div class="form-field">
+                                    <label for="addressState">State</label>
+                                    <input id="addressState" type="text" required>
+                                </div>
+
+                                <div class="form-field">
+                                    <label for="addressPincode">PIN Code</label>
+                                    <input id="addressPincode" type="text" required>
+                                </div>
 
                             </div>
 
-                        </div>
+
+                            <div class="form-actions">
+
+                                <button
+                                    type="button"
+                                    class="secondary-button"
+                                    id="cancelAddressButton"
+                                >
+                                    Cancel
+                                </button>
+
+                                <button
+                                    type="submit"
+                                    class="primary-button"
+                                >
+                                    Save Address
+                                </button>
+
+                            </div>
+
+                        </form>
 
                     </div>
 
                 </div>
-
 
 
                 <!-- PAYMENTS -->
 
-                <div
-                    class="account-section"
-                    id="section-payments"
-                    hidden
-                >
+                <div class="account-section" id="paymentsSection">
 
-                    <div class="section-card">
+                    <div class="section-top">
 
-                        <div class="section-title">
+                        <div>
+                            <p class="section-eyebrow">PAYMENT</p>
+                            <h2>Payment Methods</h2>
+                            <p>Manage your available payment options.</p>
+                        </div>
 
-                            <div>
+                    </div>
 
-                                <h2>
-                                    Payment Methods
-                                </h2>
 
-                                <p>
-                                    Your saved payment options.
-                                </p>
+                    <div class="payment-placeholder">
 
-                            </div>
+                        <div class="placeholder-icon">
+
+                            <svg viewBox="0 0 24 24">
+                                <rect x="3" y="6" width="18" height="13" rx="2"/>
+                                <path d="M3 10h18"/>
+                                <path d="M7 15h4"/>
+                            </svg>
 
                         </div>
 
+                        <h3>Payment methods</h3>
 
-                        <div class="mini-grid">
-
-                            <div class="mini-card">
-
-                                <div class="mini-card-icon">
-
-                                    <svg viewBox="0 0 24 24">
-                                        <rect
-                                            x="3"
-                                            y="5"
-                                            width="18"
-                                            height="14"
-                                            rx="2"
-                                        ></rect>
-
-                                        <path
-                                            d="M3 10h18"
-                                        ></path>
-                                    </svg>
-
-                                </div>
-
-                                <h3>
-                                    No payment methods
-                                </h3>
-
-                                <p>
-                                    Payment methods can be added
-                                    during checkout.
-                                </p>
-
-                            </div>
-
-                        </div>
+                        <p>
+                            Payment methods will be available when MARTEY's real checkout system is connected.
+                        </p>
 
                     </div>
 
                 </div>
 
 
+                <!-- NOTIFICATIONS -->
 
-                <!-- SETTINGS -->
+                <div class="account-section" id="notificationsSection">
 
-                <div
-                    class="account-section"
-                    id="section-settings"
-                    hidden
-                >
+                    <div class="section-top">
 
-                    <div class="section-card">
+                        <div>
+                            <p class="section-eyebrow">UPDATES</p>
+                            <h2>Notifications</h2>
+                            <p>Important updates from MARTEY.</p>
+                        </div>
 
-                        <div class="section-title">
+                    </div>
 
-                            <div>
 
-                                <h2>
-                                    Settings
-                                </h2>
+                    <div class="payment-placeholder">
 
-                                <p>
-                                    Control your MARTEY experience.
-                                </p>
+                        <div class="placeholder-icon">
 
-                            </div>
+                            <svg viewBox="0 0 24 24">
+                                <path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"/>
+                                <path d="M10 21h4"/>
+                            </svg>
 
                         </div>
 
+                        <h3>No new notifications</h3>
 
-                        <div class="settings-list">
+                        <p>
+                            Order, delivery and MARTEY updates will appear here.
+                        </p>
 
+                    </div>
 
-                            <div class="setting-row">
-
-                                <div class="setting-info">
-
-                                    <h3>
-                                        Order Updates
-                                    </h3>
-
-                                    <p>
-                                        Receive updates about your orders.
-                                    </p>
-
-                                </div>
+                </div>
 
 
-                                <label class="toggle">
+                <!-- SETTINGS -->
 
-                                    <input
-                                        type="checkbox"
-                                        checked
-                                    >
+                <div class="account-section" id="settingsSection">
 
-                                    <span class="toggle-slider"></span>
+                    <div class="section-top">
 
-                                </label>
+                        <div>
+                            <p class="section-eyebrow">PREFERENCES</p>
+                            <h2>Account Settings</h2>
+                            <p>Manage your basic account preferences.</p>
+                        </div>
 
+                    </div>
+
+
+                    <div class="settings-card">
+
+                        <div class="setting-row">
+
+                            <div>
+                                <h3>Theme</h3>
+                                <p>Use the MARTEY interface theme.</p>
                             </div>
 
-
-                            <div class="setting-row">
-
-                                <div class="setting-info">
-
-                                    <h3>
-                                        Offers & Promotions
-                                    </h3>
-
-                                    <p>
-                                        Get notified about MARTEY deals.
-                                    </p>
-
-                                </div>
-
-
-                                <label class="toggle">
-
-                                    <input
-                                        type="checkbox"
-                                        checked
-                                    >
-
-                                    <span class="toggle-slider"></span>
-
-                                </label>
-
-                            </div>
-
-
-                            <div class="setting-row">
-
-                                <div class="setting-info">
-
-                                    <h3>
-                                        Personalized Recommendations
-                                    </h3>
-
-                                    <p>
-                                        Show products based on your interests.
-                                    </p>
-
-                                </div>
-
-
-                                <label class="toggle">
-
-                                    <input
-                                        type="checkbox"
-                                        checked
-                                    >
-
-                                    <span class="toggle-slider"></span>
-
-                                </label>
-
-                            </div>
+                            <button
+                                type="button"
+                                class="outline-button"
+                                id="themeButton"
+                            >
+                                Toggle Theme
+                            </button>
 
                         </div>
 
@@ -2533,615 +661,27 @@
 
             </section>
 
-        </div>
+        </section>
 
     </main>
 
 
+    <!-- ================= FOOTER ================= -->
 
-    <!-- =====================================================
-         FOOTER
-    ====================================================== -->
+    <footer class="account-footer">
 
-    <footer class="site-footer">
-
-        <div class="footer-inner">
-
-            <div>
-
-                <div class="footer-brand">
-                    MARTE<span>Y</span>
-                </div>
-
-                <div class="footer-copy">
-                    Everything. One Marketplace.
-                </div>
-
-            </div>
-
-
-            <div class="footer-links">
-
-                <a href="index.html">
-                    Home
-                </a>
-
-                <a href="index.html#products">
-                    Products
-                </a>
-
-                <a href="cart.html">
-                    Cart
-                </a>
-
-                <a href="index.html">
-                    Help
-                </a>
-
-            </div>
-
+        <div class="footer-logo">
+            <span>MARTEY</span><b>.</b>
         </div>
+
+        <p>Everything. One Marketplace.</p>
+
+        <span>© 2026 MARTEY</span>
 
     </footer>
 
 
-
-    <!-- =====================================================
-         JAVASCRIPT
-    ====================================================== -->
-
-    <script>
-
-        document.addEventListener(
-            "DOMContentLoaded",
-            function () {
-
-
-                /* =============================================
-                   USER
-                ============================================== */
-
-                const user =
-                    JSON.parse(
-                        localStorage.getItem("marteyUser")
-                    ) || null;
-
-
-                /*
-                   Account page is only for
-                   logged-in users.
-                */
-
-                if (!user) {
-
-                    window.location.href =
-                        "index.html";
-
-                    return;
-
-                }
-
-
-                /* =============================================
-                   BASIC USER INFORMATION
-                ============================================== */
-
-                const name =
-                    user.name || "MARTEY User";
-
-                const email =
-                    user.email || "—";
-
-                const phone =
-                    user.phone || "—";
-
-                const role =
-                    user.role || "customer";
-
-
-                const accountName =
-                    document.getElementById(
-                        "accountName"
-                    );
-
-                const accountEmail =
-                    document.getElementById(
-                        "accountEmail"
-                    );
-
-                const profileName =
-                    document.getElementById(
-                        "profileName"
-                    );
-
-                const profileEmail =
-                    document.getElementById(
-                        "profileEmail"
-                    );
-
-                const accountPhone =
-                    document.getElementById(
-                        "accountPhone"
-                    );
-
-                const accountRole =
-                    document.getElementById(
-                        "accountRole"
-                    );
-
-
-                if (accountName) {
-                    accountName.textContent =
-                        name;
-                }
-
-                if (accountEmail) {
-                    accountEmail.textContent =
-                        email;
-                }
-
-                if (profileName) {
-                    profileName.textContent =
-                        name;
-                }
-
-                if (profileEmail) {
-                    profileEmail.textContent =
-                        email;
-                }
-
-                if (accountPhone) {
-                    accountPhone.textContent =
-                        phone;
-                }
-
-                if (accountRole) {
-                    accountRole.textContent =
-                        role.charAt(0).toUpperCase() +
-                        role.slice(1);
-                }
-
-
-                /* =============================================
-                   INITIALS
-                ============================================== */
-
-                function getInitials(fullName) {
-
-                    const words =
-                        fullName
-                            .trim()
-                            .split(/\s+/);
-
-                    if (!words.length) {
-                        return "M";
-                    }
-
-                    if (words.length === 1) {
-
-                        return words[0]
-                            .substring(0, 2)
-                            .toUpperCase();
-
-                    }
-
-                    return (
-                        words[0][0] +
-                        words[1][0]
-                    ).toUpperCase();
-
-                }
-
-
-                const initials =
-                    getInitials(name);
-
-
-                /* =============================================
-                   AVATARS
-                ============================================== */
-
-                const avatars =
-                    document.querySelectorAll(
-                        ".profile-avatar-large, .account-avatar"
-                    );
-
-
-                avatars.forEach(avatar => {
-
-                    if (user.avatar) {
-
-                        avatar.innerHTML =
-                            `<img
-                                src="${user.avatar}"
-                                alt="Profile picture"
-                            >`;
-
-                    } else {
-
-                        avatar.textContent =
-                            initials;
-
-                    }
-
-                });
-
-
-                /* =============================================
-                   CART
-                ============================================== */
-
-                const cart =
-                    JSON.parse(
-                        localStorage.getItem(
-                            "marteyCart"
-                        )
-                    ) || [];
-
-
-                const cartCount =
-                    document.getElementById(
-                        "cartCount"
-                    );
-
-
-                if (cartCount) {
-
-                    cartCount.textContent =
-                        cart.length;
-
-                }
-
-
-                /* =============================================
-                   WISHLIST
-                ============================================== */
-
-                const wishlist =
-                    JSON.parse(
-                        localStorage.getItem(
-                            "marteyWishlist"
-                        )
-                    ) || [];
-
-
-                const wishlistCount =
-                    document.getElementById(
-                        "wishlistCount"
-                    );
-
-
-                if (wishlistCount) {
-
-                    wishlistCount.textContent =
-                        wishlist.length;
-
-                }
-
-
-                /* =============================================
-                   ORDERS
-                ============================================== */
-
-                const orders =
-                    JSON.parse(
-                        localStorage.getItem(
-                            "marteyOrders"
-                        )
-                    ) || [];
-
-
-                const orderCount =
-                    document.getElementById(
-                        "orderCount"
-                    );
-
-
-                if (orderCount) {
-
-                    orderCount.textContent =
-                        orders.length;
-
-                }
-
-
-                /* =============================================
-                   MEMBER SINCE
-                ============================================== */
-
-                const accountSince =
-                    document.getElementById(
-                        "accountSince"
-                    );
-
-
-                if (
-                    accountSince &&
-                    user.createdAt
-                ) {
-
-                    const date =
-                        new Date(
-                            user.createdAt
-                        );
-
-                    accountSince.textContent =
-                        date.toLocaleDateString(
-                            "en-IN",
-                            {
-                                month: "short",
-                                year: "numeric"
-                            }
-                        );
-
-                }
-
-
-                /* =============================================
-                   SIDEBAR NAVIGATION
-                ============================================== */
-
-                const sidebarItems =
-                    document.querySelectorAll(
-                        ".sidebar-item[data-section]"
-                    );
-
-
-                const sections =
-                    document.querySelectorAll(
-                        ".account-section"
-                    );
-
-
-                function showSection(sectionName) {
-
-                    sidebarItems.forEach(item => {
-
-                        item.classList.toggle(
-                            "active",
-                            item.dataset.section ===
-                            sectionName
-                        );
-
-                    });
-
-
-                    sections.forEach(section => {
-
-                        section.hidden =
-                            section.id !==
-                            "section-" +
-                            sectionName;
-
-                    });
-
-
-                    window.scrollTo({
-                        top: 0,
-                        behavior: "smooth"
-                    });
-
-                }
-
-
-                sidebarItems.forEach(item => {
-
-                    item.addEventListener(
-                        "click",
-                        function () {
-
-                            const section =
-                                item.dataset.section;
-
-                            showSection(section);
-
-                        }
-                    );
-
-                });
-
-
-                /* =============================================
-                   VIEW ALL / QUICK LINKS
-                ============================================== */
-
-                document
-                    .querySelectorAll(
-                        "[data-open-section]"
-                    )
-                    .forEach(button => {
-
-                        button.addEventListener(
-                            "click",
-                            function () {
-
-                                showSection(
-                                    button.dataset.openSection
-                                );
-
-                            }
-                        );
-
-                    });
-
-
-                /* =============================================
-                   EDIT PROFILE
-                ============================================== */
-
-                const editProfileButton =
-                    document.getElementById(
-                        "editProfileButton"
-                    );
-
-
-                if (editProfileButton) {
-
-                    editProfileButton.addEventListener(
-                        "click",
-                        function () {
-
-                            /*
-                               profile.html will be
-                               created later.
-                            */
-
-                            window.location.href =
-                                "profile.html";
-
-                        }
-                    );
-
-                }
-
-
-                /* =============================================
-                   CART BUTTON
-                ============================================== */
-
-                const cartButton =
-                    document.getElementById(
-                        "cartButton"
-                    );
-
-
-                if (cartButton) {
-
-                    cartButton.addEventListener(
-                        "click",
-                        function () {
-
-                            window.location.href =
-                                "cart.html";
-
-                        }
-                    );
-
-                }
-
-
-                /* =============================================
-                   WISHLIST BUTTON
-                ============================================== */
-
-                const wishlistButton =
-                    document.getElementById(
-                        "wishlistButton"
-                    );
-
-
-                if (wishlistButton) {
-
-                    wishlistButton.addEventListener(
-                        "click",
-                        function () {
-
-                            showSection(
-                                "wishlist"
-                            );
-
-                        }
-                    );
-
-                }
-
-
-                /* =============================================
-                   SEARCH
-                ============================================== */
-
-                const searchForm =
-                    document.getElementById(
-                        "accountSearchForm"
-                    );
-
-                const searchInput =
-                    document.getElementById(
-                        "accountSearchInput"
-                    );
-
-
-                if (searchForm) {
-
-                    searchForm.addEventListener(
-                        "submit",
-                        function (event) {
-
-                            event.preventDefault();
-
-                            const query =
-                                searchInput
-                                    ? searchInput.value.trim()
-                                    : "";
-
-                            if (!query) {
-
-                                window.location.href =
-                                    "index.html#products";
-
-                                return;
-
-                            }
-
-
-                            window.location.href =
-                                "index.html?search=" +
-                                encodeURIComponent(
-                                    query
-                                );
-
-                        }
-                    );
-
-                }
-
-
-                /* =============================================
-                   LOGOUT
-                ============================================== */
-
-                const logoutButton =
-                    document.getElementById(
-                        "logoutButton"
-                    );
-
-
-                if (logoutButton) {
-
-                    logoutButton.addEventListener(
-                        "click",
-                        function () {
-
-                            const confirmed =
-                                window.confirm(
-                                    "Are you sure you want to logout?"
-                                );
-
-
-                            if (!confirmed) {
-                                return;
-                            }
-
-
-                            localStorage.removeItem(
-                                "marteyUser"
-                            );
-
-
-                            window.location.href =
-                                "index.html";
-
-                        }
-                    );
-
-                }
-
-
-            }
-
-        );
-
-    </script>
+    <script src="account.js"></script>
 
 </body>
 </html>
