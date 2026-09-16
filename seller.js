@@ -1925,3 +1925,219 @@ updateSellerPayoutAmount();
     );
 
 });
+
+/* ================================
+   PROMOTIONS
+================================ */
+
+const createPromotionButton = document.getElementById("createPromotionButton");
+
+const sellerPromotionsList = document.getElementById("sellerPromotionsList");
+
+const promotionsActiveCount = document.getElementById("promotionsActiveCount");
+const promotionsFlashCount = document.getElementById("promotionsFlashCount");
+const promotionsProductsCount = document.getElementById("promotionsProductsCount");
+const promotionsExpiredCount = document.getElementById("promotionsExpiredCount");
+
+
+/* Create Promotion button */
+
+if (createPromotionButton) {
+    createPromotionButton.addEventListener("click", function () {
+        window.location.href = "create-promotion.html";
+    });
+}
+
+
+/* Get saved promotions */
+
+function getSellerPromotions() {
+    try {
+        return JSON.parse(
+            localStorage.getItem("marteySellerPromotions") || "[]"
+        );
+    } catch (error) {
+        return [];
+    }
+}
+
+
+/* Format money */
+
+function formatPromotionMoney(amount) {
+    return "₹" + Number(amount || 0).toLocaleString("en-IN");
+}
+
+
+/* Render Promotions */
+
+function renderSellerPromotions() {
+
+    if (!sellerPromotionsList) return;
+
+    const promotions = getSellerPromotions();
+
+    const activePromotions = promotions.filter(function (promotion) {
+        return promotion.status === "Active";
+    });
+
+    const expiredPromotions = promotions.filter(function (promotion) {
+        return promotion.status === "Expired";
+    });
+
+
+    /* Numbers */
+
+    if (promotionsActiveCount) {
+        promotionsActiveCount.textContent = activePromotions.length;
+    }
+
+    if (promotionsFlashCount) {
+        promotionsFlashCount.textContent = 0;
+    }
+
+    if (promotionsProductsCount) {
+        const uniqueProducts = new Set(
+            promotions.map(function (promotion) {
+                return promotion.productId || promotion.productName;
+            })
+        );
+
+        promotionsProductsCount.textContent = uniqueProducts.size;
+    }
+
+    if (promotionsExpiredCount) {
+        promotionsExpiredCount.textContent = expiredPromotions.length;
+    }
+
+
+    /* No promotions */
+
+    if (promotions.length === 0) {
+
+        sellerPromotionsList.innerHTML = `
+            <div class="seller-empty-state">
+                <h3>No promotions yet</h3>
+                <p>
+                    Create a promotion to increase your product visibility
+                    across MARTEY.
+                </p>
+                <button
+                    type="button"
+                    class="primary-seller-btn"
+                    id="emptyCreatePromotionButton"
+                >
+                    Create Promotion
+                </button>
+            </div>
+        `;
+
+        const emptyButton = document.getElementById(
+            "emptyCreatePromotionButton"
+        );
+
+        if (emptyButton) {
+            emptyButton.addEventListener("click", function () {
+                window.location.href = "create-promotion.html";
+            });
+        }
+
+        return;
+    }
+
+
+    /* Promotion cards */
+
+    sellerPromotionsList.innerHTML = promotions
+        .map(function (promotion) {
+
+            const image =
+                promotion.productImage ||
+                "images/product-placeholder.jpg";
+
+            const status =
+                promotion.status || "Active";
+
+            const statusClass =
+                status.toLowerCase().replace(/\s+/g, "-");
+
+            return `
+                <div class="seller-promotion-item">
+
+                    <div class="seller-promotion-image">
+                        <img
+                            src="${image}"
+                            alt=""
+                            onerror="this.style.display='none'"
+                        >
+                    </div>
+
+                    <div class="seller-promotion-info">
+
+                        <div class="seller-promotion-title-row">
+
+                            <h3>
+                                ${escapeHTML(
+                                    promotion.productName || "Product"
+                                )}
+                            </h3>
+
+                            <span class="promotion-status ${statusClass}">
+                                ${escapeHTML(status)}
+                            </span>
+
+                        </div>
+
+                        <div class="seller-promotion-meta">
+
+                            <span>
+                                ${promotion.durationDays} day${promotion.durationDays == 1 ? "" : "s"}
+                            </span>
+
+                            <span>•</span>
+
+                            <span>
+                                ${formatPromotionMoney(
+                                    promotion.dailyBudget
+                                )}/day
+                            </span>
+
+                            <span>•</span>
+
+                            <span>
+                                Total ${formatPromotionMoney(
+                                    promotion.totalBudget
+                                )}
+                            </span>
+
+                        </div>
+
+                        <div class="seller-promotion-date">
+                            Starts ${escapeHTML(
+                                promotion.startDate || "—"
+                            )}
+                        </div>
+
+                    </div>
+
+                </div>
+            `;
+        })
+        .join("");
+}
+
+
+/* Refresh when another page changes promotions */
+
+window.addEventListener("storage", function (event) {
+
+    if (event.key === "marteySellerPromotions") {
+        renderSellerPromotions();
+    }
+
+});
+
+
+/* Initial load */
+
+renderSellerPromotions();
