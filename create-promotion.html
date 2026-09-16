@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-
     <meta
         name="viewport"
         content="width=device-width, initial-scale=1.0"
@@ -10,6 +10,7 @@
 
     <title>Create Promotion — MARTEY.</title>
 
+    <!-- GOOGLE FONTS -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
@@ -18,6 +19,7 @@
         rel="stylesheet"
     >
 
+    <!-- PROMOTION CSS -->
     <link
         rel="stylesheet"
         href="create-promotion.css"
@@ -28,7 +30,10 @@
 
     <div class="promotion-page">
 
-        <!-- HEADER -->
+        <!-- =====================================================
+             HEADER
+        ====================================================== -->
+
         <header class="promotion-header">
 
             <div class="header-left">
@@ -36,21 +41,23 @@
                 <a
                     href="seller.html"
                     class="martey-logo"
+                    aria-label="MARTEY Seller Center"
                 >
                     MARTEY<span>.</span>
                 </a>
 
                 <div class="header-divider"></div>
 
-                <div class="header-page-name">
+                <div class="header-page-title">
                     Create Promotion
                 </div>
 
             </div>
 
+
             <a
                 href="seller.html"
-                class="back-button"
+                class="back-to-seller"
             >
                 Back to Seller Center
             </a>
@@ -58,60 +65,79 @@
         </header>
 
 
-        <!-- MAIN -->
+        <!-- =====================================================
+             MAIN
+        ====================================================== -->
+
         <main class="promotion-main">
 
             <!-- INTRO -->
+
             <section class="promotion-intro">
 
-                <span class="eyebrow">
-                    PRODUCT PROMOTION
+                <span class="intro-label">
+                    PROMOTE YOUR PRODUCT
                 </span>
 
                 <h1>
-                    Promote your products
+                    Reach more customers
                 </h1>
 
                 <p>
-                    Increase your product visibility by creating
-                    a short promotional campaign on MARTEY.
+                    Create a promotion to increase your product
+                    visibility across MARTEY.
                 </p>
 
             </section>
 
 
+            <!-- =================================================
+                 PROMOTION WORKSPACE
+            ================================================== -->
+
             <form
                 id="promotionForm"
-                class="promotion-layout"
+                class="promotion-workspace"
             >
 
-                <!-- LEFT SIDE -->
-                <div class="promotion-form-column">
+
+                <!-- =================================================
+                     LEFT SIDE — FORM
+                ================================================== -->
+
+                <div class="promotion-form">
 
 
                     <!-- PRODUCT -->
+
                     <section class="promotion-card">
 
-                        <div class="card-header">
+                        <div class="card-heading">
+
+                            <div class="step-number">
+                                01
+                            </div>
 
                             <div>
+
                                 <span class="card-label">
-                                    STEP 1
+                                    PRODUCT
                                 </span>
 
                                 <h2>
-                                    Choose product
+                                    Choose your product
                                 </h2>
 
                                 <p>
                                     Select the product you want to promote.
                                 </p>
+
                             </div>
 
                         </div>
 
 
-                        <div class="form-group">
+                        <div class="form-field">
 
                             <label for="promotionProduct">
                                 Product
@@ -122,24 +148,33 @@
                                 name="promotionProduct"
                                 required
                             >
+
                                 <option value="">
                                     Select a product
                                 </option>
+
                             </select>
 
                         </div>
 
+
+                        <!-- PRODUCT PREVIEW -->
 
                         <div
                             id="productPreview"
                             class="product-preview"
                         >
 
-                            <div class="product-preview-image">
-                                Product
+                            <div
+                                id="previewProductImage"
+                                class="product-preview-image"
+                            >
+                                <span>
+                                    Product Preview
+                                </span>
                             </div>
 
-                            <div class="product-preview-info">
+                            <div class="product-preview-details">
 
                                 <strong id="previewProductName">
                                     Select a product
@@ -156,29 +191,39 @@
                     </section>
 
 
-                    <!-- DURATION -->
+
+                    <!-- =================================================
+                         DURATION
+                    ================================================== -->
+
                     <section class="promotion-card">
 
-                        <div class="card-header">
+                        <div class="card-heading">
+
+                            <div class="step-number">
+                                02
+                            </div>
 
                             <div>
+
                                 <span class="card-label">
-                                    STEP 2
+                                    DURATION
                                 </span>
 
                                 <h2>
-                                    Set promotion duration
+                                    How long should it run?
                                 </h2>
 
                                 <p>
-                                    Choose how long your promotion will run.
+                                    Choose a promotion duration from 1 to 7 days.
                                 </p>
+
                             </div>
 
                         </div>
 
 
-                        <div class="duration-grid">
+                        <div class="duration-options">
 
                             <button
                                 type="button"
@@ -189,6 +234,7 @@
                                 <span>Day</span>
                             </button>
 
+
                             <button
                                 type="button"
                                 class="duration-option"
@@ -197,6 +243,7 @@
                                 <strong>2</strong>
                                 <span>Days</span>
                             </button>
+
 
                             <button
                                 type="button"
@@ -207,6 +254,7 @@
                                 <span>Days</span>
                             </button>
 
+
                             <button
                                 type="button"
                                 class="duration-option"
@@ -215,6 +263,7 @@
                                 <strong>4</strong>
                                 <span>Days</span>
                             </button>
+
 
                             <button
                                 type="button"
@@ -225,6 +274,7 @@
                                 <span>Days</span>
                             </button>
 
+
                             <button
                                 type="button"
                                 class="duration-option"
@@ -233,6 +283,7 @@
                                 <strong>6</strong>
                                 <span>Days</span>
                             </button>
+
 
                             <button
                                 type="button"
@@ -256,104 +307,160 @@
                     </section>
 
 
-                    <!-- BUDGET -->
+
+                    <!-- =================================================
+                         DAILY BUDGET
+                    ================================================== -->
+
                     <section class="promotion-card">
 
-                        <div class="card-header">
+                        <div class="card-heading">
+
+                            <div class="step-number">
+                                03
+                            </div>
 
                             <div>
+
                                 <span class="card-label">
-                                    STEP 3
+                                    BUDGET
                                 </span>
 
                                 <h2>
-                                    Set daily budget
+                                    Set your daily budget
                                 </h2>
 
                                 <p>
-                                    Choose how much you want to spend each day.
+                                    Your total budget depends on your daily budget and duration.
                                 </p>
+
                             </div>
 
                         </div>
 
 
-                        <div class="budget-input-wrapper">
+                        <div class="budget-field">
 
-                            <span>₹</span>
+                            <span class="currency-symbol">
+                                ₹
+                            </span>
 
                             <input
                                 type="number"
                                 id="dailyBudget"
                                 name="dailyBudget"
-                                min="100"
-                                step="100"
+                                min="10"
+                                step="10"
                                 value="100"
                                 placeholder="100"
                                 required
                             >
 
-                            <small>
+                            <span class="budget-period">
                                 / day
-                            </small>
+                            </span>
 
                         </div>
 
 
                         <div class="budget-hint">
-                            Minimum daily budget: ₹100
+                            Minimum daily budget: ₹10
                         </div>
 
 
-                        <div class="budget-total">
+                        <!-- TOTAL CALCULATION -->
+
+                        <div class="budget-calculation">
 
                             <div>
 
                                 <span>
-                                    Total promotion budget
+                                    Daily budget
                                 </span>
 
-                                <small id="budgetCalculation">
-                                    ₹100 × 1 day
-                                </small>
+                                <strong id="calculationDailyBudget">
+                                    ₹100
+                                </strong>
 
                             </div>
 
-                            <strong id="totalBudget">
-                                ₹100
-                            </strong>
+
+                            <span class="calculation-symbol">
+                                ×
+                            </span>
+
+
+                            <div>
+
+                                <span>
+                                    Duration
+                                </span>
+
+                                <strong id="calculationDays">
+                                    1 Day
+                                </strong>
+
+                            </div>
+
+
+                            <span class="calculation-symbol">
+                                =
+                            </span>
+
+
+                            <div class="calculation-total">
+
+                                <span>
+                                    Total budget
+                                </span>
+
+                                <strong id="totalBudget">
+                                    ₹100
+                                </strong>
+
+                            </div>
 
                         </div>
 
                     </section>
 
 
-                    <!-- START DATE -->
+
+                    <!-- =================================================
+                         START DATE
+                    ================================================== -->
+
                     <section class="promotion-card">
 
-                        <div class="card-header">
+                        <div class="card-heading">
+
+                            <div class="step-number">
+                                04
+                            </div>
 
                             <div>
+
                                 <span class="card-label">
-                                    STEP 4
+                                    START DATE
                                 </span>
 
                                 <h2>
-                                    Choose start date
+                                    Choose your start date
                                 </h2>
 
                                 <p>
                                     Your promotion will begin on this date.
                                 </p>
+
                             </div>
 
                         </div>
 
 
-                        <div class="form-group">
+                        <div class="form-field">
 
                             <label for="startDate">
-                                Start Date
+                                Start date
                             </label>
 
                             <input
@@ -370,30 +477,145 @@
                 </div>
 
 
-                <!-- RIGHT SIDE -->
-                <aside class="promotion-summary">
 
-                    <div class="summary-card">
+                <!-- =================================================
+                     RIGHT SIDE — INSTAGRAM STYLE PREVIEW
+                ================================================== -->
+
+                <aside class="promotion-preview-column">
+
+
+                    <!-- PREVIEW CARD -->
+
+                    <div class="ad-preview-card">
+
+                        <div class="preview-header">
+
+                            <div class="preview-brand">
+
+                                <div class="preview-brand-logo">
+                                    M<span>.</span>
+                                </div>
+
+                                <div>
+
+                                    <strong>
+                                        MARTEY
+                                    </strong>
+
+                                    <span>
+                                        Sponsored
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+
+                            <button
+                                type="button"
+                                class="preview-more"
+                                aria-label="More options"
+                            >
+                                •••
+                            </button>
+
+                        </div>
+
+
+                        <!-- AD IMAGE -->
+
+                        <div
+                            id="adPreviewImage"
+                            class="ad-preview-image"
+                        >
+
+                            <div class="preview-placeholder">
+
+                                <span>
+                                    Your product
+                                </span>
+
+                                <small>
+                                    Promotion preview
+                                </small>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- AD CONTENT -->
+
+                        <div class="ad-preview-content">
+
+                            <div class="ad-actions">
+
+                                <button
+                                    type="button"
+                                    aria-label="Like"
+                                >
+                                    ♡
+                                </button>
+
+                                <button
+                                    type="button"
+                                    aria-label="Share"
+                                >
+                                    ↗
+                                </button>
+
+                            </div>
+
+
+                            <div class="ad-product-info">
+
+                                <strong id="adPreviewProductName">
+                                    Select a product
+                                </strong>
+
+                                <span id="adPreviewProductPrice">
+                                    —
+                                </span>
+
+                            </div>
+
+
+                            <div class="ad-sponsored-label">
+                                Sponsored promotion
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- =================================================
+                         CAMPAIGN SUMMARY
+                    ================================================== -->
+
+                    <div class="campaign-summary">
 
                         <span class="summary-label">
-                            PROMOTION SUMMARY
+                            CAMPAIGN SUMMARY
                         </span>
 
                         <h2>
-                            Your campaign
+                            Promotion details
                         </h2>
 
 
                         <div class="summary-product">
 
                             <div
-                                class="summary-product-image"
                                 id="summaryProductImage"
+                                class="summary-product-image"
                             >
                                 Product
                             </div>
 
-                            <div>
+                            <div class="summary-product-details">
 
                                 <strong id="summaryProductName">
                                     Select product
@@ -440,7 +662,23 @@
                         <div class="summary-row">
 
                             <span>
-                                Total budget
+                                Start date
+                            </span>
+
+                            <strong id="summaryStartDate">
+                                —
+                            </strong>
+
+                        </div>
+
+
+                        <div class="summary-divider"></div>
+
+
+                        <div class="summary-total">
+
+                            <span>
+                                Total promotion budget
                             </span>
 
                             <strong id="summaryTotalBudget">
@@ -450,34 +688,22 @@
                         </div>
 
 
-                        <div class="summary-divider"></div>
-
-
-                        <div class="total-row">
-
-                            <span>
-                                Campaign budget
-                            </span>
-
-                            <strong id="summaryFinalBudget">
-                                ₹100
-                            </strong>
-
-                        </div>
-
+                        <!-- IMPORTANT:
+                             This button does NOT directly start promotion.
+                             JS will open payment panel on same page.
+                        -->
 
                         <button
                             type="submit"
-                            class="start-promotion-button"
-                            id="startPromotionButton"
+                            class="proceed-payment-button"
+                            id="proceedPaymentButton"
                         >
-                            Start Promotion
+                            Proceed to Payment
                         </button>
 
 
                         <p class="summary-note">
-                            Your promotion will be saved as a scheduled
-                            campaign. Actual advertising results may vary.
+                            Your promotion will start after payment confirmation.
                         </p>
 
                     </div>
@@ -489,7 +715,189 @@
         </main>
 
 
-        <!-- FOOTER -->
+
+        <!-- =====================================================
+             PAYMENT PANEL
+             Hidden initially.
+             JS will open this later.
+        ====================================================== -->
+
+        <div
+            class="payment-overlay"
+            id="paymentOverlay"
+            aria-hidden="true"
+        >
+
+            <div
+                class="payment-panel"
+                role="dialog"
+                aria-modal="true"
+                aria-labelledby="paymentPanelTitle"
+            >
+
+                <!-- PAYMENT HEADER -->
+
+                <div class="payment-header">
+
+                    <div>
+
+                        <span class="payment-label">
+                            PAYMENT
+                        </span>
+
+                        <h2 id="paymentPanelTitle">
+                            Complete your promotion payment
+                        </h2>
+
+                        <p>
+                            Choose a payment method to continue.
+                        </p>
+
+                    </div>
+
+
+                    <button
+                        type="button"
+                        class="payment-close"
+                        id="closePaymentButton"
+                        aria-label="Close payment"
+                    >
+                        ×
+                    </button>
+
+                </div>
+
+
+                <!-- PAYMENT AMOUNT -->
+
+                <div class="payment-amount-box">
+
+                    <span>
+                        Amount to pay
+                    </span>
+
+                    <strong id="paymentAmount">
+                        ₹100
+                    </strong>
+
+                </div>
+
+
+                <!-- PAYMENT METHODS -->
+
+                <div class="payment-methods">
+
+                    <button
+                        type="button"
+                        class="payment-method active"
+                        data-payment-method="upi"
+                    >
+                        <span class="payment-method-icon">
+                            UPI
+                        </span>
+
+                        <span>
+                            Choose UPI
+                        </span>
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="payment-method"
+                        data-payment-method="qr"
+                    >
+                        <span class="payment-method-icon">
+                            QR
+                        </span>
+
+                        <span>
+                            UPI QR Scanner
+                        </span>
+                    </button>
+
+                </div>
+
+
+                <!-- UPI CONTENT -->
+
+                <div
+                    class="payment-method-content active"
+                    id="upiPaymentContent"
+                >
+
+                    <label for="paymentUpiId">
+                        UPI ID
+                    </label>
+
+                    <input
+                        type="text"
+                        id="paymentUpiId"
+                        placeholder="yourname@upi"
+                        autocomplete="off"
+                    >
+
+                    <p>
+                        Enter your UPI ID to continue with the payment.
+                    </p>
+
+                </div>
+
+
+                <!-- QR CONTENT -->
+
+                <div
+                    class="payment-method-content"
+                    id="qrPaymentContent"
+                >
+
+                    <div
+                        class="payment-qr"
+                        id="paymentQr"
+                    >
+                        QR
+                    </div>
+
+                    <strong>
+                        Scan to pay
+                    </strong>
+
+                    <p>
+                        Scan the MARTEY payment QR using your UPI app.
+                    </p>
+
+                </div>
+
+
+                <!-- PAYMENT ACTION -->
+
+                <div class="payment-action">
+
+                    <button
+                        type="button"
+                        class="confirm-payment-button"
+                        id="confirmPaymentButton"
+                    >
+                        Pay <span id="confirmPaymentAmount">₹100</span>
+                    </button>
+
+                </div>
+
+
+                <p class="payment-security-note">
+                    Payment verification will be connected to the backend later.
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =====================================================
+             FOOTER
+        ====================================================== -->
+
         <footer class="promotion-footer">
 
             <span>
@@ -505,7 +913,10 @@
     </div>
 
 
+    <!-- PROMOTION JAVASCRIPT -->
+
     <script src="create-promotion.js"></script>
 
 </body>
+
 </html>
