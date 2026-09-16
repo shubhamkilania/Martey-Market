@@ -115,7 +115,7 @@ svg {
 
     width: var(--sidebar-width);
 
-    background: #ffffff;
+    background: #101016;
     border-right: 1px solid var(--border);
 
     display: flex;
@@ -291,7 +291,7 @@ svg {
 
     padding: 0 30px;
 
-    background: rgba(255, 255, 255, 0.95);
+   background: rgba(15, 15, 20, 0.96);
 
     backdrop-filter: blur(14px);
 
@@ -328,7 +328,7 @@ svg {
     border: 1px solid var(--border);
     border-radius: 11px;
 
-    background: #ffffff;
+    background: #111116;
 
     color: #555566;
 
@@ -338,7 +338,7 @@ svg {
 }
 
 .mobile-menu-btn:hover {
-    background: #f8f8fb;
+    background: #1a1a22;
 }
 
 .menu-dots {
@@ -397,7 +397,7 @@ svg {
     border: 1px solid var(--border);
     border-radius: 12px;
 
-    background: #fafafd;
+    background: #15151c;
 
     display: flex;
     align-items: center;
@@ -450,7 +450,7 @@ svg {
     border: 1px solid var(--border);
     border-radius: 12px;
 
-    background: #ffffff;
+    background: #111116;
 
     color: #555566;
 
@@ -461,7 +461,7 @@ svg {
 
 .topbar-icon:hover,
 .seller-profile:hover {
-    background: #fafafd;
+    background: #1a1a22;
 }
 
 .topbar-svg-icon {
@@ -496,20 +496,20 @@ svg {
 
     padding: 0 17px;
 
-    border: 1px solid #dedee8;
+    border: 1px solid #343440;
     border-radius: 12px;
 
-    background: #ffffff;
+    background: #171722;
 
-    color: #292936;
+    color: #ffffff;
 
     font-size: 13px;
     font-weight: 700;
 }
 
 .topbar-shop:hover {
-    background: #fafafd;
-    border-color: #c9c9d7;
+    background: #22222e;
+    border-color: #454553;
 }
 
 
@@ -778,12 +778,12 @@ svg {
 .secondary-seller-btn {
     border: 1px solid var(--border);
 
-    background: #ffffff;
-    color: #383844;
+    background: #15151c;
+    color: #d7d7df;
 }
 
 .secondary-seller-btn:hover {
-    background: #fafafd;
+    background: #1c1c25;
 }
 
 .button-icon {
