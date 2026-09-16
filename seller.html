@@ -8,45 +8,34 @@
         content="width=device-width, initial-scale=1.0"
     >
 
-    <title>MARTEY Seller</title>
+    <title>MARTEY Seller Center</title>
 
-    <link
-        rel="preconnect"
-        href="https://fonts.googleapis.com"
-    >
-
-    <link
-        rel="preconnect"
-        href="https://fonts.gstatic.com"
-        crossorigin
-    >
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <link
         href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap"
         rel="stylesheet"
     >
 
-    <link
-        rel="stylesheet"
-        href="seller.css"
-    >
+    <link rel="stylesheet" href="seller.css">
 </head>
 
 <body>
 
-<div class="seller-app">
+<div class="seller-app" id="sellerApp">
 
     <!-- =====================================================
          SIDEBAR
     ====================================================== -->
 
-    <aside class="seller-sidebar">
+    <aside class="seller-sidebar" id="sellerSidebar">
 
         <div class="seller-logo">
             <a href="index.html">
                 MARTEY<span>.</span>
             </a>
-            <small>SELLER</small>
+            <small>SELLER CENTER</small>
         </div>
 
         <nav class="seller-nav">
@@ -134,8 +123,6 @@
 
         </nav>
 
-        <!-- SIDEBAR BOTTOM -->
-
         <div class="sidebar-bottom">
 
             <button
@@ -165,26 +152,30 @@
          MAIN
     ====================================================== -->
 
-    <main class="seller-main">
+    <main class="seller-main" id="sellerMain">
 
-        <!-- TOPBAR -->
+        <!-- =================================================
+             TOPBAR
+        ================================================== -->
 
         <header class="seller-topbar">
 
             <div class="topbar-left">
 
-                <!-- THREE DOT MENU -->
+                <!-- 3 DOT MENU -->
 
                 <button
                     class="mobile-menu-btn"
                     id="mobileMenuButton"
                     type="button"
                     aria-label="Open seller menu"
+                    aria-expanded="false"
                 >
                     <span>•••</span>
                 </button>
 
                 <div>
+
                     <span class="topbar-label">
                         MARTEY SELLER
                     </span>
@@ -195,6 +186,7 @@
                     >
                         Dashboard
                     </h1>
+
                 </div>
 
             </div>
@@ -212,14 +204,14 @@
                         type="search"
                         id="sellerSearch"
                         class="seller-search"
-                        placeholder="Search orders, products..."
+                        placeholder="Search products, orders..."
                         autocomplete="off"
                     >
 
                 </div>
 
 
-                <!-- NOTIFICATION -->
+                <!-- NOTIFICATIONS -->
 
                 <div class="notification-wrapper">
 
@@ -228,10 +220,15 @@
                         id="notificationButton"
                         type="button"
                         aria-label="Notifications"
+                        aria-expanded="false"
                     >
                         🔔
-                        <span class="notification-dot"></span>
+                        <span
+                            class="notification-dot"
+                            id="notificationDot"
+                        ></span>
                     </button>
+
 
                     <div
                         class="notification-panel"
@@ -239,9 +236,12 @@
                     >
 
                         <div class="notification-header">
+
                             <div>
                                 <strong>Notifications</strong>
-                                <span>3 new updates</span>
+                                <span id="notificationCount">
+                                    3 new updates
+                                </span>
                             </div>
 
                             <button
@@ -250,9 +250,14 @@
                             >
                                 Mark read
                             </button>
+
                         </div>
 
-                        <div class="notification-item unread">
+
+                        <div
+                            class="notification-item unread"
+                            data-notification="order"
+                        >
 
                             <div class="notification-symbol">
                                 !
@@ -260,13 +265,23 @@
 
                             <div>
                                 <strong>New order received</strong>
-                                <p>Order #MT1024 needs confirmation.</p>
-                                <small>5 min ago</small>
+
+                                <p>
+                                    Order #MT1024 needs confirmation.
+                                </p>
+
+                                <small>
+                                    5 min ago
+                                </small>
                             </div>
 
                         </div>
 
-                        <div class="notification-item">
+
+                        <div
+                            class="notification-item"
+                            data-notification="payment"
+                        >
 
                             <div class="notification-symbol purple">
                                 ₹
@@ -274,13 +289,23 @@
 
                             <div>
                                 <strong>Payment update</strong>
-                                <p>Your recent payout was processed.</p>
-                                <small>2 hours ago</small>
+
+                                <p>
+                                    Your recent payout was processed.
+                                </p>
+
+                                <small>
+                                    2 hours ago
+                                </small>
                             </div>
 
                         </div>
 
-                        <div class="notification-item">
+
+                        <div
+                            class="notification-item"
+                            data-notification="review"
+                        >
 
                             <div class="notification-symbol blue">
                                 ★
@@ -288,8 +313,14 @@
 
                             <div>
                                 <strong>New product review</strong>
-                                <p>A customer reviewed your product.</p>
-                                <small>Yesterday</small>
+
+                                <p>
+                                    A customer reviewed your product.
+                                </p>
+
+                                <small>
+                                    Yesterday
+                                </small>
                             </div>
 
                         </div>
@@ -299,7 +330,7 @@
                 </div>
 
 
-                <!-- SHOP -->
+                <!-- SHOP MARTEY -->
 
                 <button
                     class="topbar-shop"
@@ -310,13 +341,14 @@
                 </button>
 
 
-                <!-- ACCOUNT / PROFILE ICON ONLY -->
+                <!-- PROFILE ICON ONLY -->
 
                 <button
                     class="seller-profile"
                     id="sellerProfileButton"
                     type="button"
                     aria-label="Seller profile"
+                    aria-expanded="false"
                 >
 
                     <span
@@ -333,7 +365,9 @@
         </header>
 
 
-        <!-- CONTENT -->
+        <!-- =================================================
+             PAGE CONTENT
+        ================================================== -->
 
         <div class="seller-content">
 
@@ -350,6 +384,7 @@
                 <div class="welcome-row">
 
                     <div>
+
                         <span class="section-eyebrow">
                             SELLER CENTER
                         </span>
@@ -361,7 +396,9 @@
                         <p>
                             Manage your store, products and orders.
                         </p>
+
                     </div>
+
 
                     <button
                         class="primary-seller-btn"
@@ -393,7 +430,10 @@
                         </div>
 
                         <h3>₹24,580</h3>
-                        <p>Today's Sales</p>
+
+                        <p>
+                            Today's Sales
+                        </p>
 
                     </div>
 
@@ -413,7 +453,10 @@
                         </div>
 
                         <h3>128</h3>
-                        <p>Total Orders</p>
+
+                        <p>
+                            Total Orders
+                        </p>
 
                     </div>
 
@@ -428,8 +471,13 @@
 
                         </div>
 
-                        <h3>46</h3>
-                        <p>Active Products</p>
+                        <h3 id="dashboardProductCount">
+                            0
+                        </h3>
+
+                        <p>
+                            Active Products
+                        </p>
 
                     </div>
 
@@ -444,8 +492,13 @@
 
                         </div>
 
-                        <h3>7</h3>
-                        <p>Pending Orders</p>
+                        <h3>
+                            7
+                        </h3>
+
+                        <p>
+                            Pending Orders
+                        </p>
 
                     </div>
 
@@ -461,6 +514,7 @@
                         <div class="panel-header">
 
                             <div>
+
                                 <span class="panel-eyebrow">
                                     REVENUE
                                 </span>
@@ -468,6 +522,7 @@
                                 <h3>
                                     Sales Overview
                                 </h3>
+
                             </div>
 
                             <select
@@ -499,12 +554,14 @@
                                 <span>₹0</span>
                             </div>
 
+
                             <div class="chart-area">
 
                                 <div class="chart-grid-line"></div>
                                 <div class="chart-grid-line"></div>
                                 <div class="chart-grid-line"></div>
                                 <div class="chart-grid-line"></div>
+
 
                                 <div class="chart-bars">
 
@@ -557,6 +614,7 @@
                         <div class="panel-header">
 
                             <div>
+
                                 <span class="panel-eyebrow">
                                     STORE HEALTH
                                 </span>
@@ -564,6 +622,7 @@
                                 <h3>
                                     Performance
                                 </h3>
+
                             </div>
 
                         </div>
@@ -572,6 +631,7 @@
                         <div class="performance-list">
 
                             <div class="performance-item">
+
                                 <span class="performance-label">
                                     Product views
                                 </span>
@@ -579,9 +639,12 @@
                                 <strong class="performance-value">
                                     4,821
                                 </strong>
+
                             </div>
 
+
                             <div class="performance-item">
+
                                 <span class="performance-label">
                                     Add to cart
                                 </span>
@@ -589,9 +652,12 @@
                                 <strong class="performance-value">
                                     682
                                 </strong>
+
                             </div>
 
+
                             <div class="performance-item">
+
                                 <span class="performance-label">
                                     Conversion
                                 </span>
@@ -599,9 +665,12 @@
                                 <strong class="performance-value">
                                     8.7%
                                 </strong>
+
                             </div>
 
+
                             <div class="performance-item">
+
                                 <span class="performance-label">
                                     Store rating
                                 </span>
@@ -609,9 +678,12 @@
                                 <strong class="performance-value">
                                     ★ 4.8
                                 </strong>
+
                             </div>
 
+
                             <div class="performance-item">
+
                                 <span class="performance-label">
                                     Return rate
                                 </span>
@@ -619,6 +691,7 @@
                                 <strong class="performance-value">
                                     2.1%
                                 </strong>
+
                             </div>
 
                         </div>
@@ -637,6 +710,7 @@
                         <div class="panel-header">
 
                             <div>
+
                                 <span class="panel-eyebrow">
                                     RECENT ACTIVITY
                                 </span>
@@ -644,6 +718,7 @@
                                 <h3>
                                     Recent Orders
                                 </h3>
+
                             </div>
 
                             <button
@@ -662,13 +737,16 @@
                             <table class="orders-table">
 
                                 <thead>
+
                                     <tr>
                                         <th>Order</th>
                                         <th>Product</th>
                                         <th>Amount</th>
                                         <th>Status</th>
                                     </tr>
+
                                 </thead>
+
 
                                 <tbody>
 
@@ -676,6 +754,7 @@
                                         <td>#MT1024</td>
                                         <td>Oversized T-Shirt</td>
                                         <td>₹1,598</td>
+
                                         <td>
                                             <span class="status pending">
                                                 Pending
@@ -683,10 +762,12 @@
                                         </td>
                                     </tr>
 
+
                                     <tr>
                                         <td>#MT1023</td>
                                         <td>Wireless Headphones</td>
                                         <td>₹2,499</td>
+
                                         <td>
                                             <span class="status confirmed">
                                                 Confirmed
@@ -694,10 +775,12 @@
                                         </td>
                                     </tr>
 
+
                                     <tr>
                                         <td>#MT1022</td>
                                         <td>Smart Watch</td>
                                         <td>₹3,999</td>
+
                                         <td>
                                             <span class="status shipped">
                                                 Shipped
@@ -705,10 +788,12 @@
                                         </td>
                                     </tr>
 
+
                                     <tr>
                                         <td>#MT1021</td>
                                         <td>Desk Lamp</td>
                                         <td>₹899</td>
+
                                         <td>
                                             <span class="status delivered">
                                                 Delivered
@@ -730,6 +815,7 @@
                         <div class="panel-header">
 
                             <div>
+
                                 <span class="panel-eyebrow">
                                     INVENTORY
                                 </span>
@@ -737,6 +823,7 @@
                                 <h3>
                                     Low Stock
                                 </h3>
+
                             </div>
 
                             <button
@@ -759,6 +846,7 @@
                                 </div>
 
                                 <div class="stock-product-info">
+
                                     <strong>
                                         Premium T-Shirt
                                     </strong>
@@ -766,6 +854,7 @@
                                     <span>
                                         SKU: MT-1001
                                     </span>
+
                                 </div>
 
                                 <span class="stock-number">
@@ -782,6 +871,7 @@
                                 </div>
 
                                 <div class="stock-product-info">
+
                                     <strong>
                                         Classic Hoodie
                                     </strong>
@@ -789,6 +879,7 @@
                                     <span>
                                         SKU: MT-1008
                                     </span>
+
                                 </div>
 
                                 <span class="stock-number">
@@ -805,6 +896,7 @@
                                 </div>
 
                                 <div class="stock-product-info">
+
                                     <strong>
                                         Black Sneakers
                                     </strong>
@@ -812,6 +904,7 @@
                                     <span>
                                         SKU: MT-1014
                                     </span>
+
                                 </div>
 
                                 <span class="stock-number">
@@ -844,15 +937,21 @@
                         CATALOG
                     </span>
 
+
                     <div class="section-heading-row">
 
                         <div>
-                            <h2>Products</h2>
+
+                            <h2>
+                                Products
+                            </h2>
 
                             <p>
                                 Manage everything you sell on MARTEY.
                             </p>
+
                         </div>
+
 
                         <button
                             class="primary-seller-btn"
@@ -867,28 +966,124 @@
                 </div>
 
 
-                <div class="seller-panel coming-soon-panel">
+                <!-- PRODUCT TOOLBAR -->
 
-                    <div class="coming-icon">
-                        ▣
+                <div class="product-toolbar seller-panel">
+
+                    <div class="product-search-box">
+
+                        <span>
+                            ⌕
+                        </span>
+
+                        <input
+                            type="search"
+                            id="productListSearch"
+                            placeholder="Search your products..."
+                            autocomplete="off"
+                        >
+
                     </div>
 
-                    <h3>
-                        Product Management
-                    </h3>
 
-                    <p>
-                        Add products, edit details, manage stock,
-                        images, prices and product information.
-                    </p>
+                    <div class="product-filters">
 
-                    <button
-                        class="primary-seller-btn"
-                        data-open-add-product
-                        type="button"
+                        <button
+                            class="product-filter active"
+                            data-product-filter="all"
+                            type="button"
+                        >
+                            All
+                        </button>
+
+                        <button
+                            class="product-filter"
+                            data-product-filter="active"
+                            type="button"
+                        >
+                            Active
+                        </button>
+
+                        <button
+                            class="product-filter"
+                            data-product-filter="draft"
+                            type="button"
+                        >
+                            Draft
+                        </button>
+
+                        <button
+                            class="product-filter"
+                            data-product-filter="out-of-stock"
+                            type="button"
+                        >
+                            Out of Stock
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- PRODUCT LIST -->
+
+                <div
+                    class="seller-panel products-list-panel"
+                    id="productsListPanel"
+                >
+
+                    <div class="products-list-header">
+
+                        <div>
+                            <strong id="productsListCount">
+                                0 Products
+                            </strong>
+
+                            <span>
+                                Your MARTEY catalog
+                            </span>
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        class="products-list"
+                        id="sellerProductsList"
                     >
-                        Add your first product
-                    </button>
+
+                        <!-- seller.js will render products here -->
+
+                    </div>
+
+
+                    <div
+                        class="products-empty-state"
+                        id="productsEmptyState"
+                    >
+
+                        <div class="coming-icon">
+                            ▣
+                        </div>
+
+                        <h3>
+                            No products yet
+                        </h3>
+
+                        <p>
+                            Add your first product and start building
+                            your MARTEY store.
+                        </p>
+
+                        <button
+                            class="primary-seller-btn"
+                            id="emptyAddProductButton"
+                            type="button"
+                        >
+                            + Add Product
+                        </button>
+
+                    </div>
 
                 </div>
 
@@ -910,13 +1105,16 @@
                         SALES
                     </span>
 
-                    <h2>Orders</h2>
+                    <h2>
+                        Orders
+                    </h2>
 
                     <p>
                         Track and manage customer orders.
                     </p>
 
                 </div>
+
 
                 <div class="seller-panel coming-soon-panel">
 
@@ -952,13 +1150,16 @@
                         STOCK
                     </span>
 
-                    <h2>Inventory</h2>
+                    <h2>
+                        Inventory
+                    </h2>
 
                     <p>
                         Monitor stock levels and low-stock products.
                     </p>
 
                 </div>
+
 
                 <div class="seller-panel coming-soon-panel">
 
@@ -995,13 +1196,16 @@
                         MONEY
                     </span>
 
-                    <h2>Earnings</h2>
+                    <h2>
+                        Earnings
+                    </h2>
 
                     <p>
                         Track sales, commission and available payouts.
                     </p>
 
                 </div>
+
 
                 <div class="seller-panel coming-soon-panel">
 
@@ -1038,13 +1242,16 @@
                         INSIGHTS
                     </span>
 
-                    <h2>Analytics</h2>
+                    <h2>
+                        Analytics
+                    </h2>
 
                     <p>
                         Understand your store performance.
                     </p>
 
                 </div>
+
 
                 <div class="seller-panel coming-soon-panel">
 
@@ -1081,13 +1288,16 @@
                         GROWTH
                     </span>
 
-                    <h2>Promotions</h2>
+                    <h2>
+                        Promotions
+                    </h2>
 
                     <p>
                         Create offers and promote your products.
                     </p>
 
                 </div>
+
 
                 <div class="seller-panel coming-soon-panel">
 
@@ -1124,13 +1334,16 @@
                         CUSTOMER FEEDBACK
                     </span>
 
-                    <h2>Reviews</h2>
+                    <h2>
+                        Reviews
+                    </h2>
 
                     <p>
                         See what customers think about your products.
                     </p>
 
                 </div>
+
 
                 <div class="seller-panel coming-soon-panel">
 
@@ -1167,15 +1380,21 @@
                         YOUR BRAND
                     </span>
 
+
                     <div class="section-heading-row">
 
                         <div>
-                            <h2>My Store</h2>
+
+                            <h2>
+                                My Store
+                            </h2>
 
                             <p>
                                 Manage how your MARTEY store looks to customers.
                             </p>
+
                         </div>
+
 
                         <button
                             class="secondary-seller-btn"
@@ -1198,13 +1417,20 @@
                             STORE PREVIEW
                         </span>
 
+
                         <div class="store-preview">
 
                             <div class="store-cover">
-                                <div class="store-logo-circle">
+
+                                <div
+                                    class="store-logo-circle"
+                                    id="storeLogoCircle"
+                                >
                                     S
                                 </div>
+
                             </div>
+
 
                             <div class="store-preview-info">
 
@@ -1212,13 +1438,14 @@
                                     Your Store
                                 </h3>
 
-                                <p>
+                                <p id="storePreviewDescription">
                                     Your store description will appear here.
                                 </p>
 
                                 <button
                                     type="button"
                                     class="primary-seller-btn"
+                                    id="viewStoreButton"
                                 >
                                     View Store
                                 </button>
@@ -1267,7 +1494,7 @@
 
 
 <!-- =========================================================
-     SELLER PROFILE PANEL
+     PROFILE PANEL
 ========================================================== -->
 
 <div
@@ -1275,15 +1502,22 @@
     id="profileOverlay"
 >
 
-    <div class="seller-profile-panel">
+    <div
+        class="seller-profile-panel"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Seller profile"
+    >
 
         <button
             class="profile-close"
             id="profileCloseButton"
             type="button"
+            aria-label="Close profile"
         >
             ×
         </button>
+
 
         <div class="profile-panel-header">
 
@@ -1294,7 +1528,9 @@
                 S
             </div>
 
+
             <div>
+
                 <span class="section-eyebrow">
                     SELLER PROFILE
                 </span>
@@ -1319,8 +1555,9 @@
                 id="sellerAccountSettings"
             >
                 <span>👤</span>
-                Account & Profile
+                Account &amp; Profile
             </button>
+
 
             <button
                 type="button"
@@ -1330,13 +1567,15 @@
                 Business Information
             </button>
 
+
             <button
                 type="button"
                 id="sellerSecuritySettings"
             >
                 <span>🔒</span>
-                Login & Security
+                Login &amp; Security
             </button>
+
 
             <button
                 type="button"
