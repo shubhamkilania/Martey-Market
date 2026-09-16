@@ -2,11 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>MARTEY Seller Center</title>
 
@@ -40,83 +36,65 @@
 
         <nav class="seller-nav">
 
-            <button
-                class="seller-nav-item active"
-                data-section="dashboard"
-                type="button"
-            >
+            <button class="seller-nav-item active"
+                    data-section="dashboard"
+                    type="button">
                 <span class="nav-icon">⌂</span>
                 <span>Dashboard</span>
             </button>
 
-            <button
-                class="seller-nav-item"
-                data-section="products"
-                type="button"
-            >
+            <button class="seller-nav-item"
+                    data-section="products"
+                    type="button">
                 <span class="nav-icon">▣</span>
                 <span>Products</span>
             </button>
 
-            <button
-                class="seller-nav-item"
-                data-section="orders"
-                type="button"
-            >
+            <button class="seller-nav-item"
+                    data-section="orders"
+                    type="button">
                 <span class="nav-icon">▤</span>
                 <span>Orders</span>
             </button>
 
-            <button
-                class="seller-nav-item"
-                data-section="inventory"
-                type="button"
-            >
+            <button class="seller-nav-item"
+                    data-section="inventory"
+                    type="button">
                 <span class="nav-icon">▦</span>
                 <span>Inventory</span>
             </button>
 
-            <button
-                class="seller-nav-item"
-                data-section="earnings"
-                type="button"
-            >
+            <button class="seller-nav-item"
+                    data-section="earnings"
+                    type="button">
                 <span class="nav-icon">₹</span>
                 <span>Earnings</span>
             </button>
 
-            <button
-                class="seller-nav-item"
-                data-section="analytics"
-                type="button"
-            >
+            <button class="seller-nav-item"
+                    data-section="analytics"
+                    type="button">
                 <span class="nav-icon">⌁</span>
                 <span>Analytics</span>
             </button>
 
-            <button
-                class="seller-nav-item"
-                data-section="promotions"
-                type="button"
-            >
+            <button class="seller-nav-item"
+                    data-section="promotions"
+                    type="button">
                 <span class="nav-icon">%</span>
                 <span>Promotions</span>
             </button>
 
-            <button
-                class="seller-nav-item"
-                data-section="reviews"
-                type="button"
-            >
+            <button class="seller-nav-item"
+                    data-section="reviews"
+                    type="button">
                 <span class="nav-icon">★</span>
                 <span>Reviews</span>
             </button>
 
-            <button
-                class="seller-nav-item"
-                data-section="store"
-                type="button"
-            >
+            <button class="seller-nav-item"
+                    data-section="store"
+                    type="button">
                 <span class="nav-icon">⌂</span>
                 <span>My Store</span>
             </button>
@@ -128,8 +106,7 @@
             <button
                 class="sidebar-help"
                 id="sellerHelpButton"
-                type="button"
-            >
+                type="button">
                 <span class="nav-icon">?</span>
                 <span>Seller Help</span>
             </button>
@@ -137,8 +114,7 @@
             <button
                 class="shop-martey-btn"
                 id="shopMarteyButton"
-                type="button"
-            >
+                type="button">
                 <span class="nav-icon">↗</span>
                 <span>Shop MARTEY</span>
             </button>
@@ -162,31 +138,23 @@
 
             <div class="topbar-left">
 
-                <!-- 3 DOT MENU -->
-
                 <button
                     class="mobile-menu-btn"
                     id="mobileMenuButton"
                     type="button"
                     aria-label="Open seller menu"
-                    aria-expanded="false"
-                >
+                    aria-expanded="false">
                     <span>•••</span>
                 </button>
 
                 <div>
-
                     <span class="topbar-label">
                         MARTEY SELLER
                     </span>
 
-                    <h1
-                        class="page-title"
-                        id="pageTitle"
-                    >
+                    <h1 class="page-title" id="pageTitle">
                         Dashboard
                     </h1>
-
                 </div>
 
             </div>
@@ -220,107 +188,92 @@
                         id="notificationButton"
                         type="button"
                         aria-label="Notifications"
-                        aria-expanded="false"
-                    >
+                        aria-expanded="false">
                         🔔
                         <span
                             class="notification-dot"
-                            id="notificationDot"
-                        ></span>
+                            id="notificationDot">
+                        </span>
                     </button>
 
 
                     <div
                         class="notification-panel"
-                        id="notificationPanel"
-                    >
+                        id="notificationPanel">
 
                         <div class="notification-header">
 
                             <div>
                                 <strong>Notifications</strong>
                                 <span id="notificationCount">
-                                    3 new updates
+                                    0 new updates
                                 </span>
                             </div>
 
                             <button
                                 id="markNotificationsRead"
-                                type="button"
-                            >
+                                type="button">
                                 Mark read
                             </button>
 
                         </div>
 
+                        <div id="sellerNotificationsList">
 
-                        <div
-                            class="notification-item unread"
-                            data-notification="order"
-                        >
+                            <div
+                                class="notification-item unread"
+                                data-notification="order">
 
-                            <div class="notification-symbol">
-                                !
+                                <div class="notification-symbol">
+                                    !
+                                </div>
+
+                                <div>
+                                    <strong>New order received</strong>
+                                    <p>
+                                        Your new order needs confirmation.
+                                    </p>
+                                    <small>Just now</small>
+                                </div>
+
                             </div>
 
-                            <div>
-                                <strong>New order received</strong>
 
-                                <p>
-                                    Order #MT1024 needs confirmation.
-                                </p>
+                            <div
+                                class="notification-item"
+                                data-notification="payment">
 
-                                <small>
-                                    5 min ago
-                                </small>
+                                <div class="notification-symbol purple">
+                                    ₹
+                                </div>
+
+                                <div>
+                                    <strong>Payment update</strong>
+                                    <p>
+                                        Your payout information will appear here.
+                                    </p>
+                                    <small>Recently</small>
+                                </div>
+
                             </div>
 
-                        </div>
 
+                            <div
+                                class="notification-item"
+                                data-notification="review">
 
-                        <div
-                            class="notification-item"
-                            data-notification="payment"
-                        >
+                                <div class="notification-symbol blue">
+                                    ★
+                                </div>
 
-                            <div class="notification-symbol purple">
-                                ₹
-                            </div>
+                                <div>
+                                    <strong>New product review</strong>
+                                    <p>
+                                        Customer reviews will appear here.
+                                    </p>
+                                    <small>Recently</small>
+                                </div>
 
-                            <div>
-                                <strong>Payment update</strong>
-
-                                <p>
-                                    Your recent payout was processed.
-                                </p>
-
-                                <small>
-                                    2 hours ago
-                                </small>
-                            </div>
-
-                        </div>
-
-
-                        <div
-                            class="notification-item"
-                            data-notification="review"
-                        >
-
-                            <div class="notification-symbol blue">
-                                ★
-                            </div>
-
-                            <div>
-                                <strong>New product review</strong>
-
-                                <p>
-                                    A customer reviewed your product.
-                                </p>
-
-                                <small>
-                                    Yesterday
-                                </small>
                             </div>
 
                         </div>
@@ -335,26 +288,23 @@
                 <button
                     class="topbar-shop"
                     id="topShopButton"
-                    type="button"
-                >
+                    type="button">
                     Shop MARTEY
                 </button>
 
 
-                <!-- PROFILE ICON ONLY -->
+                <!-- PROFILE -->
 
                 <button
                     class="seller-profile"
                     id="sellerProfileButton"
                     type="button"
                     aria-label="Seller profile"
-                    aria-expanded="false"
-                >
+                    aria-expanded="false">
 
                     <span
                         class="seller-avatar"
-                        id="sellerAvatar"
-                    >
+                        id="sellerAvatar">
                         S
                     </span>
 
@@ -378,8 +328,7 @@
 
             <section
                 class="seller-section active"
-                data-page-section="dashboard"
-            >
+                data-page-section="dashboard">
 
                 <div class="welcome-row">
 
@@ -399,41 +348,32 @@
 
                     </div>
 
-
                     <button
                         class="primary-seller-btn"
                         id="addProductButton"
-                        type="button"
-                    >
+                        type="button">
                         + Add Product
                     </button>
 
                 </div>
 
 
-                <!-- STATS -->
+                <!-- DASHBOARD STATS -->
 
                 <div class="seller-stats-grid">
 
                     <div class="seller-stat-card">
 
                         <div class="stat-card-top">
-
-                            <div class="stat-icon purple">
-                                ₹
-                            </div>
-
-                            <span class="stat-positive">
-                                +12.5%
-                            </span>
-
+                            <div class="stat-icon purple">₹</div>
+                            <span class="stat-positive">—</span>
                         </div>
 
-                        <h3>₹24,580</h3>
+                        <h3 id="dashboardTodaySales">
+                            ₹0
+                        </h3>
 
-                        <p>
-                            Today's Sales
-                        </p>
+                        <p>Today's Sales</p>
 
                     </div>
 
@@ -441,22 +381,15 @@
                     <div class="seller-stat-card">
 
                         <div class="stat-card-top">
-
-                            <div class="stat-icon blue">
-                                #
-                            </div>
-
-                            <span class="stat-positive">
-                                +8.2%
-                            </span>
-
+                            <div class="stat-icon blue">#</div>
+                            <span class="stat-positive">—</span>
                         </div>
 
-                        <h3>128</h3>
+                        <h3 id="dashboardOrderCount">
+                            0
+                        </h3>
 
-                        <p>
-                            Total Orders
-                        </p>
+                        <p>Total Orders</p>
 
                     </div>
 
@@ -464,20 +397,14 @@
                     <div class="seller-stat-card">
 
                         <div class="stat-card-top">
-
-                            <div class="stat-icon green">
-                                ▣
-                            </div>
-
+                            <div class="stat-icon green">▣</div>
                         </div>
 
                         <h3 id="dashboardProductCount">
                             0
                         </h3>
 
-                        <p>
-                            Active Products
-                        </p>
+                        <p>Active Products</p>
 
                     </div>
 
@@ -485,27 +412,21 @@
                     <div class="seller-stat-card">
 
                         <div class="stat-card-top">
-
-                            <div class="stat-icon orange">
-                                !
-                            </div>
-
+                            <div class="stat-icon orange">!</div>
                         </div>
 
-                        <h3>
-                            7
+                        <h3 id="dashboardPendingOrders">
+                            0
                         </h3>
 
-                        <p>
-                            Pending Orders
-                        </p>
+                        <p>Pending Orders</p>
 
                     </div>
 
                 </div>
 
 
-                <!-- CHART + PERFORMANCE -->
+                <!-- SALES + PERFORMANCE -->
 
                 <div class="dashboard-grid">
 
@@ -514,7 +435,6 @@
                         <div class="panel-header">
 
                             <div>
-
                                 <span class="panel-eyebrow">
                                     REVENUE
                                 </span>
@@ -522,13 +442,12 @@
                                 <h3>
                                     Sales Overview
                                 </h3>
-
                             </div>
 
                             <select
                                 class="panel-select"
-                                id="salesPeriod"
-                            >
+                                id="salesPeriod">
+
                                 <option value="7">
                                     Last 7 days
                                 </option>
@@ -540,12 +459,15 @@
                                 <option value="90">
                                     Last 3 months
                                 </option>
+
                             </select>
 
                         </div>
 
 
-                        <div class="sales-chart">
+                        <div
+                            class="sales-chart"
+                            id="dashboardSalesChart">
 
                             <div class="chart-y-axis">
                                 <span>₹30k</span>
@@ -554,7 +476,6 @@
                                 <span>₹0</span>
                             </div>
 
-
                             <div class="chart-area">
 
                                 <div class="chart-grid-line"></div>
@@ -562,43 +483,37 @@
                                 <div class="chart-grid-line"></div>
                                 <div class="chart-grid-line"></div>
 
+                                <div
+                                    class="chart-bars"
+                                    id="dashboardChartBars">
 
-                                <div class="chart-bars">
+                                    <div class="chart-bar"
+                                         style="--height:20%">
+                                    </div>
 
-                                    <div
-                                        class="chart-bar"
-                                        style="--height:42%"
-                                    ></div>
+                                    <div class="chart-bar"
+                                         style="--height:35%">
+                                    </div>
 
-                                    <div
-                                        class="chart-bar"
-                                        style="--height:58%"
-                                    ></div>
+                                    <div class="chart-bar"
+                                         style="--height:25%">
+                                    </div>
 
-                                    <div
-                                        class="chart-bar"
-                                        style="--height:47%"
-                                    ></div>
+                                    <div class="chart-bar"
+                                         style="--height:50%">
+                                    </div>
 
-                                    <div
-                                        class="chart-bar"
-                                        style="--height:73%"
-                                    ></div>
+                                    <div class="chart-bar"
+                                         style="--height:40%">
+                                    </div>
 
-                                    <div
-                                        class="chart-bar"
-                                        style="--height:63%"
-                                    ></div>
+                                    <div class="chart-bar"
+                                         style="--height:65%">
+                                    </div>
 
-                                    <div
-                                        class="chart-bar"
-                                        style="--height:84%"
-                                    ></div>
-
-                                    <div
-                                        class="chart-bar"
-                                        style="--height:70%"
-                                    ></div>
+                                    <div class="chart-bar"
+                                         style="--height:45%">
+                                    </div>
 
                                 </div>
 
@@ -614,7 +529,6 @@
                         <div class="panel-header">
 
                             <div>
-
                                 <span class="panel-eyebrow">
                                     STORE HEALTH
                                 </span>
@@ -622,7 +536,6 @@
                                 <h3>
                                     Performance
                                 </h3>
-
                             </div>
 
                         </div>
@@ -631,67 +544,63 @@
                         <div class="performance-list">
 
                             <div class="performance-item">
-
                                 <span class="performance-label">
                                     Product views
                                 </span>
 
-                                <strong class="performance-value">
-                                    4,821
+                                <strong
+                                    class="performance-value"
+                                    id="dashboardProductViews">
+                                    0
                                 </strong>
-
                             </div>
 
-
                             <div class="performance-item">
-
                                 <span class="performance-label">
                                     Add to cart
                                 </span>
 
-                                <strong class="performance-value">
-                                    682
+                                <strong
+                                    class="performance-value"
+                                    id="dashboardAddToCart">
+                                    0
                                 </strong>
-
                             </div>
 
-
                             <div class="performance-item">
-
                                 <span class="performance-label">
                                     Conversion
                                 </span>
 
-                                <strong class="performance-value">
-                                    8.7%
+                                <strong
+                                    class="performance-value"
+                                    id="dashboardConversion">
+                                    0%
                                 </strong>
-
                             </div>
 
-
                             <div class="performance-item">
-
                                 <span class="performance-label">
                                     Store rating
                                 </span>
 
-                                <strong class="performance-value">
-                                    ★ 4.8
+                                <strong
+                                    class="performance-value"
+                                    id="dashboardStoreRating">
+                                    —
                                 </strong>
-
                             </div>
 
-
                             <div class="performance-item">
-
                                 <span class="performance-label">
                                     Return rate
                                 </span>
 
-                                <strong class="performance-value">
-                                    2.1%
+                                <strong
+                                    class="performance-value"
+                                    id="dashboardReturnRate">
+                                    0%
                                 </strong>
-
                             </div>
 
                         </div>
@@ -701,7 +610,7 @@
                 </div>
 
 
-                <!-- ORDERS + STOCK -->
+                <!-- RECENT ORDERS + LOW STOCK -->
 
                 <div class="dashboard-bottom-grid">
 
@@ -710,7 +619,6 @@
                         <div class="panel-header">
 
                             <div>
-
                                 <span class="panel-eyebrow">
                                     RECENT ACTIVITY
                                 </span>
@@ -718,14 +626,12 @@
                                 <h3>
                                     Recent Orders
                                 </h3>
-
                             </div>
 
                             <button
                                 class="panel-link"
                                 data-open-section="orders"
-                                type="button"
-                            >
+                                type="button">
                                 View all →
                             </button>
 
@@ -737,67 +643,19 @@
                             <table class="orders-table">
 
                                 <thead>
-
                                     <tr>
                                         <th>Order</th>
                                         <th>Product</th>
                                         <th>Amount</th>
                                         <th>Status</th>
                                     </tr>
-
                                 </thead>
 
-
-                                <tbody>
-
-                                    <tr>
-                                        <td>#MT1024</td>
-                                        <td>Oversized T-Shirt</td>
-                                        <td>₹1,598</td>
-
-                                        <td>
-                                            <span class="status pending">
-                                                Pending
-                                            </span>
-                                        </td>
-                                    </tr>
-
+                                <tbody id="dashboardRecentOrders">
 
                                     <tr>
-                                        <td>#MT1023</td>
-                                        <td>Wireless Headphones</td>
-                                        <td>₹2,499</td>
-
-                                        <td>
-                                            <span class="status confirmed">
-                                                Confirmed
-                                            </span>
-                                        </td>
-                                    </tr>
-
-
-                                    <tr>
-                                        <td>#MT1022</td>
-                                        <td>Smart Watch</td>
-                                        <td>₹3,999</td>
-
-                                        <td>
-                                            <span class="status shipped">
-                                                Shipped
-                                            </span>
-                                        </td>
-                                    </tr>
-
-
-                                    <tr>
-                                        <td>#MT1021</td>
-                                        <td>Desk Lamp</td>
-                                        <td>₹899</td>
-
-                                        <td>
-                                            <span class="status delivered">
-                                                Delivered
-                                            </span>
+                                        <td colspan="4">
+                                            No orders yet
                                         </td>
                                     </tr>
 
@@ -815,7 +673,6 @@
                         <div class="panel-header">
 
                             <div>
-
                                 <span class="panel-eyebrow">
                                     INVENTORY
                                 </span>
@@ -829,88 +686,19 @@
                             <button
                                 class="panel-link"
                                 data-open-section="inventory"
-                                type="button"
-                            >
+                                type="button">
                                 View →
                             </button>
 
                         </div>
 
 
-                        <div class="low-stock-list">
+                        <div
+                            class="low-stock-list"
+                            id="dashboardLowStockList">
 
-                            <div class="stock-item">
-
-                                <div class="stock-product-image">
-                                    IMG
-                                </div>
-
-                                <div class="stock-product-info">
-
-                                    <strong>
-                                        Premium T-Shirt
-                                    </strong>
-
-                                    <span>
-                                        SKU: MT-1001
-                                    </span>
-
-                                </div>
-
-                                <span class="stock-number">
-                                    4 left
-                                </span>
-
-                            </div>
-
-
-                            <div class="stock-item">
-
-                                <div class="stock-product-image">
-                                    IMG
-                                </div>
-
-                                <div class="stock-product-info">
-
-                                    <strong>
-                                        Classic Hoodie
-                                    </strong>
-
-                                    <span>
-                                        SKU: MT-1008
-                                    </span>
-
-                                </div>
-
-                                <span class="stock-number">
-                                    6 left
-                                </span>
-
-                            </div>
-
-
-                            <div class="stock-item">
-
-                                <div class="stock-product-image">
-                                    IMG
-                                </div>
-
-                                <div class="stock-product-info">
-
-                                    <strong>
-                                        Black Sneakers
-                                    </strong>
-
-                                    <span>
-                                        SKU: MT-1014
-                                    </span>
-
-                                </div>
-
-                                <span class="stock-number">
-                                    3 left
-                                </span>
-
+                            <div class="empty-dashboard-message">
+                                No low-stock products
                             </div>
 
                         </div>
@@ -922,14 +710,14 @@
             </section>
 
 
+
             <!-- =================================================
                  PRODUCTS
             ================================================== -->
 
             <section
                 class="seller-section"
-                data-page-section="products"
-            >
+                data-page-section="products">
 
                 <div class="section-page-heading">
 
@@ -937,14 +725,11 @@
                         CATALOG
                     </span>
 
-
                     <div class="section-heading-row">
 
                         <div>
 
-                            <h2>
-                                Products
-                            </h2>
+                            <h2>Products</h2>
 
                             <p>
                                 Manage everything you sell on MARTEY.
@@ -952,12 +737,10 @@
 
                         </div>
 
-
                         <button
                             class="primary-seller-btn"
                             id="productsAddButton"
-                            type="button"
-                        >
+                            type="button">
                             + Add Product
                         </button>
 
@@ -966,22 +749,17 @@
                 </div>
 
 
-                <!-- PRODUCT TOOLBAR -->
-
                 <div class="product-toolbar seller-panel">
 
                     <div class="product-search-box">
 
-                        <span>
-                            ⌕
-                        </span>
+                        <span>⌕</span>
 
                         <input
                             type="search"
                             id="productListSearch"
                             placeholder="Search your products..."
-                            autocomplete="off"
-                        >
+                            autocomplete="off">
 
                     </div>
 
@@ -991,32 +769,28 @@
                         <button
                             class="product-filter active"
                             data-product-filter="all"
-                            type="button"
-                        >
+                            type="button">
                             All
                         </button>
 
                         <button
                             class="product-filter"
                             data-product-filter="active"
-                            type="button"
-                        >
+                            type="button">
                             Active
                         </button>
 
                         <button
                             class="product-filter"
                             data-product-filter="draft"
-                            type="button"
-                        >
+                            type="button">
                             Draft
                         </button>
 
                         <button
                             class="product-filter"
                             data-product-filter="out-of-stock"
-                            type="button"
-                        >
+                            type="button">
                             Out of Stock
                         </button>
 
@@ -1025,12 +799,9 @@
                 </div>
 
 
-                <!-- PRODUCT LIST -->
-
                 <div
                     class="seller-panel products-list-panel"
-                    id="productsListPanel"
-                >
+                    id="productsListPanel">
 
                     <div class="products-list-header">
 
@@ -1049,18 +820,13 @@
 
                     <div
                         class="products-list"
-                        id="sellerProductsList"
-                    >
-
-                        <!-- seller.js will render products here -->
-
+                        id="sellerProductsList">
                     </div>
 
 
                     <div
                         class="products-empty-state"
-                        id="productsEmptyState"
-                    >
+                        id="productsEmptyState">
 
                         <div class="coming-icon">
                             ▣
@@ -1078,8 +844,7 @@
                         <button
                             class="primary-seller-btn"
                             id="emptyAddProductButton"
-                            type="button"
-                        >
+                            type="button">
                             + Add Product
                         </button>
 
@@ -1090,14 +855,14 @@
             </section>
 
 
+
             <!-- =================================================
                  ORDERS
             ================================================== -->
 
             <section
                 class="seller-section"
-                data-page-section="orders"
-            >
+                data-page-section="orders">
 
                 <div class="section-page-heading">
 
@@ -1105,9 +870,7 @@
                         SALES
                     </span>
 
-                    <h2>
-                        Orders
-                    </h2>
+                    <h2>Orders</h2>
 
                     <p>
                         Track and manage customer orders.
@@ -1116,23 +879,141 @@
                 </div>
 
 
-                <div class="seller-panel coming-soon-panel">
+                <!-- ORDER SUMMARY -->
 
-                    <div class="coming-icon">
-                        ▤
+                <div class="seller-stats-grid order-stats-grid">
+
+                    <div class="seller-stat-card">
+                        <div class="stat-card-top">
+                            <div class="stat-icon blue">#</div>
+                        </div>
+
+                        <h3 id="ordersTotalCount">0</h3>
+                        <p>All Orders</p>
                     </div>
 
-                    <h3>
-                        Order Management
-                    </h3>
 
-                    <p>
-                        New → Confirmed → Packed → Shipped → Delivered.
-                    </p>
+                    <div class="seller-stat-card">
+                        <div class="stat-card-top">
+                            <div class="stat-icon orange">!</div>
+                        </div>
+
+                        <h3 id="ordersPendingCount">0</h3>
+                        <p>Pending</p>
+                    </div>
+
+
+                    <div class="seller-stat-card">
+                        <div class="stat-card-top">
+                            <div class="stat-icon purple">→</div>
+                        </div>
+
+                        <h3 id="ordersShippedCount">0</h3>
+                        <p>Shipped</p>
+                    </div>
+
+
+                    <div class="seller-stat-card">
+                        <div class="stat-card-top">
+                            <div class="stat-icon green">✓</div>
+                        </div>
+
+                        <h3 id="ordersDeliveredCount">0</h3>
+                        <p>Delivered</p>
+                    </div>
+
+                </div>
+
+
+                <div class="seller-panel data-management-panel">
+
+                    <div class="management-toolbar">
+
+                        <div class="management-search">
+                            <span>⌕</span>
+
+                            <input
+                                type="search"
+                                id="ordersSearch"
+                                placeholder="Search orders...">
+                        </div>
+
+
+                        <select
+                            class="panel-select"
+                            id="orderStatusFilter">
+
+                            <option value="all">
+                                All Status
+                            </option>
+
+                            <option value="new">
+                                New
+                            </option>
+
+                            <option value="confirmed">
+                                Confirmed
+                            </option>
+
+                            <option value="packed">
+                                Packed
+                            </option>
+
+                            <option value="shipped">
+                                Shipped
+                            </option>
+
+                            <option value="delivered">
+                                Delivered
+                            </option>
+
+                            <option value="cancelled">
+                                Cancelled
+                            </option>
+
+                            <option value="returned">
+                                Returned
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="orders-table-wrapper">
+
+                        <table class="orders-table full-data-table">
+
+                            <thead>
+                                <tr>
+                                    <th>Order ID</th>
+                                    <th>Product</th>
+                                    <th>Customer</th>
+                                    <th>Amount</th>
+                                    <th>Date</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+
+                            <tbody id="sellerOrdersList">
+
+                                <tr>
+                                    <td colspan="7">
+                                        No orders available yet.
+                                    </td>
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
 
                 </div>
 
             </section>
+
 
 
             <!-- =================================================
@@ -1141,8 +1022,7 @@
 
             <section
                 class="seller-section"
-                data-page-section="inventory"
-            >
+                data-page-section="inventory">
 
                 <div class="section-page-heading">
 
@@ -1150,35 +1030,132 @@
                         STOCK
                     </span>
 
-                    <h2>
-                        Inventory
-                    </h2>
+                    <h2>Inventory</h2>
 
                     <p>
-                        Monitor stock levels and low-stock products.
+                        Monitor and manage your product stock.
                     </p>
 
                 </div>
 
 
-                <div class="seller-panel coming-soon-panel">
+                <div class="seller-stats-grid">
 
-                    <div class="coming-icon">
-                        ▦
+                    <div class="seller-stat-card">
+
+                        <div class="stat-card-top">
+                            <div class="stat-icon blue">▣</div>
+                        </div>
+
+                        <h3 id="inventoryTotalProducts">
+                            0
+                        </h3>
+
+                        <p>Total Products</p>
+
                     </div>
 
-                    <h3>
-                        Inventory Management
-                    </h3>
 
-                    <p>
-                        Stock tracking and automatic inventory
-                        updates will be connected with the product system.
-                    </p>
+                    <div class="seller-stat-card">
+
+                        <div class="stat-card-top">
+                            <div class="stat-icon green">✓</div>
+                        </div>
+
+                        <h3 id="inventoryInStock">
+                            0
+                        </h3>
+
+                        <p>In Stock</p>
+
+                    </div>
+
+
+                    <div class="seller-stat-card">
+
+                        <div class="stat-card-top">
+                            <div class="stat-icon orange">!</div>
+                        </div>
+
+                        <h3 id="inventoryLowStock">
+                            0
+                        </h3>
+
+                        <p>Low Stock</p>
+
+                    </div>
+
+
+                    <div class="seller-stat-card">
+
+                        <div class="stat-card-top">
+                            <div class="stat-icon purple">×</div>
+                        </div>
+
+                        <h3 id="inventoryOutOfStock">
+                            0
+                        </h3>
+
+                        <p>Out of Stock</p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="seller-panel data-management-panel">
+
+                    <div class="management-toolbar">
+
+                        <div class="management-search">
+
+                            <span>⌕</span>
+
+                            <input
+                                type="search"
+                                id="inventorySearch"
+                                placeholder="Search inventory...">
+
+                        </div>
+
+
+                        <select
+                            class="panel-select"
+                            id="inventoryStatusFilter">
+
+                            <option value="all">
+                                All Stock
+                            </option>
+
+                            <option value="in-stock">
+                                In Stock
+                            </option>
+
+                            <option value="low-stock">
+                                Low Stock
+                            </option>
+
+                            <option value="out-of-stock">
+                                Out of Stock
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div
+                        class="inventory-list"
+                        id="sellerInventoryList">
+
+                        <!-- seller.js renders inventory -->
+
+                    </div>
 
                 </div>
 
             </section>
+
 
 
             <!-- =================================================
@@ -1187,8 +1164,7 @@
 
             <section
                 class="seller-section"
-                data-page-section="earnings"
-            >
+                data-page-section="earnings">
 
                 <div class="section-page-heading">
 
@@ -1196,35 +1172,227 @@
                         MONEY
                     </span>
 
-                    <h2>
-                        Earnings
-                    </h2>
+                    <h2>Earnings</h2>
 
                     <p>
-                        Track sales, commission and available payouts.
+                        Track sales, commission, refunds and payouts.
                     </p>
 
                 </div>
 
 
-                <div class="seller-panel coming-soon-panel">
+                <div class="seller-stats-grid">
 
-                    <div class="coming-icon">
-                        ₹
+                    <div class="seller-stat-card">
+
+                        <div class="stat-card-top">
+                            <div class="stat-icon purple">₹</div>
+                        </div>
+
+                        <h3 id="earningsTotalSales">
+                            ₹0
+                        </h3>
+
+                        <p>Total Sales</p>
+
                     </div>
 
-                    <h3>
-                        Seller Earnings
-                    </h3>
 
-                    <p>
-                        Sales revenue, MARTEY commission,
-                        refunds and payout history will appear here.
-                    </p>
+                    <div class="seller-stat-card">
+
+                        <div class="stat-card-top">
+                            <div class="stat-icon orange">−</div>
+                        </div>
+
+                        <h3 id="earningsCommission">
+                            ₹0
+                        </h3>
+
+                        <p>MARTEY Commission</p>
+
+                    </div>
+
+
+                    <div class="seller-stat-card">
+
+                        <div class="stat-card-top">
+                            <div class="stat-icon blue">↩</div>
+                        </div>
+
+                        <h3 id="earningsRefunds">
+                            ₹0
+                        </h3>
+
+                        <p>Refunds</p>
+
+                    </div>
+
+
+                    <div class="seller-stat-card">
+
+                        <div class="stat-card-top">
+                            <div class="stat-icon green">₹</div>
+                        </div>
+
+                        <h3 id="earningsAvailable">
+                            ₹0
+                        </h3>
+
+                        <p>Available Payout</p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="dashboard-grid">
+
+                    <div class="seller-panel sales-panel">
+
+                        <div class="panel-header">
+
+                            <div>
+                                <span class="panel-eyebrow">
+                                    FINANCIAL OVERVIEW
+                                </span>
+
+                                <h3>
+                                    Earnings Overview
+                                </h3>
+                            </div>
+
+                            <select
+                                class="panel-select"
+                                id="earningsPeriod">
+
+                                <option value="7">
+                                    Last 7 days
+                                </option>
+
+                                <option value="30">
+                                    Last 30 days
+                                </option>
+
+                                <option value="90">
+                                    Last 3 months
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div
+                            class="sales-chart"
+                            id="earningsChart">
+
+                            <div class="chart-y-axis">
+                                <span>₹30k</span>
+                                <span>₹20k</span>
+                                <span>₹10k</span>
+                                <span>₹0</span>
+                            </div>
+
+                            <div class="chart-area">
+
+                                <div class="chart-grid-line"></div>
+                                <div class="chart-grid-line"></div>
+                                <div class="chart-grid-line"></div>
+                                <div class="chart-grid-line"></div>
+
+                                <div
+                                    class="chart-bars"
+                                    id="earningsChartBars">
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="seller-panel payout-panel">
+
+                        <span class="panel-eyebrow">
+                            PAYOUT
+                        </span>
+
+                        <h3>
+                            Available Balance
+                        </h3>
+
+                        <strong
+                            class="payout-amount"
+                            id="availablePayoutAmount">
+                            ₹0
+                        </strong>
+
+                        <p>
+                            Your available seller payout balance.
+                        </p>
+
+                        <button
+                            class="primary-seller-btn"
+                            id="requestPayoutButton"
+                            type="button">
+                            Request Payout
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <div class="seller-panel data-management-panel">
+
+                    <div class="panel-header">
+
+                        <div>
+                            <span class="panel-eyebrow">
+                                TRANSACTIONS
+                            </span>
+
+                            <h3>
+                                Payout History
+                            </h3>
+                        </div>
+
+                    </div>
+
+
+                    <div class="orders-table-wrapper">
+
+                        <table class="orders-table full-data-table">
+
+                            <thead>
+                                <tr>
+                                    <th>Transaction</th>
+                                    <th>Date</th>
+                                    <th>Amount</th>
+                                    <th>Type</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+
+                            <tbody id="payoutHistoryList">
+
+                                <tr>
+                                    <td colspan="5">
+                                        No payout history yet.
+                                    </td>
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
 
                 </div>
 
             </section>
+
 
 
             <!-- =================================================
@@ -1233,8 +1401,7 @@
 
             <section
                 class="seller-section"
-                data-page-section="analytics"
-            >
+                data-page-section="analytics">
 
                 <div class="section-page-heading">
 
@@ -1242,35 +1409,185 @@
                         INSIGHTS
                     </span>
 
-                    <h2>
-                        Analytics
-                    </h2>
+                    <h2>Analytics</h2>
 
                     <p>
-                        Understand your store performance.
+                        Understand your store performance and customer activity.
                     </p>
 
                 </div>
 
 
-                <div class="seller-panel coming-soon-panel">
+                <div class="seller-stats-grid">
 
-                    <div class="coming-icon">
-                        ⌁
+                    <div class="seller-stat-card">
+
+                        <div class="stat-card-top">
+                            <div class="stat-icon blue">◉</div>
+                        </div>
+
+                        <h3 id="analyticsViews">
+                            0
+                        </h3>
+
+                        <p>Product Views</p>
+
                     </div>
 
-                    <h3>
-                        Store Analytics
-                    </h3>
 
-                    <p>
-                        Product views, clicks, conversion,
-                        revenue and customer activity will be shown here.
-                    </p>
+                    <div class="seller-stat-card">
+
+                        <div class="stat-card-top">
+                            <div class="stat-icon purple">↗</div>
+                        </div>
+
+                        <h3 id="analyticsClicks">
+                            0
+                        </h3>
+
+                        <p>Product Clicks</p>
+
+                    </div>
+
+
+                    <div class="seller-stat-card">
+
+                        <div class="stat-card-top">
+                            <div class="stat-icon orange">🛒</div>
+                        </div>
+
+                        <h3 id="analyticsCartAdds">
+                            0
+                        </h3>
+
+                        <p>Add to Cart</p>
+
+                    </div>
+
+
+                    <div class="seller-stat-card">
+
+                        <div class="stat-card-top">
+                            <div class="stat-icon green">%</div>
+                        </div>
+
+                        <h3 id="analyticsConversion">
+                            0%
+                        </h3>
+
+                        <p>Conversion Rate</p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="dashboard-grid">
+
+                    <div class="seller-panel sales-panel">
+
+                        <div class="panel-header">
+
+                            <div>
+                                <span class="panel-eyebrow">
+                                    TRAFFIC
+                                </span>
+
+                                <h3>
+                                    Store Activity
+                                </h3>
+                            </div>
+
+                            <select
+                                class="panel-select"
+                                id="analyticsPeriod">
+
+                                <option value="7">
+                                    Last 7 days
+                                </option>
+
+                                <option value="30">
+                                    Last 30 days
+                                </option>
+
+                                <option value="90">
+                                    Last 3 months
+                                </option>
+
+                            </select>
+
+                        </div>
+
+
+                        <div
+                            class="sales-chart"
+                            id="analyticsActivityChart">
+
+                            <div class="chart-y-axis">
+                                <span>100%</span>
+                                <span>75%</span>
+                                <span>50%</span>
+                                <span>25%</span>
+                                <span>0</span>
+                            </div>
+
+                            <div class="chart-area">
+
+                                <div class="chart-grid-line"></div>
+                                <div class="chart-grid-line"></div>
+                                <div class="chart-grid-line"></div>
+                                <div class="chart-grid-line"></div>
+
+                                <div
+                                    class="chart-bars"
+                                    id="analyticsChartBars">
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="seller-panel performance-panel">
+
+                        <div class="panel-header">
+
+                            <div>
+                                <span class="panel-eyebrow">
+                                    TOP PRODUCTS
+                                </span>
+
+                                <h3>
+                                    Product Performance
+                                </h3>
+                            </div>
+
+                        </div>
+
+
+                        <div
+                            class="performance-list"
+                            id="analyticsTopProducts">
+
+                            <div class="performance-item">
+                                <span class="performance-label">
+                                    No product data
+                                </span>
+                                <strong class="performance-value">
+                                    —
+                                </strong>
+                            </div>
+
+                        </div>
+
+                    </div>
 
                 </div>
 
             </section>
+
 
 
             <!-- =================================================
@@ -1279,8 +1596,7 @@
 
             <section
                 class="seller-section"
-                data-page-section="promotions"
-            >
+                data-page-section="promotions">
 
                 <div class="section-page-heading">
 
@@ -1288,9 +1604,7 @@
                         GROWTH
                     </span>
 
-                    <h2>
-                        Promotions
-                    </h2>
+                    <h2>Promotions</h2>
 
                     <p>
                         Create offers and promote your products.
@@ -1299,24 +1613,131 @@
                 </div>
 
 
-                <div class="seller-panel coming-soon-panel">
+                <div class="seller-stats-grid">
 
-                    <div class="coming-icon">
-                        %
+                    <div class="seller-stat-card">
+
+                        <div class="stat-card-top">
+                            <div class="stat-icon purple">%</div>
+                        </div>
+
+                        <h3 id="promotionsActiveCount">
+                            0
+                        </h3>
+
+                        <p>Active Promotions</p>
+
                     </div>
 
-                    <h3>
-                        Promotions Center
-                    </h3>
 
-                    <p>
-                        Discounts, flash sales and sponsored
-                        products will be managed here.
-                    </p>
+                    <div class="seller-stat-card">
+
+                        <div class="stat-card-top">
+                            <div class="stat-icon blue">⚡</div>
+                        </div>
+
+                        <h3 id="promotionsFlashCount">
+                            0
+                        </h3>
+
+                        <p>Flash Sales</p>
+
+                    </div>
+
+
+                    <div class="seller-stat-card">
+
+                        <div class="stat-card-top">
+                            <div class="stat-icon green">✓</div>
+                        </div>
+
+                        <h3 id="promotionsProductsCount">
+                            0
+                        </h3>
+
+                        <p>Promoted Products</p>
+
+                    </div>
+
+
+                    <div class="seller-stat-card">
+
+                        <div class="stat-card-top">
+                            <div class="stat-icon orange">↗</div>
+                        </div>
+
+                        <h3 id="promotionsExpiredCount">
+                            0
+                        </h3>
+
+                        <p>Expired</p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="seller-panel promotion-create-panel">
+
+                    <div>
+
+                        <span class="panel-eyebrow">
+                            CREATE PROMOTION
+                        </span>
+
+                        <h3>
+                            Promote your products
+                        </h3>
+
+                        <p>
+                            Discounts, flash sales and sponsored products
+                            can be managed here.
+                        </p>
+
+                    </div>
+
+
+                    <button
+                        class="primary-seller-btn"
+                        id="createPromotionButton"
+                        type="button">
+                        + Create Promotion
+                    </button>
+
+                </div>
+
+
+                <div class="seller-panel data-management-panel">
+
+                    <div class="panel-header">
+
+                        <div>
+                            <span class="panel-eyebrow">
+                                PROMOTION MANAGEMENT
+                            </span>
+
+                            <h3>
+                                Your Promotions
+                            </h3>
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        class="promotion-list"
+                        id="sellerPromotionsList">
+
+                        <div class="empty-dashboard-message">
+                            No promotions created yet.
+                        </div>
+
+                    </div>
 
                 </div>
 
             </section>
+
 
 
             <!-- =================================================
@@ -1325,8 +1746,7 @@
 
             <section
                 class="seller-section"
-                data-page-section="reviews"
-            >
+                data-page-section="reviews">
 
                 <div class="section-page-heading">
 
@@ -1334,9 +1754,7 @@
                         CUSTOMER FEEDBACK
                     </span>
 
-                    <h2>
-                        Reviews
-                    </h2>
+                    <h2>Reviews</h2>
 
                     <p>
                         See what customers think about your products.
@@ -1345,24 +1763,221 @@
                 </div>
 
 
-                <div class="seller-panel coming-soon-panel">
+                <div class="seller-stats-grid">
 
-                    <div class="coming-icon">
-                        ★
+                    <div class="seller-stat-card">
+
+                        <div class="stat-card-top">
+                            <div class="stat-icon purple">★</div>
+                        </div>
+
+                        <h3 id="reviewsAverageRating">
+                            —
+                        </h3>
+
+                        <p>Average Rating</p>
+
                     </div>
 
-                    <h3>
-                        Customer Reviews
-                    </h3>
 
-                    <p>
-                        Ratings, written reviews, customer images
-                        and seller replies will appear here.
-                    </p>
+                    <div class="seller-stat-card">
+
+                        <div class="stat-card-top">
+                            <div class="stat-icon blue">#</div>
+                        </div>
+
+                        <h3 id="reviewsTotalCount">
+                            0
+                        </h3>
+
+                        <p>Total Reviews</p>
+
+                    </div>
+
+
+                    <div class="seller-stat-card">
+
+                        <div class="stat-card-top">
+                            <div class="stat-icon green">✓</div>
+                        </div>
+
+                        <h3 id="reviewsPositiveCount">
+                            0
+                        </h3>
+
+                        <p>Positive Reviews</p>
+
+                    </div>
+
+
+                    <div class="seller-stat-card">
+
+                        <div class="stat-card-top">
+                            <div class="stat-icon orange">!</div>
+                        </div>
+
+                        <h3 id="reviewsPendingReplies">
+                            0
+                        </h3>
+
+                        <p>Need Reply</p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="dashboard-grid">
+
+                    <div class="seller-panel performance-panel">
+
+                        <div class="panel-header">
+
+                            <div>
+                                <span class="panel-eyebrow">
+                                    RATING BREAKDOWN
+                                </span>
+
+                                <h3>
+                                    Customer Ratings
+                                </h3>
+                            </div>
+
+                        </div>
+
+
+                        <div
+                            class="rating-breakdown"
+                            id="ratingBreakdown">
+
+                            <div class="rating-row">
+                                <span>5 ★</span>
+                                <div class="rating-progress">
+                                    <span style="width:0%"></span>
+                                </div>
+                                <strong>0</strong>
+                            </div>
+
+                            <div class="rating-row">
+                                <span>4 ★</span>
+                                <div class="rating-progress">
+                                    <span style="width:0%"></span>
+                                </div>
+                                <strong>0</strong>
+                            </div>
+
+                            <div class="rating-row">
+                                <span>3 ★</span>
+                                <div class="rating-progress">
+                                    <span style="width:0%"></span>
+                                </div>
+                                <strong>0</strong>
+                            </div>
+
+                            <div class="rating-row">
+                                <span>2 ★</span>
+                                <div class="rating-progress">
+                                    <span style="width:0%"></span>
+                                </div>
+                                <strong>0</strong>
+                            </div>
+
+                            <div class="rating-row">
+                                <span>1 ★</span>
+                                <div class="rating-progress">
+                                    <span style="width:0%"></span>
+                                </div>
+                                <strong>0</strong>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="seller-panel performance-panel">
+
+                        <div class="panel-header">
+
+                            <div>
+                                <span class="panel-eyebrow">
+                                    CUSTOMER EXPERIENCE
+                                </span>
+
+                                <h3>
+                                    Review Summary
+                                </h3>
+                            </div>
+
+                        </div>
+
+
+                        <div
+                            class="performance-list"
+                            id="reviewSummaryList">
+
+                            <div class="performance-item">
+                                <span class="performance-label">
+                                    Reviews with images
+                                </span>
+
+                                <strong
+                                    class="performance-value"
+                                    id="reviewsWithImages">
+                                    0
+                                </strong>
+                            </div>
+
+                            <div class="performance-item">
+                                <span class="performance-label">
+                                    Replies sent
+                                </span>
+
+                                <strong
+                                    class="performance-value"
+                                    id="reviewsRepliesSent">
+                                    0
+                                </strong>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="seller-panel data-management-panel">
+
+                    <div class="panel-header">
+
+                        <div>
+                            <span class="panel-eyebrow">
+                                CUSTOMER REVIEWS
+                            </span>
+
+                            <h3>
+                                Recent Reviews
+                            </h3>
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        class="reviews-list"
+                        id="sellerReviewsList">
+
+                        <div class="empty-dashboard-message">
+                            No customer reviews yet.
+                        </div>
+
+                    </div>
 
                 </div>
 
             </section>
+
 
 
             <!-- =================================================
@@ -1371,15 +1986,13 @@
 
             <section
                 class="seller-section"
-                data-page-section="store"
-            >
+                data-page-section="store">
 
                 <div class="section-page-heading">
 
                     <span class="section-eyebrow">
                         YOUR BRAND
                     </span>
-
 
                     <div class="section-heading-row">
 
@@ -1395,12 +2008,10 @@
 
                         </div>
 
-
                         <button
                             class="secondary-seller-btn"
                             id="storeSettingsButton"
-                            type="button"
-                        >
+                            type="button">
                             ⚙ Store Settings
                         </button>
 
@@ -1410,6 +2021,8 @@
 
 
                 <div class="store-management-grid">
+
+                    <!-- STORE PREVIEW -->
 
                     <div class="seller-panel store-preview-card">
 
@@ -1424,8 +2037,7 @@
 
                                 <div
                                     class="store-logo-circle"
-                                    id="storeLogoCircle"
-                                >
+                                    id="storeLogoCircle">
                                     S
                                 </div>
 
@@ -1445,8 +2057,7 @@
                                 <button
                                     type="button"
                                     class="primary-seller-btn"
-                                    id="viewStoreButton"
-                                >
+                                    id="viewStoreButton">
                                     View Store
                                 </button>
 
@@ -1456,6 +2067,8 @@
 
                     </div>
 
+
+                    <!-- STORE TOOLS -->
 
                     <div class="seller-panel store-tools-card">
 
@@ -1469,16 +2082,108 @@
 
                         <p>
                             Update your store name, logo, banner,
-                            description and other storefront details.
+                            description and storefront details.
                         </p>
 
                         <button
                             class="primary-seller-btn"
                             id="storeSettingsButton2"
-                            type="button"
-                        >
+                            type="button">
                             Open Store Settings
                         </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- STORE INFORMATION -->
+
+                <div class="seller-panel store-information-panel">
+
+                    <div class="panel-header">
+
+                        <div>
+                            <span class="panel-eyebrow">
+                                STORE INFORMATION
+                            </span>
+
+                            <h3>
+                                Store Details
+                            </h3>
+                        </div>
+
+                    </div>
+
+
+                    <div class="store-details-grid">
+
+                        <div class="store-detail-item">
+                            <span>Store Name</span>
+                            <strong id="storeDetailName">
+                                Your Store
+                            </strong>
+                        </div>
+
+                        <div class="store-detail-item">
+                            <span>Store Category</span>
+                            <strong id="storeDetailCategory">
+                                —
+                            </strong>
+                        </div>
+
+                        <div class="store-detail-item">
+                            <span>Products</span>
+                            <strong id="storeDetailProducts">
+                                0
+                            </strong>
+                        </div>
+
+                        <div class="store-detail-item">
+                            <span>Store Rating</span>
+                            <strong id="storeDetailRating">
+                                —
+                            </strong>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- STORE PRODUCTS -->
+
+                <div class="seller-panel data-management-panel">
+
+                    <div class="panel-header">
+
+                        <div>
+                            <span class="panel-eyebrow">
+                                STORE CATALOG
+                            </span>
+
+                            <h3>
+                                Store Products
+                            </h3>
+                        </div>
+
+                        <button
+                            class="panel-link"
+                            data-open-section="products"
+                            type="button">
+                            Manage Products →
+                        </button>
+
+                    </div>
+
+
+                    <div
+                        class="store-products-grid"
+                        id="storeProductsPreview">
+
+                        <div class="empty-dashboard-message">
+                            Your published products will appear here.
+                        </div>
 
                     </div>
 
@@ -1493,28 +2198,26 @@
 </div>
 
 
+
 <!-- =========================================================
      PROFILE PANEL
 ========================================================== -->
 
 <div
     class="profile-overlay"
-    id="profileOverlay"
->
+    id="profileOverlay">
 
     <div
         class="seller-profile-panel"
         role="dialog"
         aria-modal="true"
-        aria-label="Seller profile"
-    >
+        aria-label="Seller profile">
 
         <button
             class="profile-close"
             id="profileCloseButton"
             type="button"
-            aria-label="Close profile"
-        >
+            aria-label="Close profile">
             ×
         </button>
 
@@ -1523,8 +2226,7 @@
 
             <div
                 class="profile-large-avatar"
-                id="profileLargeAvatar"
-            >
+                id="profileLargeAvatar">
                 S
             </div>
 
@@ -1552,8 +2254,7 @@
 
             <button
                 type="button"
-                id="sellerAccountSettings"
-            >
+                id="sellerAccountSettings">
                 <span>👤</span>
                 Account &amp; Profile
             </button>
@@ -1561,8 +2262,7 @@
 
             <button
                 type="button"
-                id="sellerBusinessSettings"
-            >
+                id="sellerBusinessSettings">
                 <span>🏪</span>
                 Business Information
             </button>
@@ -1570,8 +2270,7 @@
 
             <button
                 type="button"
-                id="sellerSecuritySettings"
-            >
+                id="sellerSecuritySettings">
                 <span>🔒</span>
                 Login &amp; Security
             </button>
@@ -1580,8 +2279,7 @@
             <button
                 type="button"
                 id="sellerLogoutButton"
-                class="profile-danger"
-            >
+                class="profile-danger">
                 <span>↪</span>
                 Logout
             </button>
@@ -1591,6 +2289,53 @@
     </div>
 
 </div>
+
+
+
+<!-- =========================================================
+     GENERIC MODAL
+     Future JS can use this for orders, promotions, reviews,
+     store settings, etc.
+========================================================== -->
+
+<div
+    class="seller-modal-overlay"
+    id="sellerModalOverlay"
+    aria-hidden="true">
+
+    <div
+        class="seller-modal"
+        id="sellerModal"
+        role="dialog"
+        aria-modal="true">
+
+        <button
+            class="seller-modal-close"
+            id="sellerModalClose"
+            type="button"
+            aria-label="Close">
+            ×
+        </button>
+
+        <div id="sellerModalContent"></div>
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================================================
+     TOAST / MESSAGE
+========================================================== -->
+
+<div
+    class="seller-toast"
+    id="sellerToast"
+    role="status"
+    aria-live="polite">
+</div>
+
 
 
 <script src="seller.js"></script>
