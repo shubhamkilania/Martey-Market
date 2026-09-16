@@ -8,18 +8,10 @@
         content="width=device-width, initial-scale=1.0"
     >
 
-    <title>Create Promotion — MARTEY Seller Center</title>
+    <title>Create Promotion — MARTEY.</title>
 
-    <link
-        rel="preconnect"
-        href="https://fonts.googleapis.com"
-    >
-
-    <link
-        rel="preconnect"
-        href="https://fonts.gstatic.com"
-        crossorigin
-    >
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <link
         href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap"
@@ -34,7 +26,7 @@
 
 <body>
 
-    <main class="promotion-page">
+    <div class="promotion-page">
 
         <!-- HEADER -->
         <header class="promotion-header">
@@ -43,287 +35,320 @@
 
                 <a
                     href="seller.html"
-                    class="back-link"
+                    class="martey-logo"
                 >
-                    ← Back to Seller Center
+                    MARTEY<span>.</span>
                 </a>
 
-                <div class="header-title">
-                    <span>MARTEY SELLER CENTER</span>
+                <div class="header-divider"></div>
 
-                    <h1>Create Promotion</h1>
+                <div class="header-page-name">
+                    Create Promotion
                 </div>
 
             </div>
 
             <a
                 href="seller.html"
-                class="martey-logo"
+                class="back-button"
             >
-                MARTE<span>Y</span>
+                Back to Seller Center
             </a>
 
         </header>
 
 
-        <!-- CONTENT -->
-        <section class="promotion-content">
+        <!-- MAIN -->
+        <main class="promotion-main">
 
-            <div class="page-intro">
+            <!-- INTRO -->
+            <section class="promotion-intro">
 
                 <span class="eyebrow">
-                    PROMOTIONS
+                    PRODUCT PROMOTION
                 </span>
 
-                <h2>
-                    Create a new promotion
-                </h2>
+                <h1>
+                    Promote your products
+                </h1>
 
                 <p>
-                    Set up a discount offer for your products
-                    and attract more customers.
+                    Increase your product visibility by creating
+                    a short promotional campaign on MARTEY.
                 </p>
 
-            </div>
+            </section>
 
 
-            <!-- FORM -->
             <form
                 id="promotionForm"
-                class="promotion-form"
+                class="promotion-layout"
             >
 
-                <!-- BASIC INFORMATION -->
-                <section class="form-card">
-
-                    <div class="card-heading">
-
-                        <div>
-                            <span class="card-eyebrow">
-                                BASIC INFORMATION
-                            </span>
-
-                            <h3>
-                                Promotion details
-                            </h3>
-                        </div>
-
-                    </div>
+                <!-- LEFT SIDE -->
+                <div class="promotion-form-column">
 
 
-                    <div class="form-grid">
+                    <!-- PRODUCT -->
+                    <section class="promotion-card">
 
-                        <div class="form-group full-width">
+                        <div class="card-header">
 
-                            <label for="promotionName">
-                                Promotion Name
-                            </label>
+                            <div>
+                                <span class="card-label">
+                                    STEP 1
+                                </span>
 
-                            <input
-                                type="text"
-                                id="promotionName"
-                                name="promotionName"
-                                placeholder="e.g. Weekend Special Sale"
-                                required
-                            >
+                                <h2>
+                                    Choose product
+                                </h2>
+
+                                <p>
+                                    Select the product you want to promote.
+                                </p>
+                            </div>
 
                         </div>
 
 
                         <div class="form-group">
 
-                            <label for="promotionType">
-                                Promotion Type
+                            <label for="promotionProduct">
+                                Product
                             </label>
 
                             <select
-                                id="promotionType"
-                                name="promotionType"
+                                id="promotionProduct"
+                                name="promotionProduct"
                                 required
                             >
                                 <option value="">
-                                    Select promotion type
-                                </option>
-
-                                <option value="percentage">
-                                    Percentage Discount
-                                </option>
-
-                                <option value="fixed">
-                                    Fixed Amount Discount
-                                </option>
-
-                                <option value="flash-sale">
-                                    Flash Sale
+                                    Select a product
                                 </option>
                             </select>
 
                         </div>
 
 
-                        <div class="form-group">
+                        <div
+                            id="productPreview"
+                            class="product-preview"
+                        >
 
-                            <label for="discountValue">
-                                Discount
-                            </label>
+                            <div class="product-preview-image">
+                                Product
+                            </div>
 
-                            <div class="input-with-label">
+                            <div class="product-preview-info">
 
-                                <input
-                                    type="number"
-                                    id="discountValue"
-                                    name="discountValue"
-                                    min="1"
-                                    step="0.01"
-                                    placeholder="10"
-                                    required
-                                >
+                                <strong id="previewProductName">
+                                    Select a product
+                                </strong>
 
-                                <span id="discountUnit">
-                                    %
+                                <span id="previewProductPrice">
+                                    Your selected product will appear here.
                                 </span>
 
                             </div>
 
                         </div>
 
-                    </div>
-
-                </section>
+                    </section>
 
 
-                <!-- PRODUCTS -->
-                <section class="form-card">
+                    <!-- DURATION -->
+                    <section class="promotion-card">
 
-                    <div class="card-heading">
+                        <div class="card-header">
 
-                        <div>
-
-                            <span class="card-eyebrow">
-                                PRODUCTS
-                            </span>
-
-                            <h3>
-                                Choose products
-                            </h3>
-
-                            <p>
-                                Select which products should receive
-                                this promotion.
-                            </p>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="product-selection">
-
-                        <div class="selection-option">
-
-                            <input
-                                type="radio"
-                                id="allProducts"
-                                name="productScope"
-                                value="all"
-                                checked
-                            >
-
-                            <label for="allProducts">
-
-                                <strong>
-                                    All products
-                                </strong>
-
-                                <span>
-                                    Apply this promotion to all
-                                    active products.
+                            <div>
+                                <span class="card-label">
+                                    STEP 2
                                 </span>
 
-                            </label>
+                                <h2>
+                                    Set promotion duration
+                                </h2>
+
+                                <p>
+                                    Choose how long your promotion will run.
+                                </p>
+                            </div>
 
                         </div>
 
 
-                        <div class="selection-option">
-
-                            <input
-                                type="radio"
-                                id="selectedProducts"
-                                name="productScope"
-                                value="selected"
-                            >
-
-                            <label for="selectedProducts">
-
-                                <strong>
-                                    Selected products
-                                </strong>
-
-                                <span>
-                                    Choose specific products for
-                                    this promotion.
-                                </span>
-
-                            </label>
-
-                        </div>
-
-                    </div>
-
-
-                    <div
-                        id="selectedProductsBox"
-                        class="selected-products-box"
-                    >
-
-                        <div class="empty-products">
-
-                            <h4>
-                                Select products
-                            </h4>
-
-                            <p>
-                                Product selection will appear here
-                                after your products are available.
-                            </p>
+                        <div class="duration-grid">
 
                             <button
                                 type="button"
-                                class="secondary-btn"
-                                id="selectProductsButton"
+                                class="duration-option"
+                                data-days="1"
                             >
-                                Select Products
+                                <strong>1</strong>
+                                <span>Day</span>
+                            </button>
+
+                            <button
+                                type="button"
+                                class="duration-option"
+                                data-days="2"
+                            >
+                                <strong>2</strong>
+                                <span>Days</span>
+                            </button>
+
+                            <button
+                                type="button"
+                                class="duration-option"
+                                data-days="3"
+                            >
+                                <strong>3</strong>
+                                <span>Days</span>
+                            </button>
+
+                            <button
+                                type="button"
+                                class="duration-option"
+                                data-days="4"
+                            >
+                                <strong>4</strong>
+                                <span>Days</span>
+                            </button>
+
+                            <button
+                                type="button"
+                                class="duration-option"
+                                data-days="5"
+                            >
+                                <strong>5</strong>
+                                <span>Days</span>
+                            </button>
+
+                            <button
+                                type="button"
+                                class="duration-option"
+                                data-days="6"
+                            >
+                                <strong>6</strong>
+                                <span>Days</span>
+                            </button>
+
+                            <button
+                                type="button"
+                                class="duration-option"
+                                data-days="7"
+                            >
+                                <strong>7</strong>
+                                <span>Days</span>
                             </button>
 
                         </div>
 
-                    </div>
 
-                </section>
+                        <input
+                            type="hidden"
+                            id="promotionDays"
+                            name="promotionDays"
+                            value="1"
+                        >
+
+                    </section>
 
 
-                <!-- SCHEDULE -->
-                <section class="form-card">
+                    <!-- BUDGET -->
+                    <section class="promotion-card">
 
-                    <div class="card-heading">
+                        <div class="card-header">
 
-                        <div>
+                            <div>
+                                <span class="card-label">
+                                    STEP 3
+                                </span>
 
-                            <span class="card-eyebrow">
-                                SCHEDULE
-                            </span>
+                                <h2>
+                                    Set daily budget
+                                </h2>
 
-                            <h3>
-                                Promotion duration
-                            </h3>
+                                <p>
+                                    Choose how much you want to spend each day.
+                                </p>
+                            </div>
 
                         </div>
 
-                    </div>
+
+                        <div class="budget-input-wrapper">
+
+                            <span>₹</span>
+
+                            <input
+                                type="number"
+                                id="dailyBudget"
+                                name="dailyBudget"
+                                min="10"
+                                step="10"
+                                value="100"
+                                placeholder="100"
+                                required
+                            >
+
+                            <small>
+                                / day
+                            </small>
+
+                        </div>
 
 
-                    <div class="form-grid">
+                        <div class="budget-hint">
+                            Minimum daily budget: ₹10
+                        </div>
+
+
+                        <div class="budget-total">
+
+                            <div>
+
+                                <span>
+                                    Total promotion budget
+                                </span>
+
+                                <small id="budgetCalculation">
+                                    ₹100 × 1 day
+                                </small>
+
+                            </div>
+
+                            <strong id="totalBudget">
+                                ₹100
+                            </strong>
+
+                        </div>
+
+                    </section>
+
+
+                    <!-- START DATE -->
+                    <section class="promotion-card">
+
+                        <div class="card-header">
+
+                            <div>
+                                <span class="card-label">
+                                    STEP 4
+                                </span>
+
+                                <h2>
+                                    Choose start date
+                                </h2>
+
+                                <p>
+                                    Your promotion will begin on this date.
+                                </p>
+                            </div>
+
+                        </div>
+
 
                         <div class="form-group">
 
@@ -340,175 +365,135 @@
 
                         </div>
 
-
-                        <div class="form-group">
-
-                            <label for="startTime">
-                                Start Time
-                            </label>
-
-                            <input
-                                type="time"
-                                id="startTime"
-                                name="startTime"
-                                value="00:00"
-                                required
-                            >
-
-                        </div>
-
-
-                        <div class="form-group">
-
-                            <label for="endDate">
-                                End Date
-                            </label>
-
-                            <input
-                                type="date"
-                                id="endDate"
-                                name="endDate"
-                                required
-                            >
-
-                        </div>
-
-
-                        <div class="form-group">
-
-                            <label for="endTime">
-                                End Time
-                            </label>
-
-                            <input
-                                type="time"
-                                id="endTime"
-                                name="endTime"
-                                value="23:59"
-                                required
-                            >
-
-                        </div>
-
-                    </div>
-
-                </section>
-
-
-                <!-- LIMITS -->
-                <section class="form-card">
-
-                    <div class="card-heading">
-
-                        <div>
-
-                            <span class="card-eyebrow">
-                                OPTIONAL LIMITS
-                            </span>
-
-                            <h3>
-                                Promotion limits
-                            </h3>
-
-                            <p>
-                                Add limits if you want to control
-                                how the promotion can be used.
-                            </p>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="form-grid">
-
-                        <div class="form-group">
-
-                            <label for="minimumOrder">
-                                Minimum Order Value
-                            </label>
-
-                            <input
-                                type="number"
-                                id="minimumOrder"
-                                name="minimumOrder"
-                                min="0"
-                                step="0.01"
-                                placeholder="Optional"
-                            >
-
-                        </div>
-
-
-                        <div class="form-group">
-
-                            <label for="maximumDiscount">
-                                Maximum Discount
-                            </label>
-
-                            <input
-                                type="number"
-                                id="maximumDiscount"
-                                name="maximumDiscount"
-                                min="0"
-                                step="0.01"
-                                placeholder="Optional"
-                            >
-
-                        </div>
-
-
-                        <div class="form-group">
-
-                            <label for="usageLimit">
-                                Usage Limit
-                            </label>
-
-                            <input
-                                type="number"
-                                id="usageLimit"
-                                name="usageLimit"
-                                min="1"
-                                placeholder="Optional"
-                            >
-
-                        </div>
-
-                    </div>
-
-                </section>
-
-
-                <!-- ACTIONS -->
-                <div class="form-actions">
-
-                    <a
-                        href="seller.html"
-                        class="cancel-btn"
-                    >
-                        Cancel
-                    </a>
-
-                    <button
-                        type="submit"
-                        class="create-btn"
-                        id="createPromotionButton"
-                    >
-                        Create Promotion
-                    </button>
+                    </section>
 
                 </div>
 
+
+                <!-- RIGHT SIDE -->
+                <aside class="promotion-summary">
+
+                    <div class="summary-card">
+
+                        <span class="summary-label">
+                            PROMOTION SUMMARY
+                        </span>
+
+                        <h2>
+                            Your campaign
+                        </h2>
+
+
+                        <div class="summary-product">
+
+                            <div
+                                class="summary-product-image"
+                                id="summaryProductImage"
+                            >
+                                Product
+                            </div>
+
+                            <div>
+
+                                <strong id="summaryProductName">
+                                    Select product
+                                </strong>
+
+                                <span id="summaryProductPrice">
+                                    —
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="summary-divider"></div>
+
+
+                        <div class="summary-row">
+
+                            <span>
+                                Duration
+                            </span>
+
+                            <strong id="summaryDays">
+                                1 Day
+                            </strong>
+
+                        </div>
+
+
+                        <div class="summary-row">
+
+                            <span>
+                                Daily budget
+                            </span>
+
+                            <strong id="summaryDailyBudget">
+                                ₹100
+                            </strong>
+
+                        </div>
+
+
+                        <div class="summary-row">
+
+                            <span>
+                                Total budget
+                            </span>
+
+                            <strong id="summaryTotalBudget">
+                                ₹100
+                            </strong>
+
+                        </div>
+
+
+                        <div class="summary-divider"></div>
+
+
+                        <div class="total-row">
+
+                            <span>
+                                Campaign budget
+                            </span>
+
+                            <strong id="summaryFinalBudget">
+                                ₹100
+                            </strong>
+
+                        </div>
+
+
+                        <button
+                            type="submit"
+                            class="start-promotion-button"
+                            id="startPromotionButton"
+                        >
+                            Start Promotion
+                        </button>
+
+
+                        <p class="summary-note">
+                            Your promotion will be saved as a scheduled
+                            campaign. Actual advertising results may vary.
+                        </p>
+
+                    </div>
+
+                </aside>
+
             </form>
 
-        </section>
+        </main>
 
 
         <!-- FOOTER -->
         <footer class="promotion-footer">
 
             <span>
-                © 2026 MARTEY
+                © 2026 MARTEY.
             </span>
 
             <span>
@@ -517,7 +502,7 @@
 
         </footer>
 
-    </main>
+    </div>
 
 
     <script src="create-promotion.js"></script>
