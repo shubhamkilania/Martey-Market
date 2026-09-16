@@ -1,6 +1,5 @@
 /* =========================================================
    MARTEY — ADD PRODUCT
-   Seller Product Creation Page
 ========================================================= */
 
 * {
@@ -11,12 +10,9 @@
 
 :root {
     --bg: #080808;
-    --bg-soft: #0d0d10;
     --card: #111114;
-    --card-hover: #15151a;
-
-    --border: rgba(255, 255, 255, 0.08);
-    --border-hover: rgba(139, 92, 246, 0.35);
+    --card-soft: #0d0d10;
+    --border: rgba(255,255,255,0.08);
 
     --text: #f5f5f7;
     --text-soft: #d5d5da;
@@ -26,11 +22,9 @@
     --purple-light: #a78bfa;
     --purple-dark: #7044d8;
 
-    --green: #34d399;
     --red: #f87171;
 
-    --topbar-height: 76px;
-    --radius: 14px;
+    --topbar-height: 70px;
 }
 
 html {
@@ -57,8 +51,8 @@ a {
 }
 
 a {
-    color: inherit;
     text-decoration: none;
+    color: inherit;
 }
 
 
@@ -72,8 +66,8 @@ a {
     background:
         radial-gradient(
             circle at 75% 0%,
-            rgba(139, 92, 246, 0.07),
-            transparent 28%
+            rgba(139,92,246,0.055),
+            transparent 30%
         ),
         var(--bg);
 }
@@ -93,9 +87,9 @@ a {
     align-items: center;
     justify-content: space-between;
 
-    padding: 0 32px;
+    padding: 0 28px;
 
-    background: rgba(8, 8, 8, 0.9);
+    background: rgba(8,8,8,0.92);
 
     backdrop-filter: blur(18px);
     -webkit-backdrop-filter: blur(18px);
@@ -108,15 +102,12 @@ a {
 .topbar-left {
     display: flex;
     align-items: center;
-    gap: 14px;
+    gap: 12px;
 }
 
-
-/* Back button */
-
 .back-button {
-    width: 40px;
-    height: 40px;
+    width: 38px;
+    height: 38px;
 
     display: flex;
     align-items: center;
@@ -129,22 +120,16 @@ a {
 
     color: var(--text-soft);
 
-    font-size: 20px;
+    font-size: 19px;
 
     transition: 0.2s ease;
 }
 
 .back-button:hover {
-    background: var(--card-hover);
+    border-color: rgba(139,92,246,0.4);
     color: white;
-
-    border-color: var(--border-hover);
-
-    transform: translateX(-2px);
+    background: #15151a;
 }
-
-
-/* Topbar text */
 
 .topbar-label {
     display: block;
@@ -153,38 +138,32 @@ a {
 
     color: var(--purple-light);
 
-    font-size: 9px;
+    font-size: 8px;
     font-weight: 800;
 
-    letter-spacing: 1.6px;
+    letter-spacing: 1.4px;
 }
 
 .add-product-topbar h1 {
     font-family: "Manrope", sans-serif;
 
-    font-size: 20px;
-    line-height: 1;
-
+    font-size: 19px;
     font-weight: 800;
 
-    letter-spacing: -0.4px;
+    line-height: 1;
 }
 
-
-/* Shop button */
-
 .shop-button {
-    height: 40px;
+    height: 38px;
 
-    display: inline-flex;
+    display: flex;
     align-items: center;
     justify-content: center;
 
-    padding: 0 15px;
+    padding: 0 14px;
 
     border: 1px solid var(--border);
-
-    border-radius: 9px;
+    border-radius: 8px;
 
     background: var(--card);
 
@@ -198,58 +177,51 @@ a {
 
 .shop-button:hover {
     color: var(--purple-light);
-
-    border-color: var(--border-hover);
-
-    background: var(--card-hover);
+    border-color: rgba(139,92,246,0.4);
 }
 
 
 /* =========================================================
-   MAIN CONTENT
+   CONTENT
 ========================================================= */
 
 .add-product-content {
     width: 100%;
-    max-width: 1180px;
+    max-width: 1100px;
 
     margin: 0 auto;
 
-    padding: 35px 30px 70px;
+    padding: 28px 28px 45px;
 }
 
-
-/* Intro */
-
 .page-intro {
-    margin-bottom: 25px;
+    margin-bottom: 20px;
 }
 
 .section-eyebrow {
     display: block;
 
-    margin-bottom: 8px;
+    margin-bottom: 6px;
 
     color: var(--purple-light);
 
-    font-size: 9px;
+    font-size: 8px;
     font-weight: 800;
 
-    letter-spacing: 1.6px;
+    letter-spacing: 1.5px;
 }
 
 .page-intro h2 {
     font-family: "Manrope", sans-serif;
 
-    font-size: 28px;
-
+    font-size: 26px;
     font-weight: 800;
 
-    letter-spacing: -0.8px;
+    letter-spacing: -0.7px;
 }
 
 .page-intro p {
-    margin-top: 7px;
+    margin-top: 5px;
 
     color: var(--muted);
 
@@ -262,80 +234,32 @@ a {
 ========================================================= */
 
 .product-form-card {
-    margin-bottom: 16px;
+    margin-bottom: 12px;
 
     background: var(--card);
 
     border: 1px solid var(--border);
 
-    border-radius: var(--radius);
+    border-radius: 12px;
 
     overflow: hidden;
-
-    transition:
-        border-color 0.2s ease,
-        background 0.2s ease;
 }
-
-.product-form-card:hover {
-    border-color: rgba(255, 255, 255, 0.11);
-}
-
-
-/* =========================================================
-   CARD HEADER
-========================================================= */
 
 .form-card-header {
-    min-height: 78px;
-
-    display: flex;
-    align-items: center;
-
-    padding: 18px 21px;
+    padding: 15px 18px;
 
     border-bottom: 1px solid var(--border);
-}
-
-.form-card-header > div {
-    display: flex;
-    align-items: center;
-
-    gap: 13px;
-}
-
-.form-step {
-    width: 36px;
-    height: 36px;
-
-    flex-shrink: 0;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    border-radius: 10px;
-
-    background: rgba(139, 92, 246, 0.12);
-
-    border: 1px solid rgba(139, 92, 246, 0.16);
-
-    color: var(--purple-light);
-
-    font-size: 10px;
-    font-weight: 800;
 }
 
 .form-card-header h3 {
     font-family: "Manrope", sans-serif;
 
-    font-size: 15px;
-
+    font-size: 14px;
     font-weight: 800;
 }
 
 .form-card-header p {
-    margin-top: 4px;
+    margin-top: 3px;
 
     color: var(--muted);
 
@@ -344,18 +268,22 @@ a {
 
 
 /* =========================================================
-   FORM BODY / GRID
+   FORM GRID
 ========================================================= */
 
 .form-grid {
     display: grid;
 
     grid-template-columns:
-        repeat(2, minmax(0, 1fr));
+        repeat(2, minmax(0,1fr));
 
-    gap: 18px;
+    gap: 14px;
 
-    padding: 22px;
+    padding: 17px 18px;
+}
+
+.form-body {
+    padding: 17px 18px;
 }
 
 .form-group {
@@ -366,23 +294,17 @@ a {
     grid-column: 1 / -1;
 }
 
-
-/* Labels */
-
-.form-group label {
+.form-group label,
+.variant-group > label {
     display: block;
 
-    margin-bottom: 8px;
+    margin-bottom: 6px;
 
     color: var(--text-soft);
 
     font-size: 11px;
-
     font-weight: 700;
 }
-
-
-/* Inputs */
 
 .form-group input,
 .form-group select,
@@ -390,10 +312,9 @@ a {
     width: 100%;
 
     border: 1px solid var(--border);
+    border-radius: 8px;
 
-    border-radius: 9px;
-
-    background: #0b0b0d;
+    background: var(--card-soft);
 
     color: var(--text);
 
@@ -401,81 +322,55 @@ a {
 
     font-size: 12px;
 
-    transition:
-        border-color 0.2s ease,
-        box-shadow 0.2s ease,
-        background 0.2s ease;
+    transition: 0.2s ease;
 }
 
 .form-group input,
 .form-group select {
-    height: 43px;
+    height: 40px;
 
-    padding: 0 13px;
+    padding: 0 11px;
 }
 
 .form-group textarea {
-    min-height: 130px;
+    min-height: 100px;
 
-    padding: 12px 13px;
+    padding: 10px 11px;
 
     resize: vertical;
 
-    line-height: 1.6;
+    line-height: 1.55;
 }
-
-
-/* Placeholder */
 
 .form-group input::placeholder,
 .form-group textarea::placeholder {
-    color: #5e5e67;
+    color: #62626a;
 }
-
-
-/* Focus */
 
 .form-group input:focus,
 .form-group select:focus,
 .form-group textarea:focus {
-    border-color: rgba(139, 92, 246, 0.65);
-
-    background: #0e0e11;
+    border-color: rgba(139,92,246,0.65);
 
     box-shadow:
-        0 0 0 3px rgba(139, 92, 246, 0.08);
+        0 0 0 3px rgba(139,92,246,0.07);
 }
-
-
-/* Select */
 
 .form-group select {
     appearance: none;
     -webkit-appearance: none;
 
     background-image:
-        linear-gradient(
-            45deg,
-            transparent 50%,
-            #777 50%
-        ),
-        linear-gradient(
-            135deg,
-            #777 50%,
-            transparent 50%
-        );
+        linear-gradient(45deg,transparent 50%,#777 50%),
+        linear-gradient(135deg,#777 50%,transparent 50%);
 
     background-position:
-        calc(100% - 17px) 18px,
-        calc(100% - 12px) 18px;
+        calc(100% - 15px) 16px,
+        calc(100% - 10px) 16px;
 
-    background-size:
-        5px 5px,
-        5px 5px;
+    background-size: 5px 5px;
 
     background-repeat: no-repeat;
-
-    padding-right: 35px;
 }
 
 .form-group select option {
@@ -484,29 +379,16 @@ a {
 }
 
 
-/* Help text */
-
-.field-help {
-    display: block;
-
-    margin-top: 6px;
-
-    color: #66666f;
-
-    font-size: 9px;
-}
-
-
 /* =========================================================
    IMAGE UPLOAD
 ========================================================= */
 
 .image-upload-area {
-    padding: 22px;
+    padding: 16px 18px;
 }
 
 .image-upload-box {
-    min-height: 190px;
+    min-height: 145px;
 
     display: flex;
     align-items: center;
@@ -514,18 +396,12 @@ a {
 
     flex-direction: column;
 
-    border: 1px dashed rgba(139, 92, 246, 0.35);
+    border: 1px dashed rgba(139,92,246,0.35);
 
-    border-radius: 12px;
+    border-radius: 10px;
 
     background:
-        linear-gradient(
-            135deg,
-            rgba(139, 92, 246, 0.035),
-            rgba(139, 92, 246, 0.01)
-        );
-
-    color: var(--text-soft);
+        rgba(139,92,246,0.025);
 
     text-align: center;
 
@@ -533,72 +409,61 @@ a {
 }
 
 .image-upload-box:hover {
-    border-color: rgba(139, 92, 246, 0.7);
+    border-color: rgba(139,92,246,0.7);
 
     background:
-        rgba(139, 92, 246, 0.06);
+        rgba(139,92,246,0.055);
 }
 
 .upload-icon {
-    width: 48px;
-    height: 48px;
+    width: 40px;
+    height: 40px;
 
     display: flex;
     align-items: center;
     justify-content: center;
 
-    margin-bottom: 13px;
+    margin-bottom: 9px;
 
-    border-radius: 13px;
+    border-radius: 10px;
 
-    background: rgba(139, 92, 246, 0.12);
+    background: rgba(139,92,246,0.12);
 
     color: var(--purple-light);
 
-    font-size: 25px;
-    font-weight: 400;
+    font-size: 22px;
 }
 
 .image-upload-box strong {
     font-size: 12px;
-
-    font-weight: 700;
 }
 
 .image-upload-box span {
-    margin-top: 6px;
-
-    color: var(--muted);
-
-    font-size: 10px;
-}
-
-.image-upload-box small {
     margin-top: 4px;
 
-    color: #62626a;
+    color: var(--muted);
 
     font-size: 9px;
 }
 
 
 /* =========================================================
-   IMAGE PREVIEW GRID
+   IMAGE PREVIEW
 ========================================================= */
 
 .image-preview-grid {
     display: grid;
 
     grid-template-columns:
-        repeat(auto-fill, minmax(130px, 1fr));
+        repeat(auto-fill,minmax(110px,1fr));
 
-    gap: 12px;
+    gap: 10px;
 
-    padding: 0 22px 22px;
+    padding: 0 18px 16px;
 }
 
 .image-preview-item {
-    height: 145px;
+    height: 115px;
 
     position: relative;
 
@@ -606,7 +471,7 @@ a {
 
     border: 1px solid var(--border);
 
-    border-radius: 10px;
+    border-radius: 9px;
 
     background: #0b0b0d;
 }
@@ -615,66 +480,118 @@ a {
     width: 100%;
     height: 100%;
 
-    display: block;
-
     object-fit: cover;
+
+    display: block;
 }
 
 .remove-preview {
-    width: 27px;
-    height: 27px;
+    width: 25px;
+    height: 25px;
 
     position: absolute;
 
-    top: 7px;
-    right: 7px;
+    top: 6px;
+    right: 6px;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    border: 0;
+    border-radius: 6px;
 
-    border: 1px solid rgba(255, 255, 255, 0.12);
-
-    border-radius: 7px;
-
-    background: rgba(0, 0, 0, 0.75);
+    background: rgba(0,0,0,0.75);
 
     color: white;
 
-    font-size: 14px;
-
-    transition: 0.2s ease;
+    font-size: 16px;
 }
 
 .remove-preview:hover {
-    background: rgba(248, 113, 113, 0.9);
-
-    border-color: rgba(248, 113, 113, 0.9);
+    background: rgba(248,113,113,0.9);
 }
 
 
 /* =========================================================
-   ACTION CARD
+   SIZE / COLOUR BUTTONS
+========================================================= */
+
+.variant-area {
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap: 22px;
+
+    padding: 17px 18px;
+}
+
+.option-buttons {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 8px;
+}
+
+.option-button {
+    min-width: 48px;
+    height: 36px;
+
+    padding: 0 13px;
+
+    border: 1px solid var(--border);
+
+    border-radius: 8px;
+
+    background: #0d0d10;
+
+    color: var(--text-soft);
+
+    font-size: 11px;
+    font-weight: 700;
+
+    transition: 0.18s ease;
+}
+
+.option-button:hover {
+    border-color: rgba(139,92,246,0.5);
+
+    color: var(--purple-light);
+}
+
+.option-button.selected {
+    background: rgba(139,92,246,0.16);
+
+    border-color: var(--purple);
+
+    color: white;
+
+    box-shadow:
+        0 0 0 2px rgba(139,92,246,0.06);
+}
+
+
+/* =========================================================
+   ACTION BAR
 ========================================================= */
 
 .product-action-card {
-    min-height: 85px;
+    min-height: 72px;
 
     display: flex;
     align-items: center;
     justify-content: space-between;
 
-    gap: 20px;
+    gap: 18px;
 
-    padding: 18px 21px;
+    padding: 15px 18px;
 
-    margin-top: 22px;
+    margin-top: 18px;
 
     background: var(--card);
 
     border: 1px solid var(--border);
 
-    border-radius: var(--radius);
+    border-radius: 12px;
 }
 
 .product-action-card strong {
@@ -682,42 +599,36 @@ a {
 
     font-family: "Manrope", sans-serif;
 
-    font-size: 13px;
+    font-size: 12px;
 }
 
 .product-action-card p {
-    margin-top: 4px;
+    margin-top: 3px;
 
     color: var(--muted);
 
     font-size: 10px;
 }
 
-
-/* =========================================================
-   ACTION BUTTONS
-========================================================= */
-
 .product-actions {
     display: flex;
-    align-items: center;
 
-    gap: 9px;
+    gap: 8px;
 
     flex-shrink: 0;
 }
 
 .primary-seller-btn,
 .secondary-seller-btn {
-    height: 41px;
+    height: 39px;
 
     display: inline-flex;
     align-items: center;
     justify-content: center;
 
-    padding: 0 17px;
+    padding: 0 16px;
 
-    border-radius: 9px;
+    border-radius: 8px;
 
     font-size: 11px;
     font-weight: 700;
@@ -725,30 +636,17 @@ a {
     transition: 0.2s ease;
 }
 
-
-/* Primary */
-
 .primary-seller-btn {
     border: 1px solid var(--purple);
 
     background: var(--purple);
 
     color: white;
-
-    box-shadow:
-        0 7px 20px rgba(139, 92, 246, 0.13);
 }
 
 .primary-seller-btn:hover {
     background: var(--purple-dark);
-
-    border-color: var(--purple-dark);
-
-    transform: translateY(-1px);
 }
-
-
-/* Secondary */
 
 .secondary-seller-btn {
     border: 1px solid var(--border);
@@ -759,31 +657,26 @@ a {
 }
 
 .secondary-seller-btn:hover {
-    border-color: rgba(139, 92, 246, 0.35);
+    border-color: rgba(139,92,246,0.4);
 
     color: var(--purple-light);
-
-    background: #111114;
 }
 
 
 /* =========================================================
-   FORM VALIDATION
+   ERROR
 ========================================================= */
 
 .form-group input.error,
 .form-group select.error,
 .form-group textarea.error {
-    border-color: rgba(248, 113, 113, 0.7);
-
-    box-shadow:
-        0 0 0 3px rgba(248, 113, 113, 0.06);
+    border-color: rgba(248,113,113,0.7);
 }
 
 .form-error {
     display: block;
 
-    margin-top: 6px;
+    margin-top: 5px;
 
     color: var(--red);
 
@@ -792,69 +685,17 @@ a {
 
 
 /* =========================================================
-   SUCCESS MESSAGE
+   MOBILE
 ========================================================= */
 
-.form-success-message {
-    display: none;
-
-    margin-bottom: 16px;
-
-    padding: 13px 15px;
-
-    border: 1px solid rgba(52, 211, 153, 0.2);
-
-    border-radius: 9px;
-
-    background: rgba(52, 211, 153, 0.07);
-
-    color: var(--green);
-
-    font-size: 11px;
-    font-weight: 600;
-}
-
-.form-success-message.show {
-    display: block;
-}
-
-
-/* =========================================================
-   SCROLLBAR
-========================================================= */
-
-::-webkit-scrollbar {
-    width: 6px;
-    height: 6px;
-}
-
-::-webkit-scrollbar-track {
-    background: transparent;
-}
-
-::-webkit-scrollbar-thumb {
-    background: #29292e;
-
-    border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: #3b3b42;
-}
-
-
-/* =========================================================
-   TABLET
-========================================================= */
-
-@media (max-width: 800px) {
+@media (max-width: 750px) {
 
     .add-product-topbar {
-        padding: 0 20px;
+        padding: 0 17px;
     }
 
     .add-product-content {
-        padding: 28px 20px 60px;
+        padding: 22px 17px 40px;
     }
 
     .form-grid {
@@ -865,9 +706,13 @@ a {
         grid-column: auto;
     }
 
+    .variant-area {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
     .product-action-card {
         align-items: flex-start;
-
         flex-direction: column;
     }
 
@@ -881,53 +726,40 @@ a {
 }
 
 
-/* =========================================================
-   MOBILE
-========================================================= */
-
-@media (max-width: 600px) {
+@media (max-width: 520px) {
 
     :root {
-        --topbar-height: 68px;
+        --topbar-height: 64px;
     }
 
     .add-product-topbar {
-        height: 68px;
-
-        padding: 0 14px;
+        height: 64px;
+        padding: 0 12px;
     }
 
     .back-button {
-        width: 37px;
-        height: 37px;
-
-        font-size: 18px;
+        width: 35px;
+        height: 35px;
     }
 
     .topbar-label {
         font-size: 7px;
-
-        letter-spacing: 1.2px;
     }
 
     .add-product-topbar h1 {
-        font-size: 17px;
+        font-size: 16px;
     }
 
     .shop-button {
-        height: 37px;
+        height: 35px;
 
-        padding: 0 11px;
+        padding: 0 10px;
 
-        font-size: 10px;
+        font-size: 9px;
     }
 
     .add-product-content {
-        padding: 22px 13px 45px;
-    }
-
-    .page-intro {
-        margin-bottom: 19px;
+        padding: 20px 12px 35px;
     }
 
     .page-intro h2 {
@@ -936,130 +768,34 @@ a {
 
     .page-intro p {
         font-size: 10px;
-
-        line-height: 1.6;
-    }
-
-    .product-form-card {
-        border-radius: 12px;
     }
 
     .form-card-header {
-        min-height: 70px;
-
-        padding: 15px;
+        padding: 14px;
     }
 
-    .form-card-header > div {
-        gap: 10px;
-    }
-
-    .form-step {
-        width: 32px;
-        height: 32px;
-
-        border-radius: 8px;
-
-        font-size: 9px;
-    }
-
-    .form-card-header h3 {
-        font-size: 13px;
-    }
-
-    .form-card-header p {
-        font-size: 9px;
-    }
-
-    .form-grid {
-        gap: 15px;
-
-        padding: 16px;
-    }
-
-    .form-group label {
-        font-size: 10px;
-    }
-
-    .form-group input,
-    .form-group select {
-        height: 42px;
-
-        font-size: 11px;
-    }
-
-    .form-group textarea {
-        font-size: 11px;
+    .form-grid,
+    .form-body {
+        padding: 14px;
     }
 
     .image-upload-area {
-        padding: 16px;
-    }
-
-    .image-upload-box {
-        min-height: 165px;
+        padding: 14px;
     }
 
     .image-preview-grid {
-        grid-template-columns:
-            repeat(2, minmax(0, 1fr));
-
-        gap: 9px;
-
-        padding: 0 16px 16px;
-    }
-
-    .image-preview-item {
-        height: 130px;
+        padding: 0 14px 14px;
     }
 
     .product-action-card {
-        gap: 15px;
-
-        padding: 16px;
-
-        margin-top: 16px;
-    }
-
-    .product-action-card strong {
-        font-size: 12px;
-    }
-
-    .product-action-card p {
-        font-size: 9px;
+        padding: 14px;
     }
 
     .product-actions {
         flex-direction: column;
-
-        gap: 8px;
     }
 
     .product-actions button {
         width: 100%;
-    }
-}
-
-
-/* =========================================================
-   VERY SMALL SCREEN
-========================================================= */
-
-@media (max-width: 380px) {
-
-    .shop-button {
-        display: none;
-    }
-
-    .add-product-topbar h1 {
-        font-size: 16px;
-    }
-
-    .page-intro h2 {
-        font-size: 21px;
-    }
-
-    .image-preview-grid {
-        grid-template-columns: 1fr 1fr;
     }
 }
