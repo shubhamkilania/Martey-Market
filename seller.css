@@ -4,32 +4,32 @@
    ========================================================= */
 
 :root {
-    --bg: #f6f7fb;
-    --surface: #ffffff;
-    --surface-soft: #fafaff;
+    --bg: #0b0b0f;
+    --surface: #111116;
+    --surface-soft: #15151c;
 
-    --text: #171722;
-    --text-soft: #3d3d49;
-    --muted: #737383;
-    --muted-light: #9a9aa8;
+    --text: #ffffff;
+    --text-soft: #c8c8d2;
+    --muted: #92929f;
+    --muted-light: #6f6f7c;
 
-    --border: #e7e7ef;
+    --border: #282832;
 
     --purple: #6c4df6;
     --purple-dark: #5738e8;
-    --purple-soft: #f0edff;
+    --purple-soft: rgba(108, 77, 246, 0.14);
 
     --blue: #3977f6;
-    --blue-soft: #edf4ff;
+    --blue-soft: rgba(57, 119, 246, 0.13);
 
     --green: #20a66a;
-    --green-soft: #eaf8f1;
+    --green-soft: rgba(32, 166, 106, 0.13);
 
     --orange: #e78b28;
-    --orange-soft: #fff3e4;
+    --orange-soft: rgba(231, 139, 40, 0.13);
 
     --danger: #dc4b59;
-    --danger-soft: #fff0f2;
+    --danger-soft: rgba(220, 75, 89, 0.13);
 
     --sidebar-width: 250px;
 
@@ -38,9 +38,8 @@
     --radius-lg: 18px;
 
     --shadow:
-        0 8px 28px rgba(26, 23, 55, 0.055);
+        0 8px 28px rgba(0, 0, 0, 0.28);
 }
-
 
 /* =========================================================
    RESET
