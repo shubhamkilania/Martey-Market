@@ -15,2550 +15,1137 @@
     >
 
     <link rel="stylesheet" href="style.css">
-
-    <style>
-        /* =========================================================
-           PRODUCT PAGE
-        ========================================================= */
-
-        .product-page {
-            max-width: 1240px;
-            margin: 0 auto;
-            padding: 32px 24px 80px;
-        }
-
-        /* =========================================================
-           HEADER
-        ========================================================= */
-
-        .product-page .site-header {
-            width: 100%;
-        }
-
-        /* =========================================================
-           BREADCRUMB
-        ========================================================= */
-
-        .product-breadcrumb {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin-bottom: 28px;
-            color: #8e8e9a;
-            font-size: 13px;
-        }
-
-        .product-breadcrumb a {
-            color: #a5a5b0;
-            text-decoration: none;
-        }
-
-        .product-breadcrumb a:hover {
-            color: #8b5cf6;
-        }
-
-        .product-breadcrumb span {
-            color: #5d5d69;
-        }
-
-        /* =========================================================
-           PRODUCT TOP
-        ========================================================= */
-
-        .product-main {
-            display: grid;
-            grid-template-columns: minmax(0, 1.08fr) minmax(420px, 0.92fr);
-            gap: 52px;
-            align-items: start;
-        }
-
-        /* =========================================================
-           GALLERY
-        ========================================================= */
-
-        .product-gallery {
-            display: grid;
-            grid-template-columns: 82px minmax(0, 1fr);
-            gap: 16px;
-        }
-
-        .product-thumbnails {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .product-thumbnail {
-            width: 82px;
-            height: 82px;
-            padding: 0;
-            border: 1px solid #292932;
-            border-radius: 13px;
-            overflow: hidden;
-            background: #111116;
-            cursor: pointer;
-            transition: border-color 0.2s ease, transform 0.2s ease;
-        }
-
-        .product-thumbnail:hover {
-            border-color: #6c4df6;
-            transform: translateY(-1px);
-        }
-
-        .product-thumbnail.active {
-            border-color: #8b5cf6;
-            box-shadow: 0 0 0 1px rgba(139, 92, 246, 0.35);
-        }
-
-        .product-thumbnail img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-
-        .product-main-image {
-            position: relative;
-            min-height: 590px;
-            border: 1px solid #25252e;
-            border-radius: 20px;
-            background: #111116;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .product-main-image img {
-            width: 100%;
-            height: 590px;
-            object-fit: cover;
-            display: block;
-        }
-
-        .product-image-badge {
-            position: absolute;
-            top: 18px;
-            left: 18px;
-            z-index: 2;
-            padding: 7px 11px;
-            border-radius: 8px;
-            background: #8b5cf6;
-            color: #ffffff;
-            font-size: 12px;
-            font-weight: 700;
-        }
-
-        /* =========================================================
-           PRODUCT INFO
-        ========================================================= */
-
-        .product-info {
-            padding-top: 2px;
-        }
-
-        .product-category {
-            color: #8b5cf6;
-            font-size: 13px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            margin-bottom: 12px;
-        }
-
-        .product-title {
-            margin: 0;
-            color: #ffffff;
-            font-family: "Manrope", sans-serif;
-            font-size: clamp(28px, 4vw, 42px);
-            line-height: 1.15;
-            font-weight: 800;
-            letter-spacing: -0.03em;
-        }
-
-        .product-rating-row {
-            display: flex;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 12px;
-            margin-top: 17px;
-        }
-
-        .product-rating {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            padding: 7px 10px;
-            border-radius: 8px;
-            background: rgba(139, 92, 246, 0.12);
-            color: #ffffff;
-            font-size: 13px;
-            font-weight: 700;
-        }
-
-        .product-rating-star {
-            color: #f5c84c;
-        }
-
-        .product-reviews-link {
-            color: #a4a4ae;
-            font-size: 13px;
-            text-decoration: none;
-        }
-
-        .product-reviews-link:hover {
-            color: #ffffff;
-        }
-
-        .product-price-box {
-            margin-top: 28px;
-            padding-bottom: 26px;
-            border-bottom: 1px solid #27272f;
-        }
-
-        .product-price-row {
-            display: flex;
-            align-items: baseline;
-            flex-wrap: wrap;
-            gap: 12px;
-        }
-
-        .product-price {
-            color: #ffffff;
-            font-family: "Manrope", sans-serif;
-            font-size: 34px;
-            font-weight: 800;
-        }
-
-        .product-mrp {
-            color: #777783;
-            font-size: 16px;
-            text-decoration: line-through;
-        }
-
-        .product-discount {
-            color: #42c98a;
-            font-size: 14px;
-            font-weight: 700;
-        }
-
-        .product-tax-note {
-            margin-top: 8px;
-            color: #777783;
-            font-size: 12px;
-        }
-
-        /* =========================================================
-           OPTIONS
-        ========================================================= */
-
-        .product-option {
-            margin-top: 24px;
-        }
-
-        .product-option-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 11px;
-        }
-
-        .product-option-title {
-            color: #ffffff;
-            font-size: 14px;
-            font-weight: 700;
-        }
-
-        .product-option-value {
-            color: #9696a2;
-            font-size: 13px;
-        }
-
-        .product-option-buttons {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 9px;
-        }
-
-        .product-option-button {
-            min-width: 50px;
-            height: 42px;
-            padding: 0 15px;
-            border: 1px solid #30303a;
-            border-radius: 9px;
-            background: #111116;
-            color: #d8d8df;
-            cursor: pointer;
-            font-family: "DM Sans", sans-serif;
-            font-size: 13px;
-            font-weight: 600;
-            transition: all 0.2s ease;
-        }
-
-        .product-option-button:hover {
-            border-color: #6c4df6;
-            color: #ffffff;
-        }
-
-        .product-option-button.active {
-            border-color: #8b5cf6;
-            background: rgba(139, 92, 246, 0.14);
-            color: #ffffff;
-        }
-
-        /* =========================================================
-           DELIVERY
-        ========================================================= */
-
-        .product-delivery-box {
-            margin-top: 27px;
-            padding: 17px;
-            border: 1px solid #282832;
-            border-radius: 13px;
-            background: #111116;
-        }
-
-        .product-delivery-title {
-            color: #ffffff;
-            font-size: 14px;
-            font-weight: 700;
-            margin-bottom: 6px;
-        }
-
-        .product-delivery-text {
-            color: #90909c;
-            font-size: 13px;
-            line-height: 1.6;
-        }
-
-        .product-delivery-input-row {
-            display: flex;
-            gap: 9px;
-            margin-top: 13px;
-        }
-
-        .product-delivery-input {
-            flex: 1;
-            min-width: 0;
-            height: 42px;
-            padding: 0 13px;
-            border: 1px solid #30303a;
-            border-radius: 9px;
-            outline: none;
-            background: #0c0c10;
-            color: #ffffff;
-            font-family: "DM Sans", sans-serif;
-        }
-
-        .product-delivery-button {
-            height: 42px;
-            padding: 0 16px;
-            border: 1px solid #393944;
-            border-radius: 9px;
-            background: #17171e;
-            color: #ffffff;
-            cursor: pointer;
-            font-weight: 600;
-        }
-
-        /* =========================================================
-           ACTION BUTTONS
-        ========================================================= */
-
-        .product-actions {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 11px;
-            margin-top: 25px;
-        }
-
-        .product-action-button {
-            height: 52px;
-            border-radius: 11px;
-            font-family: "DM Sans", sans-serif;
-            font-size: 14px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-
-        .product-add-cart {
-            border: 1px solid #6c4df6;
-            background: rgba(108, 77, 246, 0.12);
-            color: #ffffff;
-        }
-
-        .product-add-cart:hover {
-            background: rgba(108, 77, 246, 0.22);
-        }
-
-        .product-buy-now {
-            border: 1px solid #8b5cf6;
-            background: #8b5cf6;
-            color: #ffffff;
-        }
-
-        .product-buy-now:hover {
-            background: #7545e8;
-        }
-
-        /* =========================================================
-           SELLER
-        ========================================================= */
-
-        .product-seller-card {
-            margin-top: 25px;
-            padding: 18px;
-            border: 1px solid #282832;
-            border-radius: 14px;
-            background: #111116;
-        }
-
-        .product-seller-label {
-            color: #73737f;
-            font-size: 11px;
-            font-weight: 700;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            margin-bottom: 10px;
-        }
-
-        .product-seller-row {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 15px;
-        }
-
-        .product-seller-name {
-            color: #ffffff;
-            font-size: 15px;
-            font-weight: 700;
-        }
-
-        .product-seller-rating {
-            margin-top: 4px;
-            color: #8f8f9b;
-            font-size: 12px;
-        }
-
-        .product-seller-button {
-            height: 38px;
-            padding: 0 14px;
-            border: 1px solid #30303a;
-            border-radius: 8px;
-            background: #18181f;
-            color: #ffffff;
-            cursor: pointer;
-            font-size: 12px;
-            font-weight: 600;
-        }
-
-        /* =========================================================
-           DETAILS SECTION
-        ========================================================= */
-
-        .product-details-section {
-            margin-top: 75px;
-        }
-
-        .product-section-title {
-            margin: 0 0 20px;
-            color: #ffffff;
-            font-family: "Manrope", sans-serif;
-            font-size: 24px;
-            font-weight: 800;
-        }
-
-        .product-details-grid {
-            display: grid;
-            grid-template-columns: minmax(0, 1.25fr) minmax(300px, 0.75fr);
-            gap: 20px;
-        }
-
-        .product-detail-card {
-            padding: 24px;
-            border: 1px solid #282832;
-            border-radius: 16px;
-            background: #111116;
-        }
-
-        .product-detail-card h3 {
-            margin: 0 0 14px;
-            color: #ffffff;
-            font-size: 16px;
-        }
-
-        .product-detail-card p {
-            margin: 0;
-            color: #9999a5;
-            font-size: 14px;
-            line-height: 1.8;
-        }
-
-        .product-spec-table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        .product-spec-table tr {
-            border-bottom: 1px solid #25252e;
-        }
-
-        .product-spec-table tr:last-child {
-            border-bottom: 0;
-        }
-
-        .product-spec-table td {
-            padding: 12px 0;
-            font-size: 13px;
-        }
-
-        .product-spec-table td:first-child {
-            width: 42%;
-            color: #777783;
-        }
-
-        .product-spec-table td:last-child {
-            color: #ddddE3;
-            font-weight: 600;
-        }
-
-        /* =========================================================
-           REVIEWS
-        ========================================================= */
-
-        .product-reviews-section {
-            margin-top: 75px;
-        }
-
-        .reviews-summary {
-            display: grid;
-            grid-template-columns: 230px 1fr;
-            gap: 35px;
-            padding: 25px;
-            border: 1px solid #282832;
-            border-radius: 16px;
-            background: #111116;
-        }
-
-        .reviews-score {
-            text-align: center;
-            padding-right: 25px;
-            border-right: 1px solid #282832;
-        }
-
-        .reviews-score-number {
-            color: #ffffff;
-            font-family: "Manrope", sans-serif;
-            font-size: 48px;
-            font-weight: 800;
-        }
-
-        .reviews-score-stars {
-            margin-top: 5px;
-            color: #f5c84c;
-            letter-spacing: 2px;
-        }
-
-        .reviews-score-text {
-            margin-top: 7px;
-            color: #858591;
-            font-size: 12px;
-        }
-
-        .review-bars {
-            display: flex;
-            flex-direction: column;
-            gap: 9px;
-            justify-content: center;
-        }
-
-        .review-bar-row {
-            display: grid;
-            grid-template-columns: 35px 1fr 35px;
-            align-items: center;
-            gap: 9px;
-            color: #888894;
-            font-size: 12px;
-        }
-
-        .review-bar {
-            height: 7px;
-            overflow: hidden;
-            border-radius: 20px;
-            background: #292932;
-        }
-
-        .review-bar-fill {
-            height: 100%;
-            border-radius: inherit;
-            background: #8b5cf6;
-        }
-
-        .review-list {
-            display: flex;
-            flex-direction: column;
-            gap: 14px;
-            margin-top: 18px;
-        }
-
-        .review-card {
-            padding: 20px;
-            border: 1px solid #282832;
-            border-radius: 14px;
-            background: #111116;
-        }
-
-        .review-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            gap: 15px;
-        }
-
-        .review-user {
-            color: #ffffff;
-            font-size: 14px;
-            font-weight: 700;
-        }
-
-        .review-date {
-            color: #777783;
-            font-size: 11px;
-            margin-top: 3px;
-        }
-
-        .review-rating {
-            color: #f5c84c;
-            font-size: 13px;
-        }
-
-        .review-text {
-            margin: 13px 0 0;
-            color: #9999a5;
-            font-size: 13px;
-            line-height: 1.7;
-        }
-
-        .review-images {
-            display: flex;
-            gap: 9px;
-            margin-top: 15px;
-        }
-
-        .review-image {
-            width: 72px;
-            height: 72px;
-            border-radius: 9px;
-            border: 1px solid #2b2b34;
-            overflow: hidden;
-            background: #17171d;
-        }
-
-        .review-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        /* =========================================================
-           YOU MAY ALSO LIKE
-        ========================================================= */
-
-        .recommendations-section {
-            margin-top: 75px;
-        }
-
-        .recommendation-grid {
-            display: grid;
-            grid-template-columns: repeat(4, minmax(0, 1fr));
-            gap: 17px;
-        }
-
-        .recommendation-card {
-            display: block;
-            overflow: hidden;
-            border: 1px solid #282832;
-            border-radius: 14px;
-            background: #111116;
-            text-decoration: none;
-            transition: transform 0.2s ease, border-color 0.2s ease;
-        }
-
-        .recommendation-card:hover {
-            transform: translateY(-3px);
-            border-color: #454551;
-        }
-
-        .recommendation-image {
-            width: 100%;
-            aspect-ratio: 1 / 1;
-            overflow: hidden;
-            background: #17171d;
-        }
-
-        .recommendation-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-
-        .recommendation-info {
-            padding: 15px;
-        }
-
-        .recommendation-category {
-            color: #777783;
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 0.06em;
-        }
-
-        .recommendation-title {
-            margin: 6px 0 9px;
-            color: #ffffff;
-            font-size: 14px;
-            font-weight: 700;
-            line-height: 1.4;
-        }
-
-        .recommendation-price {
-            color: #ffffff;
-            font-size: 15px;
-            font-weight: 800;
-        }
-
-        /* =========================================================
-           TOAST
-        ========================================================= */
-
-        .product-toast {
-            position: fixed;
-            left: 50%;
-            bottom: 28px;
-            z-index: 1000;
-            transform: translate(-50%, 20px);
-            opacity: 0;
-            pointer-events: none;
-            padding: 13px 18px;
-            border: 1px solid #34343e;
-            border-radius: 10px;
-            background: #17171e;
-            color: #ffffff;
-            font-size: 13px;
-            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.35);
-            transition: opacity 0.25s ease, transform 0.25s ease;
-        }
-
-        .product-toast.show {
-            opacity: 1;
-            transform: translate(-50%, 0);
-        }
-
-        /* =========================================================
-           RESPONSIVE
-        ========================================================= */
-
-        @media (max-width: 1050px) {
-            .product-main {
-                grid-template-columns: 1fr;
-            }
-
-            .product-info {
-                max-width: 760px;
-            }
-
-            .product-details-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .recommendation-grid {
-                grid-template-columns: repeat(3, minmax(0, 1fr));
-            }
-        }
-
-        @media (max-width: 760px) {
-            .product-page {
-                padding: 24px 16px 60px;
-            }
-
-            .product-gallery {
-                grid-template-columns: 1fr;
-            }
-
-            .product-thumbnails {
-                order: 2;
-                flex-direction: row;
-                overflow-x: auto;
-                padding-bottom: 4px;
-            }
-
-            .product-thumbnail {
-                flex: 0 0 68px;
-                width: 68px;
-                height: 68px;
-            }
-
-            .product-main-image {
-                min-height: auto;
-                border-radius: 15px;
-            }
-
-            .product-main-image img {
-                height: auto;
-                aspect-ratio: 1 / 1;
-            }
-
-            .product-title {
-                font-size: 30px;
-            }
-
-            .reviews-summary {
-                grid-template-columns: 1fr;
-                gap: 22px;
-            }
-
-            .reviews-score {
-                padding-right: 0;
-                padding-bottom: 20px;
-                border-right: 0;
-                border-bottom: 1px solid #282832;
-            }
-
-            .recommendation-grid {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
-            }
-        }
-
-        @media (max-width: 520px) {
-            .product-actions {
-                grid-template-columns: 1fr;
-            }
-
-            .product-delivery-input-row {
-                flex-direction: column;
-            }
-
-            .product-delivery-button {
-                width: 100%;
-            }
-
-            .recommendation-grid {
-                grid-template-columns: 1fr 1fr;
-                gap: 10px;
-            }
-
-            .recommendation-info {
-                padding: 11px;
-            }
-
-            .product-price {
-                font-size: 29px;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="product.css">
 </head>
 
 <body>
 
-    <!-- =========================================================
-         HEADER
-    ========================================================= -->
+<header class="site-header product-site-header">
 
-    <header class="site-header">
-        <div class="header-container">
+    <div class="header-container">
 
-            <a href="index.html" class="logo">
-                MARTEY<span>.</span>
-            </a>
+        <a href="index.html" class="logo">
+            MARTEY<span>.</span>
+        </a>
 
-            <div class="header-search">
-                <input
-                    type="text"
-                    id="searchInput"
-                    placeholder="Search products..."
-                    autocomplete="off"
+        <div class="header-search">
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search products..."
+                autocomplete="off"
+            >
+
+            <button
+                type="button"
+                id="searchButton"
+                aria-label="Search"
+            >
+                <svg
+                    width="19"
+                    height="19"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
                 >
+                    <circle cx="11" cy="11" r="7"></circle>
+                    <path d="M20 20l-3.5-3.5"></path>
+                </svg>
+            </button>
 
-                <button
-                    type="button"
-                    id="searchButton"
-                    aria-label="Search"
-                >
-                    <svg
-                        width="19"
-                        height="19"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                    >
-                        <circle cx="11" cy="11" r="7"></circle>
-                        <path d="M20 20l-3.5-3.5"></path>
-                    </svg>
-                </button>
-            </div>
-
-            <div class="header-actions">
-
-                <button
-                    type="button"
-                    class="header-icon-button"
-                    id="wishlistHeaderButton"
-                    aria-label="Wishlist"
-                >
-                    <svg
-                        width="20"
-                        height="20"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="1.8"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                    >
-                        <path d="M20.8 8.6c0 5.4-8.8 10.2-8.8 10.2S3.2 14 3.2 8.6A4.6 4.6 0 0 1 12 6.1a4.6 4.6 0 0 1 8.8 2.5Z"></path>
-                    </svg>
-                </button>
-
-                <button
-                    type="button"
-                    class="header-icon-button cart-header-button"
-                    id="cartHeaderButton"
-                    aria-label="Cart"
-                >
-                    <svg
-                        width="20"
-                        height="20"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="1.8"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                    >
-                        <path d="M3 4h2l2.2 11.2a2 2 0 0 0 2 1.6h7.9a2 2 0 0 0 2-1.6L21 8H6"></path>
-                        <circle cx="10" cy="20" r="1"></circle>
-                        <circle cx="18" cy="20" r="1"></circle>
-                    </svg>
-
-                    <span id="cartCount" class="cart-count">0</span>
-                </button>
-
-                <button
-                    type="button"
-                    class="header-icon-button"
-                    id="accountHeaderButton"
-                    aria-label="Account"
-                >
-                    <svg
-                        width="20"
-                        height="20"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="1.8"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                    >
-                        <circle cx="12" cy="8" r="3.2"></circle>
-                        <path d="M5.5 20c.8-3.4 3-5.2 6.5-5.2s5.7 1.8 6.5 5.2"></path>
-                    </svg>
-                </button>
-
-            </div>
-        </div>
-    </header>
-
-
-    <!-- =========================================================
-         PRODUCT PAGE
-    ========================================================= -->
-
-    <main class="product-page">
-
-        <!-- Breadcrumb -->
-
-        <div class="product-breadcrumb">
-            <a href="index.html">Home</a>
-            <span>/</span>
-            <a href="index.html">Products</a>
-            <span>/</span>
-            <span id="breadcrumbProduct">Product</span>
         </div>
 
+        <div class="header-actions">
 
-        <!-- =====================================================
-             PRODUCT MAIN
-        ===================================================== -->
+            <button
+                type="button"
+                class="header-icon-button"
+                id="wishlistHeaderButton"
+                aria-label="Wishlist"
+            >
+                <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                >
+                    <path d="M20.8 8.6c0 5.4-8.8 10.2-8.8 10.2S3.2 14 3.2 8.6A4.6 4.6 0 0 1 12 6.1a4.6 4.6 0 0 1 8.8 2.5Z"></path>
+                </svg>
+            </button>
 
-        <section class="product-main">
+            <button
+                type="button"
+                class="header-icon-button cart-header-button"
+                id="cartHeaderButton"
+                aria-label="Cart"
+            >
+                <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                >
+                    <path d="M3 4h2l2.2 11.2a2 2 0 0 0 2 1.6h7.9a2 2 0 0 0 2-1.6L21 8H6"></path>
+                    <circle cx="10" cy="20" r="1"></circle>
+                    <circle cx="18" cy="20" r="1"></circle>
+                </svg>
 
-            <!-- Gallery -->
+                <span id="cartCount" class="cart-count">0</span>
+            </button>
 
-            <div class="product-gallery">
+            <button
+                type="button"
+                class="header-icon-button"
+                id="accountHeaderButton"
+                aria-label="Account"
+            >
+                <svg
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                >
+                    <circle cx="12" cy="8" r="3.2"></circle>
+                    <path d="M5.5 20c.8-3.4 3-5.2 6.5-5.2s5.7 1.8 6.5 5.2"></path>
+                </svg>
+            </button>
 
-                <div class="product-thumbnails">
+        </div>
 
-                    <button
-                        type="button"
-                        class="product-thumbnail active"
-                        data-image="images/premium-tshirt.jpg"
+    </div>
+
+</header>
+
+
+<main class="product-page">
+
+    <!-- Breadcrumb -->
+
+    <div class="product-breadcrumb">
+
+        <a href="index.html">Home</a>
+
+        <span>/</span>
+
+        <a href="index.html">Products</a>
+
+        <span>/</span>
+
+        <span id="breadcrumbProduct">
+            Product
+        </span>
+
+    </div>
+
+
+    <!-- PRODUCT -->
+
+    <section class="product-main">
+
+        <!-- Gallery -->
+
+        <div class="product-gallery">
+
+            <div class="product-thumbnails">
+
+                <button
+                    type="button"
+                    class="product-thumbnail active"
+                    data-image="images/premium-tshirt.jpg"
+                >
+                    <img
+                        src="images/premium-tshirt.jpg"
+                        alt="Product image"
                     >
-                        <img
-                            src="images/premium-tshirt.jpg"
-                            alt="Product image 1"
-                        >
-                    </button>
+                </button>
 
-                    <button
-                        type="button"
-                        class="product-thumbnail"
-                        data-image="images/premium-tshirt-2.jpg"
+                <button
+                    type="button"
+                    class="product-thumbnail"
+                    data-image="images/premium-tshirt-2.jpg"
+                >
+                    <img
+                        src="images/premium-tshirt-2.jpg"
+                        alt="Product image"
                     >
-                        <img
-                            src="images/premium-tshirt-2.jpg"
-                            alt="Product image 2"
-                        >
-                    </button>
+                </button>
 
-                    <button
-                        type="button"
-                        class="product-thumbnail"
-                        data-image="images/premium-tshirt-3.jpg"
+                <button
+                    type="button"
+                    class="product-thumbnail"
+                    data-image="images/premium-tshirt-3.jpg"
+                >
+                    <img
+                        src="images/premium-tshirt-3.jpg"
+                        alt="Product image"
                     >
-                        <img
-                            src="images/premium-tshirt-3.jpg"
-                            alt="Product image 3"
-                        >
-                    </button>
+                </button>
 
-                    <button
-                        type="button"
-                        class="product-thumbnail"
-                        data-image="images/premium-tshirt-4.jpg"
+                <button
+                    type="button"
+                    class="product-thumbnail"
+                    data-image="images/premium-tshirt-4.jpg"
+                >
+                    <img
+                        src="images/premium-tshirt-4.jpg"
+                        alt="Product image"
                     >
-                        <img
-                            src="images/premium-tshirt-4.jpg"
-                            alt="Product image 4"
-                        >
-                    </button>
+                </button>
 
-                    <button
-                        type="button"
-                        class="product-thumbnail"
-                        data-image="images/premium-tshirt-5.jpg"
+                <button
+                    type="button"
+                    class="product-thumbnail"
+                    data-image="images/premium-tshirt-5.jpg"
+                >
+                    <img
+                        src="images/premium-tshirt-5.jpg"
+                        alt="Product image"
                     >
-                        <img
-                            src="images/premium-tshirt-5.jpg"
-                            alt="Product image 5"
-                        >
-                    </button>
+                </button>
 
-                </div>
+            </div>
 
-                <div class="product-main-image">
 
-                    <span class="product-image-badge" id="productBadge">
-                        Bestseller
+            <div class="product-main-image">
+
+                <span
+                    class="product-image-badge"
+                    id="productBadge"
+                >
+                    Bestseller
+                </span>
+
+                <img
+                    id="mainProductImage"
+                    src="images/premium-tshirt.jpg"
+                    alt="Premium Oversized T-Shirt"
+                >
+
+            </div>
+
+        </div>
+
+
+        <!-- INFO -->
+
+        <div class="product-info">
+
+            <div
+                class="product-category"
+                id="productCategory"
+            >
+                Fashion
+            </div>
+
+            <h1
+                class="product-title"
+                id="productTitle"
+            >
+                Premium Oversized T-Shirt
+            </h1>
+
+            <div class="product-rating-row">
+
+                <div class="product-rating">
+
+                    <span class="product-rating-star">
+                        ★
                     </span>
 
-                    <img
-                        id="mainProductImage"
-                        src="images/premium-tshirt.jpg"
-                        alt="Premium Oversized T-Shirt"
+                    <span id="productRating">
+                        4.7
+                    </span>
+
+                </div>
+
+                <a
+                    href="#reviews"
+                    class="product-reviews-link"
+                >
+                    <span id="productReviews">
+                        128
+                    </span>
+                    reviews
+                </a>
+
+            </div>
+
+
+            <div class="product-price-box">
+
+                <div class="product-price-row">
+
+                    <span
+                        class="product-price"
+                        id="productPrice"
                     >
+                        ₹799
+                    </span>
+
+                    <span
+                        class="product-mrp"
+                        id="productMRP"
+                    >
+                        ₹1,499
+                    </span>
+
+                    <span
+                        class="product-discount"
+                        id="productDiscount"
+                    >
+                        47% OFF
+                    </span>
+
+                </div>
+
+                <div class="product-tax-note">
+                    Inclusive of applicable taxes
+                </div>
+
+            </div>
+
+
+            <!-- SIZE -->
+
+            <div class="product-option">
+
+                <div class="product-option-header">
+
+                    <span class="product-option-title">
+                        Size
+                    </span>
+
+                    <span
+                        class="product-option-value"
+                        id="selectedSize"
+                    >
+                        M
+                    </span>
+
+                </div>
+
+                <div class="product-option-buttons">
+
+                    <button
+                        type="button"
+                        class="product-option-button"
+                        data-size="S"
+                    >
+                        S
+                    </button>
+
+                    <button
+                        type="button"
+                        class="product-option-button active"
+                        data-size="M"
+                    >
+                        M
+                    </button>
+
+                    <button
+                        type="button"
+                        class="product-option-button"
+                        data-size="L"
+                    >
+                        L
+                    </button>
+
+                    <button
+                        type="button"
+                        class="product-option-button"
+                        data-size="XL"
+                    >
+                        XL
+                    </button>
+
+                    <button
+                        type="button"
+                        class="product-option-button"
+                        data-size="XXL"
+                    >
+                        XXL
+                    </button>
 
                 </div>
 
             </div>
 
 
-            <!-- Product Information -->
+            <!-- COLOR -->
 
-            <div class="product-info">
+            <div class="product-option">
+
+                <div class="product-option-header">
+
+                    <span class="product-option-title">
+                        Color
+                    </span>
+
+                    <span
+                        class="product-option-value"
+                        id="selectedColor"
+                    >
+                        Black
+                    </span>
+
+                </div>
+
+                <div class="product-option-buttons">
+
+                    <button
+                        type="button"
+                        class="product-option-button active"
+                        data-color="Black"
+                    >
+                        Black
+                    </button>
+
+                    <button
+                        type="button"
+                        class="product-option-button"
+                        data-color="White"
+                    >
+                        White
+                    </button>
+
+                    <button
+                        type="button"
+                        class="product-option-button"
+                        data-color="Blue"
+                    >
+                        Blue
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- DELIVERY -->
+
+            <div class="product-delivery-box">
+
+                <div class="product-delivery-title">
+                    Check delivery
+                </div>
+
+                <div class="product-delivery-text">
+                    Enter your PIN code to check delivery availability.
+                </div>
+
+                <div class="product-delivery-input-row">
+
+                    <input
+                        type="text"
+                        class="product-delivery-input"
+                        id="deliveryPincode"
+                        placeholder="Enter PIN code"
+                        maxlength="6"
+                        inputmode="numeric"
+                    >
+
+                    <button
+                        type="button"
+                        class="product-delivery-button"
+                        id="checkDeliveryButton"
+                    >
+                        Check
+                    </button>
+
+                </div>
 
                 <div
-                    class="product-category"
-                    id="productCategory"
-                >
-                    Fashion
-                </div>
-
-                <h1
-                    class="product-title"
-                    id="productTitle"
-                >
-                    Premium Oversized T-Shirt
-                </h1>
-
-                <div class="product-rating-row">
-
-                    <div class="product-rating">
-                        <span class="product-rating-star">★</span>
-                        <span id="productRating">4.7</span>
-                    </div>
-
-                    <a
-                        href="#reviews"
-                        class="product-reviews-link"
-                    >
-                        <span id="productReviews">128</span> reviews
-                    </a>
-
-                </div>
-
-
-                <!-- Price -->
-
-                <div class="product-price-box">
-
-                    <div class="product-price-row">
-
-                        <span
-                            class="product-price"
-                            id="productPrice"
-                        >
-                            ₹799
-                        </span>
-
-                        <span
-                            class="product-mrp"
-                            id="productMRP"
-                        >
-                            ₹1,499
-                        </span>
-
-                        <span
-                            class="product-discount"
-                            id="productDiscount"
-                        >
-                            47% OFF
-                        </span>
-
-                    </div>
-
-                    <div class="product-tax-note">
-                        Inclusive of applicable taxes
-                    </div>
-
-                </div>
-
-
-                <!-- Size -->
-
-                <div class="product-option">
-
-                    <div class="product-option-header">
-                        <span class="product-option-title">
-                            Size
-                        </span>
-
-                        <span
-                            class="product-option-value"
-                            id="selectedSize"
-                        >
-                            M
-                        </span>
-                    </div>
-
-                    <div class="product-option-buttons">
-
-                        <button
-                            type="button"
-                            class="product-option-button"
-                            data-size="S"
-                        >
-                            S
-                        </button>
-
-                        <button
-                            type="button"
-                            class="product-option-button active"
-                            data-size="M"
-                        >
-                            M
-                        </button>
-
-                        <button
-                            type="button"
-                            class="product-option-button"
-                            data-size="L"
-                        >
-                            L
-                        </button>
-
-                        <button
-                            type="button"
-                            class="product-option-button"
-                            data-size="XL"
-                        >
-                            XL
-                        </button>
-
-                        <button
-                            type="button"
-                            class="product-option-button"
-                            data-size="XXL"
-                        >
-                            XXL
-                        </button>
-
-                    </div>
-
-                </div>
-
-
-                <!-- Color -->
-
-                <div class="product-option">
-
-                    <div class="product-option-header">
-                        <span class="product-option-title">
-                            Color
-                        </span>
-
-                        <span
-                            class="product-option-value"
-                            id="selectedColor"
-                        >
-                            Black
-                        </span>
-                    </div>
-
-                    <div class="product-option-buttons">
-
-                        <button
-                            type="button"
-                            class="product-option-button active"
-                            data-color="Black"
-                        >
-                            Black
-                        </button>
-
-                        <button
-                            type="button"
-                            class="product-option-button"
-                            data-color="White"
-                        >
-                            White
-                        </button>
-
-                        <button
-                            type="button"
-                            class="product-option-button"
-                            data-color="Blue"
-                        >
-                            Blue
-                        </button>
-
-                    </div>
-
-                </div>
-
-
-                <!-- Delivery -->
-
-                <div class="product-delivery-box">
-
-                    <div class="product-delivery-title">
-                        Check delivery
-                    </div>
-
-                    <div class="product-delivery-text">
-                        Enter your PIN code to check delivery availability.
-                    </div>
-
-                    <div class="product-delivery-input-row">
-
-                        <input
-                            type="text"
-                            class="product-delivery-input"
-                            id="deliveryPincode"
-                            placeholder="Enter PIN code"
-                            maxlength="6"
-                            inputmode="numeric"
-                        >
-
-                        <button
-                            type="button"
-                            class="product-delivery-button"
-                            id="checkDeliveryButton"
-                        >
-                            Check
-                        </button>
-
-                    </div>
-
-                </div>
-
-
-                <!-- Actions -->
-
-                <div class="product-actions">
-
-                    <button
-                        type="button"
-                        class="product-action-button product-add-cart"
-                        id="addToCartButton"
-                    >
-                        Add to Cart
-                    </button>
-
-                    <button
-                        type="button"
-                        class="product-action-button product-buy-now"
-                        id="buyNowButton"
-                    >
-                        Buy Now
-                    </button>
-
-                </div>
-
-
-                <!-- Seller -->
-
-                <div class="product-seller-card">
-
-                    <div class="product-seller-label">
-                        Sold by
-                    </div>
-
-                    <div class="product-seller-row">
-
-                        <div>
-                            <div class="product-seller-name">
-                                MARTEY Store
-                            </div>
-
-                            <div class="product-seller-rating">
-                                4.6 seller rating
-                            </div>
-                        </div>
-
-                        <button
-                            type="button"
-                            class="product-seller-button"
-                            id="sellerStoreButton"
-                        >
-                            View Store
-                        </button>
-
-                    </div>
-
-                </div>
+                    class="delivery-result"
+                    id="deliveryResult"
+                ></div>
 
             </div>
 
-        </section>
 
+            <!-- ACTIONS -->
 
-        <!-- =====================================================
-             DESCRIPTION + SPECIFICATIONS
-        ===================================================== -->
+            <div class="product-actions">
 
-        <section class="product-details-section">
+                <button
+                    type="button"
+                    class="product-action-button product-add-cart"
+                    id="addToCartButton"
+                >
+                    Add to Cart
+                </button>
 
-            <h2 class="product-section-title">
-                Product Details
-            </h2>
-
-            <div class="product-details-grid">
-
-                <div class="product-detail-card">
-
-                    <h3>
-                        Description
-                    </h3>
-
-                    <p id="productDescription">
-                        Premium oversized t-shirt designed for everyday comfort
-                        and casual styling. Made with a soft fabric and a
-                        relaxed fit that works well for everyday wear.
-                    </p>
-
-                </div>
-
-                <div class="product-detail-card">
-
-                    <h3>
-                        Specifications
-                    </h3>
-
-                    <table class="product-spec-table">
-
-                        <tr>
-                            <td>Category</td>
-                            <td id="specCategory">Fashion</td>
-                        </tr>
-
-                        <tr>
-                            <td>Material</td>
-                            <td>Premium Cotton</td>
-                        </tr>
-
-                        <tr>
-                            <td>Fit</td>
-                            <td>Oversized</td>
-                        </tr>
-
-                        <tr>
-                            <td>Pattern</td>
-                            <td>Solid</td>
-                        </tr>
-
-                        <tr>
-                            <td>Wash Care</td>
-                            <td>Machine Wash</td>
-                        </tr>
-
-                    </table>
-
-                </div>
+                <button
+                    type="button"
+                    class="product-action-button product-buy-now"
+                    id="buyNowButton"
+                >
+                    Buy Now
+                </button>
 
             </div>
 
-        </section>
+        </div>
+
+    </section>
 
 
-        <!-- =====================================================
-             REVIEWS
-        ===================================================== -->
+    <!-- DETAILS -->
 
-        <section
-            class="product-reviews-section"
-            id="reviews"
-        >
+    <section class="product-details-section">
+
+        <h2 class="product-section-title">
+            Product Details
+        </h2>
+
+        <div class="product-details-grid">
+
+            <div class="product-detail-card">
+
+                <h3>
+                    Description
+                </h3>
+
+                <p id="productDescription">
+                    Premium oversized t-shirt designed for everyday comfort
+                    and casual styling. Made with a soft fabric and a
+                    relaxed fit that works well for everyday wear.
+                </p>
+
+            </div>
+
+            <div class="product-detail-card">
+
+                <h3>
+                    Specifications
+                </h3>
+
+                <table class="product-spec-table">
+
+                    <tr>
+                        <td>Category</td>
+                        <td id="specCategory">
+                            Fashion
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Material</td>
+                        <td>
+                            Premium Cotton
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Fit</td>
+                        <td>
+                            Oversized
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Pattern</td>
+                        <td>
+                            Solid
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Wash Care</td>
+                        <td>
+                            Machine Wash
+                        </td>
+                    </tr>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- REVIEWS -->
+
+    <section
+        class="product-reviews-section"
+        id="reviews"
+    >
+
+        <div class="reviews-heading-row">
 
             <h2 class="product-section-title">
                 Customer Reviews
             </h2>
 
-            <div class="reviews-summary">
+            <button
+                type="button"
+                class="write-review-button"
+                id="writeReviewButton"
+            >
+                Write a Review
+            </button>
 
-                <div class="reviews-score">
+        </div>
 
-                    <div
-                        class="reviews-score-number"
-                        id="reviewScore"
-                    >
-                        4.7
-                    </div>
 
-                    <div class="reviews-score-stars">
-                        ★★★★★
-                    </div>
+        <div class="reviews-summary">
 
-                    <div class="reviews-score-text">
-                        Based on <span id="reviewCount">128</span> reviews
-                    </div>
+            <div class="reviews-score">
 
+                <div
+                    class="reviews-score-number"
+                    id="reviewScore"
+                >
+                    4.7
                 </div>
 
+                <div class="reviews-score-stars">
+                    ★★★★★
+                </div>
 
-                <div class="review-bars">
+                <div class="reviews-score-text">
 
-                    <div class="review-bar-row">
-                        <span>5</span>
-                        <div class="review-bar">
-                            <div
-                                class="review-bar-fill"
-                                style="width: 82%;"
-                            ></div>
-                        </div>
-                        <span>82%</span>
-                    </div>
-
-                    <div class="review-bar-row">
-                        <span>4</span>
-                        <div class="review-bar">
-                            <div
-                                class="review-bar-fill"
-                                style="width: 12%;"
-                            ></div>
-                        </div>
-                        <span>12%</span>
-                    </div>
-
-                    <div class="review-bar-row">
-                        <span>3</span>
-                        <div class="review-bar">
-                            <div
-                                class="review-bar-fill"
-                                style="width: 4%;"
-                            ></div>
-                        </div>
-                        <span>4%</span>
-                    </div>
-
-                    <div class="review-bar-row">
-                        <span>2</span>
-                        <div class="review-bar">
-                            <div
-                                class="review-bar-fill"
-                                style="width: 1%;"
-                            ></div>
-                        </div>
-                        <span>1%</span>
-                    </div>
-
-                    <div class="review-bar-row">
-                        <span>1</span>
-                        <div class="review-bar">
-                            <div
-                                class="review-bar-fill"
-                                style="width: 1%;"
-                            ></div>
-                        </div>
-                        <span>1%</span>
-                    </div>
+                    Based on
+                    <span id="reviewCount">
+                        128
+                    </span>
+                    reviews
 
                 </div>
 
             </div>
 
 
-            <div class="review-list">
+            <div class="review-bars">
 
-                <article class="review-card">
+                <div class="review-bar-row">
+                    <span>5</span>
 
-                    <div class="review-header">
-
-                        <div>
-                            <div class="review-user">
-                                Rahul
-                            </div>
-
-                            <div class="review-date">
-                                Verified Purchase
-                            </div>
-                        </div>
-
-                        <div class="review-rating">
-                            ★★★★★
-                        </div>
-
+                    <div class="review-bar">
+                        <div
+                            class="review-bar-fill"
+                            style="width:82%"
+                        ></div>
                     </div>
 
-                    <p class="review-text">
-                        Good quality and comfortable fitting. The material feels
-                        premium and the oversized fit looks good.
-                    </p>
-
-                    <div class="review-images">
-
-                        <div class="review-image">
-                            <img
-                                src="images/premium-tshirt.jpg"
-                                alt="Customer review"
-                            >
-                        </div>
-
-                    </div>
-
-                </article>
-
-
-                <article class="review-card">
-
-                    <div class="review-header">
-
-                        <div>
-                            <div class="review-user">
-                                Aman
-                            </div>
-
-                            <div class="review-date">
-                                Verified Purchase
-                            </div>
-                        </div>
-
-                        <div class="review-rating">
-                            ★★★★☆
-                        </div>
-
-                    </div>
-
-                    <p class="review-text">
-                        Nice product for the price. Size was accurate and delivery
-                        was quick.
-                    </p>
-
-                </article>
-
-            </div>
-
-        </section>
-
-
-        <!-- =====================================================
-             YOU MAY ALSO LIKE
-        ===================================================== -->
-
-        <section class="recommendations-section">
-
-            <h2 class="product-section-title">
-                You May Also Like
-            </h2>
-
-            <div class="recommendation-grid">
-
-                <a
-                    href="product.html?id=104"
-                    class="recommendation-card"
-                >
-
-                    <div class="recommendation-image">
-                        <img
-                            src="images/premium-tshirt.jpg"
-                            alt="Premium Oversized T-Shirt"
-                        >
-                    </div>
-
-                    <div class="recommendation-info">
-
-                        <div class="recommendation-category">
-                            Fashion
-                        </div>
-
-                        <div class="recommendation-title">
-                            Premium Oversized T-Shirt
-                        </div>
-
-                        <div class="recommendation-price">
-                            ₹799
-                        </div>
-
-                    </div>
-
-                </a>
-
-
-                <a
-                    href="product.html?id=101"
-                    class="recommendation-card"
-                >
-
-                    <div class="recommendation-image">
-                        <img
-                            src="images/headphones.jpg"
-                            alt="Wireless Headphones"
-                        >
-                    </div>
-
-                    <div class="recommendation-info">
-
-                        <div class="recommendation-category">
-                            Electronics
-                        </div>
-
-                        <div class="recommendation-title">
-                            Wireless Headphones
-                        </div>
-
-                        <div class="recommendation-price">
-                            ₹1,999
-                        </div>
-
-                    </div>
-
-                </a>
-
-
-                <a
-                    href="product.html?id=102"
-                    class="recommendation-card"
-                >
-
-                    <div class="recommendation-image">
-                        <img
-                            src="images/smartwatch.jpg"
-                            alt="Minimal Smart Watch"
-                        >
-                    </div>
-
-                    <div class="recommendation-info">
-
-                        <div class="recommendation-category">
-                            Accessories
-                        </div>
-
-                        <div class="recommendation-title">
-                            Minimal Smart Watch
-                        </div>
-
-                        <div class="recommendation-price">
-                            ₹2,499
-                        </div>
-
-                    </div>
-
-                </a>
-
-
-                <a
-                    href="product.html?id=103"
-                    class="recommendation-card"
-                >
-
-                    <div class="recommendation-image">
-                        <img
-                            src="images/desk-lamp.jpg"
-                            alt="Modern Desk Lamp"
-                        >
-                    </div>
-
-                    <div class="recommendation-info">
-
-                        <div class="recommendation-category">
-                            Home
-                        </div>
-
-                        <div class="recommendation-title">
-                            Modern Desk Lamp
-                        </div>
-
-                        <div class="recommendation-price">
-                            ₹1,299
-                        </div>
-
-                    </div>
-
-                </a>
-
-            </div>
-
-        </section>
-
-    </main>
-
-
-    <!-- =========================================================
-         FOOTER
-    ========================================================= -->
-
-    <footer class="site-footer">
-
-        <div class="footer-container">
-
-            <div class="footer-brand">
-                <div class="logo">
-                    MARTEY<span>.</span>
+                    <span>82%</span>
                 </div>
 
-                <p>
-                    Everything. One Marketplace.
-                </p>
-            </div>
+                <div class="review-bar-row">
+                    <span>4</span>
 
-            <div class="footer-links">
+                    <div class="review-bar">
+                        <div
+                            class="review-bar-fill"
+                            style="width:12%"
+                        ></div>
+                    </div>
 
-                <a href="index.html">
-                    Shop
-                </a>
+                    <span>12%</span>
+                </div>
 
-                <a href="seller.html">
-                    Sell on MARTEY
-                </a>
+                <div class="review-bar-row">
+                    <span>3</span>
 
-                <a href="#">
-                    Help
-                </a>
+                    <div class="review-bar">
+                        <div
+                            class="review-bar-fill"
+                            style="width:4%"
+                        ></div>
+                    </div>
 
-                <a href="#">
-                    Terms
-                </a>
+                    <span>4%</span>
+                </div>
+
+                <div class="review-bar-row">
+                    <span>2</span>
+
+                    <div class="review-bar">
+                        <div
+                            class="review-bar-fill"
+                            style="width:1%"
+                        ></div>
+                    </div>
+
+                    <span>1%</span>
+                </div>
+
+                <div class="review-bar-row">
+                    <span>1</span>
+
+                    <div class="review-bar">
+                        <div
+                            class="review-bar-fill"
+                            style="width:1%"
+                        ></div>
+                    </div>
+
+                    <span>1%</span>
+                </div>
 
             </div>
 
         </div>
 
-    </footer>
-
-
-    <!-- Toast -->
-
-    <div
-        class="product-toast"
-        id="productToast"
-    ></div>
-
-
-    <!-- =========================================================
-         PRODUCT JAVASCRIPT
-    ========================================================= -->
-
-    <script>
-        /* =========================================================
-           PRODUCT DATABASE
-        ========================================================= */
-
-        const productDatabase = {
-
-            "1": {
-                title: "Premium Oversized T-Shirt",
-                category: "Fashion",
-                price: 799,
-                mrp: 1499,
-                discount: "47% OFF",
-                rating: 4.7,
-                reviews: 128,
-                badge: "Bestseller",
-                image: "images/premium-tshirt.jpg"
-            },
-
-            "101": {
-                title: "Wireless Headphones",
-                category: "Electronics",
-                price: 1999,
-                mrp: 2999,
-                discount: "33% OFF",
-                rating: 4.5,
-                reviews: 94,
-                badge: "Popular",
-                image: "images/headphones.jpg"
-            },
-
-            "102": {
-                title: "Minimal Smart Watch",
-                category: "Accessories",
-                price: 2499,
-                mrp: 3999,
-                discount: "38% OFF",
-                rating: 4.6,
-                reviews: 76,
-                badge: "Trending",
-                image: "images/smartwatch.jpg"
-            },
-
-            "103": {
-                title: "Modern Desk Lamp",
-                category: "Home",
-                price: 1299,
-                mrp: 1999,
-                discount: "35% OFF",
-                rating: 4.4,
-                reviews: 61,
-                badge: "Popular",
-                image: "images/desk-lamp.jpg"
-            },
 
-            "104": {
-                title: "Premium Oversized T-Shirt",
-                category: "Fashion",
-                price: 799,
-                mrp: 1499,
-                discount: "47% OFF",
-                rating: 4.7,
-                reviews: 128,
-                badge: "Bestseller",
-                image: "images/premium-tshirt.jpg"
-            }
+        <div
+            class="review-list"
+            id="reviewList"
+        ></div>
 
-        };
+    </section>
 
 
-        /* =========================================================
-           GET PRODUCT ID
-        ========================================================= */
+    <!-- RECOMMENDATIONS -->
 
-        const urlParams = new URLSearchParams(window.location.search);
+    <section class="recommendations-section">
 
-        const productId =
-            urlParams.get("id") || "1";
+        <h2 class="product-section-title">
+            You May Also Like
+        </h2>
 
-        const product =
-            productDatabase[productId] ||
-            productDatabase["1"];
+        <div
+            class="recommendation-grid"
+            id="recommendationGrid"
+        >
 
+            <a
+                href="product.html?id=104"
+                class="recommendation-card"
+            >
 
-        /* =========================================================
-           ELEMENTS
-        ========================================================= */
+                <div class="recommendation-image">
 
-        const productTitle =
-            document.getElementById("productTitle");
+                    <img
+                        src="images/premium-tshirt.jpg"
+                        alt="Premium Oversized T-Shirt"
+                        onerror="this.style.display='none'"
+                    >
 
-        const productCategory =
-            document.getElementById("productCategory");
+                </div>
 
-        const productPrice =
-            document.getElementById("productPrice");
+                <div class="recommendation-info">
 
-        const productMRP =
-            document.getElementById("productMRP");
+                    <div class="recommendation-category">
+                        Fashion
+                    </div>
 
-        const productDiscount =
-            document.getElementById("productDiscount");
+                    <div class="recommendation-title">
+                        Premium Oversized T-Shirt
+                    </div>
 
-        const productRating =
-            document.getElementById("productRating");
+                    <div class="recommendation-price">
+                        ₹799
+                    </div>
 
-        const productReviews =
-            document.getElementById("productReviews");
+                </div>
 
-        const productBadge =
-            document.getElementById("productBadge");
+            </a>
 
-        const mainProductImage =
-            document.getElementById("mainProductImage");
 
-        const breadcrumbProduct =
-            document.getElementById("breadcrumbProduct");
+            <a
+                href="product.html?id=101"
+                class="recommendation-card"
+            >
 
-        const specCategory =
-            document.getElementById("specCategory");
+                <div class="recommendation-image">
 
-        const reviewScore =
-            document.getElementById("reviewScore");
+                    <img
+                        src="images/headphones.jpg"
+                        alt="Wireless Headphones"
+                        onerror="this.style.display='none'"
+                    >
 
-        const reviewCount =
-            document.getElementById("reviewCount");
+                </div>
 
-        const productToast =
-            document.getElementById("productToast");
+                <div class="recommendation-info">
 
+                    <div class="recommendation-category">
+                        Electronics
+                    </div>
 
-        /* =========================================================
-           UPDATE PRODUCT
-        ========================================================= */
+                    <div class="recommendation-title">
+                        Wireless Headphones
+                    </div>
 
-        productTitle.textContent =
-            product.title;
+                    <div class="recommendation-price">
+                        ₹1,999
+                    </div>
 
-        productCategory.textContent =
-            product.category;
+                </div>
 
-        productPrice.textContent =
-            "₹" + product.price.toLocaleString("en-IN");
+            </a>
 
-        productMRP.textContent =
-            "₹" + product.mrp.toLocaleString("en-IN");
 
-        productDiscount.textContent =
-            product.discount;
+            <a
+                href="product.html?id=102"
+                class="recommendation-card"
+            >
 
-        productRating.textContent =
-            product.rating;
+                <div class="recommendation-image">
 
-        productReviews.textContent =
-            product.reviews;
+                    <img
+                        src="images/smartwatch.jpg"
+                        alt="Minimal Smart Watch"
+                        onerror="this.style.display='none'"
+                    >
 
-        productBadge.textContent =
-            product.badge;
+                </div>
 
-        mainProductImage.src =
-            product.image;
+                <div class="recommendation-info">
 
-        mainProductImage.alt =
-            product.title;
+                    <div class="recommendation-category">
+                        Accessories
+                    </div>
 
-        breadcrumbProduct.textContent =
-            product.title;
+                    <div class="recommendation-title">
+                        Minimal Smart Watch
+                    </div>
 
-        specCategory.textContent =
-            product.category;
+                    <div class="recommendation-price">
+                        ₹2,499
+                    </div>
 
-        reviewScore.textContent =
-            product.rating;
+                </div>
 
-        reviewCount.textContent =
-            product.reviews;
+            </a>
 
-        document.title =
-            product.title + " | MARTEY";
 
+            <a
+                href="product.html?id=103"
+                class="recommendation-card"
+            >
 
-        /* =========================================================
-           TOAST
-        ========================================================= */
+                <div class="recommendation-image">
 
-        function showToast(message) {
+                    <img
+                        src="images/desk-lamp.jpg"
+                        alt="Modern Desk Lamp"
+                        onerror="this.style.display='none'"
+                    >
 
-            if (!productToast) {
-                return;
-            }
+                </div>
 
-            productToast.textContent =
-                message;
+                <div class="recommendation-info">
 
-            productToast.classList.add("show");
+                    <div class="recommendation-category">
+                        Home
+                    </div>
 
-            clearTimeout(
-                window.productToastTimer
-            );
+                    <div class="recommendation-title">
+                        Modern Desk Lamp
+                    </div>
 
-            window.productToastTimer =
-                setTimeout(function () {
+                    <div class="recommendation-price">
+                        ₹1,299
+                    </div>
 
-                    productToast.classList.remove("show");
+                </div>
 
-                }, 2200);
-        }
+            </a>
 
+        </div>
 
-        /* =========================================================
-           THUMBNAILS
-        ========================================================= */
+    </section>
 
-        const thumbnails =
-            document.querySelectorAll(
-                ".product-thumbnail"
-            );
+</main>
 
-        thumbnails.forEach(function (thumbnail) {
 
-            thumbnail.addEventListener(
-                "click",
-                function () {
+<!-- FOOTER -->
 
-                    const image =
-                        thumbnail.dataset.image;
+<footer class="site-footer product-site-footer">
 
-                    if (!image) {
-                        return;
-                    }
+    <div class="footer-container">
 
-                    mainProductImage.src =
-                        image;
+        <div class="footer-brand">
 
-                    thumbnails.forEach(
-                        function (item) {
-                            item.classList.remove(
-                                "active"
-                            );
-                        }
-                    );
+            <div class="logo">
+                MARTEY<span>.</span>
+            </div>
 
-                    thumbnail.classList.add(
-                        "active"
-                    );
+            <p>
+                Everything. One Marketplace.
+            </p>
 
-                }
-            );
+        </div>
 
-        });
+        <div class="footer-links">
 
+            <a href="index.html">
+                Shop
+            </a>
 
-        /* =========================================================
-           SIZE
-        ========================================================= */
+            <a href="seller.html">
+                Sell on MARTEY
+            </a>
 
-        let selectedSize = "M";
+            <a href="#">
+                Help
+            </a>
 
-        const sizeButtons =
-            document.querySelectorAll(
-                "[data-size]"
-            );
+            <a href="#">
+                Terms
+            </a>
 
-        const selectedSizeElement =
-            document.getElementById(
-                "selectedSize"
-            );
+        </div>
 
-        sizeButtons.forEach(function (button) {
+    </div>
 
-            button.addEventListener(
-                "click",
-                function () {
+</footer>
 
-                    selectedSize =
-                        button.dataset.size;
 
-                    sizeButtons.forEach(
-                        function (item) {
-                            item.classList.remove(
-                                "active"
-                            );
-                        }
-                    );
+<!-- =========================================================
+     LOGIN / SIGNUP MODAL
+========================================================= -->
 
-                    button.classList.add(
-                        "active"
-                    );
+<div
+    class="product-auth-overlay"
+    id="productAuthOverlay"
+>
 
-                    if (selectedSizeElement) {
-                        selectedSizeElement.textContent =
-                            selectedSize;
-                    }
+    <div class="product-auth-modal">
 
-                }
-            );
+        <button
+            type="button"
+            class="product-auth-close"
+            id="productAuthClose"
+            aria-label="Close"
+        >
+            ×
+        </button>
 
-        });
+        <div class="product-auth-logo">
+            MARTEY<span>.</span>
+        </div>
 
+        <h2 id="authModalTitle">
+            Login to continue
+        </h2>
 
-        /* =========================================================
-           COLOR
-        ========================================================= */
+        <p class="auth-modal-subtitle">
+            Login or create your MARTEY account to continue checkout.
+        </p>
 
-        let selectedColor = "Black";
 
-        const colorButtons =
-            document.querySelectorAll(
-                "[data-color]"
-            );
+        <div class="auth-tabs">
 
-        const selectedColorElement =
-            document.getElementById(
-                "selectedColor"
-            );
+            <button
+                type="button"
+                class="auth-tab active"
+                data-auth-tab="login"
+            >
+                Login
+            </button>
 
-        colorButtons.forEach(function (button) {
+            <button
+                type="button"
+                class="auth-tab"
+                data-auth-tab="signup"
+            >
+                Sign Up
+            </button>
 
-            button.addEventListener(
-                "click",
-                function () {
+        </div>
 
-                    selectedColor =
-                        button.dataset.color;
 
-                    colorButtons.forEach(
-                        function (item) {
-                            item.classList.remove(
-                                "active"
-                            );
-                        }
-                    );
+        <!-- LOGIN -->
 
-                    button.classList.add(
-                        "active"
-                    );
+        <form
+            id="productLoginForm"
+            class="product-auth-form"
+        >
 
-                    if (selectedColorElement) {
-                        selectedColorElement.textContent =
-                            selectedColor;
-                    }
+            <input
+                type="email"
+                id="productLoginEmail"
+                placeholder="Email address"
+                required
+            >
 
-                }
-            );
+            <input
+                type="password"
+                id="productLoginPassword"
+                placeholder="Password"
+                required
+            >
 
-        });
+            <button
+                type="submit"
+                class="product-auth-submit"
+            >
+                Login & Continue
+            </button>
 
+        </form>
 
-        /* =========================================================
-           CART
-        ========================================================= */
 
-        function getCart() {
+        <!-- SIGNUP -->
 
-            try {
+        <form
+            id="productSignupForm"
+            class="product-auth-form hidden"
+        >
 
-                return JSON.parse(
-                    localStorage.getItem(
-                        "marteyCart"
-                    ) || "[]"
-                );
+            <input
+                type="text"
+                id="productSignupName"
+                placeholder="Full name"
+                required
+            >
 
-            } catch (error) {
+            <input
+                type="email"
+                id="productSignupEmail"
+                placeholder="Email address"
+                required
+            >
 
-                return [];
+            <input
+                type="tel"
+                id="productSignupPhone"
+                placeholder="Mobile number"
+                maxlength="10"
+                required
+            >
 
-            }
+            <input
+                type="password"
+                id="productSignupPassword"
+                placeholder="Create password"
+                required
+            >
 
-        }
+            <button
+                type="submit"
+                class="product-auth-submit"
+            >
+                Sign Up & Continue
+            </button>
 
+        </form>
 
-        function saveCart(cart) {
 
-            localStorage.setItem(
-                "marteyCart",
-                JSON.stringify(cart)
-            );
+        <div
+            class="product-auth-message"
+            id="productAuthMessage"
+        ></div>
 
-        }
+    </div>
 
+</div>
 
-        function updateCartCount() {
 
-            const cart =
-                getCart();
+<!-- REVIEW MODAL -->
 
-            const totalQuantity =
-                cart.reduce(
-                    function (total, item) {
+<div
+    class="review-modal-overlay"
+    id="reviewModalOverlay"
+>
 
-                        return total +
-                            Number(
-                                item.quantity || 1
-                            );
+    <div class="review-modal">
 
-                    },
-                    0
-                );
+        <button
+            type="button"
+            class="review-modal-close"
+            id="reviewModalClose"
+        >
+            ×
+        </button>
 
-            const cartCount =
-                document.getElementById(
-                    "cartCount"
-                );
+        <h2>
+            Write a Review
+        </h2>
 
-            if (cartCount) {
+        <p>
+            Share your experience with this product.
+        </p>
 
-                cartCount.textContent =
-                    totalQuantity;
+        <form id="reviewForm">
 
-            }
+            <div class="review-rating-selector">
 
-        }
+                <span>Your rating</span>
 
+                <div
+                    class="review-stars-input"
+                    id="reviewStarsInput"
+                >
 
-        function addProductToCart() {
+                    <button type="button" data-rating="1">★</button>
+                    <button type="button" data-rating="2">★</button>
+                    <button type="button" data-rating="3">★</button>
+                    <button type="button" data-rating="4">★</button>
+                    <button type="button" data-rating="5">★</button>
 
-            const cart =
-                getCart();
+                </div>
 
-            const existingItem =
-                cart.find(
-                    function (item) {
+            </div>
 
-                        return String(item.id) ===
-                            String(productId) &&
-                            item.size === selectedSize &&
-                            item.color === selectedColor;
+            <textarea
+                id="reviewText"
+                placeholder="Write your review..."
+                maxlength="1000"
+                required
+            ></textarea>
 
-                    }
-                );
+            <label class="review-upload">
 
+                <span>
+                    Add product photos
+                </span>
 
-            if (existingItem) {
+                <input
+                    type="file"
+                    id="reviewImage"
+                    accept="image/*"
+                >
 
-                existingItem.quantity =
-                    Number(
-                        existingItem.quantity || 1
-                    ) + 1;
+            </label>
 
-            } else {
+            <div
+                class="review-image-preview"
+                id="reviewImagePreview"
+            ></div>
 
-                cart.push({
+            <button
+                type="submit"
+                class="review-submit-button"
+            >
+                Submit Review
+            </button>
 
-                    id: productId,
+            <div
+                class="review-form-message"
+                id="reviewFormMessage"
+            ></div>
 
-                    title: product.title,
+        </form>
 
-                    price: product.price,
+    </div>
 
-                    image: product.image,
+</div>
 
-                    size: selectedSize,
 
-                    color: selectedColor,
+<!-- TOAST -->
 
-                    quantity: 1
+<div
+    class="product-toast"
+    id="productToast"
+></div>
 
-                });
 
-            }
-
-
-            saveCart(cart);
-
-            updateCartCount();
-
-            showToast(
-                "Product added to cart"
-            );
-
-        }
-
-
-        const addToCartButton =
-            document.getElementById(
-                "addToCartButton"
-            );
-
-        if (addToCartButton) {
-
-            addToCartButton.addEventListener(
-                "click",
-                addProductToCart
-            );
-
-        }
-
-
-        /* =========================================================
-           BUY NOW
-        ========================================================= */
-
-        const buyNowButton =
-            document.getElementById(
-                "buyNowButton"
-            );
-
-        if (buyNowButton) {
-
-            buyNowButton.addEventListener(
-                "click",
-                function () {
-
-                    const buyNowItem = {
-
-                        id: productId,
-
-                        title: product.title,
-
-                        price: product.price,
-
-                        image: product.image,
-
-                        size: selectedSize,
-
-                        color: selectedColor,
-
-                        quantity: 1
-
-                    };
-
-
-                    localStorage.setItem(
-                        "marteyBuyNow",
-                        JSON.stringify(
-                            buyNowItem
-                        )
-                    );
-
-
-                    showToast(
-                        "Buy Now selected"
-                    );
-
-                }
-            );
-
-        }
-
-
-        /* =========================================================
-           DELIVERY CHECK
-        ========================================================= */
-
-        const checkDeliveryButton =
-            document.getElementById(
-                "checkDeliveryButton"
-            );
-
-        const deliveryPincode =
-            document.getElementById(
-                "deliveryPincode"
-            );
-
-        if (checkDeliveryButton) {
-
-            checkDeliveryButton.addEventListener(
-                "click",
-                function () {
-
-                    const pin =
-                        deliveryPincode
-                            ? deliveryPincode.value.trim()
-                            : "";
-
-                    if (!/^\d{6}$/.test(pin)) {
-
-                        showToast(
-                            "Enter a valid 6-digit PIN code"
-                        );
-
-                        return;
-
-                    }
-
-                    showToast(
-                        "Delivery available for this PIN"
-                    );
-
-                }
-            );
-
-        }
-
-
-        /* =========================================================
-           WISHLIST
-        ========================================================= */
-
-        const wishlistHeaderButton =
-            document.getElementById(
-                "wishlistHeaderButton"
-            );
-
-        if (wishlistHeaderButton) {
-
-            wishlistHeaderButton.addEventListener(
-                "click",
-                function () {
-
-                    showToast(
-                        "Wishlist opened"
-                    );
-
-                }
-            );
-
-        }
-
-
-        /* =========================================================
-           CART HEADER
-        ========================================================= */
-
-        const cartHeaderButton =
-            document.getElementById(
-                "cartHeaderButton"
-            );
-
-        if (cartHeaderButton) {
-
-            cartHeaderButton.addEventListener(
-                "click",
-                function () {
-
-                    window.location.href =
-                        "cart.html";
-
-                }
-            );
-
-        }
-
-
-        /* =========================================================
-           ACCOUNT
-        ========================================================= */
-
-        const accountHeaderButton =
-            document.getElementById(
-                "accountHeaderButton"
-            );
-
-        if (accountHeaderButton) {
-
-            accountHeaderButton.addEventListener(
-                "click",
-                function () {
-
-                    const currentUser =
-                        localStorage.getItem(
-                            "marteyCurrentUser"
-                        );
-
-                    if (currentUser) {
-
-                        window.location.href =
-                            "account.html";
-
-                    } else {
-
-                        window.location.href =
-                            "index.html";
-
-                    }
-
-                }
-            );
-
-        }
-
-
-        /* =========================================================
-           SEARCH
-        ========================================================= */
-
-        const searchInput =
-            document.getElementById(
-                "searchInput"
-            );
-
-        const searchButton =
-            document.getElementById(
-                "searchButton"
-            );
-
-
-        function performSearch() {
-
-            if (!searchInput) {
-                return;
-            }
-
-            const query =
-                searchInput.value.trim();
-
-            if (!query) {
-                return;
-            }
-
-            window.location.href =
-                "index.html?search=" +
-                encodeURIComponent(query);
-
-        }
-
-
-        if (searchButton) {
-
-            searchButton.addEventListener(
-                "click",
-                performSearch
-            );
-
-        }
-
-
-        if (searchInput) {
-
-            searchInput.addEventListener(
-                "keydown",
-                function (event) {
-
-                    if (event.key === "Enter") {
-
-                        performSearch();
-
-                    }
-
-                }
-            );
-
-        }
-
-
-        /* =========================================================
-           SELLER STORE
-        ========================================================= */
-
-        const sellerStoreButton =
-            document.getElementById(
-                "sellerStoreButton"
-            );
-
-        if (sellerStoreButton) {
-
-            sellerStoreButton.addEventListener(
-                "click",
-                function () {
-
-                    showToast(
-                        "Seller store will open here"
-                    );
-
-                }
-            );
-
-        }
-
-
-        /* =========================================================
-           INITIAL CART COUNT
-        ========================================================= */
-
-        updateCartCount();
-
-    </script>
+<script src="product.js"></script>
 
 </body>
 </html>
