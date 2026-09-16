@@ -1,62 +1,36 @@
 document.addEventListener("DOMContentLoaded", () => {
+    /* =========================================================
+       MARTEY SELLER DASHBOARD
+       Products System + Sidebar + Notifications + Profile
+       ========================================================= */
 
-    const navItems =
-        document.querySelectorAll(".seller-nav-item");
+    const app = document.querySelector(".seller-app");
+    const sidebar = document.querySelector(".seller-sidebar");
+    const mobileMenuButton = document.getElementById("mobileMenuButton");
 
-    const sections =
-        document.querySelectorAll(".seller-section");
-
-    const pageTitle =
-        document.getElementById("pageTitle");
-
-    const sidebar =
-        document.querySelector(".seller-sidebar");
-
-    const mobileMenuButton =
-        document.getElementById("mobileMenuButton");
-
-    const notificationButton =
-        document.getElementById("notificationButton");
-
-    const notificationPanel =
-        document.getElementById("notificationPanel");
-
-    const profileButton =
-        document.getElementById("sellerProfileButton");
-
-    const profileOverlay =
-        document.getElementById("profileOverlay");
-
-    const profileCloseButton =
-        document.getElementById("profileCloseButton");
-
-    const searchInput =
-        document.getElementById("sellerSearch");
-
-    const addProductButton =
-        document.getElementById("addProductButton");
-
-    const productsAddButton =
-        document.getElementById("productsAddButton");
-
-    const storeSettingsButton =
-        document.getElementById("storeSettingsButton");
-
-    const storeSettingsButton2 =
-        document.getElementById("storeSettingsButton2");
+    const navItems = document.querySelectorAll(".seller-nav-item");
+    const sections = document.querySelectorAll(".seller-section");
+    const pageTitle = document.getElementById("pageTitle");
 
     const shopButtons = [
         document.getElementById("shopMarteyButton"),
         document.getElementById("topShopButton")
-    ];
+    ].filter(Boolean);
 
+    const profileButton = document.getElementById("sellerProfileButton");
+    const notificationButton = document.getElementById("notificationButton");
 
-    /* =====================================================
+    const addProductButton = document.getElementById("addProductButton");
+    const productsAddButton = document.getElementById("productsAddButton");
+
+    const helpButton = document.getElementById("sellerHelpButton");
+    const searchInput = document.getElementById("sellerSearch");
+
+    /* =========================================================
        SECTION TITLES
-    ===================================================== */
+       ========================================================= */
 
     const sectionTitles = {
-
         dashboard: "Dashboard",
         products: "Products",
         orders: "Orders",
@@ -66,973 +40,1164 @@ document.addEventListener("DOMContentLoaded", () => {
         promotions: "Promotions",
         reviews: "Reviews",
         store: "My Store"
-
     };
 
+    /* =========================================================
+       SIDEBAR
+       ========================================================= */
 
-    /* =====================================================
-       SHOW SECTION
-    ===================================================== */
+    function openSidebar() {
+        if (!sidebar || !app) return;
+
+        sidebar.classList.remove("sidebar-closed");
+        app.classList.remove("sidebar-hidden");
+
+        localStorage.setItem("marteySellerSidebar", "open");
+    }
+
+    function closeSidebar() {
+        if (!sidebar || !app) return;
+
+        sidebar.classList.add("sidebar-closed");
+        app.classList.add("sidebar-hidden");
+
+        localStorage.setItem("marteySellerSidebar", "closed");
+    }
+
+    function toggleSidebar() {
+        if (!sidebar || !app) return;
+
+        const isClosed = sidebar.classList.contains("sidebar-closed");
+
+        if (isClosed) {
+            openSidebar();
+        } else {
+            closeSidebar();
+        }
+    }
+
+    /*
+       IMPORTANT:
+       Sidebar starts CLOSED so the 3-dot button opens it.
+    */
+
+    const savedSidebarState = localStorage.getItem("marteySellerSidebar");
+
+    if (savedSidebarState === "open") {
+        openSidebar();
+    } else {
+        closeSidebar();
+    }
+
+    if (mobileMenuButton) {
+        mobileMenuButton.addEventListener("click", (event) => {
+            event.preventDefault();
+            event.stopPropagation();
+            toggleSidebar();
+        });
+    }
+
+    /* =========================================================
+       SECTION NAVIGATION
+       ========================================================= */
 
     function showSection(sectionName) {
-
         sections.forEach(section => {
-
             section.classList.remove("active");
-
         });
 
-
-        const selectedSection =
-            document.querySelector(
-                `[data-page-section="${sectionName}"]`
-            );
-
+        const selectedSection = document.querySelector(
+            `[data-page-section="${sectionName}"]`
+        );
 
         if (selectedSection) {
-
             selectedSection.classList.add("active");
-
         }
 
-
         navItems.forEach(item => {
-
             item.classList.toggle(
                 "active",
                 item.dataset.section === sectionName
             );
-
         });
 
-
         if (pageTitle) {
-
             pageTitle.textContent =
-                sectionTitles[sectionName] ||
-                "Dashboard";
-
+                sectionTitles[sectionName] || "Dashboard";
         }
 
-
-        closeMobileSidebar();
+        /*
+           Keep sidebar open after selecting a section.
+        */
+        openSidebar();
 
         window.scrollTo({
             top: 0,
             behavior: "smooth"
         });
 
+        /*
+           Products section refresh
+        */
+        if (sectionName === "products") {
+            renderProducts();
+        }
     }
-
-
-    /* =====================================================
-       SIDEBAR
-    ===================================================== */
 
     navItems.forEach(item => {
-
         item.addEventListener("click", () => {
+            const sectionName = item.dataset.section;
 
-            const section =
-                item.dataset.section;
+            if (!sectionName) return;
 
-            if (!section) return;
-
-            showSection(section);
-
+            showSection(sectionName);
         });
-
     });
 
-
-    /* =====================================================
+    /* =========================================================
        QUICK LINKS
-    ===================================================== */
+       ========================================================= */
 
-    document
-        .querySelectorAll("[data-open-section]")
-        .forEach(button => {
+    const quickLinks = document.querySelectorAll("[data-open-section]");
 
-            button.addEventListener("click", () => {
+    quickLinks.forEach(button => {
+        button.addEventListener("click", () => {
+            const sectionName = button.dataset.openSection;
 
-                const section =
-                    button.dataset.openSection;
+            if (!sectionName) return;
 
-                if (section) {
-                    showSection(section);
-                }
-
-            });
-
+            showSection(sectionName);
         });
+    });
 
-
-    /* =====================================================
-       ADD PRODUCT
-    ===================================================== */
-
-    function openAddProductPage() {
-
-        window.location.href =
-            "add-product.html";
-
-    }
-
-
-    if (addProductButton) {
-
-        addProductButton.addEventListener(
-            "click",
-            openAddProductPage
-        );
-
-    }
-
-
-    if (productsAddButton) {
-
-        productsAddButton.addEventListener(
-            "click",
-            openAddProductPage
-        );
-
-    }
-
-
-    document
-        .querySelectorAll("[data-open-add-product]")
-        .forEach(button => {
-
-            button.addEventListener(
-                "click",
-                openAddProductPage
-            );
-
-        });
-
-
-    /* =====================================================
+    /* =========================================================
        SHOP MARTEY
-    ===================================================== */
+       ========================================================= */
 
     shopButtons.forEach(button => {
-
-        if (!button) return;
-
         button.addEventListener("click", () => {
-
-            window.location.href =
-                "index.html";
-
+            window.location.href = "index.html";
         });
-
     });
 
+    /* =========================================================
+       ADD PRODUCT
+       ========================================================= */
 
-    /* =====================================================
-       MOBILE MENU
-    ===================================================== */
+    function openAddProductPage() {
+        window.location.href = "add-product.html";
+    }
 
-    function closeMobileSidebar() {
+    if (addProductButton) {
+        addProductButton.addEventListener("click", openAddProductPage);
+    }
 
-        if (sidebar) {
+    if (productsAddButton) {
+        productsAddButton.addEventListener("click", openAddProductPage);
+    }
 
-            sidebar.classList.remove(
-                "mobile-open"
-            );
+    /* =========================================================
+       NOTIFICATION SYSTEM
+       ========================================================= */
 
+    const notificationPanel =
+        document.getElementById("notificationPanel");
+
+    if (notificationButton && notificationPanel) {
+        notificationButton.addEventListener("click", (event) => {
+            event.stopPropagation();
+
+            notificationPanel.classList.toggle("show");
+        });
+    }
+
+    document.addEventListener("click", event => {
+        if (!notificationPanel) return;
+
+        const clickedNotification =
+            notificationButton &&
+            notificationButton.contains(event.target);
+
+        if (!clickedNotification &&
+            !notificationPanel.contains(event.target)) {
+            notificationPanel.classList.remove("show");
         }
+    });
 
-    }
+    const markNotificationsRead =
+        document.getElementById("markNotificationsRead");
 
+    if (markNotificationsRead) {
+        markNotificationsRead.addEventListener("click", () => {
+            const notificationDot =
+                document.querySelector(".notification-dot");
 
-    if (mobileMenuButton && sidebar) {
-
-        mobileMenuButton.addEventListener(
-            "click",
-            event => {
-
-                event.stopPropagation();
-
-                sidebar.classList.toggle(
-                    "mobile-open"
-                );
-
+            if (notificationDot) {
+                notificationDot.style.display = "none";
             }
-        );
-
+        });
     }
 
+    /* =========================================================
+       PROFILE
+       ========================================================= */
 
-    document.addEventListener(
-        "click",
-        event => {
+    const profileOverlay =
+        document.getElementById("profileOverlay");
 
-            if (!sidebar) return;
+    const profileCloseButton =
+        document.getElementById("profileCloseButton");
 
-            if (window.innerWidth > 900) {
-                return;
-            }
+    if (profileButton && profileOverlay) {
+        profileButton.addEventListener("click", event => {
+            event.stopPropagation();
 
-            const insideSidebar =
-                sidebar.contains(event.target);
-
-            const clickedMenu =
-                mobileMenuButton &&
-                mobileMenuButton.contains(event.target);
-
-            if (
-                !insideSidebar &&
-                !clickedMenu
-            ) {
-
-                closeMobileSidebar();
-
-            }
-
-        }
-    );
-
-
-    /* =====================================================
-       NOTIFICATIONS
-    ===================================================== */
-
-    if (notificationButton) {
-
-        notificationButton.addEventListener(
-            "click",
-            event => {
-
-                event.stopPropagation();
-
-                if (notificationPanel) {
-
-                    notificationPanel.classList.toggle(
-                        "show"
-                    );
-
-                }
-
-            }
-        );
-
+            profileOverlay.classList.toggle("show");
+        });
     }
 
-
-    document.addEventListener(
-        "click",
-        event => {
-
-            const wrapper =
-                document.querySelector(
-                    ".notification-wrapper"
-                );
-
-            if (!wrapper) return;
-
-            if (
-                !wrapper.contains(event.target)
-            ) {
-
-                notificationPanel?.classList.remove(
-                    "show"
-                );
-
-            }
-
-        }
-    );
-
-
-    const markRead =
-        document.getElementById(
-            "markNotificationsRead"
-        );
-
-
-    if (markRead) {
-
-        markRead.addEventListener(
-            "click",
-            () => {
-
-                document
-                    .querySelectorAll(
-                        ".notification-item.unread"
-                    )
-                    .forEach(item => {
-
-                        item.classList.remove(
-                            "unread"
-                        );
-
-                    });
-
-
-                document
-                    .querySelector(
-                        ".notification-dot"
-                    )
-                    ?.classList.add("hidden");
-
-            }
-        );
-
+    if (profileCloseButton && profileOverlay) {
+        profileCloseButton.addEventListener("click", () => {
+            profileOverlay.classList.remove("show");
+        });
     }
-
-
-    /* =====================================================
-       SELLER PROFILE
-    ===================================================== */
-
-    function openProfile() {
-
-        if (!profileOverlay) return;
-
-        updateSellerProfile();
-
-        profileOverlay.classList.add(
-            "show"
-        );
-
-        document.body.style.overflow =
-            "hidden";
-
-    }
-
-
-    function closeProfile() {
-
-        if (!profileOverlay) return;
-
-        profileOverlay.classList.remove(
-            "show"
-        );
-
-        document.body.style.overflow =
-            "";
-
-    }
-
-
-    if (profileButton) {
-
-        profileButton.addEventListener(
-            "click",
-            openProfile
-        );
-
-    }
-
-
-    if (profileCloseButton) {
-
-        profileCloseButton.addEventListener(
-            "click",
-            closeProfile
-        );
-
-    }
-
 
     if (profileOverlay) {
-
-        profileOverlay.addEventListener(
-            "click",
-            event => {
-
-                if (
-                    event.target ===
-                    profileOverlay
-                ) {
-
-                    closeProfile();
-
-                }
-
+        profileOverlay.addEventListener("click", event => {
+            if (event.target === profileOverlay) {
+                profileOverlay.classList.remove("show");
             }
-        );
-
+        });
     }
 
-
-    /* =====================================================
+    /* =========================================================
        SELLER PROFILE DATA
-    ===================================================== */
+       ========================================================= */
 
-    function getSellerData() {
-
-        let user = null;
+    function loadSellerProfile() {
+        let currentUser = null;
 
         try {
-
-            user =
-                JSON.parse(
-                    localStorage.getItem(
-                        "marteyCurrentUser"
-                    )
-                );
-
+            currentUser = JSON.parse(
+                localStorage.getItem("marteyCurrentUser")
+            );
         } catch (error) {
-
-            user = null;
-
+            currentUser = null;
         }
 
+        let accounts = [];
 
-        if (!user) {
-
-            try {
-
-                user =
-                    JSON.parse(
-                        localStorage.getItem(
-                            "marteyUser"
-                        )
-                    );
-
-            } catch (error) {
-
-                user = null;
-
-            }
-
+        try {
+            accounts = JSON.parse(
+                localStorage.getItem("marteyAccounts")
+            ) || [];
+        } catch (error) {
+            accounts = [];
         }
 
+        if (!currentUser) return;
 
-        return user;
+        const sellerName =
+            document.getElementById("sellerName");
 
-    }
+        const sellerStoreName =
+            document.getElementById("sellerStoreName");
 
+        const sellerProfileName =
+            document.getElementById("sellerProfileName");
 
-    function getInitials(name) {
-
-        if (!name) return "S";
-
-        const words =
-            name
-                .trim()
-                .split(/\s+/);
-
-        if (words.length === 1) {
-
-            return words[0]
-                .substring(0, 2)
-                .toUpperCase();
-
-        }
-
-        return (
-            words[0][0] +
-            words[1][0]
-        ).toUpperCase();
-
-    }
-
-
-    function updateSellerProfile() {
-
-        const user =
-            getSellerData();
-
-
-        const name =
-            user?.name ||
-            "Seller";
-
-
-        const email =
-            user?.email ||
-            "seller@martey.com";
-
-
-        const avatar =
-            user?.avatar ||
-            "";
-
+        const sellerProfileStore =
+            document.getElementById("sellerProfileStore");
 
         const sellerAvatar =
-            document.getElementById(
-                "sellerAvatar"
-            );
+            document.getElementById("sellerAvatar");
 
+        const profileAvatar =
+            document.getElementById("profileAvatar");
 
-        const largeAvatar =
-            document.getElementById(
-                "profileLargeAvatar"
-            );
-
-
-        const profileName =
-            document.getElementById(
-                "profileSellerName"
-            );
-
-
-        const profileEmail =
-            document.getElementById(
-                "profileSellerEmail"
-            );
-
-
-        if (sellerAvatar) {
-
-            if (avatar) {
-
-                sellerAvatar.innerHTML =
-                    `<img src="${avatar}" alt="Seller profile">`;
-
-            } else {
-
-                sellerAvatar.textContent =
-                    getInitials(name);
-
-            }
-
-        }
-
-
-        if (largeAvatar) {
-
-            if (avatar) {
-
-                largeAvatar.innerHTML =
-                    `<img src="${avatar}" alt="Seller profile">`;
-
-            } else {
-
-                largeAvatar.textContent =
-                    getInitials(name);
-
-            }
-
-        }
-
-
-        if (profileName) {
-
-            profileName.textContent =
-                name;
-
-        }
-
-
-        if (profileEmail) {
-
-            profileEmail.textContent =
-                email;
-
-        }
-
-    }
-
-
-    updateSellerProfile();
-
-
-    /* =====================================================
-       STORE SETTINGS
-    ===================================================== */
-
-    function openStoreSettings() {
-
-        showStoreSettingsMessage();
-
-    }
-
-
-    function showStoreSettingsMessage() {
+        const account =
+            accounts.find(
+                item => item.email === currentUser.email
+            ) || currentUser;
 
         const name =
-            prompt(
-                "Enter your store name:",
-                "Your Store"
-            );
+            account.name ||
+            account.fullName ||
+            "Seller";
 
+        const storeName =
+            account.storeName ||
+            "MARTEY Seller Store";
 
-        if (
-            name &&
-            name.trim()
-        ) {
-
-            const previewName =
-                document.getElementById(
-                    "storePreviewName"
-                );
-
-
-            if (previewName) {
-
-                previewName.textContent =
-                    name.trim();
-
-            }
-
+        if (sellerName) {
+            sellerName.textContent = name;
         }
 
+        if (sellerStoreName) {
+            sellerStoreName.textContent = storeName;
+        }
+
+        if (sellerProfileName) {
+            sellerProfileName.textContent = name;
+        }
+
+        if (sellerProfileStore) {
+            sellerProfileStore.textContent = storeName;
+        }
+
+        if (account.profilePicture) {
+            if (sellerAvatar) {
+                sellerAvatar.src = account.profilePicture;
+            }
+
+            if (profileAvatar) {
+                profileAvatar.src = account.profilePicture;
+            }
+        }
     }
 
+    loadSellerProfile();
 
-    if (storeSettingsButton) {
+    /* =========================================================
+       PRODUCTS STORAGE
+       ========================================================= */
 
-        storeSettingsButton.addEventListener(
-            "click",
-            openStoreSettings
-        );
-
-    }
-
-
-    if (storeSettingsButton2) {
-
-        storeSettingsButton2.addEventListener(
-            "click",
-            openStoreSettings
-        );
-
-    }
-
-
-    /* =====================================================
-       PROFILE SETTINGS
-    ===================================================== */
-
-    const sellerAccountSettings =
-        document.getElementById(
-            "sellerAccountSettings"
-        );
-
-
-    const sellerBusinessSettings =
-        document.getElementById(
-            "sellerBusinessSettings"
-        );
-
-
-    const sellerSecuritySettings =
-        document.getElementById(
-            "sellerSecuritySettings"
-        );
-
-
-    if (sellerAccountSettings) {
-
-        sellerAccountSettings.addEventListener(
-            "click",
-            () => {
-
-                alert(
-                    "Seller Account & Profile settings will be connected with the database."
+    function getProducts() {
+        try {
+            const products =
+                JSON.parse(
+                    localStorage.getItem("marteySellerProducts")
                 );
 
-            }
-        );
+            return Array.isArray(products)
+                ? products
+                : [];
+        } catch (error) {
+            console.error(
+                "MARTEY: Could not read products.",
+                error
+            );
 
+            return [];
+        }
     }
 
-
-    if (sellerBusinessSettings) {
-
-        sellerBusinessSettings.addEventListener(
-            "click",
-            () => {
-
-                closeProfile();
-
-                showSection("store");
-
-            }
+    function saveProducts(products) {
+        localStorage.setItem(
+            "marteySellerProducts",
+            JSON.stringify(products)
         );
-
     }
 
+    /* =========================================================
+       PRODUCT STATUS
+       ========================================================= */
 
-    if (sellerSecuritySettings) {
+    function getProductStatus(product) {
+        const status =
+            String(product.status || "published").toLowerCase();
 
-        sellerSecuritySettings.addEventListener(
-            "click",
-            () => {
+        if (Number(product.stock || 0) <= 0) {
+            return "out";
+        }
 
-                alert(
-                    "Login & Security will be connected with the backend."
+        if (
+            status === "draft" ||
+            status === "inactive"
+        ) {
+            return "draft";
+        }
+
+        return "active";
+    }
+
+    function getStatusLabel(product) {
+        const status = getProductStatus(product);
+
+        if (status === "out") {
+            return "Out of Stock";
+        }
+
+        if (status === "draft") {
+            return "Draft";
+        }
+
+        return "Active";
+    }
+
+    /* =========================================================
+       STOCK STATUS
+       ========================================================= */
+
+    function getStockStatus(stock) {
+        stock = Number(stock || 0);
+
+        if (stock <= 0) {
+            return {
+                text: "Out of Stock",
+                className: "stock-out"
+            };
+        }
+
+        if (stock <= 5) {
+            return {
+                text: `Low Stock (${stock})`,
+                className: "stock-low"
+            };
+        }
+
+        return {
+            text: `In Stock (${stock})`,
+            className: "stock-good"
+        };
+    }
+
+    /* =========================================================
+       PRICE
+       ========================================================= */
+
+    function getSellingPrice(product) {
+        if (product.sellingPrice !== undefined) {
+            return Number(product.sellingPrice || 0);
+        }
+
+        const price = Number(product.price || 0);
+        const discount = Number(product.discount || 0);
+
+        return price - (price * discount / 100);
+    }
+
+    /* =========================================================
+       PRODUCTS CONTAINER
+       ========================================================= */
+
+    function getProductsContainer() {
+        return (
+            document.getElementById("productsList") ||
+            document.getElementById("sellerProductsList") ||
+            document.querySelector(".products-list-panel")
+        );
+    }
+
+    /* =========================================================
+       PRODUCT RENDERING
+       ========================================================= */
+
+    function renderProducts() {
+        const container = getProductsContainer();
+
+        if (!container) return;
+
+        const products = getProducts();
+
+        const searchField =
+            document.getElementById("productSearch");
+
+        const filterField =
+            document.getElementById("productFilter");
+
+        const search =
+            searchField
+                ? searchField.value.trim().toLowerCase()
+                : "";
+
+        const filter =
+            filterField
+                ? filterField.value
+                : "all";
+
+        let filteredProducts = products.filter(product => {
+            const name =
+                String(product.name || "").toLowerCase();
+
+            const category =
+                String(product.category || "").toLowerCase();
+
+            const sku =
+                String(product.sku || "").toLowerCase();
+
+            const matchesSearch =
+                !search ||
+                name.includes(search) ||
+                category.includes(search) ||
+                sku.includes(search);
+
+            if (!matchesSearch) return false;
+
+            const status = getProductStatus(product);
+
+            if (filter === "active") {
+                return status === "active";
+            }
+
+            if (filter === "draft") {
+                return status === "draft";
+            }
+
+            if (filter === "out") {
+                return status === "out";
+            }
+
+            return true;
+        });
+
+        /*
+           If the container is the panel itself,
+           create/use a dedicated list.
+        */
+
+        let list =
+            document.getElementById("sellerProductsList");
+
+        if (!list) {
+            list = document.createElement("div");
+            list.id = "sellerProductsList";
+            list.className = "seller-products-rendered-list";
+
+            container.appendChild(list);
+        }
+
+        if (filteredProducts.length === 0) {
+            list.innerHTML = `
+                <div class="products-empty-state">
+                    <div class="empty-icon">📦</div>
+                    <h3>No products found</h3>
+                    <p>
+                        ${
+                            products.length === 0
+                                ? "Add your first product to start selling on MARTEY."
+                                : "Try another search or filter."
+                        }
+                    </p>
+
+                    ${
+                        products.length === 0
+                            ? `
+                                <button
+                                    type="button"
+                                    class="seller-primary-btn"
+                                    id="emptyAddProductButton"
+                                >
+                                    + Add Product
+                                </button>
+                            `
+                            : ""
+                    }
+                </div>
+            `;
+
+            const emptyAddButton =
+                document.getElementById(
+                    "emptyAddProductButton"
                 );
 
+            if (emptyAddButton) {
+                emptyAddButton.addEventListener(
+                    "click",
+                    openAddProductPage
+                );
             }
-        );
 
+            updateProductCounters(products);
+
+            return;
+        }
+
+        list.innerHTML = filteredProducts
+            .map(product => createProductHTML(product))
+            .join("");
+
+        attachProductActions();
+
+        updateProductCounters(products);
     }
 
+    /* =========================================================
+       PRODUCT CARD
+       ========================================================= */
 
-    /* =====================================================
-       LOGOUT
-    ===================================================== */
+    function createProductHTML(product) {
+        const status = getStatusLabel(product);
+        const statusClass = getProductStatus(product);
 
-    const logoutButton =
-        document.getElementById(
-            "sellerLogoutButton"
-        );
+        const stock =
+            getStockStatus(product.stock);
 
+        const price =
+            getSellingPrice(product);
 
-    if (logoutButton) {
+        const originalPrice =
+            Number(product.price || 0);
 
-        logoutButton.addEventListener(
-            "click",
-            () => {
+        const discount =
+            Number(product.discount || 0);
 
-                const confirmLogout =
-                    confirm(
-                        "Are you sure you want to logout?"
-                    );
+        const imageName =
+            Array.isArray(product.imageNames) &&
+            product.imageNames.length
+                ? product.imageNames[0]
+                : "";
 
+        /*
+           Add Product currently stores image names only.
+           Actual image storage will be connected with backend later.
+        */
 
-                if (!confirmLogout) {
-                    return;
-                }
+        const imageHTML = `
+            <div class="product-row-image">
+                <div class="product-image-placeholder">
+                    ${
+                        imageName
+                            ? "🖼️"
+                            : "📦"
+                    }
+                </div>
+            </div>
+        `;
 
+        return `
+            <div
+                class="seller-product-row"
+                data-product-id="${escapeHTML(product.id)}"
+            >
 
-                localStorage.removeItem(
-                    "marteyCurrentUser"
-                );
+                ${imageHTML}
 
-                localStorage.removeItem(
-                    "marteyUser"
-                );
+                <div class="product-main-info">
 
+                    <div class="product-row-top">
 
-                window.location.href =
-                    "index.html";
+                        <div class="product-row-title-wrap">
 
-            }
-        );
+                            <h3>
+                                ${escapeHTML(
+                                    product.name ||
+                                    "Unnamed Product"
+                                )}
+                            </h3>
 
+                            <span class="product-status ${statusClass}">
+                                ${status}
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                    <div class="product-row-details">
+
+                        <span>
+                            Category:
+                            <strong>
+                                ${escapeHTML(
+                                    product.category ||
+                                    "—"
+                                )}
+                            </strong>
+                        </span>
+
+                        <span>
+                            SKU:
+                            <strong>
+                                ${escapeHTML(
+                                    product.sku ||
+                                    "—"
+                                )}
+                            </strong>
+                        </span>
+
+                        <span>
+                            Stock:
+                            <strong class="${stock.className}">
+                                ${escapeHTML(stock.text)}
+                            </strong>
+                        </span>
+
+                    </div>
+
+                    <div class="product-row-price">
+
+                        <strong>
+                            ₹${formatMoney(price)}
+                        </strong>
+
+                        ${
+                            discount > 0 &&
+                            originalPrice > price
+                                ? `
+                                    <span class="old-price">
+                                        ₹${formatMoney(
+                                            originalPrice
+                                        )}
+                                    </span>
+
+                                    <span class="discount-badge">
+                                        ${discount}% OFF
+                                    </span>
+                                `
+                                : ""
+                        }
+
+                    </div>
+
+                </div>
+
+                <div class="product-actions">
+
+                    <button
+                        type="button"
+                        class="product-action-btn view-product-btn"
+                        data-id="${escapeHTML(product.id)}"
+                    >
+                        View
+                    </button>
+
+                    <button
+                        type="button"
+                        class="product-action-btn edit-product-btn"
+                        data-id="${escapeHTML(product.id)}"
+                    >
+                        Edit
+                    </button>
+
+                    <button
+                        type="button"
+                        class="product-action-btn delete-product-btn danger"
+                        data-id="${escapeHTML(product.id)}"
+                    >
+                        Delete
+                    </button>
+
+                </div>
+
+            </div>
+        `;
     }
 
+    /* =========================================================
+       PRODUCT ACTIONS
+       ========================================================= */
 
-    /* =====================================================
-       SEARCH
-    ===================================================== */
+    function attachProductActions() {
+        const viewButtons =
+            document.querySelectorAll(
+                ".view-product-btn"
+            );
+
+        const editButtons =
+            document.querySelectorAll(
+                ".edit-product-btn"
+            );
+
+        const deleteButtons =
+            document.querySelectorAll(
+                ".delete-product-btn"
+            );
+
+        viewButtons.forEach(button => {
+            button.addEventListener("click", () => {
+                const id = button.dataset.id;
+
+                viewProduct(id);
+            });
+        });
+
+        editButtons.forEach(button => {
+            button.addEventListener("click", () => {
+                const id = button.dataset.id;
+
+                editProduct(id);
+            });
+        });
+
+        deleteButtons.forEach(button => {
+            button.addEventListener("click", () => {
+                const id = button.dataset.id;
+
+                deleteProduct(id);
+            });
+        });
+    }
+
+    /* =========================================================
+       VIEW PRODUCT
+       ========================================================= */
+
+    function viewProduct(id) {
+        const products = getProducts();
+
+        const product =
+            products.find(item => String(item.id) === String(id));
+
+        if (!product) {
+            alert("Product not found.");
+            return;
+        }
+
+        alert(
+            `Product Preview\n\n` +
+            `Name: ${product.name || "—"}\n` +
+            `Category: ${product.category || "—"}\n` +
+            `Price: ₹${formatMoney(
+                getSellingPrice(product)
+            )}\n` +
+            `Stock: ${product.stock || 0}\n` +
+            `SKU: ${product.sku || "—"}`
+        );
+    }
+
+    /* =========================================================
+       EDIT PRODUCT
+       ========================================================= */
+
+    function editProduct(id) {
+        const products = getProducts();
+
+        const product =
+            products.find(item => String(item.id) === String(id));
+
+        if (!product) {
+            alert("Product not found.");
+            return;
+        }
+
+        /*
+           Edit Product page will be connected
+           in the next development step.
+        */
+
+        localStorage.setItem(
+            "marteyEditingProduct",
+            JSON.stringify(product)
+        );
+
+        window.location.href =
+            `add-product.html?edit=${encodeURIComponent(id)}`;
+    }
+
+    /* =========================================================
+       DELETE PRODUCT
+       ========================================================= */
+
+    function deleteProduct(id) {
+        const products = getProducts();
+
+        const product =
+            products.find(item => String(item.id) === String(id));
+
+        if (!product) return;
+
+        const confirmed = confirm(
+            `Delete "${product.name || "this product"}"?\n\n` +
+            `This will remove it from your seller product list.`
+        );
+
+        if (!confirmed) return;
+
+        const updatedProducts =
+            products.filter(
+                item => String(item.id) !== String(id)
+            );
+
+        saveProducts(updatedProducts);
+
+        renderProducts();
+
+        alert("Product deleted successfully.");
+    }
+
+    /* =========================================================
+       PRODUCT SEARCH
+       ========================================================= */
+
+    const productSearch =
+        document.getElementById("productSearch");
+
+    if (productSearch) {
+        productSearch.addEventListener(
+            "input",
+            renderProducts
+        );
+    }
+
+    /* =========================================================
+       PRODUCT FILTER
+       ========================================================= */
+
+    const productFilter =
+        document.getElementById("productFilter");
+
+    if (productFilter) {
+        productFilter.addEventListener(
+            "change",
+            renderProducts
+        );
+    }
+
+    /*
+       Support individual filter buttons too.
+       Example:
+       data-product-filter="active"
+    */
+
+    const filterButtons =
+        document.querySelectorAll(
+            "[data-product-filter]"
+        );
+
+    filterButtons.forEach(button => {
+        button.addEventListener("click", () => {
+
+            filterButtons.forEach(item => {
+                item.classList.remove("active");
+            });
+
+            button.classList.add("active");
+
+            const value =
+                button.dataset.productFilter;
+
+            if (productFilter) {
+                productFilter.value = value;
+            }
+
+            renderProducts();
+        });
+    });
+
+    /* =========================================================
+       DASHBOARD PRODUCT COUNTERS
+       ========================================================= */
+
+    function updateProductCounters(products) {
+        const total =
+            products.length;
+
+        const active =
+            products.filter(
+                product =>
+                    getProductStatus(product) === "active"
+            ).length;
+
+        const outOfStock =
+            products.filter(
+                product =>
+                    getProductStatus(product) === "out"
+            ).length;
+
+        const draft =
+            products.filter(
+                product =>
+                    getProductStatus(product) === "draft"
+            ).length;
+
+        const productCountElements =
+            document.querySelectorAll(
+                "[data-product-count]"
+            );
+
+        productCountElements.forEach(element => {
+            const type =
+                element.dataset.productCount;
+
+            if (type === "active") {
+                element.textContent = active;
+            } else if (type === "out") {
+                element.textContent = outOfStock;
+            } else if (type === "draft") {
+                element.textContent = draft;
+            } else {
+                element.textContent = total;
+            }
+        });
+
+        /*
+           Common IDs for dashboard cards.
+        */
+
+        const possibleCounters = [
+            ["productCount", total],
+            ["productsCount", total],
+            ["totalProducts", total],
+            ["dashboardProductCount", total]
+        ];
+
+        possibleCounters.forEach(([id, value]) => {
+            const element =
+                document.getElementById(id);
+
+            if (element) {
+                element.textContent = value;
+            }
+        });
+    }
+
+    /* =========================================================
+       SELLER SEARCH
+       ========================================================= */
 
     if (searchInput) {
-
         searchInput.addEventListener(
             "keydown",
             event => {
 
-                if (
-                    event.key !==
-                    "Enter"
-                ) {
+                if (event.key !== "Enter") {
                     return;
                 }
-
 
                 const query =
                     searchInput.value
                         .trim()
                         .toLowerCase();
 
-
                 if (!query) return;
 
-
                 if (
-                    query.includes("product")
+                    query.includes("product") ||
+                    query.includes("products")
                 ) {
-
-                    showSection(
-                        "products"
-                    );
-
+                    showSection("products");
                     return;
-
                 }
 
-
                 if (
-                    query.includes("order")
+                    query.includes("order") ||
+                    query.includes("orders")
                 ) {
-
-                    showSection(
-                        "orders"
-                    );
-
+                    showSection("orders");
                     return;
-
                 }
 
-
                 if (
-                    query.includes("stock") ||
-                    query.includes("inventory")
+                    query.includes("inventory") ||
+                    query.includes("stock")
                 ) {
-
-                    showSection(
-                        "inventory"
-                    );
-
+                    showSection("inventory");
                     return;
-
                 }
-
 
                 if (
                     query.includes("earning") ||
-                    query.includes("sale")
+                    query.includes("earnings") ||
+                    query.includes("sale") ||
+                    query.includes("sales")
                 ) {
-
-                    showSection(
-                        "earnings"
-                    );
-
+                    showSection("earnings");
                     return;
-
                 }
 
+                if (query.includes("analytics")) {
+                    showSection("analytics");
+                    return;
+                }
 
                 if (
-                    query.includes("analytic")
+                    query.includes("review") ||
+                    query.includes("reviews")
                 ) {
-
-                    showSection(
-                        "analytics"
-                    );
-
+                    showSection("reviews");
                     return;
-
                 }
-
 
                 if (
                     query.includes("promotion") ||
+                    query.includes("promotions") ||
                     query.includes("discount")
                 ) {
-
-                    showSection(
-                        "promotions"
-                    );
-
+                    showSection("promotions");
                     return;
-
                 }
-
-
-                if (
-                    query.includes("review")
-                ) {
-
-                    showSection(
-                        "reviews"
-                    );
-
-                    return;
-
-                }
-
 
                 if (
                     query.includes("store") ||
                     query.includes("shop")
                 ) {
-
-                    showSection(
-                        "store"
-                    );
-
+                    showSection("store");
                     return;
-
                 }
 
+                alert(
+                    `No seller section found for "${searchInput.value}".`
+                );
             }
         );
-
     }
 
-
-    /* =====================================================
+    /* =========================================================
        SALES PERIOD
-    ===================================================== */
+       ========================================================= */
 
     const salesPeriod =
-        document.getElementById(
-            "salesPeriod"
-        );
-
+        document.getElementById("salesPeriod");
 
     if (salesPeriod) {
-
         salesPeriod.addEventListener(
             "change",
             () => {
-
                 console.log(
                     "Sales period:",
                     salesPeriod.value
                 );
-
             }
         );
-
     }
 
-
-    /* =====================================================
+    /* =========================================================
        HELP
-    ===================================================== */
-
-    const helpButton =
-        document.getElementById(
-            "sellerHelpButton"
-        );
-
+       ========================================================= */
 
     if (helpButton) {
-
-        helpButton.addEventListener(
-            "click",
-            () => {
-
-                alert(
-                    "MARTEY Seller Help Center will be connected here."
-                );
-
-            }
-        );
-
+        helpButton.addEventListener("click", () => {
+            alert(
+                "MARTEY Seller Support will be connected with the backend later."
+            );
+        });
     }
 
+    /* =========================================================
+       ESCAPE HTML
+       ========================================================= */
 
-    /* =====================================================
-       ESCAPE
-    ===================================================== */
+    function escapeHTML(value) {
+        return String(value ?? "")
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
+    }
 
-    document.addEventListener(
-        "keydown",
-        event => {
+    /* =========================================================
+       MONEY FORMAT
+       ========================================================= */
 
-            if (
-                event.key ===
-                "Escape"
-            ) {
+    function formatMoney(value) {
+        const number =
+            Number(value || 0);
 
-                notificationPanel?.classList.remove(
-                    "show"
-                );
+        return number.toLocaleString("en-IN", {
+            maximumFractionDigits: 2
+        });
+    }
 
-                closeProfile();
+    /* =========================================================
+       INITIALIZE
+       ========================================================= */
 
-                closeMobileSidebar();
-
-            }
-
-        }
+    updateProductCounters(
+        getProducts()
     );
 
-
-    /* =====================================================
-       DEFAULT
-    ===================================================== */
+    /*
+       Dashboard opens first.
+    */
 
     showSection("dashboard");
 
+    /*
+       Products list can still be refreshed
+       immediately if the Products section is visible.
+    */
+
+    renderProducts();
 });
