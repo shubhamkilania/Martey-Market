@@ -1,6 +1,5 @@
 /* =========================================================
-   MARTEY — CREATE PROMOTION
-   Seller Center Promotion System
+   MARTEY. — CREATE PROMOTION
    ========================================================= */
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -8,144 +7,155 @@ document.addEventListener("DOMContentLoaded", () => {
     const promotionForm =
         document.getElementById("promotionForm");
 
-    const promotionType =
-        document.getElementById("promotionType");
+    const promotionProduct =
+        document.getElementById("promotionProduct");
 
-    const discountValue =
-        document.getElementById("discountValue");
+    const productPreview =
+        document.getElementById("productPreview");
 
-    const discountUnit =
-        document.getElementById("discountUnit");
+    const previewProductName =
+        document.getElementById("previewProductName");
 
-    const allProducts =
-        document.getElementById("allProducts");
+    const previewProductPrice =
+        document.getElementById("previewProductPrice");
 
-    const selectedProducts =
-        document.getElementById("selectedProducts");
+    const productPreviewImage =
+        document.querySelector(".product-preview-image");
 
-    const selectedProductsBox =
-        document.getElementById("selectedProductsBox");
+    const durationOptions =
+        document.querySelectorAll(".duration-option");
 
-    const selectProductsButton =
-        document.getElementById("selectProductsButton");
+    const promotionDays =
+        document.getElementById("promotionDays");
+
+    const dailyBudget =
+        document.getElementById("dailyBudget");
+
+    const budgetCalculation =
+        document.getElementById("budgetCalculation");
+
+    const totalBudget =
+        document.getElementById("totalBudget");
 
     const startDate =
         document.getElementById("startDate");
 
-    const endDate =
-        document.getElementById("endDate");
+    const summaryProductName =
+        document.getElementById("summaryProductName");
+
+    const summaryProductPrice =
+        document.getElementById("summaryProductPrice");
+
+    const summaryProductImage =
+        document.getElementById("summaryProductImage");
+
+    const summaryDays =
+        document.getElementById("summaryDays");
+
+    const summaryDailyBudget =
+        document.getElementById("summaryDailyBudget");
+
+    const summaryTotalBudget =
+        document.getElementById("summaryTotalBudget");
+
+    const summaryFinalBudget =
+        document.getElementById("summaryFinalBudget");
 
 
     /* =====================================================
-       PROMOTION TYPE
+       PRODUCTS
     ===================================================== */
 
-    function updateDiscountUnit() {
+    function getSellerProducts() {
 
-        if (!promotionType || !discountUnit || !discountValue) {
-            return;
-        }
+        try {
 
-        const type = promotionType.value;
+            return JSON.parse(
+                localStorage.getItem(
+                    "marteySellerProducts"
+                )
+            ) || [];
 
-        if (type === "fixed") {
+        } catch (error) {
 
-            discountUnit.textContent = "₹";
-            discountValue.placeholder = "100";
-
-        } else if (type === "percentage") {
-
-            discountUnit.textContent = "%";
-            discountValue.placeholder = "10";
-
-        } else if (type === "flash-sale") {
-
-            discountUnit.textContent = "%";
-            discountValue.placeholder = "20";
-
-        } else {
-
-            discountUnit.textContent = "%";
-            discountValue.placeholder = "10";
+            return [];
 
         }
+
     }
 
 
-    if (promotionType) {
+    const sellerProducts =
+        getSellerProducts();
 
-        promotionType.addEventListener(
-            "change",
-            updateDiscountUnit
+
+    function getProductName(product) {
+
+        return (
+            product.name ||
+            product.productName ||
+            product.title ||
+            "Unnamed Product"
         );
 
     }
 
 
-    updateDiscountUnit();
+    function getProductPrice(product) {
+
+        const price =
+            Number(
+                product.price ||
+                product.sellingPrice ||
+                0
+            );
+
+        return price;
+
+    }
 
 
-    /* =====================================================
-       PRODUCT SCOPE
-    ===================================================== */
-
-    function updateProductSelection() {
+    function getProductImage(product) {
 
         if (
-            !allProducts ||
-            !selectedProducts ||
-            !selectedProductsBox
+            product.image &&
+            typeof product.image === "string"
         ) {
+            return product.image;
+        }
+
+        if (
+            product.images &&
+            Array.isArray(product.images) &&
+            product.images.length > 0
+        ) {
+            return product.images[0];
+        }
+
+        return "";
+
+    }
+
+
+    function populateProducts() {
+
+        if (!promotionProduct) {
             return;
         }
 
-        if (selectedProducts.checked) {
+        sellerProducts.forEach(
+            (product, index) => {
 
-            selectedProductsBox.style.display = "block";
+                const option =
+                    document.createElement("option");
 
-        } else {
+                option.value = index;
 
-            selectedProductsBox.style.display = "none";
+                option.textContent =
+                    getProductName(product);
 
-        }
-    }
-
-
-    if (allProducts) {
-
-        allProducts.addEventListener(
-            "change",
-            updateProductSelection
-        );
-
-    }
-
-
-    if (selectedProducts) {
-
-        selectedProducts.addEventListener(
-            "change",
-            updateProductSelection
-        );
-
-    }
-
-
-    updateProductSelection();
-
-
-    /* =====================================================
-       SELECT PRODUCTS
-    ===================================================== */
-
-    if (selectProductsButton) {
-
-        selectProductsButton.addEventListener(
-            "click",
-            () => {
-
-                alert(
-                    "Product selection will be connected to your MARTEY products."
+                promotionProduct.appendChild(
+                    option
                 );
 
             }
@@ -154,39 +164,311 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
+    populateProducts();
+
+
     /* =====================================================
-       DATE VALIDATION
+       PRODUCT CHANGE
     ===================================================== */
 
-    if (startDate && endDate) {
+    function updateProductPreview() {
 
-        startDate.addEventListener(
-            "change",
-            () => {
+        if (!promotionProduct) {
+            return;
+        }
 
-                if (startDate.value) {
+        const selectedIndex =
+            promotionProduct.value;
 
-                    endDate.min = startDate.value;
+        if (
+            selectedIndex === "" ||
+            !sellerProducts[selectedIndex]
+        ) {
 
-                    if (
-                        endDate.value &&
-                        endDate.value < startDate.value
-                    ) {
-
-                        endDate.value = "";
-
-                    }
-
-                }
-
+            if (productPreview) {
+                productPreview.classList.remove("show");
             }
+
+            summaryProductName.textContent =
+                "Select product";
+
+            summaryProductPrice.textContent =
+                "—";
+
+            summaryProductImage.innerHTML =
+                "Product";
+
+            return;
+
+        }
+
+
+        const product =
+            sellerProducts[selectedIndex];
+
+        const name =
+            getProductName(product);
+
+        const price =
+            getProductPrice(product);
+
+        const image =
+            getProductImage(product);
+
+
+        if (productPreview) {
+            productPreview.classList.add("show");
+        }
+
+
+        previewProductName.textContent =
+            name;
+
+        previewProductPrice.textContent =
+            price > 0
+                ? "₹" + price.toLocaleString("en-IN")
+                : "Price not available";
+
+
+        summaryProductName.textContent =
+            name;
+
+        summaryProductPrice.textContent =
+            price > 0
+                ? "₹" + price.toLocaleString("en-IN")
+                : "Price not available";
+
+
+        if (image) {
+
+            productPreviewImage.innerHTML =
+                `<img src="${image}" alt="">`;
+
+            summaryProductImage.innerHTML =
+                `<img src="${image}" alt="">`;
+
+        } else {
+
+            productPreviewImage.innerHTML =
+                "Product";
+
+            summaryProductImage.innerHTML =
+                "Product";
+
+        }
+
+    }
+
+
+    if (promotionProduct) {
+
+        promotionProduct.addEventListener(
+            "change",
+            updateProductPreview
         );
 
     }
 
 
     /* =====================================================
-       LOAD SAVED PROMOTIONS
+       DURATION
+       ONLY 1–7 DAYS
+    ===================================================== */
+
+    function updateDuration(days) {
+
+        const safeDays =
+            Math.min(
+                7,
+                Math.max(
+                    1,
+                    Number(days) || 1
+                )
+            );
+
+
+        promotionDays.value =
+            safeDays;
+
+
+        durationOptions.forEach(
+            option => {
+
+                const optionDays =
+                    Number(
+                        option.dataset.days
+                    );
+
+                option.classList.toggle(
+                    "active",
+                    optionDays === safeDays
+                );
+
+            }
+        );
+
+
+        summaryDays.textContent =
+            safeDays === 1
+                ? "1 Day"
+                : safeDays + " Days";
+
+
+        updateBudget();
+
+    }
+
+
+    durationOptions.forEach(
+        option => {
+
+            option.addEventListener(
+                "click",
+                () => {
+
+                    const days =
+                        Number(
+                            option.dataset.days
+                        );
+
+                    updateDuration(days);
+
+                }
+            );
+
+        }
+    );
+
+
+    updateDuration(1);
+
+
+    /* =====================================================
+       BUDGET
+    ===================================================== */
+
+    function updateBudget() {
+
+        const days =
+            Math.min(
+                7,
+                Math.max(
+                    1,
+                    Number(
+                        promotionDays.value
+                    ) || 1
+                )
+            );
+
+
+        let budget =
+            Number(
+                dailyBudget.value
+            ) || 0;
+
+
+        if (budget < 0) {
+            budget = 0;
+        }
+
+
+        const total =
+            budget * days;
+
+
+        budgetCalculation.textContent =
+            "₹" +
+            budget.toLocaleString("en-IN") +
+            " × " +
+            days +
+            (days === 1 ? " day" : " days");
+
+
+        totalBudget.textContent =
+            "₹" +
+            total.toLocaleString("en-IN");
+
+
+        summaryDailyBudget.textContent =
+            "₹" +
+            budget.toLocaleString("en-IN");
+
+
+        summaryTotalBudget.textContent =
+            "₹" +
+            total.toLocaleString("en-IN");
+
+
+        summaryFinalBudget.textContent =
+            "₹" +
+            total.toLocaleString("en-IN");
+
+    }
+
+
+    if (dailyBudget) {
+
+        dailyBudget.addEventListener(
+            "input",
+            updateBudget
+        );
+
+    }
+
+
+    updateBudget();
+
+
+    /* =====================================================
+       START DATE
+    ===================================================== */
+
+    function setMinimumDate() {
+
+        if (!startDate) {
+            return;
+        }
+
+        const today =
+            new Date();
+
+        const year =
+            today.getFullYear();
+
+        const month =
+            String(
+                today.getMonth() + 1
+            ).padStart(2, "0");
+
+        const day =
+            String(
+                today.getDate()
+            ).padStart(2, "0");
+
+
+        const todayString =
+            `${year}-${month}-${day}`;
+
+
+        startDate.min =
+            todayString;
+
+
+        if (!startDate.value) {
+
+            startDate.value =
+                todayString;
+
+        }
+
+    }
+
+
+    setMinimumDate();
+
+
+    /* =====================================================
+       GET SAVED PROMOTIONS
     ===================================================== */
 
     function getPromotions() {
@@ -204,125 +486,34 @@ document.addEventListener("DOMContentLoaded", () => {
             return [];
 
         }
+
     }
 
 
     /* =====================================================
-       SAVE PROMOTION
+       CREATE PROMOTION
     ===================================================== */
 
     if (promotionForm) {
 
         promotionForm.addEventListener(
             "submit",
-            (event) => {
+            event => {
 
                 event.preventDefault();
 
 
-                const name =
-                    document.getElementById(
-                        "promotionName"
-                    ).value.trim();
-
-                const type =
-                    promotionType.value;
-
-                const discount =
-                    Number(discountValue.value);
-
-                const productScope =
-                    document.querySelector(
-                        'input[name="productScope"]:checked'
-                    )?.value || "all";
-
-                const minimumOrder =
-                    Number(
-                        document.getElementById(
-                            "minimumOrder"
-                        ).value
-                    ) || 0;
-
-                const maximumDiscount =
-                    Number(
-                        document.getElementById(
-                            "maximumDiscount"
-                        ).value
-                    ) || 0;
-
-                const usageLimit =
-                    Number(
-                        document.getElementById(
-                            "usageLimit"
-                        ).value
-                    ) || 0;
-
-                const start =
-                    document.getElementById(
-                        "startDate"
-                    ).value;
-
-                const startTime =
-                    document.getElementById(
-                        "startTime"
-                    ).value;
-
-                const end =
-                    document.getElementById(
-                        "endDate"
-                    ).value;
-
-                const endTime =
-                    document.getElementById(
-                        "endTime"
-                    ).value;
-
-
-                /* -----------------------------------------
-                   VALIDATION
-                ----------------------------------------- */
-
-                if (!name) {
-
-                    alert(
-                        "Please enter a promotion name."
-                    );
-
-                    return;
-
-                }
-
-
-                if (!type) {
-
-                    alert(
-                        "Please select a promotion type."
-                    );
-
-                    return;
-
-                }
-
-
-                if (!discount || discount <= 0) {
-
-                    alert(
-                        "Please enter a valid discount."
-                    );
-
-                    return;
-
-                }
-
+                /* PRODUCT */
 
                 if (
-                    (type === "percentage" ||
-                    type === "flash-sale") &&
-                    discount > 100
+                    promotionProduct.value === "" ||
+                    !sellerProducts[
+                        promotionProduct.value
+                    ]
                 ) {
 
                     alert(
-                        "Percentage discount cannot be more than 100%."
+                        "Please select a product."
                     );
 
                     return;
@@ -330,35 +521,41 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
 
 
-                if (!start || !end) {
+                const selectedProduct =
+                    sellerProducts[
+                        promotionProduct.value
+                    ];
 
-                    alert(
-                        "Please select the promotion dates."
+
+                /* DURATION */
+
+                const days =
+                    Math.min(
+                        7,
+                        Math.max(
+                            1,
+                            Number(
+                                promotionDays.value
+                            ) || 1
+                        )
                     );
 
-                    return;
 
-                }
+                /* BUDGET */
 
-
-                const startDateTime =
-                    new Date(
-                        `${start}T${startTime}`
-                    );
-
-                const endDateTime =
-                    new Date(
-                        `${end}T${endTime}`
+                const budget =
+                    Number(
+                        dailyBudget.value
                     );
 
 
                 if (
-                    isNaN(startDateTime.getTime()) ||
-                    isNaN(endDateTime.getTime())
+                    !Number.isFinite(budget) ||
+                    budget < 10
                 ) {
 
                     alert(
-                        "Please enter valid promotion dates and times."
+                        "Daily budget must be at least ₹10."
                     );
 
                     return;
@@ -366,10 +563,16 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
 
 
-                if (endDateTime <= startDateTime) {
+                const total =
+                    budget * days;
+
+
+                /* DATE */
+
+                if (!startDate.value) {
 
                     alert(
-                        "End date and time must be after the start date and time."
+                        "Please select a start date."
                     );
 
                     return;
@@ -377,9 +580,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
 
 
-                /* -----------------------------------------
-                   CREATE PROMOTION OBJECT
-                ----------------------------------------- */
+                /* CREATE OBJECT */
 
                 const promotion = {
 
@@ -387,34 +588,40 @@ document.addEventListener("DOMContentLoaded", () => {
                         "PROMO-" +
                         Date.now(),
 
-                    name: name,
+                    productId:
+                        selectedProduct.id ||
+                        selectedProduct.productId ||
+                        null,
 
-                    type: type,
+                    productName:
+                        getProductName(
+                            selectedProduct
+                        ),
 
-                    discount: discount,
+                    productPrice:
+                        getProductPrice(
+                            selectedProduct
+                        ),
 
-                    productScope: productScope,
+                    productImage:
+                        getProductImage(
+                            selectedProduct
+                        ),
 
-                    minimumOrder:
-                        minimumOrder,
+                    durationDays:
+                        days,
 
-                    maximumDiscount:
-                        maximumDiscount,
+                    dailyBudget:
+                        budget,
 
-                    usageLimit:
-                        usageLimit,
+                    totalBudget:
+                        total,
 
-                    usedCount: 0,
+                    startDate:
+                        startDate.value,
 
-                    startDate: start,
-
-                    startTime: startTime,
-
-                    endDate: end,
-
-                    endTime: endTime,
-
-                    status: "Scheduled",
+                    status:
+                        "Scheduled",
 
                     createdAt:
                         new Date().toISOString()
@@ -422,16 +629,16 @@ document.addEventListener("DOMContentLoaded", () => {
                 };
 
 
-                /* -----------------------------------------
-                   SAVE
-                ----------------------------------------- */
+                /* SAVE */
 
                 const promotions =
                     getPromotions();
 
+
                 promotions.push(
                     promotion
                 );
+
 
                 localStorage.setItem(
                     "marteySellerPromotions",
@@ -441,18 +648,14 @@ document.addEventListener("DOMContentLoaded", () => {
                 );
 
 
-                /* -----------------------------------------
-                   SUCCESS
-                ----------------------------------------- */
+                /* SUCCESS */
 
                 alert(
                     "Promotion created successfully."
                 );
 
 
-                /* -----------------------------------------
-                   RETURN TO SELLER CENTER
-                ----------------------------------------- */
+                /* RETURN */
 
                 window.location.href =
                     "seller.html";
