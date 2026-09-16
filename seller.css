@@ -1858,3 +1858,64 @@ svg {
         width: auto;
     }
 }
+/* =========================================================
+   EARNINGS / PAYOUT
+========================================================= */
+
+.payout-earnings-panel {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+}
+
+.earnings-info {
+    min-width: 0;
+}
+
+.earnings-info h3 {
+    margin: 6px 0 5px;
+    font-family: "Manrope", sans-serif;
+    font-size: 19px;
+    font-weight: 800;
+}
+
+.earnings-info p {
+    max-width: 520px;
+    margin: 0;
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.earnings-actions {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    flex-shrink: 0;
+}
+
+.available-payout-amount {
+    font-family: "Manrope", sans-serif;
+    font-size: 22px;
+    font-weight: 800;
+    white-space: nowrap;
+}
+
+@media (max-width: 650px) {
+
+    .payout-earnings-panel {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 18px;
+    }
+
+    .earnings-actions {
+        justify-content: space-between;
+    }
+
+    .available-payout-amount {
+        font-size: 20px;
+    }
+
+}
