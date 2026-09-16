@@ -1,0 +1,1069 @@
+:root {
+    --bg: #08080c;
+    --surface: #111116;
+    --surface-2: #15151c;
+    --surface-3: #1b1b23;
+
+    --text: #ffffff;
+    --text-soft: #d2d2dc;
+    --muted: #92929f;
+    --muted-light: #6d6d79;
+
+    --border: #292933;
+
+    --purple: #6c4df6;
+    --purple-dark: #5738e8;
+    --purple-soft: rgba(108, 77, 246, 0.14);
+
+    --green: #20a66a;
+    --green-soft: rgba(32, 166, 106, 0.13);
+
+    --radius-sm: 10px;
+    --radius-md: 14px;
+    --radius-lg: 20px;
+    --radius-xl: 26px;
+
+    --shadow:
+        0 18px 55px rgba(0, 0, 0, 0.32);
+}
+
+
+/* ================================
+   RESET
+================================ */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    background: var(--bg);
+    color: var(--text);
+    font-family: "DM Sans", sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+
+button,
+input {
+    font: inherit;
+}
+
+button {
+    border: 0;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+
+/* ================================
+   PAGE
+================================ */
+
+.seller-help-page {
+    min-height: 100vh;
+    background:
+        radial-gradient(
+            circle at 50% 0%,
+            rgba(108, 77, 246, 0.08),
+            transparent 32%
+        ),
+        var(--bg);
+}
+
+
+/* ================================
+   HEADER
+================================ */
+
+.seller-help-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+
+    height: 72px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 34px;
+
+    background: rgba(8, 8, 12, 0.94);
+    border-bottom: 1px solid rgba(41, 41, 51, 0.9);
+
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+}
+
+.help-header-left {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+.martey-logo {
+    font-family: "Manrope", sans-serif;
+    font-size: 23px;
+    font-weight: 800;
+    letter-spacing: -0.7px;
+    color: #ffffff;
+}
+
+.martey-logo span {
+    color: var(--purple);
+}
+
+.header-divider {
+    width: 1px;
+    height: 25px;
+    background: var(--border);
+}
+
+.help-page-title {
+    color: var(--text-soft);
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.back-seller-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 42px;
+    padding: 0 16px;
+
+    border: 1px solid #343440;
+    border-radius: 11px;
+
+    background: #171722;
+    color: #ffffff;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.back-seller-button:hover {
+    background: #22222e;
+    border-color: #454553;
+    transform: translateY(-1px);
+}
+
+
+/* ================================
+   MAIN
+================================ */
+
+.seller-help-main {
+    width: min(1120px, calc(100% - 40px));
+    margin: 0 auto;
+    padding: 76px 0 70px;
+}
+
+
+/* ================================
+   AI INTRO
+================================ */
+
+.ai-intro {
+    max-width: 720px;
+    margin: 0 auto 46px;
+    text-align: center;
+}
+
+.ai-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 8px 13px;
+
+    border: 1px solid rgba(108, 77, 246, 0.28);
+    border-radius: 999px;
+
+    background: var(--purple-soft);
+    color: #cfc8ff;
+
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.ai-status-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--green);
+    box-shadow: 0 0 0 4px rgba(32, 166, 106, 0.10);
+}
+
+.ai-intro h1 {
+    margin-top: 21px;
+
+    font-family: "Manrope", sans-serif;
+    font-size: clamp(38px, 5vw, 58px);
+    line-height: 1.04;
+    letter-spacing: -2px;
+    font-weight: 800;
+}
+
+.ai-intro p {
+    max-width: 650px;
+    margin: 19px auto 0;
+
+    color: var(--muted);
+    font-size: 15px;
+    line-height: 1.7;
+}
+
+
+/* ================================
+   AI CHAT CONTAINER
+================================ */
+
+.ai-chat-container {
+    width: min(820px, 100%);
+    margin: 0 auto;
+
+    overflow: hidden;
+
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+
+    background: var(--surface);
+
+    box-shadow: var(--shadow);
+}
+
+
+/* ================================
+   CHAT HEADER
+================================ */
+
+.ai-chat-header {
+    min-height: 76px;
+
+    display: flex;
+    align-items: center;
+
+    padding: 0 24px;
+
+    border-bottom: 1px solid var(--border);
+    background: #101016;
+}
+
+.ai-profile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.ai-avatar,
+.message-avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    border-radius: 12px;
+
+    background: var(--purple);
+
+    color: #ffffff;
+
+    font-family: "Manrope", sans-serif;
+    font-weight: 800;
+}
+
+.ai-avatar {
+    width: 42px;
+    height: 42px;
+    font-size: 16px;
+}
+
+.ai-profile-info {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.ai-profile-info strong {
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.ai-profile-info span {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    color: var(--muted);
+    font-size: 12px;
+}
+
+.online-dot {
+    width: 6px;
+    height: 6px;
+
+    border-radius: 50%;
+
+    background: var(--green);
+}
+
+
+/* ================================
+   MESSAGES
+================================ */
+
+.ai-messages {
+    min-height: 340px;
+    max-height: 480px;
+
+    overflow-y: auto;
+
+    padding: 28px 24px;
+
+    background:
+        radial-gradient(
+            circle at 15% 20%,
+            rgba(108, 77, 246, 0.035),
+            transparent 30%
+        ),
+        var(--surface);
+}
+
+.ai-messages::-webkit-scrollbar {
+    width: 7px;
+}
+
+.ai-messages::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.ai-messages::-webkit-scrollbar-thumb {
+    background: #292933;
+    border-radius: 20px;
+}
+
+
+/* ================================
+   AI MESSAGE
+================================ */
+
+.ai-message-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 11px;
+}
+
+.message-avatar {
+    width: 34px;
+    height: 34px;
+
+    border-radius: 10px;
+
+    font-size: 12px;
+}
+
+.ai-message {
+    max-width: 600px;
+
+    padding: 15px 17px;
+
+    border: 1px solid var(--border);
+    border-radius: 6px 17px 17px 17px;
+
+    background: var(--surface-2);
+}
+
+.ai-message p {
+    color: var(--text-soft);
+    font-size: 14px;
+    line-height: 1.65;
+}
+
+.ai-message p + p {
+    margin-top: 9px;
+}
+
+
+/* ================================
+   QUICK QUESTIONS
+================================ */
+
+.quick-questions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px;
+
+    margin: 22px 0 0 45px;
+}
+
+.quick-question {
+    min-height: 39px;
+
+    padding: 0 14px;
+
+    border: 1px solid #353540;
+    border-radius: 999px;
+
+    background: #15151c;
+    color: #d5d5df;
+
+    cursor: pointer;
+
+    font-size: 12px;
+    font-weight: 600;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.quick-question:hover {
+    background: var(--purple-soft);
+    border-color: rgba(108, 77, 246, 0.45);
+    color: #ffffff;
+    transform: translateY(-1px);
+}
+
+
+/* ================================
+   INPUT AREA
+================================ */
+
+.ai-input-area {
+    padding: 18px 20px 16px;
+
+    border-top: 1px solid var(--border);
+    background: #101016;
+}
+
+.ai-chat-form {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 5px;
+
+    border: 1px solid #30303b;
+    border-radius: 15px;
+
+    background: #15151c;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.ai-chat-form:focus-within {
+    border-color: rgba(108, 77, 246, 0.65);
+    box-shadow: 0 0 0 3px rgba(108, 77, 246, 0.10);
+}
+
+.ai-chat-form input {
+    flex: 1;
+
+    min-width: 0;
+    height: 46px;
+
+    padding: 0 13px;
+
+    border: 0;
+    outline: 0;
+
+    background: transparent;
+    color: #ffffff;
+
+    font-size: 14px;
+}
+
+.ai-chat-form input::placeholder {
+    color: #70707c;
+}
+
+.ai-send-button {
+    width: 46px;
+    height: 46px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    border-radius: 12px;
+
+    background: var(--purple);
+    color: #ffffff;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+.ai-send-button:hover {
+    background: var(--purple-dark);
+    transform: translateY(-1px);
+}
+
+.ai-send-button:active {
+    transform: translateY(0);
+}
+
+.ai-send-button svg {
+    width: 19px;
+    height: 19px;
+
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.8;
+
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.ai-input-note {
+    margin-top: 9px;
+
+    color: var(--muted-light);
+
+    font-size: 10px;
+    line-height: 1.5;
+    text-align: center;
+}
+
+
+/* ================================
+   HELP TOPICS
+================================ */
+
+.help-topics {
+    margin-top: 90px;
+}
+
+.section-heading {
+    margin-bottom: 25px;
+}
+
+.section-heading > span {
+    color: #9d91ff;
+
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.6px;
+}
+
+.section-heading h2 {
+    margin-top: 8px;
+
+    font-family: "Manrope", sans-serif;
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: -0.7px;
+}
+
+.section-heading p {
+    margin-top: 7px;
+
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+
+/* ================================
+   TOPIC GRID
+================================ */
+
+.help-topic-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 13px;
+}
+
+.help-topic-card {
+    width: 100%;
+    min-height: 92px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 15px;
+
+    padding: 17px 18px;
+
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+
+    background: var(--surface);
+
+    color: var(--text);
+
+    text-align: left;
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.help-topic-card:hover {
+    background: var(--surface-2);
+    border-color: #3b3b48;
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 12px 30px rgba(0, 0, 0, 0.22);
+}
+
+.topic-icon {
+    width: 46px;
+    height: 46px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    border: 1px solid rgba(108, 77, 246, 0.24);
+    border-radius: 13px;
+
+    background: var(--purple-soft);
+    color: #a99cff;
+}
+
+.topic-icon svg {
+    width: 21px;
+    height: 21px;
+
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.7;
+
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.topic-content {
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.topic-content strong {
+    color: #ffffff;
+
+    font-family: "Manrope", sans-serif;
+    font-size: 14px;
+    font-weight: 800;
+}
+
+.topic-content span {
+    color: var(--muted);
+
+    font-size: 12px;
+    line-height: 1.45;
+}
+
+.topic-arrow {
+    margin-left: auto;
+
+    flex-shrink: 0;
+
+    color: #777783;
+
+    font-size: 20px;
+    line-height: 1;
+
+    transition:
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.help-topic-card:hover .topic-arrow {
+    color: #ffffff;
+    transform: translateX(3px);
+}
+
+
+/* ================================
+   HELP NOTE
+================================ */
+
+.seller-help-note {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+
+    margin-top: 24px;
+    padding: 20px;
+
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+
+    background: rgba(17, 17, 22, 0.72);
+}
+
+.note-icon {
+    width: 36px;
+    height: 36px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    border-radius: 10px;
+
+    background: #181820;
+    color: #9d9daa;
+}
+
+.note-icon svg {
+    width: 18px;
+    height: 18px;
+
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.7;
+
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.seller-help-note strong {
+    display: block;
+
+    color: #ffffff;
+
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.seller-help-note p {
+    margin-top: 4px;
+
+    color: var(--muted);
+
+    font-size: 12px;
+    line-height: 1.55;
+}
+
+
+/* ================================
+   FOOTER
+================================ */
+
+.seller-help-footer {
+    min-height: 70px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    width: min(1120px, calc(100% - 40px));
+    margin: 0 auto;
+
+    border-top: 1px solid var(--border);
+
+    color: var(--muted-light);
+
+    font-size: 11px;
+}
+
+
+/* ================================
+   FOCUS
+================================ */
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible {
+    outline: 2px solid #8b7cff;
+    outline-offset: 3px;
+}
+
+
+/* ================================
+   TABLET
+================================ */
+
+@media (max-width: 800px) {
+
+    .seller-help-header {
+        padding: 0 22px;
+    }
+
+    .seller-help-main {
+        width: min(100% - 30px, 720px);
+        padding-top: 58px;
+    }
+
+    .ai-intro {
+        margin-bottom: 38px;
+    }
+
+    .help-topic-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+/* ================================
+   MOBILE
+================================ */
+
+@media (max-width: 600px) {
+
+    .seller-help-header {
+        height: 64px;
+        padding: 0 15px;
+    }
+
+    .help-header-left {
+        gap: 11px;
+    }
+
+    .martey-logo {
+        font-size: 20px;
+    }
+
+    .header-divider {
+        height: 21px;
+    }
+
+    .help-page-title {
+        font-size: 12px;
+    }
+
+    .back-seller-button {
+        min-height: 37px;
+        padding: 0 11px;
+
+        font-size: 11px;
+    }
+
+
+    .seller-help-main {
+        width: calc(100% - 24px);
+        padding: 48px 0 50px;
+    }
+
+
+    .ai-intro {
+        margin-bottom: 30px;
+    }
+
+    .ai-badge {
+        padding: 7px 11px;
+        font-size: 11px;
+    }
+
+    .ai-intro h1 {
+        margin-top: 17px;
+
+        font-size: 39px;
+        letter-spacing: -1.5px;
+    }
+
+    .ai-intro p {
+        margin-top: 15px;
+
+        font-size: 13px;
+        line-height: 1.6;
+    }
+
+
+    .ai-chat-container {
+        border-radius: 18px;
+    }
+
+    .ai-chat-header {
+        min-height: 68px;
+        padding: 0 16px;
+    }
+
+    .ai-avatar {
+        width: 38px;
+        height: 38px;
+    }
+
+    .ai-messages {
+        min-height: 310px;
+        max-height: 430px;
+
+        padding: 20px 15px;
+    }
+
+    .ai-message-row {
+        gap: 8px;
+    }
+
+    .message-avatar {
+        width: 31px;
+        height: 31px;
+    }
+
+    .ai-message {
+        padding: 13px 14px;
+    }
+
+    .ai-message p {
+        font-size: 13px;
+    }
+
+    .quick-questions {
+        margin-left: 39px;
+        gap: 7px;
+    }
+
+    .quick-question {
+        min-height: 36px;
+        padding: 0 11px;
+        font-size: 11px;
+    }
+
+    .ai-input-area {
+        padding: 13px 12px 12px;
+    }
+
+    .ai-chat-form {
+        border-radius: 13px;
+    }
+
+    .ai-chat-form input {
+        height: 43px;
+        font-size: 13px;
+    }
+
+    .ai-send-button {
+        width: 43px;
+        height: 43px;
+    }
+
+    .ai-input-note {
+        font-size: 9px;
+    }
+
+
+    .help-topics {
+        margin-top: 62px;
+    }
+
+    .section-heading h2 {
+        font-size: 24px;
+    }
+
+    .section-heading p {
+        font-size: 12px;
+    }
+
+    .help-topic-card {
+        min-height: 82px;
+        padding: 14px;
+        gap: 12px;
+    }
+
+    .topic-icon {
+        width: 41px;
+        height: 41px;
+        border-radius: 11px;
+    }
+
+    .topic-icon svg {
+        width: 19px;
+        height: 19px;
+    }
+
+    .topic-content strong {
+        font-size: 13px;
+    }
+
+    .topic-content span {
+        font-size: 11px;
+    }
+
+    .topic-arrow {
+        font-size: 18px;
+    }
+
+
+    .seller-help-note {
+        padding: 15px;
+    }
+
+
+    .seller-help-footer {
+        width: calc(100% - 24px);
+        min-height: 60px;
+    }
+
+}
+
+
+/* ================================
+   SMALL MOBILE
+================================ */
+
+@media (max-width: 400px) {
+
+    .help-page-title {
+        display: none;
+    }
+
+    .header-divider {
+        display: none;
+    }
+
+    .seller-help-header {
+        padding: 0 12px;
+    }
+
+    .back-seller-button {
+        padding: 0 9px;
+    }
+
+    .ai-intro h1 {
+        font-size: 34px;
+    }
+
+    .quick-questions {
+        margin-left: 0;
+    }
+
+    .quick-question {
+        font-size: 10px;
+    }
+
+    .seller-help-note p {
+        font-size: 11px;
+    }
+
+}
