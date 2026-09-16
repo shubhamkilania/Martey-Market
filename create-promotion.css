@@ -1,7 +1,6 @@
 /* =========================================================
-   MARTEY — CREATE PROMOTION
-   Professional Seller Center
-   Dark Theme • Compact • Responsive
+   MARTEY. — CREATE PROMOTION
+   Dark Seller Center Theme
    ========================================================= */
 
 :root {
@@ -22,18 +21,15 @@
 
     --danger: #dc4b59;
 
-    --radius-sm: 10px;
     --radius-md: 13px;
     --radius-lg: 18px;
 
     --shadow:
-        0 8px 28px rgba(0, 0, 0, 0.28);
+        0 10px 30px rgba(0, 0, 0, 0.28);
 }
 
 
-/* =========================================================
-   RESET
-   ========================================================= */
+/* RESET */
 
 * {
     box-sizing: border-box;
@@ -45,9 +41,12 @@ html {
 
 body {
     margin: 0;
+
     background: var(--bg);
     color: var(--text);
+
     font-family: "DM Sans", sans-serif;
+
     -webkit-font-smoothing: antialiased;
 }
 
@@ -67,9 +66,7 @@ a {
 }
 
 
-/* =========================================================
-   PAGE
-   ========================================================= */
+/* PAGE */
 
 .promotion-page {
     min-height: 100vh;
@@ -86,10 +83,12 @@ a {
     top: 0;
     z-index: 50;
 
-    min-height: 82px;
+    min-height: 78px;
+
     padding: 0 34px;
 
     background: rgba(15, 15, 20, 0.96);
+
     backdrop-filter: blur(14px);
 
     border-bottom: 1px solid var(--border);
@@ -98,26 +97,62 @@ a {
     align-items: center;
     justify-content: space-between;
 
-    gap: 24px;
+    gap: 20px;
 }
 
 .header-left {
     display: flex;
     align-items: center;
-    gap: 25px;
+
+    gap: 20px;
+
     min-width: 0;
 }
 
-.back-link {
+
+/* REAL MARTEY BRAND */
+
+.martey-logo {
+    font-family: "Manrope", sans-serif;
+
+    font-size: 25px;
+    font-weight: 800;
+
+    letter-spacing: -1.1px;
+    line-height: 1;
+}
+
+.martey-logo span {
+    color: var(--purple);
+}
+
+
+.header-divider {
+    width: 1px;
+    height: 25px;
+
+    background: var(--border);
+}
+
+
+.header-page-name {
+    color: var(--text-soft);
+
+    font-size: 13px;
+    font-weight: 600;
+}
+
+
+.back-button {
     min-height: 40px;
 
-    padding: 0 13px;
+    padding: 0 14px;
 
     border: 1px solid var(--border);
     border-radius: 11px;
 
     background: #111116;
-    color: #b7b7c2;
+    color: #c8c8d2;
 
     display: inline-flex;
     align-items: center;
@@ -134,71 +169,31 @@ a {
         color 0.18s ease;
 }
 
-.back-link:hover {
+.back-button:hover {
     background: #1a1a22;
     border-color: #393944;
     color: #ffffff;
 }
 
-.header-title {
-    min-width: 0;
-}
-
-.header-title span {
-    display: block;
-
-    color: var(--muted-light);
-
-    font-size: 9px;
-    font-weight: 800;
-
-    letter-spacing: 1.4px;
-}
-
-.header-title h1 {
-    margin: 4px 0 0;
-
-    font-family: "Manrope", sans-serif;
-
-    font-size: 21px;
-    font-weight: 800;
-
-    line-height: 1.2;
-    letter-spacing: -0.4px;
-}
-
-.martey-logo {
-    font-family: "Manrope", sans-serif;
-
-    font-size: 24px;
-    font-weight: 800;
-
-    letter-spacing: -1px;
-}
-
-.martey-logo span {
-    color: var(--purple);
-}
-
 
 /* =========================================================
-   CONTENT
+   MAIN
    ========================================================= */
 
-.promotion-content {
-    width: min(100%, 1100px);
+.promotion-main {
+    width: min(1180px, 100%);
 
     margin: 0 auto;
 
-    padding: 34px 34px 60px;
+    padding: 34px 30px 60px;
 }
 
-.page-intro {
-    margin-bottom: 22px;
+
+.promotion-intro {
+    margin-bottom: 24px;
 }
 
-.eyebrow,
-.card-eyebrow {
+.eyebrow {
     display: block;
 
     color: var(--muted-light);
@@ -206,22 +201,25 @@ a {
     font-size: 10px;
     font-weight: 800;
 
-    letter-spacing: 1.4px;
+    letter-spacing: 1.5px;
 }
 
-.page-intro h2 {
+.promotion-intro h1 {
     margin: 7px 0 5px;
 
     font-family: "Manrope", sans-serif;
 
-    font-size: 29px;
+    font-size: 30px;
     font-weight: 800;
 
     line-height: 1.15;
+
     letter-spacing: -0.8px;
 }
 
-.page-intro p {
+.promotion-intro p {
+    max-width: 650px;
+
     margin: 0;
 
     color: var(--muted);
@@ -232,36 +230,63 @@ a {
 
 
 /* =========================================================
-   FORM
+   LAYOUT
    ========================================================= */
 
-.promotion-form {
+.promotion-layout {
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        350px;
+
+    align-items: start;
+
+    gap: 18px;
+}
+
+.promotion-form-column {
     display: grid;
     gap: 16px;
 }
 
-.form-card {
-    padding: 22px;
 
+/* =========================================================
+   CARD
+   ========================================================= */
+
+.promotion-card,
+.summary-card {
     background: var(--surface);
 
     border: 1px solid var(--border);
+
     border-radius: var(--radius-lg);
 
     box-shadow: var(--shadow);
 }
 
-.card-heading {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-
-    gap: 18px;
-
-    margin-bottom: 20px;
+.promotion-card {
+    padding: 22px;
 }
 
-.card-heading h3 {
+.card-header {
+    margin-bottom: 19px;
+}
+
+.card-label,
+.summary-label {
+    display: block;
+
+    color: var(--muted-light);
+
+    font-size: 9px;
+    font-weight: 800;
+
+    letter-spacing: 1.4px;
+}
+
+.card-header h2 {
     margin: 6px 0 4px;
 
     font-family: "Manrope", sans-serif;
@@ -272,7 +297,7 @@ a {
     line-height: 1.3;
 }
 
-.card-heading p {
+.card-header p {
     margin: 0;
 
     color: var(--muted);
@@ -283,24 +308,11 @@ a {
 
 
 /* =========================================================
-   FORM GRID
+   FORM
    ========================================================= */
-
-.form-grid {
-    display: grid;
-
-    grid-template-columns:
-        repeat(2, minmax(0, 1fr));
-
-    gap: 16px;
-}
 
 .form-group {
     min-width: 0;
-}
-
-.form-group.full-width {
-    grid-column: 1 / -1;
 }
 
 .form-group label {
@@ -317,7 +329,7 @@ a {
 .form-group input,
 .form-group select {
     width: 100%;
-    height: 43px;
+    height: 44px;
 
     padding: 0 12px;
 
@@ -326,7 +338,7 @@ a {
 
     outline: none;
 
-    background: #15151c;
+    background: var(--surface-soft);
     color: #ffffff;
 
     font-size: 13px;
@@ -337,10 +349,6 @@ a {
         box-shadow 0.18s ease;
 }
 
-.form-group input::placeholder {
-    color: #676773;
-}
-
 .form-group input:focus,
 .form-group select:focus {
     border-color: rgba(108, 77, 246, 0.8);
@@ -349,6 +357,10 @@ a {
 
     box-shadow:
         0 0 0 3px rgba(108, 77, 246, 0.10);
+}
+
+.form-group input::placeholder {
+    color: #666673;
 }
 
 .form-group select {
@@ -362,244 +374,434 @@ a {
 
 
 /* =========================================================
-   DISCOUNT INPUT
+   PRODUCT PREVIEW
    ========================================================= */
 
-.input-with-label {
-    position: relative;
-}
-
-.input-with-label input {
-    padding-right: 45px;
-}
-
-.input-with-label span {
-    position: absolute;
-
-    right: 13px;
-    top: 50%;
-
-    transform: translateY(-50%);
-
-    color: var(--muted);
-
-    font-size: 13px;
-    font-weight: 700;
-
-    pointer-events: none;
-}
-
-
-/* =========================================================
-   PRODUCT SELECTION
-   ========================================================= */
-
-.product-selection {
-    display: grid;
-
-    grid-template-columns:
-        repeat(2, minmax(0, 1fr));
-
-    gap: 12px;
-}
-
-.selection-option {
-    position: relative;
-
-    min-width: 0;
-}
-
-.selection-option input {
-    position: absolute;
-
-    opacity: 0;
-    pointer-events: none;
-}
-
-.selection-option label {
-    min-height: 88px;
-
-    padding: 17px;
-
-    background: #15151c;
-
-    border: 1px solid var(--border);
-    border-radius: 13px;
-
-    display: flex;
-    flex-direction: column;
-
-    justify-content: center;
-
-    cursor: pointer;
-
-    transition:
-        background 0.18s ease,
-        border-color 0.18s ease,
-        box-shadow 0.18s ease;
-}
-
-.selection-option label:hover {
-    background: #1a1a22;
-    border-color: #373743;
-}
-
-.selection-option input:checked + label {
-    background: var(--purple-soft);
-
-    border-color: rgba(108, 77, 246, 0.65);
-
-    box-shadow:
-        0 0 0 1px rgba(108, 77, 246, 0.12);
-}
-
-.selection-option strong {
-    color: #ffffff;
-
-    font-size: 13px;
-    font-weight: 700;
-}
-
-.selection-option span {
-    margin-top: 5px;
-
-    color: var(--muted);
-
-    font-size: 11px;
-    line-height: 1.45;
-}
-
-
-/* =========================================================
-   SELECTED PRODUCTS
-   ========================================================= */
-
-.selected-products-box {
+.product-preview {
     display: none;
 
     margin-top: 14px;
 
-    padding: 18px;
+    padding: 12px;
+
+    border: 1px solid var(--border);
+    border-radius: 13px;
 
     background: #0f0f14;
 
-    border: 1px dashed #34343f;
-    border-radius: 13px;
+    align-items: center;
+
+    gap: 12px;
 }
 
-.empty-products {
-    text-align: center;
+.product-preview.show {
+    display: flex;
 }
 
-.empty-products h4 {
-    margin: 0 0 5px;
+.product-preview-image,
+.summary-product-image {
+    background: #1b1b23;
 
-    font-family: "Manrope", sans-serif;
+    color: var(--muted);
 
-    font-size: 15px;
-    font-weight: 800;
+    display: grid;
+    place-items: center;
+
+    overflow: hidden;
+
+    flex-shrink: 0;
 }
 
-.empty-products p {
-    max-width: 400px;
+.product-preview-image {
+    width: 60px;
+    height: 60px;
 
-    margin: 0 auto 14px;
+    border-radius: 10px;
+
+    font-size: 9px;
+}
+
+.product-preview-image img,
+.summary-product-image img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+}
+
+.product-preview-info {
+    min-width: 0;
+}
+
+.product-preview-info strong {
+    display: block;
+
+    color: #ffffff;
+
+    font-size: 13px;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.product-preview-info span {
+    display: block;
+
+    margin-top: 4px;
 
     color: var(--muted);
 
     font-size: 11px;
-    line-height: 1.5;
 }
 
 
 /* =========================================================
-   BUTTONS
+   DURATION
    ========================================================= */
 
-.secondary-btn,
-.cancel-btn,
-.create-btn {
-    min-height: 42px;
+.duration-grid {
+    display: grid;
 
+    grid-template-columns:
+        repeat(7, minmax(0, 1fr));
+
+    gap: 7px;
+}
+
+.duration-option {
+    min-height: 67px;
+
+    padding: 7px 4px;
+
+    border: 1px solid var(--border);
     border-radius: 11px;
 
-    padding: 0 16px;
+    background: var(--surface-soft);
+    color: #ffffff;
 
-    display: inline-flex;
+    display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
 
-    font-size: 12px;
-    font-weight: 700;
-
-    white-space: nowrap;
+    gap: 3px;
 
     transition:
         background 0.18s ease,
         border-color 0.18s ease,
-        color 0.18s ease,
         transform 0.18s ease;
 }
 
-.secondary-btn {
-    border: 1px solid var(--border);
-
-    background: #15151c;
-    color: #d7d7df;
-}
-
-.secondary-btn:hover {
-    background: #1c1c25;
+.duration-option:hover {
+    background: #1b1b23;
     border-color: #393944;
 }
 
-.cancel-btn {
-    border: 1px solid var(--border);
+.duration-option.active {
+    background: var(--purple-soft);
 
-    background: #15151c;
-    color: #c8c8d2;
-}
+    border-color: rgba(108, 77, 246, 0.75);
 
-.cancel-btn:hover {
-    background: #1c1c25;
-    border-color: #393944;
-}
-
-.create-btn {
-    border: 1px solid var(--purple);
-
-    background: var(--purple);
     color: #ffffff;
-
-    box-shadow:
-        0 6px 18px rgba(108, 77, 246, 0.18);
 }
 
-.create-btn:hover {
-    background: var(--purple-dark);
-    border-color: var(--purple-dark);
+.duration-option strong {
+    font-family: "Manrope", sans-serif;
+
+    font-size: 18px;
+    font-weight: 800;
+
+    line-height: 1;
 }
 
-.create-btn:active,
-.cancel-btn:active,
-.secondary-btn:active {
-    transform: translateY(1px);
+.duration-option span {
+    color: var(--muted);
+
+    font-size: 9px;
+    font-weight: 600;
+}
+
+.duration-option.active span {
+    color: #bdb4ff;
 }
 
 
 /* =========================================================
-   FORM ACTIONS
+   BUDGET
    ========================================================= */
 
-.form-actions {
+.budget-input-wrapper {
+    height: 52px;
+
+    display: flex;
+    align-items: center;
+
+    border: 1px solid var(--border);
+    border-radius: 12px;
+
+    background: var(--surface-soft);
+
+    padding: 0 13px;
+}
+
+.budget-input-wrapper > span {
+    color: #ffffff;
+
+    font-size: 17px;
+    font-weight: 700;
+}
+
+.budget-input-wrapper input {
+    width: 100%;
+
+    height: 100%;
+
+    padding: 0 8px;
+
+    border: 0;
+    outline: 0;
+
+    background: transparent;
+
+    color: #ffffff;
+
+    font-family: "Manrope", sans-serif;
+
+    font-size: 20px;
+    font-weight: 800;
+}
+
+.budget-input-wrapper small {
+    color: var(--muted);
+
+    font-size: 11px;
+
+    white-space: nowrap;
+}
+
+.budget-hint {
+    margin-top: 7px;
+
+    color: var(--muted-light);
+
+    font-size: 10px;
+}
+
+.budget-total {
+    margin-top: 16px;
+
+    padding: 14px;
+
+    border: 1px solid var(--border);
+    border-radius: 12px;
+
+    background: #0f0f14;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 15px;
+}
+
+.budget-total span {
+    display: block;
+
+    color: #c8c8d2;
+
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.budget-total small {
+    display: block;
+
+    margin-top: 4px;
+
+    color: var(--muted);
+
+    font-size: 10px;
+}
+
+.budget-total strong {
+    font-family: "Manrope", sans-serif;
+
+    font-size: 21px;
+    font-weight: 800;
+
+    white-space: nowrap;
+}
+
+
+/* =========================================================
+   SUMMARY
+   ========================================================= */
+
+.promotion-summary {
+    position: sticky;
+    top: 98px;
+}
+
+.summary-card {
+    padding: 21px;
+}
+
+.summary-card h2 {
+    margin: 6px 0 18px;
+
+    font-family: "Manrope", sans-serif;
+
+    font-size: 19px;
+    font-weight: 800;
+}
+
+.summary-product {
     display: flex;
 
     align-items: center;
-    justify-content: flex-end;
 
-    gap: 10px;
+    gap: 11px;
+}
 
-    padding-top: 2px;
+.summary-product-image {
+    width: 58px;
+    height: 58px;
+
+    border-radius: 10px;
+
+    font-size: 9px;
+}
+
+.summary-product strong {
+    display: block;
+
+    color: #ffffff;
+
+    font-size: 12px;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    max-width: 210px;
+}
+
+.summary-product span {
+    display: block;
+
+    margin-top: 4px;
+
+    color: var(--muted);
+
+    font-size: 11px;
+}
+
+.summary-divider {
+    height: 1px;
+
+    margin: 17px 0;
+
+    background: var(--border);
+}
+
+.summary-row {
+    min-height: 35px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 15px;
+}
+
+.summary-row span {
+    color: var(--muted);
+
+    font-size: 12px;
+}
+
+.summary-row strong {
+    color: #ffffff;
+
+    font-size: 12px;
+}
+
+.total-row {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 15px;
+}
+
+.total-row span {
+    color: #c8c8d2;
+
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.total-row strong {
+    font-family: "Manrope", sans-serif;
+
+    color: #ffffff;
+
+    font-size: 24px;
+    font-weight: 800;
+}
+
+
+/* =========================================================
+   START BUTTON
+   ========================================================= */
+
+.start-promotion-button {
+    width: 100%;
+
+    min-height: 45px;
+
+    margin-top: 20px;
+
+    border: 1px solid var(--purple);
+    border-radius: 11px;
+
+    background: var(--purple);
+    color: #ffffff;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    box-shadow:
+        0 7px 20px rgba(108, 77, 246, 0.18);
+
+    transition:
+        background 0.18s ease,
+        border-color 0.18s ease,
+        transform 0.18s ease;
+}
+
+.start-promotion-button:hover {
+    background: var(--purple-dark);
+    border-color: var(--purple-dark);
+}
+
+.start-promotion-button:active {
+    transform: translateY(1px);
+}
+
+.summary-note {
+    margin: 12px 0 0;
+
+    color: var(--muted-light);
+
+    font-size: 9px;
+
+    line-height: 1.5;
+
+    text-align: center;
 }
 
 
@@ -608,11 +810,13 @@ a {
    ========================================================= */
 
 .promotion-footer {
-    max-width: 1100px;
+    max-width: 1180px;
 
     margin: 0 auto;
 
-    padding: 0 34px 28px;
+    padding: 18px 30px 25px;
+
+    border-top: 1px solid var(--border);
 
     display: flex;
     align-items: center;
@@ -621,9 +825,6 @@ a {
     color: var(--muted-light);
 
     font-size: 10px;
-
-    border-top: 1px solid var(--border);
-    padding-top: 18px;
 }
 
 
@@ -631,146 +832,124 @@ a {
    RESPONSIVE
    ========================================================= */
 
-@media (max-width: 800px) {
+@media (max-width: 900px) {
 
-    .promotion-header {
-        padding: 0 20px;
-    }
-
-    .header-left {
-        gap: 15px;
-    }
-
-    .promotion-content {
-        padding: 27px 20px 45px;
-    }
-
-    .promotion-footer {
-        padding-left: 20px;
-        padding-right: 20px;
-    }
-
-    .product-selection {
+    .promotion-layout {
         grid-template-columns: 1fr;
+    }
+
+    .promotion-summary {
+        position: static;
+    }
+
+    .summary-card {
+        max-width: none;
     }
 
 }
 
 
-@media (max-width: 650px) {
+@media (max-width: 700px) {
 
     .promotion-header {
         min-height: 72px;
 
-        padding: 0 16px;
+        padding: 0 18px;
     }
 
     .header-left {
-        width: 100%;
-    }
-
-    .back-link {
-        padding: 0 10px;
-
-        font-size: 11px;
-    }
-
-    .header-title span {
-        font-size: 8px;
-    }
-
-    .header-title h1 {
-        font-size: 18px;
-    }
-
-    .martey-logo {
-        display: none;
-    }
-
-    .promotion-content {
-        padding: 23px 16px 38px;
-    }
-
-    .page-intro h2 {
-        font-size: 25px;
-    }
-
-    .page-intro p {
-        font-size: 12px;
-    }
-
-    .form-card {
-        padding: 17px;
-        border-radius: 15px;
-    }
-
-    .card-heading {
-        margin-bottom: 17px;
-    }
-
-    .card-heading h3 {
-        font-size: 16px;
-    }
-
-    .form-grid {
-        grid-template-columns: 1fr;
         gap: 14px;
     }
 
-    .form-group.full-width {
-        grid-column: auto;
+    .martey-logo {
+        font-size: 22px;
     }
 
-    .selection-option label {
-        min-height: 80px;
-        padding: 15px;
+    .header-divider {
+        display: none;
     }
 
-    .form-actions {
-        justify-content: stretch;
+    .header-page-name {
+        font-size: 12px;
     }
 
-    .form-actions .cancel-btn,
-    .form-actions .create-btn {
-        flex: 1;
+    .back-button {
+        padding: 0 10px;
+
+        font-size: 10px;
+    }
+
+    .promotion-main {
+        padding: 25px 18px 45px;
+    }
+
+    .promotion-intro h1 {
+        font-size: 26px;
+    }
+
+    .promotion-card {
+        padding: 18px;
+    }
+
+    .duration-grid {
+        grid-template-columns:
+            repeat(4, minmax(0, 1fr));
     }
 
     .promotion-footer {
-        padding: 0 16px 22px;
-        padding-top: 16px;
+        padding-left: 18px;
+        padding-right: 18px;
     }
 
 }
 
 
-@media (max-width: 420px) {
+@media (max-width: 480px) {
 
-    .back-link {
+    .promotion-header {
+        padding: 0 14px;
+    }
+
+    .header-page-name {
+        display: none;
+    }
+
+    .back-button {
         min-height: 38px;
-        padding: 0 9px;
     }
 
-    .header-title h1 {
-        font-size: 17px;
+    .promotion-main {
+        padding: 22px 13px 38px;
     }
 
-    .promotion-content {
+    .promotion-intro h1 {
+        font-size: 24px;
+    }
+
+    .promotion-card {
+        padding: 16px;
+    }
+
+    .duration-grid {
+        grid-template-columns:
+            repeat(4, 1fr);
+    }
+
+    .duration-option {
+        min-height: 62px;
+    }
+
+    .budget-total {
+        align-items: flex-start;
+    }
+
+    .budget-total strong {
+        font-size: 19px;
+    }
+
+    .promotion-footer {
         padding-left: 13px;
         padding-right: 13px;
-    }
-
-    .form-card {
-        padding: 15px;
-    }
-
-    .form-actions {
-        flex-direction: column-reverse;
-    }
-
-    .form-actions .cancel-btn,
-    .form-actions .create-btn {
-        width: 100%;
-        flex: none;
     }
 
 }
