@@ -1013,7 +1013,7 @@ svg {
     left: 0;
     right: 0;
 
-    border-top: 1px dashed #ededf3;
+   border-top: 1px dashed #292932;
 }
 
 .chart-grid-line:nth-child(1) {
@@ -1074,7 +1074,7 @@ svg {
 .performance-item {
     min-height: 49px;
 
-    border-bottom: 1px solid #f0f0f4;
+    border-bottom: 1px solid #24242d;
 
     display: flex;
 
@@ -1257,7 +1257,7 @@ svg {
     border: 1px solid var(--border);
     border-radius: 11px;
 
-    background: #fafafd;
+   background: #15151c;
 }
 
 .product-search-box input,
@@ -1286,10 +1286,9 @@ svg {
 
     padding: 8px 12px;
 
-    background: #ffffff;
-
-    color: #6e6e7b;
-
+   background: #15151c;
+   color: #aaaab5;
+   
     font-size: 12px;
     font-weight: 700;
 }
@@ -1539,9 +1538,8 @@ svg {
 .store-detail-item {
     padding: 15px;
 
-    background: #fafafd;
-
-    border: 1px solid #efeff4;
+    background: #15151c;
+    border: 1px solid #292932;
 
     border-radius: 12px;
 }
@@ -1598,7 +1596,7 @@ svg {
 
     padding: 24px;
 
-    background: #ffffff;
+    background: #111116;
 
     border: 1px solid var(--border);
 
@@ -1623,9 +1621,8 @@ svg {
     border: 0;
     border-radius: 10px;
 
-    background: #f5f5f8;
-
-    color: #6c6c78;
+    background: #1b1b23;
+    color: #a7a7b2;
 
     display: grid;
     place-items: center;
@@ -1706,7 +1703,8 @@ svg {
     border: 0;
     border-radius: 11px;
 
-    background: #ffffff;
+    background: transparent;
+    color: #c8c8d2;
 
     display: flex;
     align-items: center;
@@ -1715,15 +1713,13 @@ svg {
 
     padding: 0 12px;
 
-    color: #41414d;
-
     text-align: left;
 
     font-weight: 600;
 }
 
 .profile-menu button:hover {
-    background: #f7f7fa;
+    background: #1b1b23;
 }
 
 .profile-menu-icon {
