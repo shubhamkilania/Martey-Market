@@ -1,6 +1,7 @@
 /* =========================================================
    MARTEY SELLER CENTER
-   Stable Navigation + Sidebar + Notifications + Profile
+   Functional Navigation + Products + Sidebar +
+   Notifications + Profile
 ========================================================= */
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -19,7 +20,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const sections = document.querySelectorAll(".seller-section");
 
     const addProductButton = document.getElementById("addProductButton");
-    const emptyAddProductButton = document.getElementById("emptyAddProductButton");
+    const emptyAddProductButton =
+        document.getElementById("emptyAddProductButton");
 
     const notificationButton =
         document.getElementById("notificationButton");
@@ -84,10 +86,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 section.classList.remove("active");
 
             }
+
         });
 
-
-        /* Update sidebar active button */
 
         navItems.forEach(function (button) {
 
@@ -104,14 +105,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
         if (!found) {
+
             console.warn(
                 "Section not found:",
                 sectionName
             );
+
         }
 
-
-        /* Scroll to top */
 
         window.scrollTo({
             top: 0,
@@ -119,11 +120,16 @@ document.addEventListener("DOMContentLoaded", function () {
         });
 
 
-        /* Close sidebar on smaller screens */
-
         if (window.innerWidth <= 900) {
             closeSidebar();
         }
+
+
+        /* Refresh products whenever Products opens */
+        if (sectionName === "products") {
+            renderSellerProducts();
+        }
+
     }
 
 
@@ -142,16 +148,19 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         if (mobileMenuButton) {
+
             mobileMenuButton.setAttribute(
                 "aria-expanded",
                 "true"
             );
+
         }
 
         localStorage.setItem(
             "marteySellerSidebar",
             "open"
         );
+
     }
 
 
@@ -166,16 +175,19 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         if (mobileMenuButton) {
+
             mobileMenuButton.setAttribute(
                 "aria-expanded",
                 "false"
             );
+
         }
 
         localStorage.setItem(
             "marteySellerSidebar",
             "closed"
         );
+
     }
 
 
@@ -191,6 +203,7 @@ document.addEventListener("DOMContentLoaded", function () {
         } else {
             closeSidebar();
         }
+
     }
 
 
@@ -204,6 +217,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 event.stopPropagation();
 
                 toggleSidebar();
+
             }
         );
 
@@ -236,7 +250,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     /* =====================================================
-       OTHER "OPEN SECTION" BUTTONS
+       OTHER OPEN SECTION BUTTONS
     ===================================================== */
 
     document.addEventListener(
@@ -258,6 +272,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 );
 
             showSection(section);
+
         }
     );
 
@@ -270,6 +285,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         window.location.href =
             "add-product.html";
+
     }
 
 
@@ -282,6 +298,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 event.preventDefault();
 
                 openAddProduct();
+
             }
         );
 
@@ -297,10 +314,685 @@ document.addEventListener("DOMContentLoaded", function () {
                 event.preventDefault();
 
                 openAddProduct();
+
             }
         );
 
     }
+
+
+    /* =====================================================
+       SELLER PRODUCTS
+    ===================================================== */
+
+    const sellerProductsList =
+        document.getElementById("sellerProductsList");
+
+    const productsListCount =
+        document.getElementById("productsListCount");
+
+    const productsEmptyState =
+        document.getElementById("productsEmptyState");
+
+    const productFilterButtons =
+        document.querySelectorAll(
+            "[data-product-filter]"
+        );
+
+
+    /* Get products saved by add-product.js */
+
+    function getSellerProducts() {
+
+        try {
+
+            const products =
+                JSON.parse(
+                    localStorage.getItem(
+                        "marteySellerProducts"
+                    )
+                );
+
+            if (Array.isArray(products)) {
+                return products;
+            }
+
+        } catch (error) {
+
+            console.warn(
+                "Could not read seller products",
+                error
+            );
+
+        }
+
+        return [];
+
+    }
+
+
+    /* Save products */
+
+    function saveSellerProducts(products) {
+
+        localStorage.setItem(
+            "marteySellerProducts",
+            JSON.stringify(products)
+        );
+
+    }
+
+
+    /* Determine product status */
+
+    function getProductStatus(product) {
+
+        if (!product) {
+            return "active";
+        }
+
+
+        /* Explicit status */
+
+        if (
+            product.status &&
+            typeof product.status === "string"
+        ) {
+
+            const status =
+                product.status
+                    .toLowerCase()
+                    .trim();
+
+            if (
+                status === "draft" ||
+                status === "active" ||
+                status === "published" ||
+                status === "out-of-stock" ||
+                status === "out_of_stock"
+            ) {
+
+                if (status === "published") {
+                    return "active";
+                }
+
+                if (status === "out_of_stock") {
+                    return "out-of-stock";
+                }
+
+                return status;
+
+            }
+
+        }
+
+
+        /* Draft detection */
+
+        if (
+            product.isDraft === true ||
+            product.draft === true
+        ) {
+
+            return "draft";
+
+        }
+
+
+        /* Stock detection */
+
+        const stock =
+            Number(
+                product.stock ??
+                product.quantity ??
+                product.inventory ??
+                0
+            );
+
+        if (stock <= 0) {
+            return "out-of-stock";
+        }
+
+
+        return "active";
+
+    }
+
+
+    /* Format price */
+
+    function formatPrice(value) {
+
+        const number =
+            Number(value || 0);
+
+        return "₹" +
+            number.toLocaleString("en-IN");
+
+    }
+
+
+    /* Escape HTML */
+
+    function escapeHTML(value) {
+
+        return String(value ?? "")
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
+
+    }
+
+
+    /* Get product image */
+
+    function getProductImage(product) {
+
+        if (!product) {
+            return "";
+        }
+
+
+        if (
+            typeof product.image === "string" &&
+            product.image
+        ) {
+
+            return product.image;
+
+        }
+
+
+        if (
+            typeof product.imageUrl === "string" &&
+            product.imageUrl
+        ) {
+
+            return product.imageUrl;
+
+        }
+
+
+        if (
+            Array.isArray(product.images) &&
+            product.images.length > 0
+        ) {
+
+            const firstImage =
+                product.images[0];
+
+            if (typeof firstImage === "string") {
+                return firstImage;
+            }
+
+            if (
+                firstImage &&
+                firstImage.url
+            ) {
+                return firstImage.url;
+            }
+
+        }
+
+
+        return "";
+
+    }
+
+
+    /* Product status badge */
+
+    function getStatusBadge(status) {
+
+        if (status === "draft") {
+
+            return `
+                <span class="product-status-badge draft">
+                    Draft
+                </span>
+            `;
+
+        }
+
+
+        if (status === "out-of-stock") {
+
+            return `
+                <span class="product-status-badge out-of-stock">
+                    Out of Stock
+                </span>
+            `;
+
+        }
+
+
+        return `
+            <span class="product-status-badge active">
+                Active
+            </span>
+        `;
+
+    }
+
+
+    /* Product card */
+
+    function createProductCard(product, index) {
+
+        const status =
+            getProductStatus(product);
+
+        const image =
+            getProductImage(product);
+
+        const name =
+            product.name ||
+            product.title ||
+            "Unnamed Product";
+
+        const category =
+            product.category ||
+            "General";
+
+        const price =
+            product.price ??
+            product.sellingPrice ??
+            0;
+
+        const stock =
+            product.stock ??
+            product.quantity ??
+            product.inventory ??
+            0;
+
+
+        const imageHTML = image
+            ? `
+                <img
+                    src="${escapeHTML(image)}"
+                    alt="${escapeHTML(name)}"
+                    class="seller-product-image"
+                >
+              `
+            : `
+                <div class="seller-product-image-placeholder">
+                    <span>No Image</span>
+                </div>
+              `;
+
+
+        return `
+            <div
+                class="seller-product-card"
+                data-product-status="${status}"
+                data-product-index="${index}"
+            >
+
+                <div class="seller-product-image-wrap">
+                    ${imageHTML}
+                </div>
+
+                <div class="seller-product-info">
+
+                    <div class="seller-product-top">
+
+                        <div>
+                            <span class="seller-product-category">
+                                ${escapeHTML(category)}
+                            </span>
+
+                            <h3>
+                                ${escapeHTML(name)}
+                            </h3>
+                        </div>
+
+                        ${getStatusBadge(status)}
+
+                    </div>
+
+                    <div class="seller-product-bottom">
+
+                        <div>
+                            <strong class="seller-product-price">
+                                ${formatPrice(price)}
+                            </strong>
+
+                            <span class="seller-product-stock">
+                                Stock: ${escapeHTML(stock)}
+                            </span>
+                        </div>
+
+                        <div class="seller-product-actions">
+
+                            <button
+                                type="button"
+                                class="seller-product-action"
+                                data-product-action="edit"
+                                data-product-index="${index}"
+                            >
+                                Edit
+                            </button>
+
+                            <button
+                                type="button"
+                                class="seller-product-action danger"
+                                data-product-action="delete"
+                                data-product-index="${index}"
+                            >
+                                Delete
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        `;
+
+    }
+
+
+    /* Render products */
+
+    function renderSellerProducts(
+        selectedFilter = "all"
+    ) {
+
+        if (!sellerProductsList) {
+            return;
+        }
+
+
+        const products =
+            getSellerProducts();
+
+
+        let filteredProducts =
+            products;
+
+
+        if (selectedFilter !== "all") {
+
+            filteredProducts =
+                products.filter(function (product) {
+
+                    return (
+                        getProductStatus(product) ===
+                        selectedFilter
+                    );
+
+                });
+
+        }
+
+
+        /* Count */
+
+        if (productsListCount) {
+
+            if (selectedFilter === "all") {
+
+                productsListCount.textContent =
+                    `${products.length} product${products.length === 1 ? "" : "s"}`;
+
+            } else {
+
+                productsListCount.textContent =
+                    `${filteredProducts.length} product${filteredProducts.length === 1 ? "" : "s"}`;
+
+            }
+
+        }
+
+
+        /* Empty state */
+
+        if (productsEmptyState) {
+
+            productsEmptyState.style.display =
+                filteredProducts.length === 0
+                    ? "block"
+                    : "none";
+
+        }
+
+
+        /* Clear list */
+
+        sellerProductsList.innerHTML = "";
+
+
+        if (filteredProducts.length === 0) {
+            return;
+        }
+
+
+        /* Create cards */
+
+        filteredProducts.forEach(
+            function (product, index) {
+
+                sellerProductsList.insertAdjacentHTML(
+                    "beforeend",
+                    createProductCard(
+                        product,
+                        index
+                    )
+                );
+
+            }
+        );
+
+    }
+
+
+    /* Product filters */
+
+    productFilterButtons.forEach(
+        function (button) {
+
+            button.addEventListener(
+                "click",
+                function (event) {
+
+                    event.preventDefault();
+
+                    const filter =
+                        button.getAttribute(
+                            "data-product-filter"
+                        ) || "all";
+
+
+                    /* Active button */
+
+                    productFilterButtons.forEach(
+                        function (item) {
+
+                            item.classList.remove(
+                                "active"
+                            );
+
+                        }
+                    );
+
+                    button.classList.add(
+                        "active"
+                    );
+
+
+                    renderSellerProducts(
+                        filter
+                    );
+
+                }
+            );
+
+        }
+    );
+
+
+    /* Product actions */
+
+    if (sellerProductsList) {
+
+        sellerProductsList.addEventListener(
+            "click",
+            function (event) {
+
+                const button =
+                    event.target.closest(
+                        "[data-product-action]"
+                    );
+
+                if (!button) return;
+
+
+                const action =
+                    button.getAttribute(
+                        "data-product-action"
+                    );
+
+                const index =
+                    Number(
+                        button.getAttribute(
+                            "data-product-index"
+                        )
+                    );
+
+
+                const products =
+                    getSellerProducts();
+
+
+                if (
+                    Number.isNaN(index) ||
+                    !products[index]
+                ) {
+
+                    return;
+
+                }
+
+
+                /* DELETE */
+
+                if (action === "delete") {
+
+                    const productName =
+                        products[index].name ||
+                        products[index].title ||
+                        "this product";
+
+
+                    const confirmed =
+                        confirm(
+                            `Delete "${productName}"?`
+                        );
+
+
+                    if (!confirmed) {
+                        return;
+                    }
+
+
+                    products.splice(
+                        index,
+                        1
+                    );
+
+
+                    saveSellerProducts(
+                        products
+                    );
+
+
+                    renderSellerProducts(
+                        getCurrentProductFilter()
+                    );
+
+
+                    return;
+
+                }
+
+
+                /* EDIT */
+
+                if (action === "edit") {
+
+                    const product =
+                        products[index];
+
+
+                    /*
+                       For now send product data
+                       to add-product page.
+                    */
+
+                    localStorage.setItem(
+                        "marteyEditingProduct",
+                        JSON.stringify(product)
+                    );
+
+
+                    window.location.href =
+                        "add-product.html?edit=true";
+
+                }
+
+            }
+        );
+
+    }
+
+
+    /* Current product filter */
+
+    function getCurrentProductFilter() {
+
+        const activeButton =
+            document.querySelector(
+                "[data-product-filter].active"
+            );
+
+
+        if (!activeButton) {
+            return "all";
+        }
+
+
+        return (
+            activeButton.getAttribute(
+                "data-product-filter"
+            ) || "all"
+        );
+
+    }
+
+
+    /* Automatically refresh if another page saves product */
+
+    window.addEventListener(
+        "storage",
+        function (event) {
+
+            if (
+                event.key ===
+                "marteySellerProducts"
+            ) {
+
+                renderSellerProducts(
+                    getCurrentProductFilter()
+                );
+
+            }
+
+        }
+    );
 
 
     /* =====================================================
@@ -313,14 +1005,18 @@ document.addEventListener("DOMContentLoaded", function () {
 
         notificationPanel.classList.add("show");
 
-        notificationPanel.style.display = "block";
+        notificationPanel.style.display =
+            "block";
 
         if (notificationButton) {
+
             notificationButton.setAttribute(
                 "aria-expanded",
                 "true"
             );
+
         }
+
     }
 
 
@@ -328,16 +1024,21 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (!notificationPanel) return;
 
-        notificationPanel.classList.remove("show");
+        notificationPanel.classList.remove(
+            "show"
+        );
 
         notificationPanel.style.display = "";
 
         if (notificationButton) {
+
             notificationButton.setAttribute(
                 "aria-expanded",
                 "false"
             );
+
         }
+
     }
 
 
@@ -346,13 +1047,16 @@ document.addEventListener("DOMContentLoaded", function () {
         if (!notificationPanel) return;
 
         const isOpen =
-            notificationPanel.classList.contains("show");
+            notificationPanel.classList.contains(
+                "show"
+            );
 
         if (isOpen) {
             closeNotifications();
         } else {
             openNotifications();
         }
+
     }
 
 
@@ -366,13 +1070,12 @@ document.addEventListener("DOMContentLoaded", function () {
                 event.stopPropagation();
 
                 toggleNotifications();
+
             }
         );
 
     }
 
-
-    /* Mark notifications read */
 
     if (markNotificationsRead) {
 
@@ -387,15 +1090,23 @@ document.addEventListener("DOMContentLoaded", function () {
                         ".notification-item.unread"
                     );
 
-                unread.forEach(function (item) {
-                    item.classList.remove("unread");
-                });
+
+                unread.forEach(
+                    function (item) {
+
+                        item.classList.remove(
+                            "unread"
+                        );
+
+                    }
+                );
 
 
                 const dot =
                     document.getElementById(
                         "notificationDot"
                     );
+
 
                 if (dot) {
                     dot.style.display = "none";
@@ -407,10 +1118,14 @@ document.addEventListener("DOMContentLoaded", function () {
                         "notificationCount"
                     );
 
+
                 if (count) {
+
                     count.textContent =
                         "You're all caught up";
+
                 }
+
             }
         );
 
@@ -425,18 +1140,26 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (!profileOverlay) return;
 
-        profileOverlay.classList.add("show");
+        profileOverlay.classList.add(
+            "show"
+        );
 
-        profileOverlay.style.display = "flex";
+        profileOverlay.style.display =
+            "flex";
+
 
         if (sellerProfileButton) {
+
             sellerProfileButton.setAttribute(
                 "aria-expanded",
                 "true"
             );
+
         }
 
+
         loadSellerProfile();
+
     }
 
 
@@ -444,16 +1167,22 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (!profileOverlay) return;
 
-        profileOverlay.classList.remove("show");
+        profileOverlay.classList.remove(
+            "show"
+        );
 
         profileOverlay.style.display = "";
 
+
         if (sellerProfileButton) {
+
             sellerProfileButton.setAttribute(
                 "aria-expanded",
                 "false"
             );
+
         }
+
     }
 
 
@@ -462,13 +1191,17 @@ document.addEventListener("DOMContentLoaded", function () {
         if (!profileOverlay) return;
 
         const isOpen =
-            profileOverlay.classList.contains("show");
+            profileOverlay.classList.contains(
+                "show"
+            );
+
 
         if (isOpen) {
             closeProfile();
         } else {
             openProfile();
         }
+
     }
 
 
@@ -482,6 +1215,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 event.stopPropagation();
 
                 toggleProfile();
+
             }
         );
 
@@ -497,13 +1231,12 @@ document.addEventListener("DOMContentLoaded", function () {
                 event.preventDefault();
 
                 closeProfile();
+
             }
         );
 
     }
 
-
-    /* Click outside profile */
 
     if (profileOverlay) {
 
@@ -515,7 +1248,9 @@ document.addEventListener("DOMContentLoaded", function () {
                     event.target ===
                     profileOverlay
                 ) {
+
                     closeProfile();
+
                 }
 
             }
@@ -531,6 +1266,7 @@ document.addEventListener("DOMContentLoaded", function () {
     function loadSellerProfile() {
 
         let currentUser = null;
+
 
         try {
 
@@ -561,19 +1297,27 @@ document.addEventListener("DOMContentLoaded", function () {
                         )
                     ) || [];
 
+
                 currentUser =
-                    accounts.find(function (account) {
+                    accounts.find(
+                        function (account) {
 
-                        return account.role === "seller";
+                            return (
+                                account.role ===
+                                "seller"
+                            );
 
-                    }) || null;
+                        }
+                    ) || null;
 
             } catch (error) {
 
                 console.warn(
                     "Could not read seller accounts"
                 );
+
             }
+
         }
 
 
@@ -588,6 +1332,7 @@ document.addEventListener("DOMContentLoaded", function () {
             currentUser.storeName ||
             "Seller";
 
+
         const email =
             currentUser.email ||
             currentUser.phone ||
@@ -599,10 +1344,12 @@ document.addEventListener("DOMContentLoaded", function () {
                 "profileSellerName"
             );
 
+
         const emailElement =
             document.getElementById(
                 "profileSellerEmail"
             );
+
 
         const avatarElement =
             document.getElementById(
@@ -640,7 +1387,9 @@ document.addEventListener("DOMContentLoaded", function () {
                     name
                         .trim()
                         .charAt(0)
-                        .toUpperCase() || "S";
+                        .toUpperCase() ||
+                    "S";
+
             }
 
         }
@@ -662,6 +1411,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 window.location.href =
                     "index.html";
+
             }
         );
 
@@ -680,10 +1430,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 event.preventDefault();
 
-                alert(
-                    "MARTEY Seller Help\n\n" +
-                    "Use the sidebar to manage your products, orders, inventory and store."
-                );
+                window.location.href =
+                    "seller-help.html";
+
             }
         );
 
@@ -700,6 +1449,7 @@ document.addEventListener("DOMContentLoaded", function () {
             "Store Settings\n\n" +
             "Store settings system will be connected here."
         );
+
     }
 
 
@@ -712,6 +1462,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 event.preventDefault();
 
                 openStoreSettings();
+
             }
         );
 
@@ -727,6 +1478,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 event.preventDefault();
 
                 openStoreSettings();
+
             }
         );
 
@@ -734,7 +1486,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     /* =====================================================
-       PROFILE MENU BUTTONS
+       PROFILE MENU
     ===================================================== */
 
     const accountSettings =
@@ -742,15 +1494,18 @@ document.addEventListener("DOMContentLoaded", function () {
             "sellerAccountSettings"
         );
 
+
     const businessSettings =
         document.getElementById(
             "sellerBusinessSettings"
         );
 
+
     const securitySettings =
         document.getElementById(
             "sellerSecuritySettings"
         );
+
 
     const logoutButton =
         document.getElementById(
@@ -820,6 +1575,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         "Are you sure you want to logout?"
                     );
 
+
                 if (!confirmLogout) {
                     return;
                 }
@@ -829,12 +1585,15 @@ document.addEventListener("DOMContentLoaded", function () {
                     "marteyCurrentUser"
                 );
 
+
                 localStorage.removeItem(
                     "marteyUser"
                 );
 
+
                 window.location.href =
                     "index.html";
+
             }
         );
 
@@ -861,26 +1620,16 @@ document.addEventListener("DOMContentLoaded", function () {
                     return;
                 }
 
+
                 const query =
                     sellerSearch.value
                         .trim()
                         .toLowerCase();
 
+
                 if (!query) {
                     return;
                 }
-
-
-                const possibleSections = [
-                    "products",
-                    "orders",
-                    "inventory",
-                    "earnings",
-                    "analytics",
-                    "reviews",
-                    "promotions",
-                    "store"
-                ];
 
 
                 let matchedSection =
@@ -890,14 +1639,20 @@ document.addEventListener("DOMContentLoaded", function () {
                 if (
                     query.includes("order")
                 ) {
-                    matchedSection = "orders";
+
+                    matchedSection =
+                        "orders";
+
                 }
 
                 else if (
                     query.includes("stock") ||
                     query.includes("inventory")
                 ) {
-                    matchedSection = "inventory";
+
+                    matchedSection =
+                        "inventory";
+
                 }
 
                 else if (
@@ -905,37 +1660,55 @@ document.addEventListener("DOMContentLoaded", function () {
                     query.includes("money") ||
                     query.includes("payout")
                 ) {
-                    matchedSection = "earnings";
+
+                    matchedSection =
+                        "earnings";
+
                 }
 
                 else if (
                     query.includes("analytic")
                 ) {
-                    matchedSection = "analytics";
+
+                    matchedSection =
+                        "analytics";
+
                 }
 
                 else if (
                     query.includes("review") ||
                     query.includes("rating")
                 ) {
-                    matchedSection = "reviews";
+
+                    matchedSection =
+                        "reviews";
+
                 }
 
                 else if (
                     query.includes("promotion") ||
                     query.includes("discount")
                 ) {
-                    matchedSection = "promotions";
+
+                    matchedSection =
+                        "promotions";
+
                 }
 
                 else if (
                     query.includes("store")
                 ) {
-                    matchedSection = "store";
+
+                    matchedSection =
+                        "store";
+
                 }
 
 
-                showSection(matchedSection);
+                showSection(
+                    matchedSection
+                );
+
             }
         );
 
@@ -943,7 +1716,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     /* =====================================================
-       CLOSE POPUPS WHEN CLICKING OUTSIDE
+       CLOSE POPUPS
     ===================================================== */
 
     document.addEventListener(
@@ -955,10 +1728,16 @@ document.addEventListener("DOMContentLoaded", function () {
             if (
                 notificationPanel &&
                 notificationButton &&
-                !notificationPanel.contains(event.target) &&
-                !notificationButton.contains(event.target)
+                !notificationPanel.contains(
+                    event.target
+                ) &&
+                !notificationButton.contains(
+                    event.target
+                )
             ) {
+
                 closeNotifications();
+
             }
 
 
@@ -966,7 +1745,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
             if (
                 profileOverlay &&
-                profileOverlay.classList.contains("show")
+                profileOverlay.classList.contains(
+                    "show"
+                )
             ) {
 
                 const panel =
@@ -974,13 +1755,21 @@ document.addEventListener("DOMContentLoaded", function () {
                         ".seller-profile-panel"
                     );
 
+
                 if (
                     panel &&
-                    !panel.contains(event.target) &&
-                    !sellerProfileButton?.contains(event.target)
+                    !panel.contains(
+                        event.target
+                    ) &&
+                    !sellerProfileButton?.contains(
+                        event.target
+                    )
                 ) {
+
                     closeProfile();
+
                 }
+
             }
 
         }
@@ -991,21 +1780,24 @@ document.addEventListener("DOMContentLoaded", function () {
        INITIAL STATE
     ===================================================== */
 
-    /* Hide all sections first */
+    sections.forEach(
+        function (section) {
 
-    sections.forEach(function (section) {
+            section.style.display =
+                "none";
 
-        section.style.display = "none";
-
-    });
-
-
-    /* Open dashboard */
-
-    showSection("dashboard");
+        }
+    );
 
 
-    /* Sidebar default */
+    /* Dashboard */
+
+    showSection(
+        "dashboard"
+    );
+
+
+    /* Sidebar */
 
     const savedSidebar =
         localStorage.getItem(
@@ -1024,19 +1816,63 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-    /* Close popup panels initially */
+    /* Initial products */
 
-    if (notificationPanel) {
-        notificationPanel.classList.remove("show");
+    renderSellerProducts(
+        "all"
+    );
+
+
+    /* Initial filter */
+
+    const allFilter =
+        document.querySelector(
+            '[data-product-filter="all"]'
+        );
+
+
+    if (allFilter) {
+
+        productFilterButtons.forEach(
+            function (button) {
+
+                button.classList.remove(
+                    "active"
+                );
+
+            }
+        );
+
+
+        allFilter.classList.add(
+            "active"
+        );
+
     }
 
+
+    /* Close popups */
+
+    if (notificationPanel) {
+
+        notificationPanel.classList.remove(
+            "show"
+        );
+
+    }
+
+
     if (profileOverlay) {
-        profileOverlay.classList.remove("show");
+
+        profileOverlay.classList.remove(
+            "show"
+        );
+
     }
 
 
     console.log(
-        "MARTEY Seller Center initialized"
+        "MARTEY Seller Center initialized successfully"
     );
 
 });
