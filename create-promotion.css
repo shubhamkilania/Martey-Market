@@ -1,0 +1,776 @@
+/* =========================================================
+   MARTEY — CREATE PROMOTION
+   Professional Seller Center
+   Dark Theme • Compact • Responsive
+   ========================================================= */
+
+:root {
+    --bg: #0b0b0f;
+    --surface: #111116;
+    --surface-soft: #15151c;
+
+    --text: #ffffff;
+    --text-soft: #c8c8d2;
+    --muted: #92929f;
+    --muted-light: #6f6f7c;
+
+    --border: #282832;
+
+    --purple: #6c4df6;
+    --purple-dark: #5738e8;
+    --purple-soft: rgba(108, 77, 246, 0.14);
+
+    --danger: #dc4b59;
+
+    --radius-sm: 10px;
+    --radius-md: 13px;
+    --radius-lg: 18px;
+
+    --shadow:
+        0 8px 28px rgba(0, 0, 0, 0.28);
+}
+
+
+/* =========================================================
+   RESET
+   ========================================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: "DM Sans", sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+
+button,
+input,
+select {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+
+/* =========================================================
+   PAGE
+   ========================================================= */
+
+.promotion-page {
+    min-height: 100vh;
+    background: var(--bg);
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.promotion-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+
+    min-height: 82px;
+    padding: 0 34px;
+
+    background: rgba(15, 15, 20, 0.96);
+    backdrop-filter: blur(14px);
+
+    border-bottom: 1px solid var(--border);
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 24px;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    min-width: 0;
+}
+
+.back-link {
+    min-height: 40px;
+
+    padding: 0 13px;
+
+    border: 1px solid var(--border);
+    border-radius: 11px;
+
+    background: #111116;
+    color: #b7b7c2;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    white-space: nowrap;
+
+    transition:
+        background 0.18s ease,
+        border-color 0.18s ease,
+        color 0.18s ease;
+}
+
+.back-link:hover {
+    background: #1a1a22;
+    border-color: #393944;
+    color: #ffffff;
+}
+
+.header-title {
+    min-width: 0;
+}
+
+.header-title span {
+    display: block;
+
+    color: var(--muted-light);
+
+    font-size: 9px;
+    font-weight: 800;
+
+    letter-spacing: 1.4px;
+}
+
+.header-title h1 {
+    margin: 4px 0 0;
+
+    font-family: "Manrope", sans-serif;
+
+    font-size: 21px;
+    font-weight: 800;
+
+    line-height: 1.2;
+    letter-spacing: -0.4px;
+}
+
+.martey-logo {
+    font-family: "Manrope", sans-serif;
+
+    font-size: 24px;
+    font-weight: 800;
+
+    letter-spacing: -1px;
+}
+
+.martey-logo span {
+    color: var(--purple);
+}
+
+
+/* =========================================================
+   CONTENT
+   ========================================================= */
+
+.promotion-content {
+    width: min(100%, 1100px);
+
+    margin: 0 auto;
+
+    padding: 34px 34px 60px;
+}
+
+.page-intro {
+    margin-bottom: 22px;
+}
+
+.eyebrow,
+.card-eyebrow {
+    display: block;
+
+    color: var(--muted-light);
+
+    font-size: 10px;
+    font-weight: 800;
+
+    letter-spacing: 1.4px;
+}
+
+.page-intro h2 {
+    margin: 7px 0 5px;
+
+    font-family: "Manrope", sans-serif;
+
+    font-size: 29px;
+    font-weight: 800;
+
+    line-height: 1.15;
+    letter-spacing: -0.8px;
+}
+
+.page-intro p {
+    margin: 0;
+
+    color: var(--muted);
+
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   FORM
+   ========================================================= */
+
+.promotion-form {
+    display: grid;
+    gap: 16px;
+}
+
+.form-card {
+    padding: 22px;
+
+    background: var(--surface);
+
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+
+    box-shadow: var(--shadow);
+}
+
+.card-heading {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    gap: 18px;
+
+    margin-bottom: 20px;
+}
+
+.card-heading h3 {
+    margin: 6px 0 4px;
+
+    font-family: "Manrope", sans-serif;
+
+    font-size: 18px;
+    font-weight: 800;
+
+    line-height: 1.3;
+}
+
+.card-heading p {
+    margin: 0;
+
+    color: var(--muted);
+
+    font-size: 12px;
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   FORM GRID
+   ========================================================= */
+
+.form-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 16px;
+}
+
+.form-group {
+    min-width: 0;
+}
+
+.form-group.full-width {
+    grid-column: 1 / -1;
+}
+
+.form-group label {
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: #d7d7df;
+
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    height: 43px;
+
+    padding: 0 12px;
+
+    border: 1px solid var(--border);
+    border-radius: 11px;
+
+    outline: none;
+
+    background: #15151c;
+    color: #ffffff;
+
+    font-size: 13px;
+
+    transition:
+        border-color 0.18s ease,
+        background 0.18s ease,
+        box-shadow 0.18s ease;
+}
+
+.form-group input::placeholder {
+    color: #676773;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: rgba(108, 77, 246, 0.8);
+
+    background: #171720;
+
+    box-shadow:
+        0 0 0 3px rgba(108, 77, 246, 0.10);
+}
+
+.form-group select {
+    cursor: pointer;
+}
+
+.form-group select option {
+    background: #111116;
+    color: #ffffff;
+}
+
+
+/* =========================================================
+   DISCOUNT INPUT
+   ========================================================= */
+
+.input-with-label {
+    position: relative;
+}
+
+.input-with-label input {
+    padding-right: 45px;
+}
+
+.input-with-label span {
+    position: absolute;
+
+    right: 13px;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    color: var(--muted);
+
+    font-size: 13px;
+    font-weight: 700;
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   PRODUCT SELECTION
+   ========================================================= */
+
+.product-selection {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 12px;
+}
+
+.selection-option {
+    position: relative;
+
+    min-width: 0;
+}
+
+.selection-option input {
+    position: absolute;
+
+    opacity: 0;
+    pointer-events: none;
+}
+
+.selection-option label {
+    min-height: 88px;
+
+    padding: 17px;
+
+    background: #15151c;
+
+    border: 1px solid var(--border);
+    border-radius: 13px;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+
+    cursor: pointer;
+
+    transition:
+        background 0.18s ease,
+        border-color 0.18s ease,
+        box-shadow 0.18s ease;
+}
+
+.selection-option label:hover {
+    background: #1a1a22;
+    border-color: #373743;
+}
+
+.selection-option input:checked + label {
+    background: var(--purple-soft);
+
+    border-color: rgba(108, 77, 246, 0.65);
+
+    box-shadow:
+        0 0 0 1px rgba(108, 77, 246, 0.12);
+}
+
+.selection-option strong {
+    color: #ffffff;
+
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.selection-option span {
+    margin-top: 5px;
+
+    color: var(--muted);
+
+    font-size: 11px;
+    line-height: 1.45;
+}
+
+
+/* =========================================================
+   SELECTED PRODUCTS
+   ========================================================= */
+
+.selected-products-box {
+    display: none;
+
+    margin-top: 14px;
+
+    padding: 18px;
+
+    background: #0f0f14;
+
+    border: 1px dashed #34343f;
+    border-radius: 13px;
+}
+
+.empty-products {
+    text-align: center;
+}
+
+.empty-products h4 {
+    margin: 0 0 5px;
+
+    font-family: "Manrope", sans-serif;
+
+    font-size: 15px;
+    font-weight: 800;
+}
+
+.empty-products p {
+    max-width: 400px;
+
+    margin: 0 auto 14px;
+
+    color: var(--muted);
+
+    font-size: 11px;
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   BUTTONS
+   ========================================================= */
+
+.secondary-btn,
+.cancel-btn,
+.create-btn {
+    min-height: 42px;
+
+    border-radius: 11px;
+
+    padding: 0 16px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    white-space: nowrap;
+
+    transition:
+        background 0.18s ease,
+        border-color 0.18s ease,
+        color 0.18s ease,
+        transform 0.18s ease;
+}
+
+.secondary-btn {
+    border: 1px solid var(--border);
+
+    background: #15151c;
+    color: #d7d7df;
+}
+
+.secondary-btn:hover {
+    background: #1c1c25;
+    border-color: #393944;
+}
+
+.cancel-btn {
+    border: 1px solid var(--border);
+
+    background: #15151c;
+    color: #c8c8d2;
+}
+
+.cancel-btn:hover {
+    background: #1c1c25;
+    border-color: #393944;
+}
+
+.create-btn {
+    border: 1px solid var(--purple);
+
+    background: var(--purple);
+    color: #ffffff;
+
+    box-shadow:
+        0 6px 18px rgba(108, 77, 246, 0.18);
+}
+
+.create-btn:hover {
+    background: var(--purple-dark);
+    border-color: var(--purple-dark);
+}
+
+.create-btn:active,
+.cancel-btn:active,
+.secondary-btn:active {
+    transform: translateY(1px);
+}
+
+
+/* =========================================================
+   FORM ACTIONS
+   ========================================================= */
+
+.form-actions {
+    display: flex;
+
+    align-items: center;
+    justify-content: flex-end;
+
+    gap: 10px;
+
+    padding-top: 2px;
+}
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+.promotion-footer {
+    max-width: 1100px;
+
+    margin: 0 auto;
+
+    padding: 0 34px 28px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    color: var(--muted-light);
+
+    font-size: 10px;
+
+    border-top: 1px solid var(--border);
+    padding-top: 18px;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 800px) {
+
+    .promotion-header {
+        padding: 0 20px;
+    }
+
+    .header-left {
+        gap: 15px;
+    }
+
+    .promotion-content {
+        padding: 27px 20px 45px;
+    }
+
+    .promotion-footer {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .product-selection {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+@media (max-width: 650px) {
+
+    .promotion-header {
+        min-height: 72px;
+
+        padding: 0 16px;
+    }
+
+    .header-left {
+        width: 100%;
+    }
+
+    .back-link {
+        padding: 0 10px;
+
+        font-size: 11px;
+    }
+
+    .header-title span {
+        font-size: 8px;
+    }
+
+    .header-title h1 {
+        font-size: 18px;
+    }
+
+    .martey-logo {
+        display: none;
+    }
+
+    .promotion-content {
+        padding: 23px 16px 38px;
+    }
+
+    .page-intro h2 {
+        font-size: 25px;
+    }
+
+    .page-intro p {
+        font-size: 12px;
+    }
+
+    .form-card {
+        padding: 17px;
+        border-radius: 15px;
+    }
+
+    .card-heading {
+        margin-bottom: 17px;
+    }
+
+    .card-heading h3 {
+        font-size: 16px;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    .form-group.full-width {
+        grid-column: auto;
+    }
+
+    .selection-option label {
+        min-height: 80px;
+        padding: 15px;
+    }
+
+    .form-actions {
+        justify-content: stretch;
+    }
+
+    .form-actions .cancel-btn,
+    .form-actions .create-btn {
+        flex: 1;
+    }
+
+    .promotion-footer {
+        padding: 0 16px 22px;
+        padding-top: 16px;
+    }
+
+}
+
+
+@media (max-width: 420px) {
+
+    .back-link {
+        min-height: 38px;
+        padding: 0 9px;
+    }
+
+    .header-title h1 {
+        font-size: 17px;
+    }
+
+    .promotion-content {
+        padding-left: 13px;
+        padding-right: 13px;
+    }
+
+    .form-card {
+        padding: 15px;
+    }
+
+    .form-actions {
+        flex-direction: column-reverse;
+    }
+
+    .form-actions .cancel-btn,
+    .form-actions .create-btn {
+        width: 100%;
+        flex: none;
+    }
+
+}
