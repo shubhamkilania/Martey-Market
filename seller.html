@@ -21,10 +21,7 @@
 
 <div class="seller-app" id="sellerApp">
 
-    <!-- =====================================================
-         SIDEBAR
-    ====================================================== -->
-
+    <!-- SIDEBAR -->
     <aside class="seller-sidebar" id="sellerSidebar">
 
         <div class="seller-logo">
@@ -36,66 +33,100 @@
 
         <nav class="seller-nav">
 
-            <button class="seller-nav-item active"
-                    data-section="dashboard"
-                    type="button">
-                <span class="nav-icon">⌂</span>
+            <button class="seller-nav-item active" data-section="dashboard" type="button">
+                <span class="nav-icon">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M3 10.5 12 3l9 7.5"/>
+                        <path d="M5.5 9.5V21h13V9.5"/>
+                        <path d="M9.5 21v-6h5v6"/>
+                    </svg>
+                </span>
                 <span>Dashboard</span>
             </button>
 
-            <button class="seller-nav-item"
-                    data-section="products"
-                    type="button">
-                <span class="nav-icon">▣</span>
+            <button class="seller-nav-item" data-section="products" type="button">
+                <span class="nav-icon">
+                    <svg viewBox="0 0 24 24">
+                        <path d="m12 3 8 4.5v9L12 21l-8-4.5v-9L12 3Z"/>
+                        <path d="m4.5 7.5 7.5 4 7.5-4"/>
+                        <path d="M12 12v9"/>
+                    </svg>
+                </span>
                 <span>Products</span>
             </button>
 
-            <button class="seller-nav-item"
-                    data-section="orders"
-                    type="button">
-                <span class="nav-icon">▤</span>
+            <button class="seller-nav-item" data-section="orders" type="button">
+                <span class="nav-icon">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M6 7h12l1 14H5L6 7Z"/>
+                        <path d="M9 7a3 3 0 0 1 6 0"/>
+                    </svg>
+                </span>
                 <span>Orders</span>
             </button>
 
-            <button class="seller-nav-item"
-                    data-section="inventory"
-                    type="button">
-                <span class="nav-icon">▦</span>
+            <button class="seller-nav-item" data-section="inventory" type="button">
+                <span class="nav-icon">
+                    <svg viewBox="0 0 24 24">
+                        <path d="m4 7 8-4 8 4-8 4-8-4Z"/>
+                        <path d="M4 7v10l8 4 8-4V7"/>
+                        <path d="M12 11v10"/>
+                    </svg>
+                </span>
                 <span>Inventory</span>
             </button>
 
-            <button class="seller-nav-item"
-                    data-section="earnings"
-                    type="button">
-                <span class="nav-icon">₹</span>
+            <button class="seller-nav-item" data-section="earnings" type="button">
+                <span class="nav-icon">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M3 6.5A2.5 2.5 0 0 1 5.5 4H20v16H5.5A2.5 2.5 0 0 1 3 17.5v-11Z"/>
+                        <path d="M3 7h17"/>
+                        <path d="M15 13h5"/>
+                    </svg>
+                </span>
                 <span>Earnings</span>
             </button>
 
-            <button class="seller-nav-item"
-                    data-section="analytics"
-                    type="button">
-                <span class="nav-icon">⌁</span>
+            <button class="seller-nav-item" data-section="analytics" type="button">
+                <span class="nav-icon">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M4 20V10"/>
+                        <path d="M10 20V5"/>
+                        <path d="M16 20v-8"/>
+                        <path d="M22 20H2"/>
+                    </svg>
+                </span>
                 <span>Analytics</span>
             </button>
 
-            <button class="seller-nav-item"
-                    data-section="promotions"
-                    type="button">
-                <span class="nav-icon">%</span>
+            <button class="seller-nav-item" data-section="promotions" type="button">
+                <span class="nav-icon">
+                    <svg viewBox="0 0 24 24">
+                        <path d="m3 12 9 9 9-9V4H13L3 12Z"/>
+                        <circle cx="16" cy="8" r="1.2"/>
+                    </svg>
+                </span>
                 <span>Promotions</span>
             </button>
 
-            <button class="seller-nav-item"
-                    data-section="reviews"
-                    type="button">
-                <span class="nav-icon">★</span>
+            <button class="seller-nav-item" data-section="reviews" type="button">
+                <span class="nav-icon">
+                    <svg viewBox="0 0 24 24">
+                        <path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2-5.6-3-5.6 3 1.1-6.2L3 9.6l6.2-.9L12 3Z"/>
+                    </svg>
+                </span>
                 <span>Reviews</span>
             </button>
 
-            <button class="seller-nav-item"
-                    data-section="store"
-                    type="button">
-                <span class="nav-icon">⌂</span>
+            <button class="seller-nav-item" data-section="store" type="button">
+                <span class="nav-icon">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M4 10v10h16V10"/>
+                        <path d="M3 10l2-6h14l2 6"/>
+                        <path d="M3 10a3 3 0 0 0 5 0 3 3 0 0 0 5 0 3 3 0 0 0 5 0 3 3 0 0 0 3 0"/>
+                        <path d="M9 20v-5h6v5"/>
+                    </svg>
+                </span>
                 <span>My Store</span>
             </button>
 
@@ -103,19 +134,25 @@
 
         <div class="sidebar-bottom">
 
-            <button
-                class="sidebar-help"
-                id="sellerHelpButton"
-                type="button">
-                <span class="nav-icon">?</span>
+            <button class="sidebar-help" id="sellerHelpButton" type="button">
+                <span class="nav-icon">
+                    <svg viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="9"/>
+                        <path d="M9.5 9a2.6 2.6 0 1 1 4.5 1.8c-1.2 1.1-2 1.5-2 3"/>
+                        <path d="M12 17h.01"/>
+                    </svg>
+                </span>
                 <span>Seller Help</span>
             </button>
 
-            <button
-                class="shop-martey-btn"
-                id="shopMarteyButton"
-                type="button">
-                <span class="nav-icon">↗</span>
+            <button class="shop-martey-btn" id="shopMarteyButton" type="button">
+                <span class="nav-icon">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M14 5h5v5"/>
+                        <path d="M19 5l-8 8"/>
+                        <path d="M19 13v5a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h5"/>
+                    </svg>
+                </span>
                 <span>Shop MARTEY</span>
             </button>
 
@@ -124,16 +161,10 @@
     </aside>
 
 
-    <!-- =====================================================
-         MAIN
-    ====================================================== -->
-
+    <!-- MAIN -->
     <main class="seller-main" id="sellerMain">
 
-        <!-- =================================================
-             TOPBAR
-        ================================================== -->
-
+        <!-- TOPBAR -->
         <header class="seller-topbar">
 
             <div class="topbar-left">
@@ -144,7 +175,13 @@
                     type="button"
                     aria-label="Open seller menu"
                     aria-expanded="false">
-                    <span>•••</span>
+
+                    <span class="menu-dots">
+                        <i></i>
+                        <i></i>
+                        <i></i>
+                    </span>
+
                 </button>
 
                 <div>
@@ -163,10 +200,14 @@
             <div class="topbar-right">
 
                 <!-- SEARCH -->
-
                 <div class="seller-search-box">
 
-                    <span class="search-icon">⌕</span>
+                    <span class="search-icon">
+                        <svg viewBox="0 0 24 24">
+                            <circle cx="10.8" cy="10.8" r="6.8"/>
+                            <path d="m16 16 5 5"/>
+                        </svg>
+                    </span>
 
                     <input
                         type="search"
@@ -180,7 +221,6 @@
 
 
                 <!-- NOTIFICATIONS -->
-
                 <div class="notification-wrapper">
 
                     <button
@@ -189,11 +229,19 @@
                         type="button"
                         aria-label="Notifications"
                         aria-expanded="false">
-                        🔔
+
+                        <span class="topbar-svg-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"/>
+                                <path d="M10 21h4"/>
+                            </svg>
+                        </span>
+
                         <span
                             class="notification-dot"
                             id="notificationDot">
                         </span>
+
                     </button>
 
 
@@ -225,7 +273,11 @@
                                 data-notification="order">
 
                                 <div class="notification-symbol">
-                                    !
+                                    <svg viewBox="0 0 24 24">
+                                        <path d="m12 3 8 4.5v9L12 21l-8-4.5v-9L12 3Z"/>
+                                        <path d="m4.5 7.5 7.5 4 7.5-4"/>
+                                        <path d="M12 12v9"/>
+                                    </svg>
                                 </div>
 
                                 <div>
@@ -244,7 +296,11 @@
                                 data-notification="payment">
 
                                 <div class="notification-symbol purple">
-                                    ₹
+                                    <svg viewBox="0 0 24 24">
+                                        <path d="M3 6.5A2.5 2.5 0 0 1 5.5 4H20v16H5.5A2.5 2.5 0 0 1 3 17.5v-11Z"/>
+                                        <path d="M3 7h17"/>
+                                        <path d="M15 13h5"/>
+                                    </svg>
                                 </div>
 
                                 <div>
@@ -263,7 +319,9 @@
                                 data-notification="review">
 
                                 <div class="notification-symbol blue">
-                                    ★
+                                    <svg viewBox="0 0 24 24">
+                                        <path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2-5.6-3-5.6 3 1.1-6.2L3 9.6l6.2-.9L12 3Z"/>
+                                    </svg>
                                 </div>
 
                                 <div>
@@ -284,7 +342,6 @@
 
 
                 <!-- SHOP MARTEY -->
-
                 <button
                     class="topbar-shop"
                     id="topShopButton"
@@ -294,7 +351,6 @@
 
 
                 <!-- PROFILE -->
-
                 <button
                     class="seller-profile"
                     id="sellerProfileButton"
@@ -315,17 +371,11 @@
         </header>
 
 
-        <!-- =================================================
-             PAGE CONTENT
-        ================================================== -->
-
+        <!-- PAGE CONTENT -->
         <div class="seller-content">
 
 
-            <!-- =================================================
-                 DASHBOARD
-            ================================================== -->
-
+            <!-- DASHBOARD -->
             <section
                 class="seller-section active"
                 data-page-section="dashboard">
@@ -333,7 +383,6 @@
                 <div class="welcome-row">
 
                     <div>
-
                         <span class="section-eyebrow">
                             SELLER CENTER
                         </span>
@@ -345,34 +394,43 @@
                         <p>
                             Manage your store, products and orders.
                         </p>
-
                     </div>
 
                     <button
                         class="primary-seller-btn"
                         id="addProductButton"
                         type="button">
-                        + Add Product
+
+                        <span class="button-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12 5v14M5 12h14"/>
+                            </svg>
+                        </span>
+
+                        Add Product
+
                     </button>
 
                 </div>
 
 
                 <!-- DASHBOARD STATS -->
-
                 <div class="seller-stats-grid">
 
                     <div class="seller-stat-card">
 
                         <div class="stat-card-top">
-                            <div class="stat-icon purple">₹</div>
+                            <div class="stat-icon purple">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M3 6.5A2.5 2.5 0 0 1 5.5 4H20v16H5.5A2.5 2.5 0 0 1 3 17.5v-11Z"/>
+                                    <path d="M3 7h17"/>
+                                    <path d="M15 13h5"/>
+                                </svg>
+                            </div>
                             <span class="stat-positive">—</span>
                         </div>
 
-                        <h3 id="dashboardTodaySales">
-                            ₹0
-                        </h3>
-
+                        <h3 id="dashboardTodaySales">₹0</h3>
                         <p>Today's Sales</p>
 
                     </div>
@@ -381,14 +439,16 @@
                     <div class="seller-stat-card">
 
                         <div class="stat-card-top">
-                            <div class="stat-icon blue">#</div>
+                            <div class="stat-icon blue">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M6 7h12l1 14H5L6 7Z"/>
+                                    <path d="M9 7a3 3 0 0 1 6 0"/>
+                                </svg>
+                            </div>
                             <span class="stat-positive">—</span>
                         </div>
 
-                        <h3 id="dashboardOrderCount">
-                            0
-                        </h3>
-
+                        <h3 id="dashboardOrderCount">0</h3>
                         <p>Total Orders</p>
 
                     </div>
@@ -397,13 +457,16 @@
                     <div class="seller-stat-card">
 
                         <div class="stat-card-top">
-                            <div class="stat-icon green">▣</div>
+                            <div class="stat-icon green">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="m12 3 8 4.5v9L12 21l-8-4.5v-9L12 3Z"/>
+                                    <path d="m4.5 7.5 7.5 4 7.5-4"/>
+                                    <path d="M12 12v9"/>
+                                </svg>
+                            </div>
                         </div>
 
-                        <h3 id="dashboardProductCount">
-                            0
-                        </h3>
-
+                        <h3 id="dashboardProductCount">0</h3>
                         <p>Active Products</p>
 
                     </div>
@@ -412,13 +475,15 @@
                     <div class="seller-stat-card">
 
                         <div class="stat-card-top">
-                            <div class="stat-icon orange">!</div>
+                            <div class="stat-icon orange">
+                                <svg viewBox="0 0 24 24">
+                                    <circle cx="12" cy="12" r="9"/>
+                                    <path d="M12 7v5l3 2"/>
+                                </svg>
+                            </div>
                         </div>
 
-                        <h3 id="dashboardPendingOrders">
-                            0
-                        </h3>
-
+                        <h3 id="dashboardPendingOrders">0</h3>
                         <p>Pending Orders</p>
 
                     </div>
@@ -427,7 +492,6 @@
 
 
                 <!-- SALES + PERFORMANCE -->
-
                 <div class="dashboard-grid">
 
                     <div class="seller-panel sales-panel">
@@ -448,17 +512,9 @@
                                 class="panel-select"
                                 id="salesPeriod">
 
-                                <option value="7">
-                                    Last 7 days
-                                </option>
-
-                                <option value="30">
-                                    Last 30 days
-                                </option>
-
-                                <option value="90">
-                                    Last 3 months
-                                </option>
+                                <option value="7">Last 7 days</option>
+                                <option value="30">Last 30 days</option>
+                                <option value="90">Last 3 months</option>
 
                             </select>
 
@@ -487,33 +543,13 @@
                                     class="chart-bars"
                                     id="dashboardChartBars">
 
-                                    <div class="chart-bar"
-                                         style="--height:20%">
-                                    </div>
-
-                                    <div class="chart-bar"
-                                         style="--height:35%">
-                                    </div>
-
-                                    <div class="chart-bar"
-                                         style="--height:25%">
-                                    </div>
-
-                                    <div class="chart-bar"
-                                         style="--height:50%">
-                                    </div>
-
-                                    <div class="chart-bar"
-                                         style="--height:40%">
-                                    </div>
-
-                                    <div class="chart-bar"
-                                         style="--height:65%">
-                                    </div>
-
-                                    <div class="chart-bar"
-                                         style="--height:45%">
-                                    </div>
+                                    <div class="chart-bar" style="--height:20%"></div>
+                                    <div class="chart-bar" style="--height:35%"></div>
+                                    <div class="chart-bar" style="--height:25%"></div>
+                                    <div class="chart-bar" style="--height:50%"></div>
+                                    <div class="chart-bar" style="--height:40%"></div>
+                                    <div class="chart-bar" style="--height:65%"></div>
+                                    <div class="chart-bar" style="--height:45%"></div>
 
                                 </div>
 
@@ -544,63 +580,28 @@
                         <div class="performance-list">
 
                             <div class="performance-item">
-                                <span class="performance-label">
-                                    Product views
-                                </span>
-
-                                <strong
-                                    class="performance-value"
-                                    id="dashboardProductViews">
-                                    0
-                                </strong>
+                                <span class="performance-label">Product views</span>
+                                <strong class="performance-value" id="dashboardProductViews">0</strong>
                             </div>
 
                             <div class="performance-item">
-                                <span class="performance-label">
-                                    Add to cart
-                                </span>
-
-                                <strong
-                                    class="performance-value"
-                                    id="dashboardAddToCart">
-                                    0
-                                </strong>
+                                <span class="performance-label">Add to cart</span>
+                                <strong class="performance-value" id="dashboardAddToCart">0</strong>
                             </div>
 
                             <div class="performance-item">
-                                <span class="performance-label">
-                                    Conversion
-                                </span>
-
-                                <strong
-                                    class="performance-value"
-                                    id="dashboardConversion">
-                                    0%
-                                </strong>
+                                <span class="performance-label">Conversion</span>
+                                <strong class="performance-value" id="dashboardConversion">0%</strong>
                             </div>
 
                             <div class="performance-item">
-                                <span class="performance-label">
-                                    Store rating
-                                </span>
-
-                                <strong
-                                    class="performance-value"
-                                    id="dashboardStoreRating">
-                                    —
-                                </strong>
+                                <span class="performance-label">Store rating</span>
+                                <strong class="performance-value" id="dashboardStoreRating">—</strong>
                             </div>
 
                             <div class="performance-item">
-                                <span class="performance-label">
-                                    Return rate
-                                </span>
-
-                                <strong
-                                    class="performance-value"
-                                    id="dashboardReturnRate">
-                                    0%
-                                </strong>
+                                <span class="performance-label">Return rate</span>
+                                <strong class="performance-value" id="dashboardReturnRate">0%</strong>
                             </div>
 
                         </div>
@@ -611,7 +612,6 @@
 
 
                 <!-- RECENT ORDERS + LOW STOCK -->
-
                 <div class="dashboard-bottom-grid">
 
                     <div class="seller-panel orders-panel">
@@ -636,7 +636,6 @@
                             </button>
 
                         </div>
-
 
                         <div class="orders-table-wrapper">
 
@@ -680,7 +679,6 @@
                                 <h3>
                                     Low Stock
                                 </h3>
-
                             </div>
 
                             <button
@@ -691,7 +689,6 @@
                             </button>
 
                         </div>
-
 
                         <div
                             class="low-stock-list"
@@ -710,11 +707,7 @@
             </section>
 
 
-
-            <!-- =================================================
-                 PRODUCTS
-            ================================================== -->
-
+            <!-- PRODUCTS -->
             <section
                 class="seller-section"
                 data-page-section="products">
@@ -728,20 +721,23 @@
                     <div class="section-heading-row">
 
                         <div>
-
                             <h2>Products</h2>
-
-                            <p>
-                                Manage everything you sell on MARTEY.
-                            </p>
-
+                            <p>Manage everything you sell on MARTEY.</p>
                         </div>
 
                         <button
                             class="primary-seller-btn"
                             id="productsAddButton"
                             type="button">
-                            + Add Product
+
+                            <span class="button-icon">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M12 5v14M5 12h14"/>
+                                </svg>
+                            </span>
+
+                            Add Product
+
                         </button>
 
                     </div>
@@ -753,7 +749,12 @@
 
                     <div class="product-search-box">
 
-                        <span>⌕</span>
+                        <span class="product-search-icon">
+                            <svg viewBox="0 0 24 24">
+                                <circle cx="10.8" cy="10.8" r="6.8"/>
+                                <path d="m16 16 5 5"/>
+                            </svg>
+                        </span>
 
                         <input
                             type="search"
@@ -766,33 +767,10 @@
 
                     <div class="product-filters">
 
-                        <button
-                            class="product-filter active"
-                            data-product-filter="all"
-                            type="button">
-                            All
-                        </button>
-
-                        <button
-                            class="product-filter"
-                            data-product-filter="active"
-                            type="button">
-                            Active
-                        </button>
-
-                        <button
-                            class="product-filter"
-                            data-product-filter="draft"
-                            type="button">
-                            Draft
-                        </button>
-
-                        <button
-                            class="product-filter"
-                            data-product-filter="out-of-stock"
-                            type="button">
-                            Out of Stock
-                        </button>
+                        <button class="product-filter active" data-product-filter="all" type="button">All</button>
+                        <button class="product-filter" data-product-filter="active" type="button">Active</button>
+                        <button class="product-filter" data-product-filter="draft" type="button">Draft</button>
+                        <button class="product-filter" data-product-filter="out-of-stock" type="button">Out of Stock</button>
 
                     </div>
 
@@ -806,13 +784,8 @@
                     <div class="products-list-header">
 
                         <div>
-                            <strong id="productsListCount">
-                                0 Products
-                            </strong>
-
-                            <span>
-                                Your MARTEY catalog
-                            </span>
+                            <strong id="productsListCount">0 Products</strong>
+                            <span>Your MARTEY catalog</span>
                         </div>
 
                     </div>
@@ -829,12 +802,14 @@
                         id="productsEmptyState">
 
                         <div class="coming-icon">
-                            ▣
+                            <svg viewBox="0 0 24 24">
+                                <path d="m12 3 8 4.5v9L12 21l-8-4.5v-9L12 3Z"/>
+                                <path d="m4.5 7.5 7.5 4 7.5-4"/>
+                                <path d="M12 12v9"/>
+                            </svg>
                         </div>
 
-                        <h3>
-                            No products yet
-                        </h3>
+                        <h3>No products yet</h3>
 
                         <p>
                             Add your first product and start building
@@ -845,7 +820,15 @@
                             class="primary-seller-btn"
                             id="emptyAddProductButton"
                             type="button">
-                            + Add Product
+
+                            <span class="button-icon">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M12 5v14M5 12h14"/>
+                                </svg>
+                            </span>
+
+                            Add Product
+
                         </button>
 
                     </div>
@@ -855,20 +838,14 @@
             </section>
 
 
-
-            <!-- =================================================
-                 ORDERS
-            ================================================== -->
-
+            <!-- ORDERS -->
             <section
                 class="seller-section"
                 data-page-section="orders">
 
                 <div class="section-page-heading">
 
-                    <span class="section-eyebrow">
-                        SALES
-                    </span>
+                    <span class="section-eyebrow">SALES</span>
 
                     <h2>Orders</h2>
 
@@ -879,15 +856,17 @@
                 </div>
 
 
-                <!-- ORDER SUMMARY -->
-
                 <div class="seller-stats-grid order-stats-grid">
 
                     <div class="seller-stat-card">
                         <div class="stat-card-top">
-                            <div class="stat-icon blue">#</div>
+                            <div class="stat-icon blue">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M6 7h12l1 14H5L6 7Z"/>
+                                    <path d="M9 7a3 3 0 0 1 6 0"/>
+                                </svg>
+                            </div>
                         </div>
-
                         <h3 id="ordersTotalCount">0</h3>
                         <p>All Orders</p>
                     </div>
@@ -895,9 +874,13 @@
 
                     <div class="seller-stat-card">
                         <div class="stat-card-top">
-                            <div class="stat-icon orange">!</div>
+                            <div class="stat-icon orange">
+                                <svg viewBox="0 0 24 24">
+                                    <circle cx="12" cy="12" r="9"/>
+                                    <path d="M12 7v5l3 2"/>
+                                </svg>
+                            </div>
                         </div>
-
                         <h3 id="ordersPendingCount">0</h3>
                         <p>Pending</p>
                     </div>
@@ -905,9 +888,13 @@
 
                     <div class="seller-stat-card">
                         <div class="stat-card-top">
-                            <div class="stat-icon purple">→</div>
+                            <div class="stat-icon purple">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M5 12h12"/>
+                                    <path d="m13 6 6 6-6 6"/>
+                                </svg>
+                            </div>
                         </div>
-
                         <h3 id="ordersShippedCount">0</h3>
                         <p>Shipped</p>
                     </div>
@@ -915,9 +902,13 @@
 
                     <div class="seller-stat-card">
                         <div class="stat-card-top">
-                            <div class="stat-icon green">✓</div>
+                            <div class="stat-icon green">
+                                <svg viewBox="0 0 24 24">
+                                    <circle cx="12" cy="12" r="9"/>
+                                    <path d="m8 12 2.7 2.7L16.5 9"/>
+                                </svg>
+                            </div>
                         </div>
-
                         <h3 id="ordersDeliveredCount">0</h3>
                         <p>Delivered</p>
                     </div>
@@ -930,12 +921,19 @@
                     <div class="management-toolbar">
 
                         <div class="management-search">
-                            <span>⌕</span>
+
+                            <span class="management-search-icon">
+                                <svg viewBox="0 0 24 24">
+                                    <circle cx="10.8" cy="10.8" r="6.8"/>
+                                    <path d="m16 16 5 5"/>
+                                </svg>
+                            </span>
 
                             <input
                                 type="search"
                                 id="ordersSearch"
                                 placeholder="Search orders...">
+
                         </div>
 
 
@@ -943,37 +941,14 @@
                             class="panel-select"
                             id="orderStatusFilter">
 
-                            <option value="all">
-                                All Status
-                            </option>
-
-                            <option value="new">
-                                New
-                            </option>
-
-                            <option value="confirmed">
-                                Confirmed
-                            </option>
-
-                            <option value="packed">
-                                Packed
-                            </option>
-
-                            <option value="shipped">
-                                Shipped
-                            </option>
-
-                            <option value="delivered">
-                                Delivered
-                            </option>
-
-                            <option value="cancelled">
-                                Cancelled
-                            </option>
-
-                            <option value="returned">
-                                Returned
-                            </option>
+                            <option value="all">All Status</option>
+                            <option value="new">New</option>
+                            <option value="confirmed">Confirmed</option>
+                            <option value="packed">Packed</option>
+                            <option value="shipped">Shipped</option>
+                            <option value="delivered">Delivered</option>
+                            <option value="cancelled">Cancelled</option>
+                            <option value="returned">Returned</option>
 
                         </select>
 
@@ -1015,20 +990,14 @@
             </section>
 
 
-
-            <!-- =================================================
-                 INVENTORY
-            ================================================== -->
-
+            <!-- INVENTORY -->
             <section
                 class="seller-section"
                 data-page-section="inventory">
 
                 <div class="section-page-heading">
 
-                    <span class="section-eyebrow">
-                        STOCK
-                    </span>
+                    <span class="section-eyebrow">STOCK</span>
 
                     <h2>Inventory</h2>
 
@@ -1042,62 +1011,63 @@
                 <div class="seller-stats-grid">
 
                     <div class="seller-stat-card">
-
                         <div class="stat-card-top">
-                            <div class="stat-icon blue">▣</div>
+                            <div class="stat-icon blue">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="m4 7 8-4 8 4-8 4-8-4Z"/>
+                                    <path d="M4 7v10l8 4 8-4V7"/>
+                                    <path d="M12 11v10"/>
+                                </svg>
+                            </div>
                         </div>
 
-                        <h3 id="inventoryTotalProducts">
-                            0
-                        </h3>
-
+                        <h3 id="inventoryTotalProducts">0</h3>
                         <p>Total Products</p>
-
                     </div>
 
 
                     <div class="seller-stat-card">
-
                         <div class="stat-card-top">
-                            <div class="stat-icon green">✓</div>
+                            <div class="stat-icon green">
+                                <svg viewBox="0 0 24 24">
+                                    <circle cx="12" cy="12" r="9"/>
+                                    <path d="m8 12 2.7 2.7L16.5 9"/>
+                                </svg>
+                            </div>
                         </div>
 
-                        <h3 id="inventoryInStock">
-                            0
-                        </h3>
-
+                        <h3 id="inventoryInStock">0</h3>
                         <p>In Stock</p>
-
                     </div>
 
 
                     <div class="seller-stat-card">
-
                         <div class="stat-card-top">
-                            <div class="stat-icon orange">!</div>
+                            <div class="stat-icon orange">
+                                <svg viewBox="0 0 24 24">
+                                    <circle cx="12" cy="12" r="9"/>
+                                    <path d="M12 7v5l3 2"/>
+                                </svg>
+                            </div>
                         </div>
 
-                        <h3 id="inventoryLowStock">
-                            0
-                        </h3>
-
+                        <h3 id="inventoryLowStock">0</h3>
                         <p>Low Stock</p>
-
                     </div>
 
 
                     <div class="seller-stat-card">
-
                         <div class="stat-card-top">
-                            <div class="stat-icon purple">×</div>
+                            <div class="stat-icon purple">
+                                <svg viewBox="0 0 24 24">
+                                    <circle cx="12" cy="12" r="9"/>
+                                    <path d="m8 8 8 8M16 8l-8 8"/>
+                                </svg>
+                            </div>
                         </div>
 
-                        <h3 id="inventoryOutOfStock">
-                            0
-                        </h3>
-
+                        <h3 id="inventoryOutOfStock">0</h3>
                         <p>Out of Stock</p>
-
                     </div>
 
                 </div>
@@ -1109,7 +1079,12 @@
 
                         <div class="management-search">
 
-                            <span>⌕</span>
+                            <span class="management-search-icon">
+                                <svg viewBox="0 0 24 24">
+                                    <circle cx="10.8" cy="10.8" r="6.8"/>
+                                    <path d="m16 16 5 5"/>
+                                </svg>
+                            </span>
 
                             <input
                                 type="search"
@@ -1123,21 +1098,10 @@
                             class="panel-select"
                             id="inventoryStatusFilter">
 
-                            <option value="all">
-                                All Stock
-                            </option>
-
-                            <option value="in-stock">
-                                In Stock
-                            </option>
-
-                            <option value="low-stock">
-                                Low Stock
-                            </option>
-
-                            <option value="out-of-stock">
-                                Out of Stock
-                            </option>
+                            <option value="all">All Stock</option>
+                            <option value="in-stock">In Stock</option>
+                            <option value="low-stock">Low Stock</option>
+                            <option value="out-of-stock">Out of Stock</option>
 
                         </select>
 
@@ -1147,9 +1111,6 @@
                     <div
                         class="inventory-list"
                         id="sellerInventoryList">
-
-                        <!-- seller.js renders inventory -->
-
                     </div>
 
                 </div>
@@ -1157,20 +1118,14 @@
             </section>
 
 
-
-            <!-- =================================================
-                 EARNINGS
-            ================================================== -->
-
+            <!-- EARNINGS -->
             <section
                 class="seller-section"
                 data-page-section="earnings">
 
                 <div class="section-page-heading">
 
-                    <span class="section-eyebrow">
-                        MONEY
-                    </span>
+                    <span class="section-eyebrow">MONEY</span>
 
                     <h2>Earnings</h2>
 
@@ -1184,62 +1139,63 @@
                 <div class="seller-stats-grid">
 
                     <div class="seller-stat-card">
-
                         <div class="stat-card-top">
-                            <div class="stat-icon purple">₹</div>
+                            <div class="stat-icon purple">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M3 6.5A2.5 2.5 0 0 1 5.5 4H20v16H5.5A2.5 2.5 0 0 1 3 17.5v-11Z"/>
+                                    <path d="M3 7h17"/>
+                                    <path d="M15 13h5"/>
+                                </svg>
+                            </div>
                         </div>
 
-                        <h3 id="earningsTotalSales">
-                            ₹0
-                        </h3>
-
+                        <h3 id="earningsTotalSales">₹0</h3>
                         <p>Total Sales</p>
-
                     </div>
 
 
                     <div class="seller-stat-card">
-
                         <div class="stat-card-top">
-                            <div class="stat-icon orange">−</div>
+                            <div class="stat-icon orange">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M5 12h14"/>
+                                </svg>
+                            </div>
                         </div>
 
-                        <h3 id="earningsCommission">
-                            ₹0
-                        </h3>
-
+                        <h3 id="earningsCommission">₹0</h3>
                         <p>MARTEY Commission</p>
-
                     </div>
 
 
                     <div class="seller-stat-card">
-
                         <div class="stat-card-top">
-                            <div class="stat-icon blue">↩</div>
+                            <div class="stat-icon blue">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M9 7H4v5"/>
+                                    <path d="M4 12a8 8 0 1 0 2-5"/>
+                                </svg>
+                            </div>
                         </div>
 
-                        <h3 id="earningsRefunds">
-                            ₹0
-                        </h3>
-
+                        <h3 id="earningsRefunds">₹0</h3>
                         <p>Refunds</p>
-
                     </div>
 
 
                     <div class="seller-stat-card">
-
                         <div class="stat-card-top">
-                            <div class="stat-icon green">₹</div>
+                            <div class="stat-icon green">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M3 6.5A2.5 2.5 0 0 1 5.5 4H20v16H5.5A2.5 2.5 0 0 1 3 17.5v-11Z"/>
+                                    <path d="M3 7h17"/>
+                                    <path d="M15 13h5"/>
+                                </svg>
+                            </div>
                         </div>
 
-                        <h3 id="earningsAvailable">
-                            ₹0
-                        </h3>
-
+                        <h3 id="earningsAvailable">₹0</h3>
                         <p>Available Payout</p>
-
                     </div>
 
                 </div>
@@ -1256,26 +1212,16 @@
                                     FINANCIAL OVERVIEW
                                 </span>
 
-                                <h3>
-                                    Earnings Overview
-                                </h3>
+                                <h3>Earnings Overview</h3>
                             </div>
 
                             <select
                                 class="panel-select"
                                 id="earningsPeriod">
 
-                                <option value="7">
-                                    Last 7 days
-                                </option>
-
-                                <option value="30">
-                                    Last 30 days
-                                </option>
-
-                                <option value="90">
-                                    Last 3 months
-                                </option>
+                                <option value="7">Last 7 days</option>
+                                <option value="30">Last 30 days</option>
+                                <option value="90">Last 3 months</option>
 
                             </select>
 
@@ -1314,13 +1260,9 @@
 
                     <div class="seller-panel payout-panel">
 
-                        <span class="panel-eyebrow">
-                            PAYOUT
-                        </span>
+                        <span class="panel-eyebrow">PAYOUT</span>
 
-                        <h3>
-                            Available Balance
-                        </h3>
+                        <h3>Available Balance</h3>
 
                         <strong
                             class="payout-amount"
@@ -1353,9 +1295,7 @@
                                 TRANSACTIONS
                             </span>
 
-                            <h3>
-                                Payout History
-                            </h3>
+                            <h3>Payout History</h3>
                         </div>
 
                     </div>
@@ -1394,20 +1334,14 @@
             </section>
 
 
-
-            <!-- =================================================
-                 ANALYTICS
-            ================================================== -->
-
+            <!-- ANALYTICS -->
             <section
                 class="seller-section"
                 data-page-section="analytics">
 
                 <div class="section-page-heading">
 
-                    <span class="section-eyebrow">
-                        INSIGHTS
-                    </span>
+                    <span class="section-eyebrow">INSIGHTS</span>
 
                     <h2>Analytics</h2>
 
@@ -1421,62 +1355,64 @@
                 <div class="seller-stats-grid">
 
                     <div class="seller-stat-card">
-
                         <div class="stat-card-top">
-                            <div class="stat-icon blue">◉</div>
+                            <div class="stat-icon blue">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6Z"/>
+                                    <circle cx="12" cy="12" r="2.5"/>
+                                </svg>
+                            </div>
                         </div>
 
-                        <h3 id="analyticsViews">
-                            0
-                        </h3>
-
+                        <h3 id="analyticsViews">0</h3>
                         <p>Product Views</p>
-
                     </div>
 
 
                     <div class="seller-stat-card">
-
                         <div class="stat-card-top">
-                            <div class="stat-icon purple">↗</div>
+                            <div class="stat-icon purple">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M4 17 10 11l4 4 6-7"/>
+                                    <path d="M15 8h5v5"/>
+                                </svg>
+                            </div>
                         </div>
 
-                        <h3 id="analyticsClicks">
-                            0
-                        </h3>
-
+                        <h3 id="analyticsClicks">0</h3>
                         <p>Product Clicks</p>
-
                     </div>
 
 
                     <div class="seller-stat-card">
-
                         <div class="stat-card-top">
-                            <div class="stat-icon orange">🛒</div>
+                            <div class="stat-icon orange">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M3 4h2l2.2 11.2a2 2 0 0 0 2 1.6h8.7a2 2 0 0 0 1.9-1.4L21 8H6"/>
+                                    <circle cx="10" cy="20" r="1"/>
+                                    <circle cx="18" cy="20" r="1"/>
+                                </svg>
+                            </div>
                         </div>
 
-                        <h3 id="analyticsCartAdds">
-                            0
-                        </h3>
-
+                        <h3 id="analyticsCartAdds">0</h3>
                         <p>Add to Cart</p>
-
                     </div>
 
 
                     <div class="seller-stat-card">
-
                         <div class="stat-card-top">
-                            <div class="stat-icon green">%</div>
+                            <div class="stat-icon green">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M19 5 5 19"/>
+                                    <circle cx="7" cy="7" r="2"/>
+                                    <circle cx="17" cy="17" r="2"/>
+                                </svg>
+                            </div>
                         </div>
 
-                        <h3 id="analyticsConversion">
-                            0%
-                        </h3>
-
+                        <h3 id="analyticsConversion">0%</h3>
                         <p>Conversion Rate</p>
-
                     </div>
 
                 </div>
@@ -1493,26 +1429,16 @@
                                     TRAFFIC
                                 </span>
 
-                                <h3>
-                                    Store Activity
-                                </h3>
+                                <h3>Store Activity</h3>
                             </div>
 
                             <select
                                 class="panel-select"
                                 id="analyticsPeriod">
 
-                                <option value="7">
-                                    Last 7 days
-                                </option>
-
-                                <option value="30">
-                                    Last 30 days
-                                </option>
-
-                                <option value="90">
-                                    Last 3 months
-                                </option>
+                                <option value="7">Last 7 days</option>
+                                <option value="30">Last 30 days</option>
+                                <option value="90">Last 3 months</option>
 
                             </select>
 
@@ -1559,9 +1485,7 @@
                                     TOP PRODUCTS
                                 </span>
 
-                                <h3>
-                                    Product Performance
-                                </h3>
+                                <h3>Product Performance</h3>
                             </div>
 
                         </div>
@@ -1575,6 +1499,7 @@
                                 <span class="performance-label">
                                     No product data
                                 </span>
+
                                 <strong class="performance-value">
                                     —
                                 </strong>
@@ -1589,20 +1514,14 @@
             </section>
 
 
-
-            <!-- =================================================
-                 PROMOTIONS
-            ================================================== -->
-
+            <!-- PROMOTIONS -->
             <section
                 class="seller-section"
                 data-page-section="promotions">
 
                 <div class="section-page-heading">
 
-                    <span class="section-eyebrow">
-                        GROWTH
-                    </span>
+                    <span class="section-eyebrow">GROWTH</span>
 
                     <h2>Promotions</h2>
 
@@ -1616,62 +1535,64 @@
                 <div class="seller-stats-grid">
 
                     <div class="seller-stat-card">
-
                         <div class="stat-card-top">
-                            <div class="stat-icon purple">%</div>
+                            <div class="stat-icon purple">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M19 5 5 19"/>
+                                    <circle cx="7" cy="7" r="2"/>
+                                    <circle cx="17" cy="17" r="2"/>
+                                </svg>
+                            </div>
                         </div>
 
-                        <h3 id="promotionsActiveCount">
-                            0
-                        </h3>
-
+                        <h3 id="promotionsActiveCount">0</h3>
                         <p>Active Promotions</p>
-
                     </div>
 
 
                     <div class="seller-stat-card">
-
                         <div class="stat-card-top">
-                            <div class="stat-icon blue">⚡</div>
+                            <div class="stat-icon blue">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="m13 2-9 12h7l-1 8 9-12h-7l1-8Z"/>
+                                </svg>
+                            </div>
                         </div>
 
-                        <h3 id="promotionsFlashCount">
-                            0
-                        </h3>
-
+                        <h3 id="promotionsFlashCount">0</h3>
                         <p>Flash Sales</p>
-
                     </div>
 
 
                     <div class="seller-stat-card">
-
                         <div class="stat-card-top">
-                            <div class="stat-icon green">✓</div>
+                            <div class="stat-icon green">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="m12 3 8 4.5v9L12 21l-8-4.5v-9L12 3Z"/>
+                                    <path d="m4.5 7.5 7.5 4 7.5-4"/>
+                                    <path d="M12 12v9"/>
+                                </svg>
+                            </div>
                         </div>
 
-                        <h3 id="promotionsProductsCount">
-                            0
-                        </h3>
-
+                        <h3 id="promotionsProductsCount">0</h3>
                         <p>Promoted Products</p>
-
                     </div>
 
 
                     <div class="seller-stat-card">
-
                         <div class="stat-card-top">
-                            <div class="stat-icon orange">↗</div>
+                            <div class="stat-icon orange">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M4 20 20 4"/>
+                                    <path d="M8 4h4"/>
+                                    <path d="M16 20h4"/>
+                                </svg>
+                            </div>
                         </div>
 
-                        <h3 id="promotionsExpiredCount">
-                            0
-                        </h3>
-
+                        <h3 id="promotionsExpiredCount">0</h3>
                         <p>Expired</p>
-
                     </div>
 
                 </div>
@@ -1701,7 +1622,15 @@
                         class="primary-seller-btn"
                         id="createPromotionButton"
                         type="button">
-                        + Create Promotion
+
+                        <span class="button-icon">
+                            <svg viewBox="0 0 24 24">
+                                <path d="M12 5v14M5 12h14"/>
+                            </svg>
+                        </span>
+
+                        Create Promotion
+
                     </button>
 
                 </div>
@@ -1716,9 +1645,7 @@
                                 PROMOTION MANAGEMENT
                             </span>
 
-                            <h3>
-                                Your Promotions
-                            </h3>
+                            <h3>Your Promotions</h3>
                         </div>
 
                     </div>
@@ -1739,11 +1666,7 @@
             </section>
 
 
-
-            <!-- =================================================
-                 REVIEWS
-            ================================================== -->
-
+            <!-- REVIEWS -->
             <section
                 class="seller-section"
                 data-page-section="reviews">
@@ -1766,62 +1689,61 @@
                 <div class="seller-stats-grid">
 
                     <div class="seller-stat-card">
-
                         <div class="stat-card-top">
-                            <div class="stat-icon purple">★</div>
+                            <div class="stat-icon purple">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2-5.6-3-5.6 3 1.1-6.2L3 9.6l6.2-.9L12 3Z"/>
+                                </svg>
+                            </div>
                         </div>
 
-                        <h3 id="reviewsAverageRating">
-                            —
-                        </h3>
-
+                        <h3 id="reviewsAverageRating">—</h3>
                         <p>Average Rating</p>
-
                     </div>
 
 
                     <div class="seller-stat-card">
-
                         <div class="stat-card-top">
-                            <div class="stat-icon blue">#</div>
+                            <div class="stat-icon blue">
+                                <svg viewBox="0 0 24 24">
+                                    <path d="M6 7h12l1 14H5L6 7Z"/>
+                                    <path d="M9 7a3 3 0 0 1 6 0"/>
+                                </svg>
+                            </div>
                         </div>
 
-                        <h3 id="reviewsTotalCount">
-                            0
-                        </h3>
-
+                        <h3 id="reviewsTotalCount">0</h3>
                         <p>Total Reviews</p>
-
                     </div>
 
 
                     <div class="seller-stat-card">
-
                         <div class="stat-card-top">
-                            <div class="stat-icon green">✓</div>
+                            <div class="stat-icon green">
+                                <svg viewBox="0 0 24 24">
+                                    <circle cx="12" cy="12" r="9"/>
+                                    <path d="m8 12 2.7 2.7L16.5 9"/>
+                                </svg>
+                            </div>
                         </div>
 
-                        <h3 id="reviewsPositiveCount">
-                            0
-                        </h3>
-
+                        <h3 id="reviewsPositiveCount">0</h3>
                         <p>Positive Reviews</p>
-
                     </div>
 
 
                     <div class="seller-stat-card">
-
                         <div class="stat-card-top">
-                            <div class="stat-icon orange">!</div>
+                            <div class="stat-icon orange">
+                                <svg viewBox="0 0 24 24">
+                                    <circle cx="12" cy="12" r="9"/>
+                                    <path d="M12 7v5l3 2"/>
+                                </svg>
+                            </div>
                         </div>
 
-                        <h3 id="reviewsPendingReplies">
-                            0
-                        </h3>
-
+                        <h3 id="reviewsPendingReplies">0</h3>
                         <p>Need Reply</p>
-
                     </div>
 
                 </div>
@@ -1838,9 +1760,7 @@
                                     RATING BREAKDOWN
                                 </span>
 
-                                <h3>
-                                    Customer Ratings
-                                </h3>
+                                <h3>Customer Ratings</h3>
                             </div>
 
                         </div>
@@ -1904,9 +1824,7 @@
                                     CUSTOMER EXPERIENCE
                                 </span>
 
-                                <h3>
-                                    Review Summary
-                                </h3>
+                                <h3>Review Summary</h3>
                             </div>
 
                         </div>
@@ -1956,9 +1874,7 @@
                                 CUSTOMER REVIEWS
                             </span>
 
-                            <h3>
-                                Recent Reviews
-                            </h3>
+                            <h3>Recent Reviews</h3>
                         </div>
 
                     </div>
@@ -1979,11 +1895,7 @@
             </section>
 
 
-
-            <!-- =================================================
-                 MY STORE
-            ================================================== -->
-
+            <!-- MY STORE -->
             <section
                 class="seller-section"
                 data-page-section="store">
@@ -1998,9 +1910,7 @@
 
                         <div>
 
-                            <h2>
-                                My Store
-                            </h2>
+                            <h2>My Store</h2>
 
                             <p>
                                 Manage how your MARTEY store looks to customers.
@@ -2008,11 +1918,21 @@
 
                         </div>
 
+
                         <button
                             class="secondary-seller-btn"
                             id="storeSettingsButton"
                             type="button">
-                            ⚙ Store Settings
+
+                            <span class="button-icon">
+                                <svg viewBox="0 0 24 24">
+                                    <circle cx="12" cy="12" r="3.5"/>
+                                    <path d="m19 15 .1.1a2 2 0 1 1-2.8 2.8l-.1-.1M5 9l-.1-.1A2 2 0 1 1 7.7 6.1l.1.1M15 5l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1M9 19l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1"/>
+                                </svg>
+                            </span>
+
+                            Store Settings
+
                         </button>
 
                     </div>
@@ -2021,8 +1941,6 @@
 
 
                 <div class="store-management-grid">
-
-                    <!-- STORE PREVIEW -->
 
                     <div class="seller-panel store-preview-card">
 
@@ -2068,17 +1986,13 @@
                     </div>
 
 
-                    <!-- STORE TOOLS -->
-
                     <div class="seller-panel store-tools-card">
 
                         <span class="panel-eyebrow">
                             STORE MANAGEMENT
                         </span>
 
-                        <h3>
-                            Store Settings
-                        </h3>
+                        <h3>Store Settings</h3>
 
                         <p>
                             Update your store name, logo, banner,
@@ -2097,8 +2011,6 @@
                 </div>
 
 
-                <!-- STORE INFORMATION -->
-
                 <div class="seller-panel store-information-panel">
 
                     <div class="panel-header">
@@ -2108,9 +2020,7 @@
                                 STORE INFORMATION
                             </span>
 
-                            <h3>
-                                Store Details
-                            </h3>
+                            <h3>Store Details</h3>
                         </div>
 
                     </div>
@@ -2120,38 +2030,28 @@
 
                         <div class="store-detail-item">
                             <span>Store Name</span>
-                            <strong id="storeDetailName">
-                                Your Store
-                            </strong>
+                            <strong id="storeDetailName">Your Store</strong>
                         </div>
 
                         <div class="store-detail-item">
                             <span>Store Category</span>
-                            <strong id="storeDetailCategory">
-                                —
-                            </strong>
+                            <strong id="storeDetailCategory">—</strong>
                         </div>
 
                         <div class="store-detail-item">
                             <span>Products</span>
-                            <strong id="storeDetailProducts">
-                                0
-                            </strong>
+                            <strong id="storeDetailProducts">0</strong>
                         </div>
 
                         <div class="store-detail-item">
                             <span>Store Rating</span>
-                            <strong id="storeDetailRating">
-                                —
-                            </strong>
+                            <strong id="storeDetailRating">—</strong>
                         </div>
 
                     </div>
 
                 </div>
 
-
-                <!-- STORE PRODUCTS -->
 
                 <div class="seller-panel data-management-panel">
 
@@ -2162,9 +2062,7 @@
                                 STORE CATALOG
                             </span>
 
-                            <h3>
-                                Store Products
-                            </h3>
+                            <h3>Store Products</h3>
                         </div>
 
                         <button
@@ -2198,11 +2096,7 @@
 </div>
 
 
-
-<!-- =========================================================
-     PROFILE PANEL
-========================================================== -->
-
+<!-- PROFILE PANEL -->
 <div
     class="profile-overlay"
     id="profileOverlay">
@@ -2218,7 +2112,11 @@
             id="profileCloseButton"
             type="button"
             aria-label="Close profile">
-            ×
+
+            <svg viewBox="0 0 24 24">
+                <path d="m6 6 12 12M18 6 6 18"/>
+            </svg>
+
         </button>
 
 
@@ -2255,24 +2153,50 @@
             <button
                 type="button"
                 id="sellerAccountSettings">
-                <span>👤</span>
+
+                <span class="profile-menu-icon">
+                    <svg viewBox="0 0 24 24">
+                        <circle cx="9" cy="8" r="3"/>
+                        <path d="M3.5 20a5.5 5.5 0 0 1 11 0"/>
+                        <path d="M17 12v7M13.5 15.5h7"/>
+                    </svg>
+                </span>
+
                 Account &amp; Profile
+
             </button>
 
 
             <button
                 type="button"
                 id="sellerBusinessSettings">
-                <span>🏪</span>
+
+                <span class="profile-menu-icon">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M4 10v10h16V10"/>
+                        <path d="M3 10l2-6h14l2 6"/>
+                        <path d="M3 10a3 3 0 0 0 5 0 3 3 0 0 0 5 0 3 3 0 0 0 5 0 3 3 0 0 0 3 0"/>
+                    </svg>
+                </span>
+
                 Business Information
+
             </button>
 
 
             <button
                 type="button"
                 id="sellerSecuritySettings">
-                <span>🔒</span>
+
+                <span class="profile-menu-icon">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M12 3 20 6v5c0 5-3.3 8.5-8 10-4.7-1.5-8-5-8-10V6l8-3Z"/>
+                        <path d="m9 12 2 2 4-4"/>
+                    </svg>
+                </span>
+
                 Login &amp; Security
+
             </button>
 
 
@@ -2280,8 +2204,16 @@
                 type="button"
                 id="sellerLogoutButton"
                 class="profile-danger">
-                <span>↪</span>
+
+                <span class="profile-menu-icon">
+                    <svg viewBox="0 0 24 24">
+                        <path d="M10 4H5a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h5"/>
+                        <path d="m14 8 4 4-4 4M8 12h10"/>
+                    </svg>
+                </span>
+
                 Logout
+
             </button>
 
         </div>
@@ -2291,13 +2223,7 @@
 </div>
 
 
-
-<!-- =========================================================
-     GENERIC MODAL
-     Future JS can use this for orders, promotions, reviews,
-     store settings, etc.
-========================================================== -->
-
+<!-- GENERIC MODAL -->
 <div
     class="seller-modal-overlay"
     id="sellerModalOverlay"
@@ -2314,7 +2240,11 @@
             id="sellerModalClose"
             type="button"
             aria-label="Close">
-            ×
+
+            <svg viewBox="0 0 24 24">
+                <path d="m6 6 12 12M18 6 6 18"/>
+            </svg>
+
         </button>
 
         <div id="sellerModalContent"></div>
@@ -2324,18 +2254,13 @@
 </div>
 
 
-
-<!-- =========================================================
-     TOAST / MESSAGE
-========================================================== -->
-
+<!-- TOAST -->
 <div
     class="seller-toast"
     id="sellerToast"
     role="status"
     aria-live="polite">
 </div>
-
 
 
 <script src="seller.js"></script>
