@@ -1,8 +1,8 @@
 document.addEventListener("DOMContentLoaded", function () {
 
-    /* =====================================================
+    /* =========================================================
        PRODUCT DATABASE
-    ===================================================== */
+    ========================================================= */
 
     const productDatabase = {
 
@@ -69,206 +69,124 @@ document.addEventListener("DOMContentLoaded", function () {
     };
 
 
-    /* =====================================================
-       GET PRODUCT ID
-    ===================================================== */
-
-    const urlParams =
+    const params =
         new URLSearchParams(window.location.search);
 
     const productId =
-        urlParams.get("id") || "1";
+        params.get("id") || "1";
 
     const product =
         productDatabase[productId] ||
         productDatabase["1"];
 
 
-    /* =====================================================
+    /* =========================================================
        ELEMENTS
-    ===================================================== */
+    ========================================================= */
 
-    const productTitle =
-        document.getElementById("productTitle");
-
-    const productCategory =
-        document.getElementById("productCategory");
-
-    const productPrice =
-        document.getElementById("productPrice");
-
-    const productMRP =
-        document.getElementById("productMRP");
-
-    const productDiscount =
-        document.getElementById("productDiscount");
-
-    const productRating =
-        document.getElementById("productRating");
-
-    const productReviews =
-        document.getElementById("productReviews");
-
-    const productBadge =
-        document.getElementById("productBadge");
-
-    const mainProductImage =
-        document.getElementById("mainProductImage");
-
-    const breadcrumbProduct =
-        document.getElementById("breadcrumbProduct");
-
-    const specCategory =
-        document.getElementById("specCategory");
-
-    const reviewScore =
-        document.getElementById("reviewScore");
-
-    const reviewCount =
-        document.getElementById("reviewCount");
-
-    const productToast =
-        document.getElementById("productToast");
+    const $ = function (id) {
+        return document.getElementById(id);
+    };
 
 
-    /* =====================================================
-       UPDATE PRODUCT
-    ===================================================== */
+    /* =========================================================
+       PRODUCT DATA
+    ========================================================= */
 
-    if (productTitle) {
-        productTitle.textContent = product.title;
-    }
+    $("productTitle").textContent = product.title;
+    $("productCategory").textContent = product.category;
 
-    if (productCategory) {
-        productCategory.textContent = product.category;
-    }
+    $("productPrice").textContent =
+        "₹" + Number(product.price).toLocaleString("en-IN");
 
-    if (productPrice) {
-        productPrice.textContent =
-            "₹" + Number(product.price).toLocaleString("en-IN");
-    }
+    $("productMRP").textContent =
+        "₹" + Number(product.mrp).toLocaleString("en-IN");
 
-    if (productMRP) {
-        productMRP.textContent =
-            "₹" + Number(product.mrp).toLocaleString("en-IN");
-    }
+    $("productDiscount").textContent =
+        product.discount;
 
-    if (productDiscount) {
-        productDiscount.textContent =
-            product.discount;
-    }
+    $("productRating").textContent =
+        product.rating;
 
-    if (productRating) {
-        productRating.textContent =
-            product.rating;
-    }
+    $("productReviews").textContent =
+        product.reviews;
 
-    if (productReviews) {
-        productReviews.textContent =
-            product.reviews;
-    }
+    $("productBadge").textContent =
+        product.badge;
 
-    if (productBadge) {
-        productBadge.textContent =
-            product.badge;
-    }
+    $("mainProductImage").src =
+        product.image;
 
-    if (mainProductImage) {
-        mainProductImage.src =
-            product.image;
+    $("mainProductImage").alt =
+        product.title;
 
-        mainProductImage.alt =
-            product.title;
-    }
+    $("breadcrumbProduct").textContent =
+        product.title;
 
-    if (breadcrumbProduct) {
-        breadcrumbProduct.textContent =
-            product.title;
-    }
+    $("specCategory").textContent =
+        product.category;
 
-    if (specCategory) {
-        specCategory.textContent =
-            product.category;
-    }
+    $("reviewScore").textContent =
+        product.rating;
 
-    if (reviewScore) {
-        reviewScore.textContent =
-            product.rating;
-    }
-
-    if (reviewCount) {
-        reviewCount.textContent =
-            product.reviews;
-    }
+    $("reviewCount").textContent =
+        product.reviews;
 
     document.title =
         product.title + " | MARTEY";
 
 
-    /* =====================================================
+    /* =========================================================
        TOAST
-    ===================================================== */
+    ========================================================= */
 
     function showToast(message) {
 
-        if (!productToast) {
-            return;
-        }
+        const toast = $("productToast");
 
-        productToast.textContent =
-            message;
+        if (!toast) return;
 
-        productToast.classList.add("show");
+        toast.textContent = message;
+        toast.classList.add("show");
 
-        clearTimeout(window.marteyProductToastTimer);
+        clearTimeout(window.marteyToastTimer);
 
-        window.marteyProductToastTimer =
+        window.marteyToastTimer =
             setTimeout(function () {
-
-                productToast.classList.remove("show");
-
+                toast.classList.remove("show");
             }, 2200);
     }
 
 
-    /* =====================================================
-       PRODUCT THUMBNAILS
-    ===================================================== */
+    /* =========================================================
+       IMAGE GALLERY
+    ========================================================= */
 
-    const thumbnails =
-        document.querySelectorAll(
-            ".product-thumbnail"
-        );
+    document.querySelectorAll(
+        ".product-thumbnail"
+    ).forEach(function (button) {
 
-    thumbnails.forEach(function (thumbnail) {
-
-        thumbnail.addEventListener(
+        button.addEventListener(
             "click",
             function () {
 
                 const image =
-                    thumbnail.dataset.image;
+                    button.dataset.image;
 
-                if (!image || !mainProductImage) {
-                    return;
-                }
+                if (!image) return;
 
-                mainProductImage.src =
+                $("mainProductImage").src =
                     image;
 
-                thumbnails.forEach(
-                    function (item) {
+                document.querySelectorAll(
+                    ".product-thumbnail"
+                ).forEach(function (item) {
 
-                        item.classList.remove(
-                            "active"
-                        );
+                    item.classList.remove("active");
 
-                    }
-                );
+                });
 
-                thumbnail.classList.add(
-                    "active"
-                );
+                button.classList.add("active");
 
             }
         );
@@ -276,23 +194,15 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
 
-    /* =====================================================
+    /* =========================================================
        SIZE
-    ===================================================== */
+    ========================================================= */
 
     let selectedSize = "M";
 
-    const sizeButtons =
-        document.querySelectorAll(
-            "[data-size]"
-        );
-
-    const selectedSizeElement =
-        document.getElementById(
-            "selectedSize"
-        );
-
-    sizeButtons.forEach(function (button) {
+    document.querySelectorAll(
+        "[data-size]"
+    ).forEach(function (button) {
 
         button.addEventListener(
             "click",
@@ -301,26 +211,16 @@ document.addEventListener("DOMContentLoaded", function () {
                 selectedSize =
                     button.dataset.size;
 
-                sizeButtons.forEach(
-                    function (item) {
+                document.querySelectorAll(
+                    "[data-size]"
+                ).forEach(function (item) {
+                    item.classList.remove("active");
+                });
 
-                        item.classList.remove(
-                            "active"
-                        );
+                button.classList.add("active");
 
-                    }
-                );
-
-                button.classList.add(
-                    "active"
-                );
-
-                if (selectedSizeElement) {
-
-                    selectedSizeElement.textContent =
-                        selectedSize;
-
-                }
+                $("selectedSize").textContent =
+                    selectedSize;
 
             }
         );
@@ -328,23 +228,15 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
 
-    /* =====================================================
+    /* =========================================================
        COLOR
-    ===================================================== */
+    ========================================================= */
 
     let selectedColor = "Black";
 
-    const colorButtons =
-        document.querySelectorAll(
-            "[data-color]"
-        );
-
-    const selectedColorElement =
-        document.getElementById(
-            "selectedColor"
-        );
-
-    colorButtons.forEach(function (button) {
+    document.querySelectorAll(
+        "[data-color]"
+    ).forEach(function (button) {
 
         button.addEventListener(
             "click",
@@ -353,26 +245,16 @@ document.addEventListener("DOMContentLoaded", function () {
                 selectedColor =
                     button.dataset.color;
 
-                colorButtons.forEach(
-                    function (item) {
+                document.querySelectorAll(
+                    "[data-color]"
+                ).forEach(function (item) {
+                    item.classList.remove("active");
+                });
 
-                        item.classList.remove(
-                            "active"
-                        );
+                button.classList.add("active");
 
-                    }
-                );
-
-                button.classList.add(
-                    "active"
-                );
-
-                if (selectedColorElement) {
-
-                    selectedColorElement.textContent =
-                        selectedColor;
-
-                }
+                $("selectedColor").textContent =
+                    selectedColor;
 
             }
         );
@@ -380,24 +262,20 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
 
-    /* =====================================================
-       CART FUNCTIONS
-    ===================================================== */
+    /* =========================================================
+       CART
+    ========================================================= */
 
     function getCart() {
 
         try {
-
             return JSON.parse(
                 localStorage.getItem(
                     "marteyCart"
                 ) || "[]"
             );
-
         } catch (error) {
-
             return [];
-
         }
 
     }
@@ -418,124 +296,47 @@ document.addEventListener("DOMContentLoaded", function () {
         const cart =
             getCart();
 
-        const totalQuantity =
+        const count =
             cart.reduce(
                 function (total, item) {
-
                     return total +
-                        Number(
-                            item.quantity || 1
-                        );
-
+                        Number(item.quantity || 1);
                 },
                 0
             );
 
-        const cartCount =
-            document.getElementById(
-                "cartCount"
-            );
-
-        if (cartCount) {
-
-            cartCount.textContent =
-                totalQuantity;
-
-        }
+        $("cartCount").textContent =
+            count;
 
     }
 
 
-    function addProductToCart() {
+    $("addToCartButton").addEventListener(
+        "click",
+        function () {
 
-        const cart =
-            getCart();
+            const cart =
+                getCart();
 
-        const existingItem =
-            cart.find(
-                function (item) {
+            const existing =
+                cart.find(function (item) {
 
                     return String(item.id) ===
                         String(productId) &&
                         item.size === selectedSize &&
                         item.color === selectedColor;
 
-                }
-            );
+                });
 
 
-        if (existingItem) {
+            if (existing) {
 
-            existingItem.quantity =
-                Number(
-                    existingItem.quantity || 1
-                ) + 1;
+                existing.quantity =
+                    Number(existing.quantity || 1) + 1;
 
-        } else {
+            } else {
 
-            cart.push({
-
-                id: productId,
-
-                title: product.title,
-
-                price: product.price,
-
-                image: product.image,
-
-                size: selectedSize,
-
-                color: selectedColor,
-
-                quantity: 1
-
-            });
-
-        }
-
-
-        saveCart(cart);
-
-        updateCartCount();
-
-        showToast(
-            "Product added to cart"
-        );
-
-    }
-
-
-    const addToCartButton =
-        document.getElementById(
-            "addToCartButton"
-        );
-
-    if (addToCartButton) {
-
-        addToCartButton.addEventListener(
-            "click",
-            addProductToCart
-        );
-
-    }
-
-
-    /* =====================================================
-       BUY NOW
-    ===================================================== */
-
-    const buyNowButton =
-        document.getElementById(
-            "buyNowButton"
-        );
-
-    if (buyNowButton) {
-
-        buyNowButton.addEventListener(
-            "click",
-            function () {
-
-                const buyNowItem = {
+                cart.push({
 
                     id: productId,
 
@@ -551,186 +352,496 @@ document.addEventListener("DOMContentLoaded", function () {
 
                     quantity: 1
 
-                };
-
-
-                localStorage.setItem(
-                    "marteyBuyNow",
-                    JSON.stringify(
-                        buyNowItem
-                    )
-                );
-
-
-                showToast(
-                    "Buy Now selected"
-                );
+                });
 
             }
-        );
+
+
+            saveCart(cart);
+
+            updateCartCount();
+
+            showToast(
+                "Product added to cart"
+            );
+
+        }
+    );
+
+
+    /* =========================================================
+       LOGIN CHECK
+    ========================================================= */
+
+    function getCurrentUser() {
+
+        try {
+
+            return JSON.parse(
+                localStorage.getItem(
+                    "marteyCurrentUser"
+                ) || "null"
+            );
+
+        } catch (error) {
+
+            return null;
+
+        }
 
     }
 
 
-    /* =====================================================
-       DELIVERY CHECK
-    ===================================================== */
+    /* =========================================================
+       BUY NOW
+    ========================================================= */
 
-    const checkDeliveryButton =
-        document.getElementById(
-            "checkDeliveryButton"
-        );
+    $("buyNowButton").addEventListener(
+        "click",
+        function () {
 
-    const deliveryPincode =
-        document.getElementById(
-            "deliveryPincode"
-        );
+            const item = {
 
-    if (checkDeliveryButton) {
+                id: productId,
 
-        checkDeliveryButton.addEventListener(
-            "click",
-            function () {
+                title: product.title,
 
-                const pin =
-                    deliveryPincode
-                        ? deliveryPincode.value.trim()
-                        : "";
+                price: product.price,
 
-                if (!/^\d{6}$/.test(pin)) {
+                image: product.image,
 
-                    showToast(
-                        "Enter a valid 6-digit PIN code"
-                    );
+                size: selectedSize,
 
-                    return;
+                color: selectedColor,
 
-                }
+                quantity: 1
 
-                showToast(
-                    "Delivery available for this PIN"
-                );
-
-            }
-        );
-
-    }
+            };
 
 
-    /* =====================================================
-       HEADER WISHLIST
-    ===================================================== */
-
-    const wishlistHeaderButton =
-        document.getElementById(
-            "wishlistHeaderButton"
-        );
-
-    if (wishlistHeaderButton) {
-
-        wishlistHeaderButton.addEventListener(
-            "click",
-            function () {
-
-                showToast(
-                    "Wishlist opened"
-                );
-
-            }
-        );
-
-    }
+            localStorage.setItem(
+                "marteyBuyNow",
+                JSON.stringify(item)
+            );
 
 
-    /* =====================================================
-       HEADER CART
-    ===================================================== */
+            const user =
+                getCurrentUser();
 
-    const cartHeaderButton =
-        document.getElementById(
-            "cartHeaderButton"
-        );
-
-    if (cartHeaderButton) {
-
-        cartHeaderButton.addEventListener(
-            "click",
-            function () {
+            if (user) {
 
                 window.location.href =
-                    "cart.html";
+                    "checkout.html?buyNow=1";
+
+                return;
 
             }
-        );
+
+
+            openAuthModal();
+
+        }
+    );
+
+
+    /* =========================================================
+       AUTH MODAL
+    ========================================================= */
+
+    const authOverlay =
+        $("productAuthOverlay");
+
+    const authClose =
+        $("productAuthClose");
+
+    function openAuthModal() {
+
+        authOverlay.classList.add("show");
+
+        document.body.style.overflow =
+            "hidden";
 
     }
 
 
-    /* =====================================================
-       HEADER ACCOUNT
-    ===================================================== */
+    function closeAuthModal() {
 
-    const accountHeaderButton =
-        document.getElementById(
-            "accountHeaderButton"
-        );
+        authOverlay.classList.remove("show");
 
-    if (accountHeaderButton) {
+        document.body.style.overflow =
+            "";
 
-        accountHeaderButton.addEventListener(
+    }
+
+
+    authClose.addEventListener(
+        "click",
+        closeAuthModal
+    );
+
+
+    authOverlay.addEventListener(
+        "click",
+        function (event) {
+
+            if (event.target === authOverlay) {
+                closeAuthModal();
+            }
+
+        }
+    );
+
+
+    /* =========================================================
+       AUTH TABS
+    ========================================================= */
+
+    document.querySelectorAll(
+        "[data-auth-tab]"
+    ).forEach(function (tab) {
+
+        tab.addEventListener(
             "click",
             function () {
 
-                const currentUser =
-                    localStorage.getItem(
-                        "marteyCurrentUser"
-                    );
+                const type =
+                    tab.dataset.authTab;
 
-                if (currentUser) {
+                document.querySelectorAll(
+                    "[data-auth-tab]"
+                ).forEach(function (item) {
+                    item.classList.remove("active");
+                });
 
-                    window.location.href =
-                        "account.html";
+                tab.classList.add("active");
+
+                if (type === "login") {
+
+                    $("productLoginForm")
+                        .classList.remove("hidden");
+
+                    $("productSignupForm")
+                        .classList.add("hidden");
+
+                    $("authModalTitle")
+                        .textContent =
+                        "Login to continue";
 
                 } else {
 
-                    window.location.href =
-                        "index.html";
+                    $("productLoginForm")
+                        .classList.add("hidden");
+
+                    $("productSignupForm")
+                        .classList.remove("hidden");
+
+                    $("authModalTitle")
+                        .textContent =
+                        "Create your account";
 
                 }
 
+                $("productAuthMessage")
+                    .textContent = "";
+
             }
+        );
+
+    });
+
+
+    /* =========================================================
+       ACCOUNTS
+    ========================================================= */
+
+    function getAccounts() {
+
+        try {
+
+            return JSON.parse(
+                localStorage.getItem(
+                    "marteyAccounts"
+                ) || "[]"
+            );
+
+        } catch (error) {
+
+            return [];
+
+        }
+
+    }
+
+
+    function saveAccounts(accounts) {
+
+        localStorage.setItem(
+            "marteyAccounts",
+            JSON.stringify(accounts)
         );
 
     }
 
 
-    /* =====================================================
+    function finishLogin(user) {
+
+        localStorage.setItem(
+            "marteyCurrentUser",
+            JSON.stringify(user)
+        );
+
+        localStorage.setItem(
+            "marteyUser",
+            JSON.stringify(user)
+        );
+
+
+        window.location.href =
+            "checkout.html?buyNow=1";
+
+    }
+
+
+    /* =========================================================
+       LOGIN
+    ========================================================= */
+
+    $("productLoginForm").addEventListener(
+        "submit",
+        function (event) {
+
+            event.preventDefault();
+
+            const email =
+                $("productLoginEmail")
+                    .value
+                    .trim()
+                    .toLowerCase();
+
+            const password =
+                $("productLoginPassword")
+                    .value;
+
+            const accounts =
+                getAccounts();
+
+            const account =
+                accounts.find(function (item) {
+
+                    return String(item.email)
+                        .toLowerCase() === email &&
+                        item.password === password;
+
+                });
+
+
+            if (!account) {
+
+                $("productAuthMessage")
+                    .textContent =
+                    "Email or password is incorrect.";
+
+                return;
+
+            }
+
+
+            finishLogin(account);
+
+        }
+    );
+
+
+    /* =========================================================
+       SIGNUP
+    ========================================================= */
+
+    $("productSignupForm").addEventListener(
+        "submit",
+        function (event) {
+
+            event.preventDefault();
+
+            const name =
+                $("productSignupName")
+                    .value
+                    .trim();
+
+            const email =
+                $("productSignupEmail")
+                    .value
+                    .trim()
+                    .toLowerCase();
+
+            const phone =
+                $("productSignupPhone")
+                    .value
+                    .trim();
+
+            const password =
+                $("productSignupPassword")
+                    .value;
+
+            if (!/^\d{10}$/.test(phone)) {
+
+                $("productAuthMessage")
+                    .textContent =
+                    "Enter a valid 10-digit mobile number.";
+
+                return;
+
+            }
+
+
+            const accounts =
+                getAccounts();
+
+            const exists =
+                accounts.some(function (item) {
+
+                    return String(item.email)
+                        .toLowerCase() === email;
+
+                });
+
+
+            if (exists) {
+
+                $("productAuthMessage")
+                    .textContent =
+                    "An account with this email already exists.";
+
+                return;
+
+            }
+
+
+            const user = {
+
+                id:
+                    "USR-" + Date.now(),
+
+                name: name,
+
+                email: email,
+
+                phone: phone,
+
+                password: password,
+
+                role: "customer",
+
+                createdAt:
+                    new Date().toISOString()
+
+            };
+
+
+            accounts.push(user);
+
+            saveAccounts(accounts);
+
+            finishLogin(user);
+
+        }
+    );
+
+
+    /* =========================================================
+       DELIVERY CHECK
+    ========================================================= */
+
+    $("checkDeliveryButton").addEventListener(
+        "click",
+        function () {
+
+            const pin =
+                $("deliveryPincode")
+                    .value
+                    .trim();
+
+            if (!/^\d{6}$/.test(pin)) {
+
+                $("deliveryResult")
+                    .textContent =
+                    "Enter a valid 6-digit PIN code.";
+
+                $("deliveryResult")
+                    .style.color =
+                    "#f26b78";
+
+                return;
+
+            }
+
+            $("deliveryResult")
+                .textContent =
+                "Delivery available for this PIN.";
+
+            $("deliveryResult")
+                .style.color =
+                "#42c98a";
+
+        }
+    );
+
+
+    /* =========================================================
+       HEADER
+    ========================================================= */
+
+    $("cartHeaderButton").addEventListener(
+        "click",
+        function () {
+            window.location.href =
+                "cart.html";
+        }
+    );
+
+
+    $("accountHeaderButton").addEventListener(
+        "click",
+        function () {
+
+            if (getCurrentUser()) {
+
+                window.location.href =
+                    "account.html";
+
+            } else {
+
+                openAuthModal();
+
+            }
+
+        }
+    );
+
+
+    $("wishlistHeaderButton").addEventListener(
+        "click",
+        function () {
+
+            showToast(
+                "Wishlist opened"
+            );
+
+        }
+    );
+
+
+    /* =========================================================
        SEARCH
-    ===================================================== */
-
-    const searchInput =
-        document.getElementById(
-            "searchInput"
-        );
-
-    const searchButton =
-        document.getElementById(
-            "searchButton"
-        );
-
+    ========================================================= */
 
     function performSearch() {
 
-        if (!searchInput) {
-            return;
-        }
-
         const query =
-            searchInput.value.trim();
+            $("searchInput")
+                .value
+                .trim();
 
-        if (!query) {
-            return;
-        }
+        if (!query) return;
 
         window.location.href =
             "index.html?search=" +
@@ -739,63 +850,413 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-    if (searchButton) {
+    $("searchButton").addEventListener(
+        "click",
+        performSearch
+    );
 
-        searchButton.addEventListener(
-            "click",
-            performSearch
+
+    $("searchInput").addEventListener(
+        "keydown",
+        function (event) {
+
+            if (event.key === "Enter") {
+                performSearch();
+            }
+
+        }
+    );
+
+
+    /* =========================================================
+       REVIEWS
+    ========================================================= */
+
+    function getReviews() {
+
+        try {
+
+            return JSON.parse(
+                localStorage.getItem(
+                    "marteyProductReviews"
+                ) || "{}"
+            );
+
+        } catch (error) {
+
+            return {};
+
+        }
+
+    }
+
+
+    function saveReviews(reviews) {
+
+        localStorage.setItem(
+            "marteyProductReviews",
+            JSON.stringify(reviews)
         );
 
     }
 
 
-    if (searchInput) {
+    function escapeHTML(value) {
 
-        searchInput.addEventListener(
-            "keydown",
-            function (event) {
+        return String(value || "")
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
 
-                if (event.key === "Enter") {
+    }
 
-                    performSearch();
 
-                }
+    function renderReviews() {
+
+        const allReviews =
+            getReviews();
+
+        const reviews =
+            allReviews[productId] || [];
+
+        const list =
+            $("reviewList");
+
+        if (!list) return;
+
+
+        if (reviews.length === 0) {
+
+            list.innerHTML = `
+                <div class="review-card">
+                    <div class="review-user">
+                        Be the first MARTEY customer to review this product.
+                    </div>
+                </div>
+            `;
+
+            return;
+
+        }
+
+
+        list.innerHTML =
+            reviews
+                .slice()
+                .reverse()
+                .map(function (review) {
+
+                    const stars =
+                        "★".repeat(
+                            Number(review.rating)
+                        ) +
+                        "☆".repeat(
+                            5 - Number(review.rating)
+                        );
+
+
+                    return `
+                        <article class="review-card">
+
+                            <div class="review-header">
+
+                                <div>
+
+                                    <div class="review-user">
+                                        ${escapeHTML(review.userName)}
+                                    </div>
+
+                                    <div class="review-date">
+                                        Verified Customer
+                                    </div>
+
+                                </div>
+
+                                <div class="review-rating">
+                                    ${stars}
+                                </div>
+
+                            </div>
+
+                            <p class="review-text">
+                                ${escapeHTML(review.text)}
+                            </p>
+
+                            ${
+                                review.image
+                                ? `
+                                    <div class="review-images">
+                                        <div class="review-image">
+                                            <img
+                                                src="${review.image}"
+                                                alt="Customer review"
+                                            >
+                                        </div>
+                                    </div>
+                                `
+                                : ""
+                            }
+
+                        </article>
+                    `;
+
+                })
+                .join("");
+
+    }
+
+
+    /* =========================================================
+       WRITE REVIEW
+    ========================================================= */
+
+    $("writeReviewButton").addEventListener(
+        "click",
+        function () {
+
+            if (!getCurrentUser()) {
+
+                openAuthModal();
+
+                $("productAuthMessage")
+                    .textContent =
+                    "Login or sign up to write a review.";
+
+                return;
 
             }
-        );
 
-    }
+            $("reviewModalOverlay")
+                .classList.add("show");
+
+            document.body.style.overflow =
+                "hidden";
+
+        }
+    );
 
 
-    /* =====================================================
-       SELLER STORE
-    ===================================================== */
+    $("reviewModalClose").addEventListener(
+        "click",
+        function () {
 
-    const sellerStoreButton =
-        document.getElementById(
-            "sellerStoreButton"
-        );
+            $("reviewModalOverlay")
+                .classList.remove("show");
 
-    if (sellerStoreButton) {
+            document.body.style.overflow =
+                "";
 
-        sellerStoreButton.addEventListener(
+        }
+    );
+
+
+    /* =========================================================
+       REVIEW RATING
+    ========================================================= */
+
+    let selectedRating = 0;
+
+    document.querySelectorAll(
+        "#reviewStarsInput button"
+    ).forEach(function (button) {
+
+        button.addEventListener(
             "click",
             function () {
 
-                showToast(
-                    "Seller store will open here"
-                );
+                selectedRating =
+                    Number(button.dataset.rating);
+
+                document.querySelectorAll(
+                    "#reviewStarsInput button"
+                ).forEach(function (item) {
+
+                    const rating =
+                        Number(
+                            item.dataset.rating
+                        );
+
+                    item.classList.toggle(
+                        "active",
+                        rating <= selectedRating
+                    );
+
+                });
 
             }
         );
 
-    }
+    });
 
 
-    /* =====================================================
-       INITIAL CART COUNT
-    ===================================================== */
+    /* =========================================================
+       REVIEW IMAGE
+    ========================================================= */
+
+    let reviewImageData = "";
+
+    $("reviewImage").addEventListener(
+        "change",
+        function () {
+
+            const file =
+                this.files[0];
+
+            if (!file) return;
+
+            const reader =
+                new FileReader();
+
+            reader.onload =
+                function (event) {
+
+                    reviewImageData =
+                        event.target.result;
+
+                    $("reviewImagePreview")
+                        .innerHTML = `
+                            <img
+                                src="${reviewImageData}"
+                                alt="Review preview"
+                            >
+                        `;
+
+                };
+
+            reader.readAsDataURL(file);
+
+        }
+    );
+
+
+    /* =========================================================
+       REVIEW SUBMIT
+    ========================================================= */
+
+    $("reviewForm").addEventListener(
+        "submit",
+        function (event) {
+
+            event.preventDefault();
+
+            const user =
+                getCurrentUser();
+
+            if (!user) {
+
+                $("reviewFormMessage")
+                    .textContent =
+                    "Please login first.";
+
+                return;
+
+            }
+
+
+            if (
+                selectedRating < 1 ||
+                selectedRating > 5
+            ) {
+
+                $("reviewFormMessage")
+                    .textContent =
+                    "Please select a rating.";
+
+                return;
+
+            }
+
+
+            const text =
+                $("reviewText")
+                    .value
+                    .trim();
+
+            if (!text) {
+
+                $("reviewFormMessage")
+                    .textContent =
+                    "Please write your review.";
+
+                return;
+
+            }
+
+
+            const allReviews =
+                getReviews();
+
+            if (!allReviews[productId]) {
+                allReviews[productId] = [];
+            }
+
+
+            allReviews[productId].push({
+
+                id:
+                    "REV-" + Date.now(),
+
+                userName:
+                    user.name || "MARTEY Customer",
+
+                rating:
+                    selectedRating,
+
+                text:
+                    text,
+
+                image:
+                    reviewImageData,
+
+                createdAt:
+                    new Date().toISOString()
+
+            });
+
+
+            saveReviews(allReviews);
+
+            $("reviewForm").reset();
+
+            $("reviewImagePreview")
+                .innerHTML = "";
+
+            $("reviewFormMessage")
+                .textContent = "";
+
+            selectedRating = 0;
+
+            document.querySelectorAll(
+                "#reviewStarsInput button"
+            ).forEach(function (button) {
+                button.classList.remove("active");
+            });
+
+
+            $("reviewModalOverlay")
+                .classList.remove("show");
+
+            document.body.style.overflow =
+                "";
+
+            renderReviews();
+
+            showToast(
+                "Your review has been submitted"
+            );
+
+        }
+    );
+
+
+    /* =========================================================
+       INITIAL LOAD
+    ========================================================= */
 
     updateCartCount();
+
+    renderReviews();
 
 });
