@@ -276,7 +276,56 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     );
 
+/* =====================================================
+   REQUEST PAYOUT
+===================================================== */
 
+const requestPayoutButton =
+    document.getElementById("requestPayoutButton");
+
+const availablePayoutAmount =
+    document.getElementById("availablePayoutAmount");
+
+
+function updateSellerPayoutAmount() {
+
+    if (!availablePayoutAmount) {
+        return;
+    }
+
+    const balance =
+        Number(
+            localStorage.getItem(
+                "marteySellerAvailableBalance"
+            ) || 0
+        );
+
+    availablePayoutAmount.textContent =
+        "₹" +
+        balance.toLocaleString("en-IN");
+
+}
+
+
+if (requestPayoutButton) {
+
+    requestPayoutButton.addEventListener(
+        "click",
+        function (event) {
+
+            event.preventDefault();
+
+            window.location.href =
+                "request-payout.html";
+
+        }
+    );
+
+}
+
+
+updateSellerPayoutAmount();
+   
     /* =====================================================
        ADD PRODUCT
     ===================================================== */
