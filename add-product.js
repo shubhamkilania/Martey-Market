@@ -1,6 +1,5 @@
 /* =========================================================
    MARTEY — ADD PRODUCT
-   Seller Product Creation System
 ========================================================= */
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -9,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
        ELEMENTS
     ===================================================== */
 
-    const productImagesInput =
+    const imageInput =
         document.getElementById("productImages");
 
     const imagePreview =
@@ -18,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const saveDraftButton =
         document.getElementById("saveDraftButton");
 
-    const publishProductButton =
+    const publishButton =
         document.getElementById("publishProductButton");
 
 
@@ -29,151 +28,242 @@ document.addEventListener("DOMContentLoaded", () => {
     let selectedImages = [];
 
 
-    if (productImagesInput) {
+    imageInput?.addEventListener(
+        "change",
+        event => {
 
-        productImagesInput.addEventListener(
-            "change",
-            handleImageSelection
-        );
+            const files =
+                Array.from(event.target.files);
 
-    }
+            files.forEach(file => {
 
+                if (!file.type.startsWith("image/")) {
+                    return;
+                }
 
-    function handleImageSelection(event) {
+                selectedImages.push({
+                    id:
+                        Date.now() +
+                        Math.random(),
 
-        const files = Array.from(event.target.files);
+                    file: file,
 
-        if (!files.length) {
-            return;
+                    name: file.name
+                });
+
+            });
+
+            renderImages();
+
+            imageInput.value = "";
+
         }
-
-        files.forEach(file => {
-
-            if (!file.type.startsWith("image/")) {
-                return;
-            }
-
-            const imageObject = {
-                id:
-                    Date.now() +
-                    Math.random()
-                        .toString(36)
-                        .substring(2, 9),
-
-                file: file,
-
-                name: file.name
-            };
-
-            selectedImages.push(imageObject);
-
-        });
-
-        renderImagePreviews();
-
-        /*
-            Reset input so the seller can select
-            the same image again if needed.
-        */
-
-        productImagesInput.value = "";
-
-    }
+    );
 
 
-    function renderImagePreviews() {
+    function renderImages() {
 
-        if (!imagePreview) {
-            return;
-        }
+        if (!imagePreview) return;
 
         imagePreview.innerHTML = "";
 
-        selectedImages.forEach(imageObject => {
+        selectedImages.forEach(item => {
 
-            const previewItem =
+            const wrapper =
                 document.createElement("div");
 
-            previewItem.className =
+            wrapper.className =
                 "image-preview-item";
 
 
-            const image =
+            const img =
                 document.createElement("img");
 
+            img.src =
+                URL.createObjectURL(item.file);
 
-            const imageURL =
-                URL.createObjectURL(
-                    imageObject.file
-                );
-
-
-            image.src = imageURL;
-
-            image.alt =
-                imageObject.name ||
-                "Product image";
+            img.alt =
+                item.name;
 
 
-            const removeButton =
+            const remove =
                 document.createElement("button");
 
+            remove.type = "button";
 
-            removeButton.type = "button";
-
-            removeButton.className =
+            remove.className =
                 "remove-preview";
 
-            removeButton.innerHTML = "×";
-
-            removeButton.setAttribute(
-                "aria-label",
-                "Remove image"
-            );
+            remove.innerHTML = "×";
 
 
-            removeButton.addEventListener(
+            remove.addEventListener(
                 "click",
                 () => {
 
-                    removeImage(
-                        imageObject.id
-                    );
+                    selectedImages =
+                        selectedImages.filter(
+                            image =>
+                                image.id !== item.id
+                        );
+
+                    renderImages();
 
                 }
             );
 
 
-            previewItem.appendChild(image);
+            wrapper.appendChild(img);
 
-            previewItem.appendChild(
-                removeButton
-            );
+            wrapper.appendChild(remove);
 
-            imagePreview.appendChild(
-                previewItem
-            );
+            imagePreview.appendChild(wrapper);
 
         });
 
     }
 
 
-    function removeImage(imageId) {
+    /* =====================================================
+       SIZE SELECTION
+    ===================================================== */
 
-        selectedImages =
-            selectedImages.filter(
-                image =>
-                    image.id !== imageId
-            );
+    const sizeButtons =
+        document.querySelectorAll(
+            "[data-size]"
+        );
 
-        renderImagePreviews();
+    const selectedSizes = [];
+
+
+    sizeButtons.forEach(button => {
+
+        button.addEventListener(
+            "click",
+            () => {
+
+                const size =
+                    button.dataset.size;
+
+
+                if (
+                    selectedSizes.includes(size)
+                ) {
+
+                    const index =
+                        selectedSizes.indexOf(size);
+
+                    selectedSizes.splice(
+                        index,
+                        1
+                    );
+
+                    button.classList.remove(
+                        "selected"
+                    );
+
+                } else {
+
+                    selectedSizes.push(size);
+
+                    button.classList.add(
+                        "selected"
+                    );
+
+                }
+
+
+                updateHiddenField(
+                    "productSizes",
+                    selectedSizes
+                );
+
+            }
+        );
+
+    });
+
+
+    /* =====================================================
+       COLOUR SELECTION
+    ===================================================== */
+
+    const colourButtons =
+        document.querySelectorAll(
+            "[data-color]"
+        );
+
+    const selectedColours = [];
+
+
+    colourButtons.forEach(button => {
+
+        button.addEventListener(
+            "click",
+            () => {
+
+                const colour =
+                    button.dataset.color;
+
+
+                if (
+                    selectedColours.includes(colour)
+                ) {
+
+                    const index =
+                        selectedColours.indexOf(
+                            colour
+                        );
+
+                    selectedColours.splice(
+                        index,
+                        1
+                    );
+
+                    button.classList.remove(
+                        "selected"
+                    );
+
+                } else {
+
+                    selectedColours.push(colour);
+
+                    button.classList.add(
+                        "selected"
+                    );
+
+                }
+
+
+                updateHiddenField(
+                    "productColors",
+                    selectedColours
+                );
+
+            }
+        );
+
+    });
+
+
+    function updateHiddenField(
+        id,
+        values
+    ) {
+
+        const field =
+            document.getElementById(id);
+
+        if (!field) return;
+
+        field.value =
+            values.join(",");
 
     }
 
 
     /* =====================================================
-       FORM HELPERS
+       FORM VALUES
     ===================================================== */
 
     function getValue(id) {
@@ -181,11 +271,9 @@ document.addEventListener("DOMContentLoaded", () => {
         const element =
             document.getElementById(id);
 
-        if (!element) {
-            return "";
-        }
-
-        return element.value.trim();
+        return element
+            ? element.value.trim()
+            : "";
 
     }
 
@@ -195,16 +283,14 @@ document.addEventListener("DOMContentLoaded", () => {
         const value =
             getValue(id);
 
-        if (value === "") {
-            return 0;
-        }
-
-        return Number(value);
+        return value === ""
+            ? 0
+            : Number(value);
 
     }
 
 
-    function getCommaValues(id) {
+    function getArray(id) {
 
         const value =
             getValue(id);
@@ -216,7 +302,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return value
             .split(",")
             .map(item => item.trim())
-            .filter(item => item !== "");
+            .filter(Boolean);
 
     }
 
@@ -225,7 +311,7 @@ document.addEventListener("DOMContentLoaded", () => {
        PRODUCT DATA
     ===================================================== */
 
-    function collectProductData(status) {
+    function collectProduct(status) {
 
         const price =
             getNumber("productPrice");
@@ -233,41 +319,35 @@ document.addEventListener("DOMContentLoaded", () => {
         const discount =
             getNumber("productDiscount");
 
-        let sellingPrice = price;
 
-
-        if (
-            price > 0 &&
-            discount > 0
-        ) {
-
-            sellingPrice =
-                price -
-                (price * discount / 100);
-
-        }
+        const sellingPrice =
+            price -
+            (
+                price *
+                discount /
+                100
+            );
 
 
         return {
 
             id:
-                "MAR-" +
-                Date.now(),
+                "MAR-" + Date.now(),
 
             name:
                 getValue("productName"),
 
-            description:
-                getValue("productDescription"),
-
             category:
                 getValue("productCategory"),
+
+            brand:
+                getValue("productBrand"),
 
             sku:
                 getValue("productSKU"),
 
-            brand:
-                getValue("productBrand"),
+            description:
+                getValue("productDescription"),
 
             price:
                 price,
@@ -284,14 +364,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 getNumber("productStock"),
 
             sizes:
-                getCommaValues(
-                    "productSizes"
-                ),
+                getArray("productSizes"),
 
-            colors:
-                getCommaValues(
-                    "productColors"
-                ),
+            colours:
+                getArray("productColors"),
 
             specifications:
                 getValue(
@@ -299,22 +375,18 @@ document.addEventListener("DOMContentLoaded", () => {
                 ),
 
             weight:
-                getNumber(
-                    "productWeight"
-                ),
+                getNumber("productWeight"),
 
             shippingType:
-                getValue(
-                    "shippingType"
+                getValue("shippingType"),
+
+            imageNames:
+                selectedImages.map(
+                    image => image.name
                 ),
 
             status:
                 status,
-
-            images:
-                selectedImages.map(
-                    image => image.name
-                ),
 
             createdAt:
                 new Date().toISOString()
@@ -340,7 +412,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
             });
 
-
         document
             .querySelectorAll(".form-error")
             .forEach(element => {
@@ -352,79 +423,46 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    function showFieldError(
-        fieldId,
+    function error(
+        id,
         message
     ) {
 
         const field =
-            document.getElementById(
-                fieldId
-            );
+            document.getElementById(id);
 
-        if (!field) {
-            return;
-        }
+        if (!field) return;
 
         field.classList.add("error");
 
 
-        const error =
+        const errorText =
             document.createElement("small");
 
-        error.className =
+        errorText.className =
             "form-error";
 
-        error.textContent =
+        errorText.textContent =
             message;
 
 
         field.parentElement.appendChild(
-            error
+            errorText
         );
 
     }
 
 
-    function validateProduct(
-        isDraft = false
-    ) {
+    function validate() {
 
         clearErrors();
 
         let valid = true;
 
 
-        /*
-            Draft can be saved without
-            completing every field.
-        */
-
-        if (isDraft) {
-
-            const productName =
-                getValue("productName");
-
-            if (!productName) {
-
-                showFieldError(
-                    "productName",
-                    "Add a product name before saving."
-                );
-
-                valid = false;
-
-            }
-
-            return valid;
-        }
-
-
-        /* Product name */
-
         if (!getValue("productName")) {
 
-            showFieldError(
+            error(
                 "productName",
                 "Product name is required."
             );
@@ -434,11 +472,9 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
 
-        /* Category */
-
         if (!getValue("productCategory")) {
 
-            showFieldError(
+            error(
                 "productCategory",
                 "Please select a category."
             );
@@ -448,15 +484,9 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
 
-        /* Description */
+        if (!getValue("productDescription")) {
 
-        if (
-            !getValue(
-                "productDescription"
-            )
-        ) {
-
-            showFieldError(
+            error(
                 "productDescription",
                 "Product description is required."
             );
@@ -466,19 +496,13 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
 
-        /* Price */
-
-        const price =
-            getNumber("productPrice");
-
         if (
-            !price ||
-            price <= 0
+            getNumber("productPrice") <= 0
         ) {
 
-            showFieldError(
+            error(
                 "productPrice",
-                "Enter a valid product price."
+                "Enter a valid price."
             );
 
             valid = false;
@@ -486,39 +510,11 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
 
-        /* Discount */
-
-        const discount =
-            getNumber(
-                "productDiscount"
-            );
-
         if (
-            discount < 0 ||
-            discount > 100
+            getNumber("productStock") < 0
         ) {
 
-            showFieldError(
-                "productDiscount",
-                "Discount must be between 0 and 100."
-            );
-
-            valid = false;
-
-        }
-
-
-        /* Stock */
-
-        const stock =
-            getNumber("productStock");
-
-        if (
-            stock < 0 ||
-            !Number.isFinite(stock)
-        ) {
-
-            showFieldError(
+            error(
                 "productStock",
                 "Enter a valid stock quantity."
             );
@@ -528,15 +524,11 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
 
-        /* Shipping */
+        if (!getValue("shippingType")) {
 
-        if (
-            !getValue("shippingType")
-        ) {
-
-            showFieldError(
+            error(
                 "shippingType",
-                "Please select a shipping type."
+                "Please select shipping type."
             );
 
             valid = false;
@@ -544,13 +536,25 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
 
-        /* Images */
-
         if (
             selectedImages.length === 0
         ) {
 
-            showImageError();
+            const uploadArea =
+                document.querySelector(
+                    ".image-upload-area"
+                );
+
+            const text =
+                document.createElement("small");
+
+            text.className =
+                "form-error";
+
+            text.textContent =
+                "Please upload at least one image.";
+
+            uploadArea.appendChild(text);
 
             valid = false;
 
@@ -562,77 +566,21 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    function showImageError() {
-
-        const uploadArea =
-            document.querySelector(
-                ".image-upload-area"
-            );
-
-        if (!uploadArea) {
-            return;
-        }
-
-
-        const existingError =
-            uploadArea.querySelector(
-                ".form-error"
-            );
-
-
-        if (existingError) {
-            return;
-        }
-
-
-        const error =
-            document.createElement("small");
-
-        error.className =
-            "form-error";
-
-        error.textContent =
-            "Please upload at least one product image.";
-
-
-        uploadArea.appendChild(error);
-
-    }
-
-
     /* =====================================================
-       LOCAL STORAGE
+       SAVE PRODUCTS
     ===================================================== */
 
-    function getStoredProducts() {
+    function getProducts() {
 
         try {
 
-            const saved =
+            return JSON.parse(
                 localStorage.getItem(
                     "marteySellerProducts"
-                );
+                )
+            ) || [];
 
-
-            if (!saved) {
-                return [];
-            }
-
-
-            const parsed =
-                JSON.parse(saved);
-
-
-            return Array.isArray(parsed)
-                ? parsed
-                : [];
-
-        } catch (error) {
-
-            console.error(
-                "Could not read seller products:",
-                error
-            );
+        } catch {
 
             return [];
 
@@ -644,11 +592,9 @@ document.addEventListener("DOMContentLoaded", () => {
     function saveProduct(product) {
 
         const products =
-            getStoredProducts();
-
+            getProducts();
 
         products.push(product);
-
 
         localStorage.setItem(
             "marteySellerProducts",
@@ -659,209 +605,169 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =====================================================
-       DRAFT SYSTEM
+       SAVE DRAFT
     ===================================================== */
 
-    function saveDraft() {
+    saveDraftButton?.addEventListener(
+        "click",
+        () => {
 
-        if (
-            !validateProduct(true)
-        ) {
-
-            return;
-
-        }
+            const name =
+                getValue("productName");
 
 
-        const draft =
-            collectProductData(
-                "draft"
+            if (!name) {
+
+                error(
+                    "productName",
+                    "Add a product name first."
+                );
+
+                return;
+
+            }
+
+
+            const draft =
+                collectProduct("draft");
+
+
+            localStorage.setItem(
+                "marteyProductDraft",
+                JSON.stringify(draft)
             );
 
-
-        localStorage.setItem(
-            "marteyProductDraft",
-            JSON.stringify(draft)
-        );
-
-
-        showMessage(
-            "Product draft saved successfully.",
-            "success"
-        );
-
-    }
-
-
-    /* =====================================================
-       PUBLISH SYSTEM
-    ===================================================== */
-
-    function publishProduct() {
-
-        if (
-            !validateProduct(false)
-        ) {
 
             showMessage(
-                "Please complete the required fields.",
-                "error"
+                "Product draft saved."
             );
-
-            return;
 
         }
-
-
-        const product =
-            collectProductData(
-                "published"
-            );
-
-
-        saveProduct(product);
-
-
-        /*
-            Remove old draft
-            after successful publishing.
-        */
-
-        localStorage.removeItem(
-            "marteyProductDraft"
-        );
-
-
-        showMessage(
-            "Product published successfully!",
-            "success"
-        );
-
-
-        /*
-            Go back to seller dashboard
-            after a short delay.
-        */
-
-        setTimeout(() => {
-
-            window.location.href =
-                "seller.html";
-
-        }, 1200);
-
-    }
+    );
 
 
     /* =====================================================
-       MESSAGE SYSTEM
+       PUBLISH
     ===================================================== */
 
-    function showMessage(
-        message,
-        type
-    ) {
+    publishButton?.addEventListener(
+        "click",
+        () => {
 
-        const existing =
-            document.querySelector(
-                ".js-message"
+            if (!validate()) {
+
+                showMessage(
+                    "Please complete the required fields.",
+                    true
+                );
+
+                return;
+
+            }
+
+
+            const product =
+                collectProduct("published");
+
+
+            saveProduct(product);
+
+
+            localStorage.removeItem(
+                "marteyProductDraft"
             );
 
 
-        if (existing) {
-            existing.remove();
-        }
-
-
-        const messageBox =
-            document.createElement("div");
-
-        messageBox.className =
-            "js-message";
-
-
-        messageBox.textContent =
-            message;
-
-
-        messageBox.style.position =
-            "fixed";
-
-        messageBox.style.top =
-            "92px";
-
-        messageBox.style.right =
-            "25px";
-
-        messageBox.style.zIndex =
-            "9999";
-
-        messageBox.style.maxWidth =
-            "340px";
-
-        messageBox.style.padding =
-            "13px 17px";
-
-        messageBox.style.borderRadius =
-            "10px";
-
-        messageBox.style.fontSize =
-            "11px";
-
-        messageBox.style.fontWeight =
-            "700";
-
-        messageBox.style.border =
-            "1px solid rgba(255,255,255,0.08)";
-
-        messageBox.style.boxShadow =
-            "0 15px 40px rgba(0,0,0,0.45)";
-
-
-        if (type === "success") {
-
-            messageBox.style.background =
-                "rgba(52,211,153,0.12)";
-
-            messageBox.style.color =
-                "#34d399";
-
-            messageBox.style.borderColor =
-                "rgba(52,211,153,0.25)";
-
-        } else {
-
-            messageBox.style.background =
-                "rgba(248,113,113,0.12)";
-
-            messageBox.style.color =
-                "#f87171";
-
-            messageBox.style.borderColor =
-                "rgba(248,113,113,0.25)";
-
-        }
-
-
-        document.body.appendChild(
-            messageBox
-        );
-
-
-        setTimeout(() => {
-
-            messageBox.style.opacity =
-                "0";
-
-            messageBox.style.transition =
-                "opacity 0.25s ease";
+            showMessage(
+                "Product published successfully!"
+            );
 
 
             setTimeout(() => {
 
-                messageBox.remove();
+                window.location.href =
+                    "seller.html";
 
-            }, 250);
+            }, 1200);
+
+        }
+    );
+
+
+    /* =====================================================
+       MESSAGE
+    ===================================================== */
+
+    function showMessage(
+        message,
+        isError = false
+    ) {
+
+        const old =
+            document.querySelector(
+                ".js-message"
+            );
+
+        old?.remove();
+
+
+        const box =
+            document.createElement("div");
+
+        box.className =
+            "js-message";
+
+
+        box.textContent =
+            message;
+
+
+        box.style.position =
+            "fixed";
+
+        box.style.top =
+            "85px";
+
+        box.style.right =
+            "22px";
+
+        box.style.zIndex =
+            "9999";
+
+        box.style.padding =
+            "12px 16px";
+
+        box.style.borderRadius =
+            "9px";
+
+        box.style.fontSize =
+            "12px";
+
+        box.style.fontWeight =
+            "700";
+
+        box.style.background =
+            isError
+                ? "rgba(248,113,113,0.12)"
+                : "rgba(52,211,153,0.12)";
+
+        box.style.color =
+            isError
+                ? "#f87171"
+                : "#34d399";
+
+        box.style.border =
+            isError
+                ? "1px solid rgba(248,113,113,0.25)"
+                : "1px solid rgba(52,211,153,0.25)";
+
+
+        document.body.appendChild(box);
+
+
+        setTimeout(() => {
+
+            box.remove();
 
         }, 3000);
 
@@ -869,55 +775,25 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =====================================================
-       BUTTON EVENTS
-    ===================================================== */
-
-    if (saveDraftButton) {
-
-        saveDraftButton.addEventListener(
-            "click",
-            saveDraft
-        );
-
-    }
-
-
-    if (publishProductButton) {
-
-        publishProductButton.addEventListener(
-            "click",
-            publishProduct
-        );
-
-    }
-
-
-    /* =====================================================
-       LOAD SAVED DRAFT
+       LOAD DRAFT
     ===================================================== */
 
     function loadDraft() {
 
         try {
 
-            const savedDraft =
+            const saved =
                 localStorage.getItem(
                     "marteyProductDraft"
                 );
 
-
-            if (!savedDraft) {
-                return;
-            }
+            if (!saved) return;
 
 
             const draft =
-                JSON.parse(savedDraft);
+                JSON.parse(saved);
 
-
-            if (!draft) {
-                return;
-            }
+            if (!draft) return;
 
 
             setField(
@@ -926,13 +802,13 @@ document.addEventListener("DOMContentLoaded", () => {
             );
 
             setField(
-                "productDescription",
-                draft.description
+                "productCategory",
+                draft.category
             );
 
             setField(
-                "productCategory",
-                draft.category
+                "productBrand",
+                draft.brand
             );
 
             setField(
@@ -941,8 +817,8 @@ document.addEventListener("DOMContentLoaded", () => {
             );
 
             setField(
-                "productBrand",
-                draft.brand
+                "productDescription",
+                draft.description
             );
 
             setField(
@@ -961,20 +837,6 @@ document.addEventListener("DOMContentLoaded", () => {
             );
 
             setField(
-                "productSizes",
-                Array.isArray(draft.sizes)
-                    ? draft.sizes.join(", ")
-                    : ""
-            );
-
-            setField(
-                "productColors",
-                Array.isArray(draft.colors)
-                    ? draft.colors.join(", ")
-                    : ""
-            );
-
-            setField(
                 "productSpecifications",
                 draft.specifications
             );
@@ -990,16 +852,95 @@ document.addEventListener("DOMContentLoaded", () => {
             );
 
 
+            /* Restore sizes */
+
+            if (
+                Array.isArray(draft.sizes)
+            ) {
+
+                draft.sizes.forEach(size => {
+
+                    const button =
+                        document.querySelector(
+                            `[data-size="${size}"]`
+                        );
+
+                    if (button) {
+
+                        button.classList.add(
+                            "selected"
+                        );
+
+                        if (
+                            !selectedSizes.includes(size)
+                        ) {
+                            selectedSizes.push(size);
+                        }
+
+                    }
+
+                });
+
+                updateHiddenField(
+                    "productSizes",
+                    selectedSizes
+                );
+
+            }
+
+
+            /* Restore colours */
+
+            if (
+                Array.isArray(draft.colours)
+            ) {
+
+                draft.colours.forEach(colour => {
+
+                    const button =
+                        document.querySelector(
+                            `[data-color="${colour}"]`
+                        );
+
+                    if (button) {
+
+                        button.classList.add(
+                            "selected"
+                        );
+
+                        if (
+                            !selectedColours.includes(
+                                colour
+                            )
+                        ) {
+
+                            selectedColours.push(
+                                colour
+                            );
+
+                        }
+
+                    }
+
+                });
+
+                updateHiddenField(
+                    "productColors",
+                    selectedColours
+                );
+
+            }
+
+
             showMessage(
-                "Your saved draft has been restored.",
-                "success"
+                "Saved draft restored."
             );
 
 
         } catch (error) {
 
             console.error(
-                "Could not load draft:",
+                "Draft loading failed:",
                 error
             );
 
@@ -1016,99 +957,21 @@ document.addEventListener("DOMContentLoaded", () => {
         const field =
             document.getElementById(id);
 
-        if (!field) {
-            return;
-        }
-
         if (
-            value === undefined ||
-            value === null
+            field &&
+            value !== undefined &&
+            value !== null
         ) {
 
-            return;
+            field.value = value;
 
         }
-
-        field.value = value;
 
     }
 
 
     /* =====================================================
-       PRICE PREVIEW
-    ===================================================== */
-
-    const priceInput =
-        document.getElementById(
-            "productPrice"
-        );
-
-    const discountInput =
-        document.getElementById(
-            "productDiscount"
-        );
-
-
-    function updatePricePreview() {
-
-        const price =
-            Number(
-                priceInput?.value || 0
-            );
-
-        const discount =
-            Number(
-                discountInput?.value || 0
-            );
-
-
-        if (
-            !price ||
-            price <= 0
-        ) {
-            return;
-        }
-
-
-        const finalPrice =
-            price -
-            (
-                price *
-                discount /
-                100
-            );
-
-
-        console.log(
-            "MARTEY selling price:",
-            finalPrice.toFixed(2)
-        );
-
-    }
-
-
-    if (priceInput) {
-
-        priceInput.addEventListener(
-            "input",
-            updatePricePreview
-        );
-
-    }
-
-
-    if (discountInput) {
-
-        discountInput.addEventListener(
-            "input",
-            updatePricePreview
-        );
-
-    }
-
-
-    /* =====================================================
-       INITIALIZE
+       START
     ===================================================== */
 
     loadDraft();
