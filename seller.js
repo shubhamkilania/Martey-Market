@@ -2757,22 +2757,21 @@ document.addEventListener("DOMContentLoaded", () => {
         );
 
 
-    if (inventorySearch) {
+   if (inventorySearch) {
 
-        inventorySearch.addEventListener(
-            "input",
-            () => {
+    inventorySearch.addEventListener(
+        "input",
+        () => {
 
-                inventorySearch =
-                    inventorySearch.value;
+            window.marteyInventorySearch =
+                inventorySearch.value;
 
-                renderInventory();
+            renderInventory();
 
-            }
-        );
-    }
-
-
+        }
+    );
+}
+   
     const inventoryStatusFilter =
         document.getElementById(
             "inventoryStatusFilter"
