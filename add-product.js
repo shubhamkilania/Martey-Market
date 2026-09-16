@@ -1,5 +1,5 @@
 /* =========================================================
-   MARTEY — ADD PRODUCT
+   MARTEY — ADD / EDIT PRODUCT SYSTEM
 ========================================================= */
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -22,10 +22,116 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =====================================================
+       EDIT MODE
+    ===================================================== */
+
+    const urlParams =
+        new URLSearchParams(window.location.search);
+
+    const editProductId =
+        urlParams.get("edit");
+
+    let isEditMode = Boolean(editProductId);
+
+    let editingProduct = null;
+
+
+    /* =====================================================
+       PRODUCT STORAGE
+    ===================================================== */
+
+    function getProducts() {
+        try {
+            return JSON.parse(
+                localStorage.getItem("marteySellerProducts")
+            ) || [];
+        } catch (error) {
+            console.error(
+                "MARTEY: Products loading failed.",
+                error
+            );
+
+            return [];
+        }
+    }
+
+
+    function saveProducts(products) {
+        localStorage.setItem(
+            "marteySellerProducts",
+            JSON.stringify(products)
+        );
+    }
+
+
+    /* =====================================================
+       FIND EDITING PRODUCT
+    ===================================================== */
+
+    if (isEditMode) {
+
+        const products = getProducts();
+
+        editingProduct =
+            products.find(
+                product =>
+                    String(product.id) ===
+                    String(editProductId)
+            );
+
+        if (!editingProduct) {
+
+            alert(
+                "The product you are trying to edit was not found."
+            );
+
+            window.location.href =
+                "seller.html";
+
+            return;
+        }
+    }
+
+
+    /* =====================================================
        IMAGE SYSTEM
     ===================================================== */
 
     let selectedImages = [];
+
+
+    /*
+       Existing image names are stored in localStorage,
+       but actual image files are not stored yet.
+    */
+
+    function loadExistingImages(product) {
+
+        if (!product) return;
+
+        if (
+            Array.isArray(product.imageNames) &&
+            product.imageNames.length
+        ) {
+
+            selectedImages =
+                product.imageNames.map(name => ({
+                    id:
+                        "existing-" +
+                        Date.now() +
+                        Math.random(),
+
+                    file: null,
+
+                    name: name,
+
+                    existing: true
+                }));
+
+        }
+
+        renderImages();
+    }
 
 
     imageInput?.addEventListener(
@@ -42,13 +148,17 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
 
                 selectedImages.push({
+
                     id:
                         Date.now() +
                         Math.random(),
 
                     file: file,
 
-                    name: file.name
+                    name: file.name,
+
+                    existing: false
+
                 });
 
             });
@@ -79,8 +189,26 @@ document.addEventListener("DOMContentLoaded", () => {
             const img =
                 document.createElement("img");
 
-            img.src =
-                URL.createObjectURL(item.file);
+
+            if (item.file) {
+
+                img.src =
+                    URL.createObjectURL(
+                        item.file
+                    );
+
+            } else {
+
+                /*
+                   Existing images are currently only
+                   represented by their filename.
+                */
+
+                img.src =
+                    createImagePlaceholder();
+
+            }
+
 
             img.alt =
                 item.name;
@@ -120,6 +248,49 @@ document.addEventListener("DOMContentLoaded", () => {
             imagePreview.appendChild(wrapper);
 
         });
+
+    }
+
+
+    function createImagePlaceholder() {
+
+        return (
+            "data:image/svg+xml;charset=UTF-8," +
+            encodeURIComponent(`
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="300"
+                    height="300"
+                    viewBox="0 0 300 300"
+                >
+                    <rect
+                        width="300"
+                        height="300"
+                        fill="#18181b"
+                    />
+
+                    <text
+                        x="150"
+                        y="140"
+                        text-anchor="middle"
+                        fill="#a1a1aa"
+                        font-size="52"
+                    >
+                        📦
+                    </text>
+
+                    <text
+                        x="150"
+                        y="190"
+                        text-anchor="middle"
+                        fill="#71717a"
+                        font-size="16"
+                    >
+                        Existing Product Image
+                    </text>
+                </svg>
+            `)
+        );
 
     }
 
@@ -311,7 +482,10 @@ document.addEventListener("DOMContentLoaded", () => {
        PRODUCT DATA
     ===================================================== */
 
-    function collectProduct(status) {
+    function collectProduct(
+        status,
+        existingProduct = null
+    ) {
 
         const price =
             getNumber("productPrice");
@@ -331,64 +505,100 @@ document.addEventListener("DOMContentLoaded", () => {
 
         return {
 
+            /*
+               Keep the SAME ID when editing.
+               Create a NEW ID only for a new product.
+            */
+
             id:
-                "MAR-" + Date.now(),
+                existingProduct
+                    ? existingProduct.id
+                    : "MAR-" + Date.now(),
+
 
             name:
                 getValue("productName"),
 
+
             category:
                 getValue("productCategory"),
+
 
             brand:
                 getValue("productBrand"),
 
+
             sku:
                 getValue("productSKU"),
+
 
             description:
                 getValue("productDescription"),
 
+
             price:
                 price,
 
+
             discount:
                 discount,
+
 
             sellingPrice:
                 Number(
                     sellingPrice.toFixed(2)
                 ),
 
+
             stock:
                 getNumber("productStock"),
+
 
             sizes:
                 getArray("productSizes"),
 
+
             colours:
                 getArray("productColors"),
+
 
             specifications:
                 getValue(
                     "productSpecifications"
                 ),
 
+
             weight:
                 getNumber("productWeight"),
 
+
             shippingType:
                 getValue("shippingType"),
+
+
+            /*
+               Keep existing image names if the seller
+               does not upload a new image.
+            */
 
             imageNames:
                 selectedImages.map(
                     image => image.name
                 ),
 
+
             status:
                 status,
 
+
             createdAt:
+                existingProduct &&
+                existingProduct.createdAt
+                    ? existingProduct.createdAt
+                    : new Date().toISOString(),
+
+
+            updatedAt:
                 new Date().toISOString()
 
         };
@@ -411,6 +621,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 );
 
             });
+
 
         document
             .querySelectorAll(".form-error")
@@ -446,9 +657,13 @@ document.addEventListener("DOMContentLoaded", () => {
             message;
 
 
-        field.parentElement.appendChild(
-            errorText
-        );
+        if (field.parentElement) {
+
+            field.parentElement.appendChild(
+                errorText
+            );
+
+        }
 
     }
 
@@ -536,6 +751,10 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
 
+        /*
+           In Edit Mode, existing images count as images.
+        */
+
         if (
             selectedImages.length === 0
         ) {
@@ -545,16 +764,22 @@ document.addEventListener("DOMContentLoaded", () => {
                     ".image-upload-area"
                 );
 
-            const text =
-                document.createElement("small");
+            if (uploadArea) {
 
-            text.className =
-                "form-error";
+                const text =
+                    document.createElement(
+                        "small"
+                    );
 
-            text.textContent =
-                "Please upload at least one image.";
+                text.className =
+                    "form-error";
 
-            uploadArea.appendChild(text);
+                text.textContent =
+                    "Please upload at least one image.";
+
+                uploadArea.appendChild(text);
+
+            }
 
             valid = false;
 
@@ -567,27 +792,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =====================================================
-       SAVE PRODUCTS
+       SAVE NEW PRODUCT
     ===================================================== */
-
-    function getProducts() {
-
-        try {
-
-            return JSON.parse(
-                localStorage.getItem(
-                    "marteySellerProducts"
-                )
-            ) || [];
-
-        } catch {
-
-            return [];
-
-        }
-
-    }
-
 
     function saveProduct(product) {
 
@@ -596,10 +802,41 @@ document.addEventListener("DOMContentLoaded", () => {
 
         products.push(product);
 
-        localStorage.setItem(
-            "marteySellerProducts",
-            JSON.stringify(products)
-        );
+        saveProducts(products);
+
+    }
+
+
+    /* =====================================================
+       UPDATE EXISTING PRODUCT
+    ===================================================== */
+
+    function updateProduct(product) {
+
+        const products =
+            getProducts();
+
+        const index =
+            products.findIndex(
+                item =>
+                    String(item.id) ===
+                    String(product.id)
+            );
+
+
+        if (index === -1) {
+
+            return false;
+
+        }
+
+
+        products[index] =
+            product;
+
+        saveProducts(products);
+
+        return true;
 
     }
 
@@ -628,8 +865,16 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
 
+            /*
+               If editing an existing product,
+               keep its ID.
+            */
+
             const draft =
-                collectProduct("draft");
+                collectProduct(
+                    "draft",
+                    editingProduct
+                );
 
 
             localStorage.setItem(
@@ -639,7 +884,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
             showMessage(
-                "Product draft saved."
+                isEditMode
+                    ? "Product changes saved as draft."
+                    : "Product draft saved."
             );
 
         }
@@ -647,7 +894,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =====================================================
-       PUBLISH
+       PUBLISH / SAVE CHANGES
     ===================================================== */
 
     publishButton?.addEventListener(
@@ -666,8 +913,72 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
 
+            /* =================================================
+               EDIT MODE
+            ================================================= */
+
+            if (isEditMode) {
+
+                const updatedProduct =
+                    collectProduct(
+                        "published",
+                        editingProduct
+                    );
+
+
+                const updated =
+                    updateProduct(
+                        updatedProduct
+                    );
+
+
+                if (!updated) {
+
+                    showMessage(
+                        "Could not update the product.",
+                        true
+                    );
+
+                    return;
+
+                }
+
+
+                localStorage.removeItem(
+                    "marteyProductDraft"
+                );
+
+
+                localStorage.removeItem(
+                    "marteyEditingProduct"
+                );
+
+
+                showMessage(
+                    "Product updated successfully!"
+                );
+
+
+                setTimeout(() => {
+
+                    window.location.href =
+                        "seller.html";
+
+                }, 1200);
+
+
+                return;
+            }
+
+
+            /* =================================================
+               NEW PRODUCT
+            ================================================= */
+
             const product =
-                collectProduct("published");
+                collectProduct(
+                    "published"
+                );
 
 
             saveProduct(product);
@@ -741,7 +1052,7 @@ document.addEventListener("DOMContentLoaded", () => {
             "9px";
 
         box.style.fontSize =
-            "12px";
+            "14px";
 
         box.style.fontWeight =
             "700";
@@ -762,7 +1073,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 : "1px solid rgba(52,211,153,0.25)";
 
 
-        document.body.appendChild(box);
+        document.body.appendChild(
+            box
+        );
 
 
         setTimeout(() => {
@@ -775,10 +1088,254 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =====================================================
+       LOAD PRODUCT INTO FORM
+    ===================================================== */
+
+    function loadProductForEdit() {
+
+        if (!editingProduct) {
+            return;
+        }
+
+
+        setField(
+            "productName",
+            editingProduct.name
+        );
+
+
+        setField(
+            "productCategory",
+            editingProduct.category
+        );
+
+
+        setField(
+            "productBrand",
+            editingProduct.brand
+        );
+
+
+        setField(
+            "productSKU",
+            editingProduct.sku
+        );
+
+
+        setField(
+            "productDescription",
+            editingProduct.description
+        );
+
+
+        setField(
+            "productPrice",
+            editingProduct.price
+        );
+
+
+        setField(
+            "productDiscount",
+            editingProduct.discount
+        );
+
+
+        setField(
+            "productStock",
+            editingProduct.stock
+        );
+
+
+        setField(
+            "productSpecifications",
+            editingProduct.specifications
+        );
+
+
+        setField(
+            "productWeight",
+            editingProduct.weight
+        );
+
+
+        setField(
+            "shippingType",
+            editingProduct.shippingType
+        );
+
+
+        /* =================================================
+           RESTORE SIZES
+        ================================================= */
+
+        if (
+            Array.isArray(editingProduct.sizes)
+        ) {
+
+            editingProduct.sizes.forEach(
+                size => {
+
+                    const button =
+                        document.querySelector(
+                            `[data-size="${size}"]`
+                        );
+
+
+                    if (!button) {
+                        return;
+                    }
+
+
+                    button.classList.add(
+                        "selected"
+                    );
+
+
+                    if (
+                        !selectedSizes.includes(
+                            size
+                        )
+                    ) {
+
+                        selectedSizes.push(
+                            size
+                        );
+
+                    }
+
+                }
+            );
+
+
+            updateHiddenField(
+                "productSizes",
+                selectedSizes
+            );
+
+        }
+
+
+        /* =================================================
+           RESTORE COLOURS
+        ================================================= */
+
+        if (
+            Array.isArray(
+                editingProduct.colours
+            )
+        ) {
+
+            editingProduct.colours.forEach(
+                colour => {
+
+                    const button =
+                        document.querySelector(
+                            `[data-color="${colour}"]`
+                        );
+
+
+                    if (!button) {
+                        return;
+                    }
+
+
+                    button.classList.add(
+                        "selected"
+                    );
+
+
+                    if (
+                        !selectedColours.includes(
+                            colour
+                        )
+                    ) {
+
+                        selectedColours.push(
+                            colour
+                        );
+
+                    }
+
+                }
+            );
+
+
+            updateHiddenField(
+                "productColors",
+                selectedColours
+            );
+
+        }
+
+
+        /* =================================================
+           EXISTING IMAGES
+        ================================================= */
+
+        loadExistingImages(
+            editingProduct
+        );
+
+
+        /* =================================================
+           CHANGE PAGE TEXT
+        ================================================= */
+
+        if (publishButton) {
+
+            publishButton.textContent =
+                "Save Changes";
+
+        }
+
+
+        const heading =
+            document.querySelector(
+                "h1"
+            );
+
+
+        if (
+            heading &&
+            (
+                heading.textContent
+                    .toLowerCase()
+                    .includes("add product")
+            )
+        ) {
+
+            heading.textContent =
+                "Edit Product";
+
+        }
+
+
+        document.title =
+            "MARTEY — Edit Product";
+
+
+        showMessage(
+            "Editing existing product."
+        );
+
+    }
+
+
+    /* =====================================================
        LOAD DRAFT
     ===================================================== */
 
     function loadDraft() {
+
+        /*
+           Do NOT load normal draft when editing
+           an existing product.
+        */
+
+        if (isEditMode) {
+            return;
+        }
+
 
         try {
 
@@ -787,11 +1344,13 @@ document.addEventListener("DOMContentLoaded", () => {
                     "marteyProductDraft"
                 );
 
+
             if (!saved) return;
 
 
             const draft =
                 JSON.parse(saved);
+
 
             if (!draft) return;
 
@@ -801,50 +1360,60 @@ document.addEventListener("DOMContentLoaded", () => {
                 draft.name
             );
 
+
             setField(
                 "productCategory",
                 draft.category
             );
+
 
             setField(
                 "productBrand",
                 draft.brand
             );
 
+
             setField(
                 "productSKU",
                 draft.sku
             );
+
 
             setField(
                 "productDescription",
                 draft.description
             );
 
+
             setField(
                 "productPrice",
                 draft.price
             );
+
 
             setField(
                 "productDiscount",
                 draft.discount
             );
 
+
             setField(
                 "productStock",
                 draft.stock
             );
+
 
             setField(
                 "productSpecifications",
                 draft.specifications
             );
 
+
             setField(
                 "productWeight",
                 draft.weight
             );
+
 
             setField(
                 "shippingType",
@@ -858,28 +1427,39 @@ document.addEventListener("DOMContentLoaded", () => {
                 Array.isArray(draft.sizes)
             ) {
 
-                draft.sizes.forEach(size => {
+                draft.sizes.forEach(
+                    size => {
 
-                    const button =
-                        document.querySelector(
-                            `[data-size="${size}"]`
-                        );
+                        const button =
+                            document.querySelector(
+                                `[data-size="${size}"]`
+                            );
 
-                    if (button) {
 
-                        button.classList.add(
-                            "selected"
-                        );
+                        if (button) {
 
-                        if (
-                            !selectedSizes.includes(size)
-                        ) {
-                            selectedSizes.push(size);
+                            button.classList.add(
+                                "selected"
+                            );
+
+
+                            if (
+                                !selectedSizes.includes(
+                                    size
+                                )
+                            ) {
+
+                                selectedSizes.push(
+                                    size
+                                );
+
+                            }
+
                         }
 
                     }
+                );
 
-                });
 
                 updateHiddenField(
                     "productSizes",
@@ -895,34 +1475,39 @@ document.addEventListener("DOMContentLoaded", () => {
                 Array.isArray(draft.colours)
             ) {
 
-                draft.colours.forEach(colour => {
+                draft.colours.forEach(
+                    colour => {
 
-                    const button =
-                        document.querySelector(
-                            `[data-color="${colour}"]`
-                        );
-
-                    if (button) {
-
-                        button.classList.add(
-                            "selected"
-                        );
-
-                        if (
-                            !selectedColours.includes(
-                                colour
-                            )
-                        ) {
-
-                            selectedColours.push(
-                                colour
+                        const button =
+                            document.querySelector(
+                                `[data-color="${colour}"]`
                             );
+
+
+                        if (button) {
+
+                            button.classList.add(
+                                "selected"
+                            );
+
+
+                            if (
+                                !selectedColours.includes(
+                                    colour
+                                )
+                            ) {
+
+                                selectedColours.push(
+                                    colour
+                                );
+
+                            }
 
                         }
 
                     }
+                );
 
-                });
 
                 updateHiddenField(
                     "productColors",
@@ -949,6 +1534,10 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
+    /* =====================================================
+       SET FIELD
+    ===================================================== */
+
     function setField(
         id,
         value
@@ -957,13 +1546,15 @@ document.addEventListener("DOMContentLoaded", () => {
         const field =
             document.getElementById(id);
 
+
         if (
             field &&
             value !== undefined &&
             value !== null
         ) {
 
-            field.value = value;
+            field.value =
+                value;
 
         }
 
@@ -971,9 +1562,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =====================================================
-       START
+       PAGE INITIALIZATION
     ===================================================== */
 
-    loadDraft();
+    if (isEditMode) {
+
+        loadProductForEdit();
+
+    } else {
+
+        loadDraft();
+
+    }
 
 });
