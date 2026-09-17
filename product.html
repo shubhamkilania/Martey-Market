@@ -3,16 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#155EEF">
 
     <title>Product | MARTEY</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-    <link
-        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
-        rel="stylesheet"
-    >
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="product.css">
@@ -20,553 +17,333 @@
 
 <body>
 
+<!-- ================= HEADER ================= -->
 <header class="site-header product-site-header">
-
     <div class="header-container">
 
         <a href="index.html" class="logo">
             MARTEY<span>.</span>
         </a>
 
-        <div class="header-search">
-
+        <div class="product-search">
             <input
-                type="text"
+                type="search"
                 id="searchInput"
-                placeholder="Search products..."
+                placeholder="Search products, brands and more..."
                 autocomplete="off"
             >
 
-            <button
-                type="button"
-                id="searchButton"
-                aria-label="Search"
-            >
-                <svg
-                    width="19"
-                    height="19"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                >
-                    <circle cx="11" cy="11" r="7"></circle>
-                    <path d="M20 20l-3.5-3.5"></path>
+            <button id="searchButton" aria-label="Search">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <circle cx="11" cy="11" r="6.5"></circle>
+                    <path d="M16 16L21 21"></path>
                 </svg>
             </button>
-
         </div>
 
         <div class="header-actions">
 
-            <button
-                type="button"
-                class="header-icon-button"
-                id="wishlistHeaderButton"
-                aria-label="Wishlist"
-            >
-                <svg
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="1.8"
-                >
-                    <path d="M20.8 8.6c0 5.4-8.8 10.2-8.8 10.2S3.2 14 3.2 8.6A4.6 4.6 0 0 1 12 6.1a4.6 4.6 0 0 1 8.8 2.5Z"></path>
+            <button class="header-action" id="wishlistHeaderButton" aria-label="Wishlist">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M20.8 8.8c0 5.5-8.8 10.2-8.8 10.2S3.2 14.3 3.2 8.8A5.1 5.1 0 0 1 8.3 3.7c1.5 0 2.9.7 3.7 1.8a4.7 4.7 0 0 1 3.7-1.8 5.1 5.1 0 0 1 5.1 5.1Z"></path>
                 </svg>
+                <span>Wishlist</span>
             </button>
 
-            <button
-                type="button"
-                class="header-icon-button cart-header-button"
-                id="cartHeaderButton"
-                aria-label="Cart"
-            >
-                <svg
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="1.8"
-                >
-                    <path d="M3 4h2l2.2 11.2a2 2 0 0 0 2 1.6h7.9a2 2 0 0 0 2-1.6L21 8H6"></path>
-                    <circle cx="10" cy="20" r="1"></circle>
-                    <circle cx="18" cy="20" r="1"></circle>
-                </svg>
-
-                <span id="cartCount" class="cart-count">0</span>
+            <button class="header-action cart-action" id="cartHeaderButton" aria-label="Cart">
+                <span class="cart-icon-wrap">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M3 4h2l2.1 10.2a2 2 0 0 0 2 1.6h7.8a2 2 0 0 0 1.9-1.4L21 8H6"></path>
+                        <circle cx="9" cy="20" r="1.2"></circle>
+                        <circle cx="18" cy="20" r="1.2"></circle>
+                    </svg>
+                    <span id="cartCount" class="cart-count">0</span>
+                </span>
+                <span>Cart</span>
             </button>
 
-            <button
-                type="button"
-                class="header-icon-button"
-                id="accountHeaderButton"
-                aria-label="Account"
-            >
-                <svg
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="1.8"
-                >
-                    <circle cx="12" cy="8" r="3.2"></circle>
-                    <path d="M5.5 20c.8-3.4 3-5.2 6.5-5.2s5.7 1.8 6.5 5.2"></path>
-                </svg>
+            <button class="header-action" id="accountHeaderButton" aria-label="Account">
+                <span class="account-icon">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <circle cx="12" cy="8" r="3.5"></circle>
+                        <path d="M5 20c.8-3.3 3.2-5 7-5s6.2 1.7 7 5"></path>
+                    </svg>
+                </span>
+                <span>Account</span>
             </button>
 
         </div>
-
     </div>
-
 </header>
 
 
+<!-- ================= BREADCRUMB ================= -->
 <main class="product-page">
 
-    <!-- Breadcrumb -->
-
     <div class="product-breadcrumb">
-
         <a href="index.html">Home</a>
-
         <span>/</span>
-
         <a href="index.html">Products</a>
-
         <span>/</span>
-
-        <span id="breadcrumbProduct">
-            Product
-        </span>
-
+        <strong id="breadcrumbProduct">Product</strong>
     </div>
 
 
-    <!-- PRODUCT -->
-
+    <!-- ================= PRODUCT MAIN ================= -->
     <section class="product-main">
 
-        <!-- Gallery -->
-
+        <!-- GALLERY -->
         <div class="product-gallery">
 
-            <div class="product-thumbnails">
+            <div class="product-thumbnails" id="productThumbnails"></div>
+
+            <div class="product-main-image-wrap">
+
+                <span class="product-badge" id="productBadge">Bestseller</span>
 
                 <button
-                    type="button"
-                    class="product-thumbnail active"
-                    data-image="images/premium-tshirt.jpg"
+                    class="image-wishlist-button"
+                    id="productWishlistButton"
+                    aria-label="Add to wishlist"
                 >
-                    <img
-                        src="images/premium-tshirt.jpg"
-                        alt="Product image"
-                    >
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M20.8 8.8c0 5.5-8.8 10.2-8.8 10.2S3.2 14.3 3.2 8.8A5.1 5.1 0 0 1 8.3 3.7c1.5 0 2.9.7 3.7 1.8a4.7 4.7 0 0 1 3.7-1.8 5.1 5.1 0 0 1 5.1 5.1Z"></path>
+                    </svg>
                 </button>
-
-                <button
-                    type="button"
-                    class="product-thumbnail"
-                    data-image="images/premium-tshirt-2.jpg"
-                >
-                    <img
-                        src="images/premium-tshirt-2.jpg"
-                        alt="Product image"
-                    >
-                </button>
-
-                <button
-                    type="button"
-                    class="product-thumbnail"
-                    data-image="images/premium-tshirt-3.jpg"
-                >
-                    <img
-                        src="images/premium-tshirt-3.jpg"
-                        alt="Product image"
-                    >
-                </button>
-
-                <button
-                    type="button"
-                    class="product-thumbnail"
-                    data-image="images/premium-tshirt-4.jpg"
-                >
-                    <img
-                        src="images/premium-tshirt-4.jpg"
-                        alt="Product image"
-                    >
-                </button>
-
-                <button
-                    type="button"
-                    class="product-thumbnail"
-                    data-image="images/premium-tshirt-5.jpg"
-                >
-                    <img
-                        src="images/premium-tshirt-5.jpg"
-                        alt="Product image"
-                    >
-                </button>
-
-            </div>
-
-
-            <div class="product-main-image">
-
-                <span
-                    class="product-image-badge"
-                    id="productBadge"
-                >
-                    Bestseller
-                </span>
 
                 <img
                     id="mainProductImage"
                     src="images/premium-tshirt.jpg"
-                    alt="Premium Oversized T-Shirt"
+                    alt="Product"
+                    class="product-main-image"
                 >
-
             </div>
 
         </div>
 
 
-        <!-- INFO -->
-
+        <!-- PRODUCT INFORMATION -->
         <div class="product-info">
 
-            <div
-                class="product-category"
-                id="productCategory"
-            >
+            <div class="product-category" id="productCategory">
                 Fashion
             </div>
 
-            <h1
-                class="product-title"
-                id="productTitle"
-            >
-                Premium Oversized T-Shirt
-            </h1>
+            <h1 id="productTitle">Premium Oversized T-Shirt</h1>
 
             <div class="product-rating-row">
+                <span class="product-rating" id="productRating">
+                    ★ 4.7
+                </span>
 
-                <div class="product-rating">
+                <span class="rating-separator">•</span>
 
-                    <span class="product-rating-star">
-                        ★
-                    </span>
+                <span class="product-reviews" id="productReviews">
+                    128 Ratings & Reviews
+                </span>
+            </div>
 
-                    <span id="productRating">
-                        4.7
-                    </span>
+            <div class="product-price-area">
 
-                </div>
+                <span class="product-price" id="productPrice">
+                    ₹799
+                </span>
 
-                <a
-                    href="#reviews"
-                    class="product-reviews-link"
-                >
-                    <span id="productReviews">
-                        128
-                    </span>
-                    reviews
-                </a>
+                <span class="product-mrp" id="productMRP">
+                    ₹1,499
+                </span>
+
+                <span class="product-discount" id="productDiscount">
+                    47% OFF
+                </span>
 
             </div>
 
+            <p class="price-note">
+                Inclusive of all taxes
+            </p>
 
-            <div class="product-price-box">
 
-                <div class="product-price-row">
+            <!-- OPTIONS -->
+            <div class="product-options">
 
-                    <span
-                        class="product-price"
-                        id="productPrice"
-                    >
-                        ₹799
-                    </span>
+                <div class="option-group">
+                    <div class="option-heading">
+                        <span>Size</span>
+                        <strong id="selectedSize">M</strong>
+                    </div>
 
-                    <span
-                        class="product-mrp"
-                        id="productMRP"
-                    >
-                        ₹1,499
-                    </span>
-
-                    <span
-                        class="product-discount"
-                        id="productDiscount"
-                    >
-                        47% OFF
-                    </span>
-
+                    <div class="option-buttons">
+                        <button class="option-button" data-size="S">S</button>
+                        <button class="option-button active" data-size="M">M</button>
+                        <button class="option-button" data-size="L">L</button>
+                        <button class="option-button" data-size="XL">XL</button>
+                        <button class="option-button" data-size="XXL">XXL</button>
+                    </div>
                 </div>
 
-                <div class="product-tax-note">
-                    Inclusive of applicable taxes
-                </div>
 
-            </div>
+                <div class="option-group">
+                    <div class="option-heading">
+                        <span>Color</span>
+                        <strong id="selectedColor">Black</strong>
+                    </div>
 
-
-            <!-- SIZE -->
-
-            <div class="product-option">
-
-                <div class="product-option-header">
-
-                    <span class="product-option-title">
-                        Size
-                    </span>
-
-                    <span
-                        class="product-option-value"
-                        id="selectedSize"
-                    >
-                        M
-                    </span>
-
-                </div>
-
-                <div class="product-option-buttons">
-
-                    <button
-                        type="button"
-                        class="product-option-button"
-                        data-size="S"
-                    >
-                        S
-                    </button>
-
-                    <button
-                        type="button"
-                        class="product-option-button active"
-                        data-size="M"
-                    >
-                        M
-                    </button>
-
-                    <button
-                        type="button"
-                        class="product-option-button"
-                        data-size="L"
-                    >
-                        L
-                    </button>
-
-                    <button
-                        type="button"
-                        class="product-option-button"
-                        data-size="XL"
-                    >
-                        XL
-                    </button>
-
-                    <button
-                        type="button"
-                        class="product-option-button"
-                        data-size="XXL"
-                    >
-                        XXL
-                    </button>
-
+                    <div class="color-options">
+                        <button class="color-button black active" data-color="Black" aria-label="Black"></button>
+                        <button class="color-button white" data-color="White" aria-label="White"></button>
+                        <button class="color-button blue" data-color="Blue" aria-label="Blue"></button>
+                    </div>
                 </div>
 
             </div>
 
 
-            <!-- COLOR -->
+            <!-- QUANTITY -->
+            <div class="quantity-section">
 
-            <div class="product-option">
-
-                <div class="product-option-header">
-
-                    <span class="product-option-title">
-                        Color
-                    </span>
-
-                    <span
-                        class="product-option-value"
-                        id="selectedColor"
-                    >
-                        Black
-                    </span>
-
+                <div class="option-heading">
+                    <span>Quantity</span>
                 </div>
 
-                <div class="product-option-buttons">
-
-                    <button
-                        type="button"
-                        class="product-option-button active"
-                        data-color="Black"
-                    >
-                        Black
-                    </button>
-
-                    <button
-                        type="button"
-                        class="product-option-button"
-                        data-color="White"
-                    >
-                        White
-                    </button>
-
-                    <button
-                        type="button"
-                        class="product-option-button"
-                        data-color="Blue"
-                    >
-                        Blue
-                    </button>
-
+                <div class="quantity-control">
+                    <button id="quantityMinus" aria-label="Decrease quantity">−</button>
+                    <span id="quantityValue">1</span>
+                    <button id="quantityPlus" aria-label="Increase quantity">+</button>
                 </div>
 
             </div>
 
 
             <!-- DELIVERY -->
+            <div class="delivery-box">
 
-            <div class="product-delivery-box">
+                <div class="delivery-title">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M3 6h11v10H3z"></path>
+                        <path d="M14 10h4l3 3v3h-7z"></path>
+                        <circle cx="7" cy="19" r="1.5"></circle>
+                        <circle cx="18" cy="19" r="1.5"></circle>
+                    </svg>
 
-                <div class="product-delivery-title">
-                    Check delivery
+                    <strong>Check Delivery</strong>
                 </div>
 
-                <div class="product-delivery-text">
-                    Enter your PIN code to check delivery availability.
-                </div>
-
-                <div class="product-delivery-input-row">
-
+                <div class="delivery-input-row">
                     <input
                         type="text"
-                        class="product-delivery-input"
                         id="deliveryPincode"
-                        placeholder="Enter PIN code"
                         maxlength="6"
                         inputmode="numeric"
+                        placeholder="Enter pincode"
                     >
 
-                    <button
-                        type="button"
-                        class="product-delivery-button"
-                        id="checkDeliveryButton"
-                    >
+                    <button id="checkDeliveryButton">
                         Check
                     </button>
-
                 </div>
 
-                <div
-                    class="delivery-result"
-                    id="deliveryResult"
-                ></div>
+                <p id="deliveryResult" class="delivery-result"></p>
 
             </div>
 
 
             <!-- ACTIONS -->
-
             <div class="product-actions">
 
-                <button
-                    type="button"
-                    class="product-action-button product-add-cart"
-                    id="addToCartButton"
-                >
+                <button class="add-cart-button" id="addToCartButton">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M3 4h2l2.1 10.2a2 2 0 0 0 2 1.6h7.8a2 2 0 0 0 1.9-1.4L21 8H6"></path>
+                        <circle cx="9" cy="20" r="1.2"></circle>
+                        <circle cx="18" cy="20" r="1.2"></circle>
+                    </svg>
                     Add to Cart
                 </button>
 
-                <button
-                    type="button"
-                    class="product-action-button product-buy-now"
-                    id="buyNowButton"
-                >
+                <button class="buy-now-button" id="buyNowButton">
                     Buy Now
                 </button>
 
             </div>
 
+
+            <!-- SERVICE FEATURES -->
+            <div class="service-features">
+
+                <div class="service-item">
+                    <span class="service-icon">✓</span>
+                    <div>
+                        <strong>Quality Checked</strong>
+                        <small>Verified product</small>
+                    </div>
+                </div>
+
+                <div class="service-item">
+                    <span class="service-icon">↻</span>
+                    <div>
+                        <strong>Easy Returns</strong>
+                        <small>Simple return process</small>
+                    </div>
+                </div>
+
+                <div class="service-item">
+                    <span class="service-icon">⚡</span>
+                    <div>
+                        <strong>Fast Delivery</strong>
+                        <small>Quick dispatch</small>
+                    </div>
+                </div>
+
+            </div>
+
         </div>
 
     </section>
 
 
-    <!-- DETAILS -->
+    <!-- ================= DETAILS ================= -->
+    <section class="product-section details-section">
 
-    <section class="product-details-section">
+        <div class="section-heading">
+            <div>
+                <span class="section-eyebrow">Product Information</span>
+                <h2>Product Details</h2>
+            </div>
+        </div>
 
-        <h2 class="product-section-title">
-            Product Details
-        </h2>
+        <div class="details-grid">
 
-        <div class="product-details-grid">
-
-            <div class="product-detail-card">
-
-                <h3>
-                    Description
-                </h3>
-
+            <div class="description-card">
+                <h3>About this product</h3>
                 <p id="productDescription">
-                    Premium oversized t-shirt designed for everyday comfort
-                    and casual styling. Made with a soft fabric and a
-                    relaxed fit that works well for everyday wear.
+                    A premium everyday product designed with a clean,
+                    modern look and comfortable feel.
                 </p>
-
             </div>
 
-            <div class="product-detail-card">
+            <div class="specification-card">
 
-                <h3>
-                    Specifications
-                </h3>
+                <h3>Specifications</h3>
 
-                <table class="product-spec-table">
+                <div class="spec-row">
+                    <span>Category</span>
+                    <strong id="specCategory">Fashion</strong>
+                </div>
 
-                    <tr>
-                        <td>Category</td>
-                        <td id="specCategory">
-                            Fashion
-                        </td>
-                    </tr>
+                <div class="spec-row">
+                    <span>Brand</span>
+                    <strong>MARTEY</strong>
+                </div>
 
-                    <tr>
-                        <td>Material</td>
-                        <td>
-                            Premium Cotton
-                        </td>
-                    </tr>
+                <div class="spec-row">
+                    <span>Availability</span>
+                    <strong class="available-text">In Stock</strong>
+                </div>
 
-                    <tr>
-                        <td>Fit</td>
-                        <td>
-                            Oversized
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td>Pattern</td>
-                        <td>
-                            Solid
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td>Wash Care</td>
-                        <td>
-                            Machine Wash
-                        </td>
-                    </tr>
-
-                </table>
+                <div class="spec-row">
+                    <span>Seller</span>
+                    <strong>MARTEY Verified Seller</strong>
+                </div>
 
             </div>
 
@@ -575,24 +352,17 @@
     </section>
 
 
-    <!-- REVIEWS -->
+    <!-- ================= REVIEWS ================= -->
+    <section class="product-section reviews-section" id="reviews">
 
-    <section
-        class="product-reviews-section"
-        id="reviews"
-    >
+        <div class="reviews-heading">
 
-        <div class="reviews-heading-row">
+            <div>
+                <span class="section-eyebrow">Customer Feedback</span>
+                <h2>Ratings & Reviews</h2>
+            </div>
 
-            <h2 class="product-section-title">
-                Customer Reviews
-            </h2>
-
-            <button
-                type="button"
-                class="write-review-button"
-                id="writeReviewButton"
-            >
+            <button class="write-review-button" id="writeReviewButton">
                 Write a Review
             </button>
 
@@ -601,97 +371,43 @@
 
         <div class="reviews-summary">
 
-            <div class="reviews-score">
-
-                <div
-                    class="reviews-score-number"
-                    id="reviewScore"
-                >
-                    4.7
-                </div>
-
-                <div class="reviews-score-stars">
-                    ★★★★★
-                </div>
-
-                <div class="reviews-score-text">
-
-                    Based on
-                    <span id="reviewCount">
-                        128
-                    </span>
-                    reviews
-
-                </div>
-
+            <div class="review-score-box">
+                <strong id="reviewScore">4.7</strong>
+                <span>★</span>
+                <p id="reviewCount">128 Ratings</p>
             </div>
 
 
-            <div class="review-bars">
+            <div class="rating-bars">
 
-                <div class="review-bar-row">
-                    <span>5</span>
-
-                    <div class="review-bar">
-                        <div
-                            class="review-bar-fill"
-                            style="width:82%"
-                        ></div>
-                    </div>
-
-                    <span>82%</span>
+                <div class="rating-bar-row">
+                    <span>5 ★</span>
+                    <div><span style="width:82%"></span></div>
+                    <small>82%</small>
                 </div>
 
-                <div class="review-bar-row">
-                    <span>4</span>
-
-                    <div class="review-bar">
-                        <div
-                            class="review-bar-fill"
-                            style="width:12%"
-                        ></div>
-                    </div>
-
-                    <span>12%</span>
+                <div class="rating-bar-row">
+                    <span>4 ★</span>
+                    <div><span style="width:12%"></span></div>
+                    <small>12%</small>
                 </div>
 
-                <div class="review-bar-row">
-                    <span>3</span>
-
-                    <div class="review-bar">
-                        <div
-                            class="review-bar-fill"
-                            style="width:4%"
-                        ></div>
-                    </div>
-
-                    <span>4%</span>
+                <div class="rating-bar-row">
+                    <span>3 ★</span>
+                    <div><span style="width:4%"></span></div>
+                    <small>4%</small>
                 </div>
 
-                <div class="review-bar-row">
-                    <span>2</span>
-
-                    <div class="review-bar">
-                        <div
-                            class="review-bar-fill"
-                            style="width:1%"
-                        ></div>
-                    </div>
-
-                    <span>1%</span>
+                <div class="rating-bar-row">
+                    <span>2 ★</span>
+                    <div><span style="width:1%"></span></div>
+                    <small>1%</small>
                 </div>
 
-                <div class="review-bar-row">
-                    <span>1</span>
-
-                    <div class="review-bar">
-                        <div
-                            class="review-bar-fill"
-                            style="width:1%"
-                        ></div>
-                    </div>
-
-                    <span>1%</span>
+                <div class="rating-bar-row">
+                    <span>1 ★</span>
+                    <div><span style="width:1%"></span></div>
+                    <small>1%</small>
                 </div>
 
             </div>
@@ -699,160 +415,65 @@
         </div>
 
 
-        <div
-            class="review-list"
-            id="reviewList"
-        ></div>
+        <div id="reviewList" class="review-list"></div>
 
     </section>
 
 
-    <!-- RECOMMENDATIONS -->
+    <!-- ================= RECOMMENDATIONS ================= -->
+    <section class="product-section recommendations-section">
 
-    <section class="recommendations-section">
+        <div class="section-heading">
+            <div>
+                <span class="section-eyebrow">You May Also Like</span>
+                <h2>Recommended For You</h2>
+            </div>
+        </div>
 
-        <h2 class="product-section-title">
-            You May Also Like
-        </h2>
+        <div id="recommendationGrid" class="recommendation-grid">
 
-        <div
-            class="recommendation-grid"
-            id="recommendationGrid"
-        >
-
-            <a
-                href="product.html?id=104"
-                class="recommendation-card"
-            >
-
+            <a href="product.html?id=1001" class="recommendation-card">
                 <div class="recommendation-image">
-
-                    <img
-                        src="images/premium-tshirt.jpg"
-                        alt="Premium Oversized T-Shirt"
-                        onerror="this.style.display='none'"
-                    >
-
+                    <img src="images/premium-tshirt.jpg" alt="Premium Oversized T-Shirt">
                 </div>
-
-                <div class="recommendation-info">
-
-                    <div class="recommendation-category">
-                        Fashion
-                    </div>
-
-                    <div class="recommendation-title">
-                        Premium Oversized T-Shirt
-                    </div>
-
-                    <div class="recommendation-price">
-                        ₹799
-                    </div>
-
+                <div class="recommendation-content">
+                    <span>Fashion</span>
+                    <h3>Premium Oversized T-Shirt</h3>
+                    <strong>₹799</strong>
                 </div>
-
             </a>
 
-
-            <a
-                href="product.html?id=101"
-                class="recommendation-card"
-            >
-
+            <a href="product.html?id=1002" class="recommendation-card">
                 <div class="recommendation-image">
-
-                    <img
-                        src="images/headphones.jpg"
-                        alt="Wireless Headphones"
-                        onerror="this.style.display='none'"
-                    >
-
+                    <img src="images/headphones.jpg" alt="Wireless Headphones">
                 </div>
-
-                <div class="recommendation-info">
-
-                    <div class="recommendation-category">
-                        Electronics
-                    </div>
-
-                    <div class="recommendation-title">
-                        Wireless Headphones
-                    </div>
-
-                    <div class="recommendation-price">
-                        ₹1,999
-                    </div>
-
+                <div class="recommendation-content">
+                    <span>Electronics</span>
+                    <h3>Wireless Headphones</h3>
+                    <strong>₹1,999</strong>
                 </div>
-
             </a>
 
-
-            <a
-                href="product.html?id=102"
-                class="recommendation-card"
-            >
-
+            <a href="product.html?id=1003" class="recommendation-card">
                 <div class="recommendation-image">
-
-                    <img
-                        src="images/smartwatch.jpg"
-                        alt="Minimal Smart Watch"
-                        onerror="this.style.display='none'"
-                    >
-
+                    <img src="images/smartwatch.jpg" alt="Minimal Smart Watch">
                 </div>
-
-                <div class="recommendation-info">
-
-                    <div class="recommendation-category">
-                        Accessories
-                    </div>
-
-                    <div class="recommendation-title">
-                        Minimal Smart Watch
-                    </div>
-
-                    <div class="recommendation-price">
-                        ₹2,499
-                    </div>
-
+                <div class="recommendation-content">
+                    <span>Accessories</span>
+                    <h3>Minimal Smart Watch</h3>
+                    <strong>₹2,499</strong>
                 </div>
-
             </a>
 
-
-            <a
-                href="product.html?id=103"
-                class="recommendation-card"
-            >
-
+            <a href="product.html?id=1004" class="recommendation-card">
                 <div class="recommendation-image">
-
-                    <img
-                        src="images/desk-lamp.jpg"
-                        alt="Modern Desk Lamp"
-                        onerror="this.style.display='none'"
-                    >
-
+                    <img src="images/desk-lamp.jpg" alt="Modern Desk Lamp">
                 </div>
-
-                <div class="recommendation-info">
-
-                    <div class="recommendation-category">
-                        Home
-                    </div>
-
-                    <div class="recommendation-title">
-                        Modern Desk Lamp
-                    </div>
-
-                    <div class="recommendation-price">
-                        ₹1,299
-                    </div>
-
+                <div class="recommendation-content">
+                    <span>Home</span>
+                    <h3>Modern Desk Lamp</h3>
+                    <strong>₹1,299</strong>
                 </div>
-
             </a>
 
         </div>
@@ -862,225 +483,175 @@
 </main>
 
 
-<!-- FOOTER -->
-
-<footer class="site-footer product-site-footer">
+<!-- ================= FOOTER ================= -->
+<footer class="product-footer">
 
     <div class="footer-container">
 
         <div class="footer-brand">
-
-            <div class="logo">
+            <a href="index.html" class="logo">
                 MARTEY<span>.</span>
-            </div>
+            </a>
 
             <p>
                 Everything. One Marketplace.
             </p>
-
         </div>
 
-        <div class="footer-links">
-
-            <a href="index.html">
-                Shop
-            </a>
-
-            <a href="seller.html">
-                Sell on MARTEY
-            </a>
-
-            <a href="#">
-                Help
-            </a>
-
-            <a href="#">
-                Terms
-            </a>
-
+        <div class="footer-column">
+            <h4>Shop</h4>
+            <a href="index.html">All Products</a>
+            <a href="index.html">Categories</a>
+            <a href="index.html">Deals</a>
         </div>
 
+        <div class="footer-column">
+            <h4>Help</h4>
+            <a href="#">Contact Us</a>
+            <a href="#">Returns</a>
+            <a href="#">Shipping</a>
+        </div>
+
+        <div class="footer-column">
+            <h4>MARTEY</h4>
+            <a href="#">About Us</a>
+            <a href="#">Sell on MARTEY</a>
+            <a href="#">Terms & Policies</a>
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+        © 2026 MARTEY. All rights reserved.
     </div>
 
 </footer>
 
 
-<!-- =========================================================
-     LOGIN / SIGNUP MODAL
-========================================================= -->
+<!-- ================= AUTH MODAL ================= -->
+<div class="modal-overlay" id="productAuthOverlay">
 
-<div
-    class="product-auth-overlay"
-    id="productAuthOverlay"
->
+    <div class="auth-modal">
 
-    <div class="product-auth-modal">
+        <button class="modal-close" id="productAuthClose">×</button>
 
-        <button
-            type="button"
-            class="product-auth-close"
-            id="productAuthClose"
-            aria-label="Close"
-        >
-            ×
-        </button>
-
-        <div class="product-auth-logo">
-            MARTEY<span>.</span>
+        <div class="modal-header">
+            <span class="modal-label">MARTEY ACCOUNT</span>
+            <h2 id="authModalTitle">Login to continue</h2>
+            <p>Login or create your MARTEY account.</p>
         </div>
-
-        <h2 id="authModalTitle">
-            Login to continue
-        </h2>
-
-        <p class="auth-modal-subtitle">
-            Login or create your MARTEY account to continue checkout.
-        </p>
 
 
         <div class="auth-tabs">
-
-            <button
-                type="button"
-                class="auth-tab active"
-                data-auth-tab="login"
-            >
+            <button class="auth-tab active" data-auth-tab="login">
                 Login
             </button>
 
-            <button
-                type="button"
-                class="auth-tab"
-                data-auth-tab="signup"
-            >
-                Sign Up
+            <button class="auth-tab" data-auth-tab="signup">
+                Create Account
             </button>
-
         </div>
 
 
         <!-- LOGIN -->
+        <form id="productLoginForm" class="auth-form">
 
-        <form
-            id="productLoginForm"
-            class="product-auth-form"
-        >
-
+            <label>Email</label>
             <input
                 type="email"
                 id="productLoginEmail"
-                placeholder="Email address"
+                placeholder="Enter your email"
                 required
             >
 
+            <label>Password</label>
             <input
                 type="password"
                 id="productLoginPassword"
-                placeholder="Password"
+                placeholder="Enter your password"
                 required
             >
 
-            <button
-                type="submit"
-                class="product-auth-submit"
-            >
-                Login & Continue
+            <button type="submit" class="modal-primary-button">
+                Login
             </button>
 
         </form>
 
 
         <!-- SIGNUP -->
+        <form id="productSignupForm" class="auth-form hidden">
 
-        <form
-            id="productSignupForm"
-            class="product-auth-form hidden"
-        >
-
+            <label>Name</label>
             <input
                 type="text"
                 id="productSignupName"
-                placeholder="Full name"
+                placeholder="Enter your name"
                 required
             >
 
+            <label>Email</label>
             <input
                 type="email"
                 id="productSignupEmail"
-                placeholder="Email address"
+                placeholder="Enter your email"
                 required
             >
 
+            <label>Phone</label>
             <input
                 type="tel"
                 id="productSignupPhone"
-                placeholder="Mobile number"
                 maxlength="10"
+                inputmode="numeric"
+                placeholder="10-digit mobile number"
                 required
             >
 
+            <label>Password</label>
             <input
                 type="password"
                 id="productSignupPassword"
-                placeholder="Create password"
+                minlength="6"
+                placeholder="Minimum 6 characters"
                 required
             >
 
-            <button
-                type="submit"
-                class="product-auth-submit"
-            >
-                Sign Up & Continue
+            <button type="submit" class="modal-primary-button">
+                Create Account
             </button>
 
         </form>
 
-
-        <div
-            class="product-auth-message"
-            id="productAuthMessage"
-        ></div>
+        <p id="productAuthMessage" class="form-message"></p>
 
     </div>
 
 </div>
 
 
-<!-- REVIEW MODAL -->
-
-<div
-    class="review-modal-overlay"
-    id="reviewModalOverlay"
->
+<!-- ================= REVIEW MODAL ================= -->
+<div class="modal-overlay" id="reviewModalOverlay">
 
     <div class="review-modal">
 
-        <button
-            type="button"
-            class="review-modal-close"
-            id="reviewModalClose"
-        >
-            ×
-        </button>
+        <button class="modal-close" id="reviewModalClose">×</button>
 
-        <h2>
-            Write a Review
-        </h2>
+        <div class="modal-header">
+            <span class="modal-label">CUSTOMER REVIEW</span>
+            <h2>Rate this product</h2>
+            <p>Share your experience with other MARTEY customers.</p>
+        </div>
 
-        <p>
-            Share your experience with this product.
-        </p>
 
         <form id="reviewForm">
 
-            <div class="review-rating-selector">
+            <!-- STAR RATING -->
+            <div class="review-form-group">
 
-                <span>Your rating</span>
+                <label>Your Rating <span class="required">*</span></label>
 
-                <div
-                    class="review-stars-input"
-                    id="reviewStarsInput"
-                >
+                <div class="review-stars-input" id="reviewStarsInput">
 
                     <button type="button" data-rating="1">★</button>
                     <button type="button" data-rating="2">★</button>
@@ -1090,45 +661,77 @@
 
                 </div>
 
+                <small id="selectedRatingText">
+                    Select a rating
+                </small>
+
             </div>
 
-            <textarea
-                id="reviewText"
-                placeholder="Write your review..."
-                maxlength="1000"
-                required
-            ></textarea>
 
-            <label class="review-upload">
+            <!-- REVIEW TEXT -->
+            <div class="review-form-group">
 
-                <span>
-                    Add product photos
-                </span>
+                <label for="reviewText">
+                    Your Review <span class="required">*</span>
+                </label>
+
+                <textarea
+                    id="reviewText"
+                    rows="5"
+                    maxlength="1000"
+                    placeholder="Tell other customers about this product..."
+                    required
+                ></textarea>
+
+                <div class="character-count">
+                    Maximum 1000 characters
+                </div>
+
+            </div>
+
+
+            <!-- OPTIONAL IMAGE -->
+            <div class="review-form-group">
+
+                <label>
+                    Product Image
+                    <span class="optional-label">Optional</span>
+                </label>
+
+                <label for="reviewImage" class="image-upload-box">
+
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M4 5h16v14H4z"></path>
+                        <circle cx="9" cy="10" r="1.5"></circle>
+                        <path d="m4 17 4.5-4 3 3 2.5-2.5L20 18"></path>
+                    </svg>
+
+                    <strong>Upload product image</strong>
+                    <span>JPG, PNG or WebP • Optional</span>
+
+                </label>
 
                 <input
                     type="file"
                     id="reviewImage"
-                    accept="image/*"
+                    accept="image/jpeg,image/png,image/webp"
+                    hidden
                 >
 
-            </label>
+                <div id="reviewImagePreview" class="review-image-preview"></div>
 
-            <div
-                class="review-image-preview"
-                id="reviewImagePreview"
-            ></div>
+            </div>
+
 
             <button
                 type="submit"
-                class="review-submit-button"
+                id="reviewSubmitButton"
+                class="modal-primary-button"
             >
                 Submit Review
             </button>
 
-            <div
-                class="review-form-message"
-                id="reviewFormMessage"
-            ></div>
+            <p id="reviewFormMessage" class="form-message"></p>
 
         </form>
 
@@ -1137,12 +740,8 @@
 </div>
 
 
-<!-- TOAST -->
-
-<div
-    class="product-toast"
-    id="productToast"
-></div>
+<!-- ================= TOAST ================= -->
+<div id="productToast" class="product-toast"></div>
 
 
 <script src="product.js"></script>
