@@ -71,7 +71,10 @@ textarea {
     z-index: 1000;
 
     background: rgba(255, 255, 255, 0.97);
+    color: var(--text);
+
     border-bottom: 1px solid var(--border);
+
     backdrop-filter: blur(12px);
 }
 
@@ -87,16 +90,15 @@ textarea {
     padding: 12px 5%;
 }
 
+
+/* LOGO — FIXED */
+
 .product-site-header .logo {
     flex-shrink: 0;
 
-    .logo {
-    color: #171717;
-}
+    display: inline-block;
 
-.logo span {
-    color: #155EEF;
-}
+    color: var(--text);
     text-decoration: none;
 
     font-family: "Manrope", sans-serif;
@@ -108,6 +110,9 @@ textarea {
 .product-site-header .logo span {
     color: var(--primary);
 }
+
+
+/* SEARCH */
 
 .product-search {
     flex: 1;
@@ -146,6 +151,10 @@ textarea {
     font-size: 14px;
 }
 
+.product-search input::placeholder {
+    color: #98A2B3;
+}
+
 .product-search button {
     width: 48px;
     height: 100%;
@@ -155,7 +164,13 @@ textarea {
 
     border: 0;
     background: transparent;
+    color: var(--muted);
+
     cursor: pointer;
+}
+
+.product-search button:hover {
+    color: var(--primary);
 }
 
 .product-search svg {
@@ -163,10 +178,13 @@ textarea {
     height: 20px;
 
     fill: none;
-    stroke: var(--muted);
+    stroke: currentColor;
     stroke-width: 1.8;
     stroke-linecap: round;
 }
+
+
+/* HEADER ACTIONS */
 
 .header-actions {
     display: flex;
@@ -190,6 +208,8 @@ textarea {
     font-weight: 600;
 
     cursor: pointer;
+
+    transition: color 0.2s ease;
 }
 
 .header-action svg {
@@ -197,19 +217,20 @@ textarea {
     height: 22px;
 
     fill: none;
-    stroke: #344054;
+    stroke: currentColor;
     stroke-width: 1.7;
     stroke-linecap: round;
     stroke-linejoin: round;
+
+    transition: stroke 0.2s ease;
 }
 
 .header-action:hover {
     color: var(--primary);
 }
 
-.header-action:hover svg {
-    stroke: var(--primary);
-}
+
+/* CART COUNT */
 
 .cart-icon-wrap {
     position: relative;
@@ -232,7 +253,7 @@ textarea {
     border-radius: 20px;
 
     background: var(--primary);
-    color: white;
+    color: #FFFFFF;
 
     font-size: 9px;
     font-weight: 700;
@@ -383,7 +404,7 @@ textarea {
     padding: 7px 11px;
 
     background: var(--primary);
-    color: white;
+    color: #FFFFFF;
 
     border-radius: 6px;
 
@@ -406,7 +427,7 @@ textarea {
     display: grid;
     place-items: center;
 
-    background: white;
+    background: #FFFFFF;
     border: 1px solid var(--border);
     border-radius: 50%;
 
@@ -574,7 +595,7 @@ textarea {
 
     padding: 0 15px;
 
-    background: white;
+    background: #FFFFFF;
     border: 1px solid var(--border);
     border-radius: 8px;
 
@@ -583,6 +604,8 @@ textarea {
     font-weight: 600;
 
     cursor: pointer;
+
+    transition: 0.2s ease;
 }
 
 .option-button:hover {
@@ -606,7 +629,7 @@ textarea {
     width: 31px;
     height: 31px;
 
-    border: 2px solid white;
+    border: 2px solid #FFFFFF;
     border-radius: 50%;
 
     outline: 1px solid var(--border);
@@ -651,7 +674,7 @@ textarea {
     border: 1px solid var(--border);
     border-radius: 8px;
 
-    background: white;
+    background: #FFFFFF;
 }
 
 .quantity-control button {
@@ -686,7 +709,7 @@ textarea {
 
     padding: 17px;
 
-    background: white;
+    background: #FFFFFF;
     border: 1px solid var(--border);
     border-radius: 12px;
 }
@@ -734,6 +757,7 @@ textarea {
 
 .delivery-input-row input:focus {
     border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(21, 94, 239, 0.06);
 }
 
 .delivery-input-row button {
@@ -744,7 +768,7 @@ textarea {
     border: 1px solid var(--primary);
     border-radius: 7px;
 
-    background: white;
+    background: #FFFFFF;
     color: var(--primary);
 
     font-size: 13px;
@@ -806,7 +830,7 @@ textarea {
     justify-content: center;
     gap: 8px;
 
-    background: white;
+    background: #FFFFFF;
     border: 1px solid var(--primary);
     color: var(--primary);
 }
@@ -829,7 +853,7 @@ textarea {
 .buy-now-button {
     border: 1px solid var(--primary);
     background: var(--primary);
-    color: white;
+    color: #FFFFFF;
 
     box-shadow: 0 4px 10px rgba(21, 94, 239, 0.16);
 }
@@ -928,6 +952,8 @@ textarea {
 .reviews-heading h2 {
     margin: 5px 0 0;
 
+    color: var(--text);
+
     font-family: "Manrope", sans-serif;
     font-size: 25px;
     letter-spacing: -0.6px;
@@ -948,7 +974,7 @@ textarea {
 .specification-card {
     padding: 26px;
 
-    background: white;
+    background: #FFFFFF;
     border: 1px solid var(--border);
     border-radius: 14px;
 }
@@ -957,6 +983,7 @@ textarea {
 .specification-card h3 {
     margin: 0 0 13px;
 
+    color: var(--text);
     font-size: 16px;
 }
 
@@ -1010,13 +1037,15 @@ textarea {
     border: 1px solid var(--primary);
     border-radius: 8px;
 
-    background: white;
+    background: #FFFFFF;
     color: var(--primary);
 
     font-size: 13px;
     font-weight: 700;
 
     cursor: pointer;
+
+    transition: 0.2s ease;
 }
 
 .write-review-button:hover {
@@ -1030,7 +1059,7 @@ textarea {
 
     padding: 24px;
 
-    background: white;
+    background: #FFFFFF;
     border: 1px solid var(--border);
     border-radius: 14px;
 }
@@ -1116,7 +1145,7 @@ textarea {
 .review-card {
     padding: 20px;
 
-    background: white;
+    background: #FFFFFF;
     border: 1px solid var(--border);
     border-radius: 13px;
 }
@@ -1129,6 +1158,7 @@ textarea {
 }
 
 .reviewer-name {
+    color: var(--text);
     font-size: 14px;
     font-weight: 700;
 }
@@ -1170,7 +1200,7 @@ textarea {
 
     text-align: center;
 
-    background: white;
+    background: #FFFFFF;
     border: 1px dashed #C9D2E1;
     border-radius: 13px;
 }
@@ -1203,7 +1233,7 @@ textarea {
 
     overflow: hidden;
 
-    background: white;
+    background: #FFFFFF;
     border: 1px solid var(--border);
     border-radius: 13px;
 
@@ -1255,6 +1285,8 @@ textarea {
 
     overflow: hidden;
 
+    color: var(--text);
+
     font-size: 14px;
     line-height: 1.4;
 
@@ -1264,6 +1296,7 @@ textarea {
 }
 
 .recommendation-content strong {
+    color: var(--text);
     font-size: 16px;
 }
 
@@ -1273,7 +1306,7 @@ textarea {
 ========================================================= */
 
 .product-footer {
-    background: white;
+    background: #FFFFFF;
     border-top: 1px solid var(--border);
 }
 
@@ -1316,6 +1349,7 @@ textarea {
 .footer-column h4 {
     margin: 0 0 5px;
 
+    color: var(--text);
     font-size: 13px;
 }
 
@@ -1377,7 +1411,7 @@ textarea {
 
     padding: 30px;
 
-    background: white;
+    background: #FFFFFF;
     border-radius: 18px;
 
     box-shadow: 0 24px 70px rgba(15, 23, 42, 0.22);
@@ -1435,6 +1469,8 @@ textarea {
 
 .modal-header h2 {
     margin: 5px 0 5px;
+
+    color: var(--text);
 
     font-family: "Manrope", sans-serif;
     font-size: 24px;
@@ -1534,7 +1570,7 @@ textarea {
     border-radius: 8px;
 
     background: var(--primary);
-    color: white;
+    color: #FFFFFF;
 
     font-size: 13px;
     font-weight: 700;
@@ -1646,7 +1682,9 @@ textarea {
 }
 
 
-/* IMAGE UPLOAD */
+/* =========================================================
+   IMAGE UPLOAD
+========================================================= */
 
 .image-upload-box {
     min-height: 110px;
@@ -1728,7 +1766,7 @@ textarea {
     border-radius: 50%;
 
     background: #171717;
-    color: white;
+    color: #FFFFFF;
 
     cursor: pointer;
 }
@@ -1752,7 +1790,7 @@ textarea {
     border-radius: 9px;
 
     background: #101828;
-    color: white;
+    color: #FFFFFF;
 
     box-shadow: 0 12px 30px rgba(16, 24, 40, 0.2);
 
@@ -2002,22 +2040,4 @@ textarea {
 
         max-width: none;
     }
-}
-.product-site-header {
-    background: #FFFFFF;
-    color: #171717;
-}
-
-.product-site-header .header-container {
-    color: #171717;
-}
-
-.product-site-header button,
-.product-site-header a {
-    color: #171717;
-}
-
-.product-site-header button:hover,
-.product-site-header a:hover {
-    color: #155EEF;
 }
