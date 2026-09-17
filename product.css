@@ -90,7 +90,13 @@ textarea {
 .product-site-header .logo {
     flex-shrink: 0;
 
-    color: var(--text);
+    .logo {
+    color: #171717;
+}
+
+.logo span {
+    color: #155EEF;
+}
     text-decoration: none;
 
     font-family: "Manrope", sans-serif;
