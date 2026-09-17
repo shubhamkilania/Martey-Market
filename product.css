@@ -2003,3 +2003,21 @@ textarea {
         max-width: none;
     }
 }
+.product-site-header {
+    background: #FFFFFF;
+    color: #171717;
+}
+
+.product-site-header .header-container {
+    color: #171717;
+}
+
+.product-site-header button,
+.product-site-header a {
+    color: #171717;
+}
+
+.product-site-header button:hover,
+.product-site-header a:hover {
+    color: #155EEF;
+}
