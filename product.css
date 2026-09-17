@@ -1382,10 +1382,10 @@ textarea {
 ========================================================= */
 
 .product-footer {
-    background: #FFFFFF !important;
-    border-top: 1px solid var(--border);
-
-    color: #171717 !important;
+   footer {
+  background: #0B1220;
+  color: white;
+  border-top: 1px solid var(--border);
 }
 
 .footer-container {
