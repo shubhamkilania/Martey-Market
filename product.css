@@ -2135,3 +2135,236 @@ textarea {
         max-width: none;
     }
 }
+
+
+/* =========================================================
+   FINAL VISIBILITY / CONTRAST SAFEGUARDS
+   These rules only fix visibility. Layout and functionality unchanged.
+========================================================= */
+
+/* Product page + footer must stay light and readable */
+.product-page,
+.product-footer,
+.product-site-header {
+    color-scheme: light !important;
+}
+
+/* Force all normal product-page text away from inherited white/light text */
+.product-page h1,
+.product-page h2,
+.product-page h3,
+.product-page h4,
+.product-page h5,
+.product-page h6,
+.product-page p,
+.product-page li,
+.product-page strong,
+.product-page label,
+.product-page span {
+    text-shadow: none !important;
+}
+
+/* Header */
+.product-site-header .logo,
+.product-site-header .logo:visited,
+.product-site-header .logo:active,
+.product-site-header .logo:hover {
+    color: #171717 !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+.product-site-header .logo span {
+    color: #155EEF !important;
+    opacity: 1 !important;
+}
+
+.product-site-header .header-container,
+.product-site-header .header-action,
+.product-site-header .header-action:visited,
+.product-site-header .header-action:active {
+    color: #344054 !important;
+}
+
+.product-site-header .header-action svg {
+    stroke: #344054 !important;
+    fill: none !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+.product-search input {
+    color: #171717 !important;
+    -webkit-text-fill-color: #171717 !important;
+}
+
+.product-search input::placeholder {
+    color: #667085 !important;
+    -webkit-text-fill-color: #667085 !important;
+}
+
+/* Product content */
+.product-main,
+.product-main .product-info,
+.product-main .product-info h1,
+#productTitle,
+.product-price,
+#productPrice,
+.option-heading,
+.option-heading strong,
+.quantity-control span,
+.delivery-title,
+.description-card h3,
+.specification-card h3,
+.spec-row strong,
+.section-heading h2,
+.reviews-heading h2,
+.reviewer-name,
+.recommendation-content h3,
+.recommendation-content strong {
+    color: #171717 !important;
+}
+
+.product-category,
+.section-eyebrow,
+.recommendation-content > span {
+    color: #155EEF !important;
+}
+
+.product-reviews,
+#productReviews,
+.price-note,
+.delivery-result,
+.service-item small,
+.description-card p,
+.spec-row span,
+.review-date,
+.review-card-text,
+.empty-review-card p,
+.footer-brand p,
+.footer-column a,
+.footer-column a:visited,
+.footer-bottom {
+    color: #667085 !important;
+}
+
+/* Buttons and controls */
+.option-button,
+.quantity-control button {
+    color: #344054 !important;
+    -webkit-text-fill-color: #344054 !important;
+}
+
+.option-button.active {
+    color: #155EEF !important;
+    -webkit-text-fill-color: #155EEF !important;
+}
+
+.add-cart-button {
+    color: #155EEF !important;
+    -webkit-text-fill-color: #155EEF !important;
+}
+
+.buy-now-button,
+.modal-primary-button,
+.product-badge,
+.cart-count {
+    color: #FFFFFF !important;
+    -webkit-text-fill-color: #FFFFFF !important;
+}
+
+/* Images: prevent inherited rules from making product photos invisible */
+.product-page img,
+.product-footer img {
+    opacity: 1 !important;
+    visibility: visible !important;
+    filter: none !important;
+}
+
+.product-thumbnail img,
+.product-main-image,
+.recommendation-image img,
+.customer-review-image,
+.review-image-preview-card img {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    filter: none !important;
+}
+
+/* Footer — explicit contrast so it cannot inherit a white-on-white theme */
+.product-footer {
+    background: #FFFFFF !important;
+    color: #171717 !important;
+}
+
+.product-footer .footer-container,
+.product-footer .footer-brand,
+.product-footer .footer-column,
+.product-footer .footer-bottom {
+    color: #171717 !important;
+}
+
+.product-footer .footer-brand .logo,
+.product-footer .footer-brand .logo:visited,
+.product-footer .footer-brand .logo:hover {
+    color: #171717 !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+.product-footer .footer-brand .logo span {
+    color: #155EEF !important;
+}
+
+.product-footer .footer-column h4 {
+    color: #171717 !important;
+}
+
+.product-footer .footer-column a,
+.product-footer .footer-column a:visited {
+    color: #667085 !important;
+}
+
+.product-footer .footer-column a:hover {
+    color: #155EEF !important;
+}
+
+.product-footer .footer-bottom {
+    color: #667085 !important;
+}
+
+/* Modal text */
+.auth-modal,
+.review-modal {
+    color: #171717 !important;
+}
+
+.auth-modal h2,
+.review-modal h2,
+.auth-modal strong,
+.review-modal strong {
+    color: #171717 !important;
+}
+
+.auth-modal p,
+.review-modal p {
+    color: #667085 !important;
+}
+
+/* SVG visibility */
+.product-page svg,
+.product-site-header svg,
+.product-footer svg {
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* Do not let global dark-theme rules change text rendering */
+.product-page input,
+.product-page textarea,
+.product-page button,
+.product-page a,
+.product-footer a {
+    text-shadow: none !important;
+}
