@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Order Confirmed — MARTEY</title>
+
+    <meta
+        name="description"
+        content="Your MARTEY order has been placed successfully."
+    >
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header class="site-header">
+
+        <div class="header-inner">
+
+            <a href="/" class="logo" aria-label="MARTEY Home">
+                MARTEY<span>.</span>
+            </a>
+
+
+            <div class="delivery-location" id="locationButton">
+
+                <span class="location-icon">⌖</span>
+
+                <div class="location-text">
+                    <small>Deliver to</small>
+                    <strong id="headerLocation">
+                        Select location
+                    </strong>
+                </div>
+
+                <span class="location-arrow">⌄</span>
+
+            </div>
+
+
+            <form class="search-box" id="searchForm">
+
+                <span class="search-icon">⌕</span>
+
+                <input
+                    type="search"
+                    id="searchInput"
+                    placeholder="Search for products..."
+                    autocomplete="off"
+                >
+
+                <button type="submit">
+                    Search
+                </button>
+
+            </form>
+
+
+            <nav class="header-actions">
+
+                <a href="/account" class="header-action">
+                    <span class="action-icon">♙</span>
+                    <span>Account</span>
+                </a>
+
+
+                <a href="/cart" class="header-action cart-action">
+
+                    <span class="action-icon">🛒</span>
+
+                    <span>Cart</span>
+
+                    <span
+                        class="cart-count"
+                        id="cartCount"
+                    >
+                        0
+                    </span>
+
+                </a>
+
+            </nav>
+
+        </div>
+
+    </header>
+
+
+    <!-- MAIN -->
+    <main class="success-page">
+
+        <!-- SUCCESS HERO -->
+        <section class="success-card">
+
+            <div class="success-icon">
+
+                <span>✓</span>
+
+            </div>
+
+
+            <p class="success-label">
+                ORDER CONFIRMED
+            </p>
+
+
+            <h1>
+                Your order has been placed!
+            </h1>
+
+
+            <p class="success-message">
+                Thank you for shopping with MARTEY.
+                Your order details are shown below.
+            </p>
+
+
+            <div class="order-id-box">
+
+                <div>
+                    <small>Order ID</small>
+
+                    <strong id="orderId">
+                        —
+                    </strong>
+                </div>
+
+
+                <button
+                    type="button"
+                    id="copyOrderId"
+                >
+                    Copy
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- ORDER DETAILS -->
+        <section class="details-layout">
+
+            <div class="details-main">
+
+                <!-- ORDER STATUS -->
+                <section class="info-card">
+
+                    <div class="card-title">
+
+                        <div>
+                            <h2>Order Status</h2>
+
+                            <p>
+                                Your order has been received.
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="status-timeline">
+
+                        <div class="status-item active">
+
+                            <span class="status-dot">
+                                ✓
+                            </span>
+
+                            <div>
+                                <strong>Order Placed</strong>
+
+                                <small id="orderDate">
+                                    —
+                                </small>
+                            </div>
+
+                        </div>
+
+
+                        <div class="timeline-line"></div>
+
+
+                        <div class="status-item">
+
+                            <span class="status-dot">
+                                2
+                            </span>
+
+                            <div>
+                                <strong>Preparing</strong>
+
+                                <small>
+                                    Waiting for store confirmation
+                                </small>
+                            </div>
+
+                        </div>
+
+
+                        <div class="timeline-line"></div>
+
+
+                        <div class="status-item">
+
+                            <span class="status-dot">
+                                3
+                            </span>
+
+                            <div>
+                                <strong>Out for Delivery</strong>
+
+                                <small>
+                                    Delivery partner will be assigned
+                                </small>
+                            </div>
+
+                        </div>
+
+
+                        <div class="timeline-line"></div>
+
+
+                        <div class="status-item">
+
+                            <span class="status-dot">
+                                4
+                            </span>
+
+                            <div>
+                                <strong>Delivered</strong>
+
+                                <small>
+                                    Your order arrives
+                                </small>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- DELIVERY ADDRESS -->
+                <section class="info-card">
+
+                    <div class="card-title">
+
+                        <div>
+                            <h2>Delivery Address</h2>
+
+                            <p>
+                                Your order will be delivered here.
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="address-box">
+
+                        <div class="address-icon">
+                            ⌖
+                        </div>
+
+
+                        <div class="address-details">
+
+                            <strong id="customerName">
+                                —
+                            </strong>
+
+                            <p id="customerAddress">
+                                —
+                            </p>
+
+                            <p id="customerMobile">
+                                —
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- PRODUCTS -->
+                <section class="info-card">
+
+                    <div class="card-title">
+
+                        <div>
+                            <h2>Items in Your Order</h2>
+
+                            <p id="productCount">
+                                —
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        class="ordered-products"
+                        id="orderedProducts"
+                    >
+                        <!-- Products inserted by JS -->
+                    </div>
+
+                </section>
+
+
+                <!-- PAYMENT -->
+                <section class="info-card">
+
+                    <div class="card-title">
+
+                        <div>
+                            <h2>Payment Information</h2>
+
+                            <p>
+                                Payment method selected at checkout.
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="payment-information">
+
+                        <span class="payment-icon">
+                            💳
+                        </span>
+
+                        <div>
+                            <strong id="paymentMethod">
+                                —
+                            </strong>
+
+                            <small>
+                                Payment processing is currently
+                                part of the frontend demo.
+                            </small>
+                        </div>
+
+                    </div>
+
+                </section>
+
+            </div>
+
+
+            <!-- SUMMARY SIDEBAR -->
+            <aside class="details-sidebar">
+
+                <section class="summary-card">
+
+                    <div class="summary-header">
+
+                        <h2>Order Summary</h2>
+
+                    </div>
+
+
+                    <div class="summary-row">
+
+                        <span>Subtotal</span>
+
+                        <strong id="subtotal">
+                            ₹0
+                        </strong>
+
+                    </div>
+
+
+                    <div class="summary-row savings">
+
+                        <span>You save</span>
+
+                        <strong id="savings">
+                            ₹0
+                        </strong>
+
+                    </div>
+
+
+                    <div class="summary-row">
+
+                        <span>Delivery</span>
+
+                        <span class="free-delivery">
+                            Calculated later
+                        </span>
+
+                    </div>
+
+
+                    <div class="summary-divider"></div>
+
+
+                    <div class="summary-total">
+
+                        <span>Total</span>
+
+                        <strong id="total">
+                            ₹0
+                        </strong>
+
+                    </div>
+
+
+                    <div class="demo-note">
+
+                        <span>ⓘ</span>
+
+                        <p>
+                            This order is currently a frontend
+                            demo. Real order processing will be
+                            connected with the MARTEY backend later.
+                        </p>
+
+                    </div>
+
+                </section>
+
+
+                <!-- ACTIONS -->
+                <div class="action-buttons">
+
+                    <a
+                        href="/orders"
+                        class="primary-button"
+                    >
+                        View Orders
+                    </a>
+
+
+                    <a
+                        href="/"
+                        class="secondary-button"
+                    >
+                        Continue Shopping
+                    </a>
+
+                </div>
+
+            </aside>
+
+        </section>
+
+
+        <!-- NO ORDER STATE -->
+        <section
+            class="no-order"
+            id="noOrder"
+        >
+
+            <div class="no-order-icon">
+                ?
+            </div>
+
+            <h1>
+                Order details not found
+            </h1>
+
+            <p>
+                We couldn't find a recent MARTEY order
+                on this device.
+            </p>
+
+            <a
+                href="/"
+                class="primary-button"
+            >
+                Start Shopping
+            </a>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+
+        <div class="footer-inner">
+
+            <div class="footer-brand">
+
+                <a href="/" class="logo">
+                    MARTEY<span>.</span>
+                </a>
+
+                <p>
+                    Everything. For Everyone.
+                </p>
+
+            </div>
+
+
+            <div class="footer-links">
+
+                <div>
+                    <h3>Shop</h3>
+
+                    <a href="/categories">
+                        Categories
+                    </a>
+
+                    <a href="/deals">
+                        Today's Deals
+                    </a>
+
+                    <a href="/orders">
+                        Orders
+                    </a>
+                </div>
+
+
+                <div>
+                    <h3>Help</h3>
+
+                    <a href="/help">
+                        Help Center
+                    </a>
+
+                    <a href="/account">
+                        My Account
+                    </a>
+
+                    <a href="/cart">
+                        Cart
+                    </a>
+                </div>
+
+
+                <div>
+                    <h3>MARTEY</h3>
+
+                    <a href="/">
+                        Home
+                    </a>
+
+                    <a href="/categories">
+                        All Categories
+                    </a>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+            <p>
+                © 2026 MARTEY. All rights reserved.
+            </p>
+
+        </div>
+
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
