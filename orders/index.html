@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Orders — MARTEY</title>
+    <meta name="description" content="View and manage your MARTEY orders.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- ================= HEADER ================= -->
+    <header class="site-header">
+
+        <div class="header-inner">
+
+            <a href="/" class="logo">
+                MARTEY<span>.</span>
+            </a>
+
+            <button class="location-btn" id="locationBtn">
+                <span class="location-icon">⌖</span>
+
+                <span class="location-content">
+                    <small>Deliver to</small>
+                    <strong>Select location</strong>
+                </span>
+
+                <span class="location-arrow">⌄</span>
+            </button>
+
+            <div class="header-search">
+                <input
+                    type="text"
+                    id="searchInput"
+                    placeholder="Search for products..."
+                    autocomplete="off"
+                >
+
+                <button id="searchButton" aria-label="Search">
+                    <span>⌕</span>
+                </button>
+            </div>
+
+            <nav class="header-actions">
+
+                <a href="/account" class="header-action" id="accountButton">
+                    <span class="action-icon">◯</span>
+                    <span>Account</span>
+                </a>
+
+                <a href="/cart" class="header-action cart-action" id="cartButton">
+                    <span class="action-icon">🛒</span>
+                    <span>Cart</span>
+                    <b id="cartCount">0</b>
+                </a>
+
+            </nav>
+
+        </div>
+
+    </header>
+
+
+    <!-- ================= MAIN ================= -->
+    <main class="orders-page">
+
+        <div class="page-container">
+
+            <!-- Page heading -->
+            <section class="page-heading">
+
+                <div>
+                    <span class="eyebrow">YOUR ACCOUNT</span>
+                    <h1>My Orders</h1>
+                    <p>Track and manage your MARTEY orders.</p>
+                </div>
+
+                <a href="/" class="continue-shopping">
+                    Continue Shopping
+                    <span>→</span>
+                </a>
+
+            </section>
+
+
+            <!-- ================= FILTERS ================= -->
+            <section class="order-filters">
+
+                <button class="filter-btn active" data-filter="all">
+                    All Orders
+                </button>
+
+                <button class="filter-btn" data-filter="active">
+                    Active
+                </button>
+
+                <button class="filter-btn" data-filter="delivered">
+                    Delivered
+                </button>
+
+                <button class="filter-btn" data-filter="cancelled">
+                    Cancelled
+                </button>
+
+            </section>
+
+
+            <!-- ================= ORDERS ================= -->
+            <section class="orders-section">
+
+                <div id="ordersContainer"></div>
+
+                <!-- Empty state -->
+                <div class="empty-orders" id="emptyOrders">
+
+                    <div class="empty-icon">
+                        🛍
+                    </div>
+
+                    <h2>No orders yet</h2>
+
+                    <p>
+                        You haven't placed any orders yet.
+                        Start shopping and your orders will appear here.
+                    </p>
+
+                    <a href="/" class="primary-btn">
+                        Start Shopping
+                    </a>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </main>
+
+
+    <!-- ================= FOOTER ================= -->
+    <footer class="site-footer">
+
+        <div class="footer-inner">
+
+            <div class="footer-brand">
+                <a href="/" class="footer-logo">
+                    MARTEY<span>.</span>
+                </a>
+
+                <p>
+                    Everything. For Everyone.
+                </p>
+            </div>
+
+
+            <div class="footer-links">
+
+                <div class="footer-column">
+                    <h3>Shop</h3>
+                    <a href="/categories">Categories</a>
+                    <a href="/deals">Today's Deals</a>
+                    <a href="/milk">Milk & Dairy</a>
+                    <a href="/drinks">Drinks</a>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Account</h3>
+                    <a href="/account">My Account</a>
+                    <a href="/orders">My Orders</a>
+                    <a href="/cart">Cart</a>
+                    <a href="/help">Help Center</a>
+                </div>
+
+                <div class="footer-column">
+                    <h3>MARTEY</h3>
+                    <a href="/help">Help & Support</a>
+                    <a href="/">Home</a>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="footer-bottom">
+            <p>© 2026 MARTEY. All rights reserved.</p>
+        </div>
+
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
