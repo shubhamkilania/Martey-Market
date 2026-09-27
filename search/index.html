@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Search | MARTEY</title>
+    <meta name="description" content="Search products on MARTEY.">
+
+    <link rel="icon" href="../assets/favicon.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header class="site-header">
+
+    <div class="header-inner">
+
+        <a href="/" class="logo" aria-label="MARTEY Home">
+            MARTEY<span>.</span>
+        </a>
+
+        <div class="location-box">
+            <span class="location-icon">⌖</span>
+
+            <div>
+                <small>Deliver to</small>
+                <strong>Select location</strong>
+            </div>
+        </div>
+
+        <form class="search-form" id="searchForm">
+
+            <span class="search-icon">⌕</span>
+
+            <input
+                type="search"
+                id="searchInput"
+                placeholder="Search for products"
+                autocomplete="off"
+            >
+
+            <button type="submit">Search</button>
+
+            <div class="search-suggestions" id="searchSuggestions"></div>
+
+        </form>
+
+        <div class="header-actions">
+
+            <a href="/account" class="header-action">
+                <span>♙</span>
+                <label>Account</label>
+            </a>
+
+            <a href="/cart" class="header-action cart-action">
+                <span>🛒</span>
+                <label>Cart</label>
+                <b id="cartCount">0</b>
+            </a>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+<main>
+
+    <section class="search-page">
+
+        <div class="container">
+
+            <div class="breadcrumb">
+                <a href="/">Home</a>
+                <span>/</span>
+                <span>Search</span>
+            </div>
+
+
+            <div class="search-heading">
+
+                <div>
+                    <p class="eyebrow">MARTEY SEARCH</p>
+
+                    <h1 id="searchTitle">
+                        Search results
+                    </h1>
+
+                    <p id="resultCount">
+                        Finding products for you...
+                    </p>
+                </div>
+
+                <div class="sort-box">
+
+                    <label for="sortSelect">Sort by</label>
+
+                    <select id="sortSelect">
+                        <option value="relevance">Relevance</option>
+                        <option value="price-low">Price: Low to High</option>
+                        <option value="price-high">Price: High to Low</option>
+                        <option value="discount">Discount</option>
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <div class="search-layout">
+
+                <aside class="filters">
+
+                    <div class="filter-header">
+                        <h2>Filters</h2>
+                        <button id="clearFilters">Clear</button>
+                    </div>
+
+
+                    <div class="filter-section">
+
+                        <h3>Category</h3>
+
+                        <label class="filter-option">
+                            <input type="checkbox" value="Milk & Dairy" class="category-filter">
+                            <span>Milk & Dairy</span>
+                        </label>
+
+                        <label class="filter-option">
+                            <input type="checkbox" value="Bakery" class="category-filter">
+                            <span>Bakery</span>
+                        </label>
+
+                        <label class="filter-option">
+                            <input type="checkbox" value="Drinks" class="category-filter">
+                            <span>Drinks</span>
+                        </label>
+
+                        <label class="filter-option">
+                            <input type="checkbox" value="Snacks" class="category-filter">
+                            <span>Snacks</span>
+                        </label>
+
+                        <label class="filter-option">
+                            <input type="checkbox" value="Fresh" class="category-filter">
+                            <span>Fresh</span>
+                        </label>
+
+                        <label class="filter-option">
+                            <input type="checkbox" value="Personal Care" class="category-filter">
+                            <span>Personal Care</span>
+                        </label>
+
+                        <label class="filter-option">
+                            <input type="checkbox" value="Household" class="category-filter">
+                            <span>Household</span>
+                        </label>
+
+                    </div>
+
+
+                    <div class="filter-section">
+
+                        <h3>Price</h3>
+
+                        <label class="filter-option">
+                            <input type="radio" name="price" value="all" checked>
+                            <span>All prices</span>
+                        </label>
+
+                        <label class="filter-option">
+                            <input type="radio" name="price" value="under100">
+                            <span>Under ₹100</span>
+                        </label>
+
+                        <label class="filter-option">
+                            <input type="radio" name="price" value="100-300">
+                            <span>₹100 – ₹300</span>
+                        </label>
+
+                        <label class="filter-option">
+                            <input type="radio" name="price" value="300plus">
+                            <span>₹300+</span>
+                        </label>
+
+                    </div>
+
+                </aside>
+
+
+                <section class="results-area">
+
+                    <div class="mobile-filter-row">
+
+                        <button id="mobileFilterButton">
+                            Filters
+                        </button>
+
+                        <span id="mobileResultCount"></span>
+
+                    </div>
+
+
+                    <div
+                        class="product-grid"
+                        id="productGrid"
+                    ></div>
+
+
+                    <div
+                        class="empty-state"
+                        id="emptyState"
+                        hidden
+                    >
+
+                        <div class="empty-icon">⌕</div>
+
+                        <h2>No exact match found</h2>
+
+                        <p>
+                            We couldn't find an exact match for your search.
+                            Here are some products you may like.
+                        </p>
+
+                        <button id="showAllButton">
+                            View all products
+                        </button>
+
+                    </div>
+
+                </section>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<footer class="site-footer">
+
+    <div class="container footer-inner">
+
+        <div class="footer-brand">
+
+            <a href="/" class="logo">
+                MARTEY<span>.</span>
+            </a>
+
+            <p>
+                Everything. For Everyone.
+            </p>
+
+        </div>
+
+
+        <div class="footer-links">
+
+            <a href="/categories">Categories</a>
+            <a href="/deals">Deals</a>
+            <a href="/orders">Orders</a>
+            <a href="/help">Help</a>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+        <p>© 2026 MARTEY. All rights reserved.</p>
+
+    </div>
+
+</footer>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
