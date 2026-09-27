@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Order Details — MARTEY</title>
+    <meta name="description" content="View your MARTEY order details.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- ================= HEADER ================= -->
+
+    <header class="site-header">
+
+        <div class="header-inner">
+
+            <a href="/" class="logo">
+                MARTEY<span>.</span>
+            </a>
+
+            <button class="location-btn" id="locationBtn">
+
+                <span class="location-icon">⌖</span>
+
+                <span class="location-content">
+                    <small>Deliver to</small>
+                    <strong>Select location</strong>
+                </span>
+
+                <span class="location-arrow">⌄</span>
+
+            </button>
+
+
+            <div class="header-search">
+
+                <input
+                    type="text"
+                    id="searchInput"
+                    placeholder="Search for products..."
+                    autocomplete="off"
+                >
+
+                <button id="searchButton" aria-label="Search">
+                    ⌕
+                </button>
+
+            </div>
+
+
+            <nav class="header-actions">
+
+                <a href="/account" class="header-action">
+                    <span class="action-icon">◯</span>
+                    <span>Account</span>
+                </a>
+
+                <a href="/cart" class="header-action cart-action">
+
+                    <span class="action-icon">🛒</span>
+                    <span>Cart</span>
+
+                    <b id="cartCount">0</b>
+
+                </a>
+
+            </nav>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- ================= MAIN ================= -->
+
+    <main class="details-page">
+
+        <div class="page-container">
+
+            <!-- Breadcrumb -->
+
+            <div class="breadcrumb">
+
+                <a href="/orders">My Orders</a>
+
+                <span>›</span>
+
+                <span>Order Details</span>
+
+            </div>
+
+
+            <!-- Page Header -->
+
+            <section class="details-heading">
+
+                <div>
+
+                    <span class="eyebrow">
+                        ORDER DETAILS
+                    </span>
+
+                    <h1 id="pageTitle">
+                        Order Details
+                    </h1>
+
+                    <p id="orderMeta">
+                        Loading order information...
+                    </p>
+
+                </div>
+
+
+                <div id="statusBadge" class="status-badge status-active">
+
+                    <span class="status-dot"></span>
+
+                    <span id="statusText">
+                        Loading
+                    </span>
+
+                </div>
+
+            </section>
+
+
+            <!-- ================= CONTENT ================= -->
+
+            <div id="orderContent" class="details-grid">
+
+
+                <!-- LEFT -->
+
+                <div class="details-main">
+
+
+                    <!-- Products -->
+
+                    <section class="details-card">
+
+                        <div class="card-header">
+
+                            <div>
+                                <h2>Items in your order</h2>
+                                <p id="itemsCount">
+                                    0 items
+                                </p>
+                            </div>
+
+                        </div>
+
+
+                        <div id="productsList" class="products-list">
+                        </div>
+
+                    </section>
+
+
+
+                    <!-- Delivery Address -->
+
+                    <section class="details-card">
+
+                        <div class="card-header">
+
+                            <div>
+                                <h2>Delivery Address</h2>
+                                <p>Where your order will be delivered</p>
+                            </div>
+
+                        </div>
+
+
+                        <div class="address-box">
+
+                            <div class="address-icon">
+                                ⌖
+                            </div>
+
+                            <div class="address-content">
+
+                                <strong id="addressName">
+                                    —
+                                </strong>
+
+                                <p id="addressText">
+                                    —
+                                </p>
+
+                                <p id="addressMobile">
+                                    —
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div id="deliveryInstructions" class="instructions-box">
+
+                            <span>Delivery instructions</span>
+
+                            <p id="instructionsText">
+                                —
+                            </p>
+
+                        </div>
+
+                    </section>
+
+
+
+                    <!-- Payment -->
+
+                    <section class="details-card">
+
+                        <div class="card-header">
+
+                            <div>
+                                <h2>Payment</h2>
+                                <p>Payment information for this order</p>
+                            </div>
+
+                        </div>
+
+
+                        <div class="payment-row">
+
+                            <div class="payment-icon">
+                                ₹
+                            </div>
+
+                            <div class="payment-info">
+
+                                <strong id="paymentMethod">
+                                    —
+                                </strong>
+
+                                <span id="paymentStatus">
+                                    Demo payment
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </section>
+
+
+
+                    <!-- Actions -->
+
+                    <section class="order-actions-card">
+
+                        <a
+                            href="/orders"
+                            class="secondary-btn"
+                        >
+                            ← Back to Orders
+                        </a>
+
+
+                        <a
+                            id="trackOrderBtn"
+                            href="#"
+                            class="primary-btn"
+                        >
+                            Track Order →
+                        </a>
+
+                    </section>
+
+                </div>
+
+
+
+                <!-- RIGHT -->
+
+                <aside class="details-sidebar">
+
+
+                    <!-- Order Summary -->
+
+                    <section class="summary-card">
+
+                        <div class="summary-header">
+
+                            <h2>Order Summary</h2>
+
+                        </div>
+
+
+                        <div class="summary-row">
+
+                            <span>Subtotal</span>
+
+                            <strong id="subtotal">
+                                ₹0
+                            </strong>
+
+                        </div>
+
+
+                        <div class="summary-row savings-row">
+
+                            <span>Savings</span>
+
+                            <strong id="savings">
+                                -₹0
+                            </strong>
+
+                        </div>
+
+
+                        <div class="summary-row">
+
+                            <span>Delivery</span>
+
+                            <strong id="delivery">
+                                Calculated
+                            </strong>
+
+                        </div>
+
+
+                        <div class="summary-divider"></div>
+
+
+                        <div class="summary-total">
+
+                            <span>Total</span>
+
+                            <strong id="total">
+                                ₹0
+                            </strong>
+
+                        </div>
+
+                    </section>
+
+
+
+                    <!-- Order Information -->
+
+                    <section class="info-card">
+
+                        <h2>Order Information</h2>
+
+
+                        <div class="info-row">
+
+                            <span>Order ID</span>
+
+                            <strong id="orderId">
+                                —
+                            </strong>
+
+                        </div>
+
+
+                        <div class="info-row">
+
+                            <span>Order Date</span>
+
+                            <strong id="orderDate">
+                                —
+                            </strong>
+
+                        </div>
+
+
+                        <div class="info-row">
+
+                            <span>Items</span>
+
+                            <strong id="sidebarItems">
+                                —
+                            </strong>
+
+                        </div>
+
+                    </section>
+
+
+
+                    <!-- Help -->
+
+                    <section class="help-card">
+
+                        <div class="help-icon">
+                            ?
+                        </div>
+
+                        <div>
+
+                            <h3>Need help?</h3>
+
+                            <p>
+                                Our support section will be connected here.
+                            </p>
+
+                            <a href="/help">
+                                Visit Help Center →
+                            </a>
+
+                        </div>
+
+                    </section>
+
+                </aside>
+
+            </div>
+
+
+
+            <!-- ================= NO ORDER ================= -->
+
+            <section id="noOrder" class="no-order">
+
+                <div class="no-order-icon">
+                    🛍
+                </div>
+
+                <h2>Order not found</h2>
+
+                <p>
+                    We couldn't find the order you're looking for.
+                    It may have been removed or the order ID is incorrect.
+                </p>
+
+                <a href="/orders" class="primary-btn">
+                    View My Orders
+                </a>
+
+            </section>
+
+        </div>
+
+    </main>
+
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer class="site-footer">
+
+        <div class="footer-inner">
+
+            <div class="footer-brand">
+
+                <a href="/" class="footer-logo">
+                    MARTEY<span>.</span>
+                </a>
+
+                <p>
+                    Everything. For Everyone.
+                </p>
+
+            </div>
+
+
+            <div class="footer-links">
+
+                <div class="footer-column">
+
+                    <h3>Shop</h3>
+
+                    <a href="/categories">Categories</a>
+                    <a href="/deals">Today's Deals</a>
+                    <a href="/milk">Milk & Dairy</a>
+                    <a href="/drinks">Drinks</a>
+
+                </div>
+
+
+                <div class="footer-column">
+
+                    <h3>Account</h3>
+
+                    <a href="/account">My Account</a>
+                    <a href="/orders">My Orders</a>
+                    <a href="/cart">Cart</a>
+                    <a href="/help">Help Center</a>
+
+                </div>
+
+
+                <div class="footer-column">
+
+                    <h3>MARTEY</h3>
+
+                    <a href="/help">Help & Support</a>
+                    <a href="/">Home</a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+            <p>
+                © 2026 MARTEY. All rights reserved.
+            </p>
+
+        </div>
+
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
