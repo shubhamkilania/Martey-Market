@@ -1,11 +1,3 @@
-/* =========================================================
-   MARTEY — HOMEPAGE JAVASCRIPT
-   Frontend demo / backend-ready structure
-========================================================= */
-
-
-/* ================= PRODUCT DATA ================= */
-
 const products = [
 
     {
