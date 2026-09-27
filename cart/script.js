@@ -1,3 +1,7 @@
+/* =========================================================
+   MARTEY CART
+   ========================================================= */
+
 const products = [
     {
         id: 1001,
@@ -8,7 +12,6 @@ const products = [
         mrp: 62,
         image: "../assets/products/milk.jpg"
     },
-
     {
         id: 1002,
         name: "Whole Wheat Bread",
@@ -18,7 +21,6 @@ const products = [
         mrp: 50,
         image: "../assets/products/bread.jpg"
     },
-
     {
         id: 1003,
         name: "Orange Fruit Drink",
@@ -28,7 +30,6 @@ const products = [
         mrp: 100,
         image: "../assets/products/orange-drink.jpg"
     },
-
     {
         id: 1004,
         name: "Classic Potato Chips",
@@ -38,7 +39,6 @@ const products = [
         mrp: 35,
         image: "../assets/products/chips.jpg"
     },
-
     {
         id: 1005,
         name: "Fresh Bananas",
@@ -48,7 +48,6 @@ const products = [
         mrp: 60,
         image: "../assets/products/bananas.jpg"
     },
-
     {
         id: 1006,
         name: "Daily Care Shampoo",
@@ -58,7 +57,6 @@ const products = [
         mrp: 249,
         image: "../assets/products/shampoo.jpg"
     },
-
     {
         id: 1007,
         name: "Liquid Laundry Detergent",
@@ -68,7 +66,6 @@ const products = [
         mrp: 220,
         image: "../assets/products/detergent.jpg"
     },
-
     {
         id: 1008,
         name: "Gentle Baby Wipes",
@@ -78,7 +75,6 @@ const products = [
         mrp: 149,
         image: "../assets/products/baby-wipes.jpg"
     },
-
     {
         id: 1009,
         name: "Butter Cookies",
@@ -88,7 +84,6 @@ const products = [
         mrp: 90,
         image: "../assets/products/biscuits.jpg"
     },
-
     {
         id: 1010,
         name: "Premium Pet Food",
@@ -98,7 +93,6 @@ const products = [
         mrp: 349,
         image: "../assets/products/pet-food.jpg"
     },
-
     {
         id: 1011,
         name: "Wireless Headphones",
@@ -108,7 +102,6 @@ const products = [
         mrp: 999,
         image: "../assets/products/headphones.jpg"
     },
-
     {
         id: 1012,
         name: "Premium Notebook",
@@ -122,14 +115,7 @@ const products = [
 
 
 /* =========================================================
-   STORAGE KEY
-   ========================================================= */
-
-const CART_KEY = "marteyCart";
-
-
-/* =========================================================
-   DOM ELEMENTS
+   DOM
    ========================================================= */
 
 const cartItemsContainer = document.getElementById("cartItems");
@@ -157,7 +143,7 @@ const modalConfirm = document.getElementById("modalConfirm");
 
 
 /* =========================================================
-   HELPERS
+   FORMAT PRICE
    ========================================================= */
 
 function formatPrice(value) {
@@ -165,62 +151,168 @@ function formatPrice(value) {
 }
 
 
-function getCart() {
-    try {
-        const storedCart = localStorage.getItem(CART_KEY);
+/* =========================================================
+   READ CART
+   ========================================================= */
 
-        if (!storedCart) {
-            return [];
+function getRawCart() {
+
+    const possibleKeys = [
+        "marteyCart",
+        "cart",
+        "MARTEY_CART"
+    ];
+
+    for (const key of possibleKeys) {
+
+        const saved = localStorage.getItem(key);
+
+        if (!saved) {
+            continue;
         }
 
-        const parsedCart = JSON.parse(storedCart);
+        try {
 
-        if (!Array.isArray(parsedCart)) {
-            return [];
+            const parsed = JSON.parse(saved);
+
+            if (Array.isArray(parsed) && parsed.length > 0) {
+                return parsed;
+            }
+
+        } catch (error) {
+            console.error(`Invalid cart data in ${key}`, error);
         }
-
-        return parsedCart;
-    } catch (error) {
-        console.error("Unable to read MARTEY cart:", error);
-        return [];
     }
+
+    return [];
 }
 
+
+/* =========================================================
+   NORMALIZE CART
+   Supports:
+   { id: 1001, quantity: 2 }
+
+   and:
+   { id: 1001, qty: 2 }
+
+   and:
+   { productId: 1001, quantity: 2 }
+
+   and product objects
+   ========================================================= */
+
+function getCart() {
+
+    const rawCart = getRawCart();
+
+    const normalized = [];
+
+    rawCart.forEach(item => {
+
+        if (!item) {
+            return;
+        }
+
+        let id =
+            item.id ??
+            item.productId ??
+            item.productID;
+
+        let quantity =
+            item.quantity ??
+            item.qty ??
+            item.count ??
+            1;
+
+        /*
+         * Sometimes id can be stored as a string.
+         */
+        id = Number(id);
+        quantity = Number(quantity);
+
+        if (!Number.isFinite(id)) {
+            return;
+        }
+
+        if (!Number.isFinite(quantity) || quantity < 1) {
+            quantity = 1;
+        }
+
+        const existing = normalized.find(
+            cartItem => cartItem.id === id
+        );
+
+        if (existing) {
+            existing.quantity += quantity;
+        } else {
+            normalized.push({
+                id: id,
+                quantity: quantity
+            });
+        }
+
+    });
+
+    return normalized;
+}
+
+
+/* =========================================================
+   SAVE CART
+   ========================================================= */
 
 function saveCart(cart) {
-    localStorage.setItem(CART_KEY, JSON.stringify(cart));
-}
 
-
-function getProduct(productId) {
-    return products.find(
-        product => Number(product.id) === Number(productId)
+    /*
+     * MARTEY's main cart key
+     */
+    localStorage.setItem(
+        "marteyCart",
+        JSON.stringify(cart)
     );
+
 }
 
+
+/* =========================================================
+   GET PRODUCT
+   ========================================================= */
+
+function getProduct(id) {
+
+    return products.find(
+        product => Number(product.id) === Number(id)
+    );
+
+}
+
+
+/* =========================================================
+   DETAILED CART
+   ========================================================= */
 
 function getDetailedCart() {
+
     const cart = getCart();
 
     return cart
         .map(item => {
+
             const product = getProduct(item.id);
 
             if (!product) {
                 return null;
             }
 
-            const quantity = Math.max(
-                1,
-                Number(item.quantity) || 1
-            );
-
             return {
                 ...product,
-                quantity
+                quantity: item.quantity
             };
+
         })
         .filter(Boolean);
+
 }
 
 
@@ -229,16 +321,33 @@ function getDetailedCart() {
    ========================================================= */
 
 function updateCartCount() {
+
     const cart = getCart();
 
-    const totalQuantity = cart.reduce(
-        (total, item) => total + Math.max(1, Number(item.quantity) || 1),
+    const count = cart.reduce(
+        (total, item) => total + item.quantity,
         0
     );
 
-    cartCount.textContent = totalQuantity > 99
-        ? "99+"
-        : totalQuantity;
+    cartCount.textContent =
+        count > 99 ? "99+" : count;
+
+}
+
+
+/* =========================================================
+   ESCAPE HTML
+   ========================================================= */
+
+function escapeHTML(value) {
+
+    return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+
 }
 
 
@@ -247,20 +356,18 @@ function updateCartCount() {
    ========================================================= */
 
 function renderCart() {
-    const detailedCart = getDetailedCart();
+
+    const cart = getDetailedCart();
 
     updateCartCount();
 
-    const totalQuantity = detailedCart.reduce(
-        (total, item) => total + item.quantity,
-        0
-    );
+    if (cart.length === 0) {
 
-    if (detailedCart.length === 0) {
         cartContent.style.display = "none";
         emptyCart.classList.add("show");
 
         itemCount.textContent = "0 items";
+
         cartDescription.textContent =
             "Your cart is currently empty.";
 
@@ -271,8 +378,14 @@ function renderCart() {
         return;
     }
 
+
     cartContent.style.display = "";
     emptyCart.classList.remove("show");
+
+    const totalQuantity = cart.reduce(
+        (total, item) => total + item.quantity,
+        0
+    );
 
     itemCount.textContent =
         `${totalQuantity} ${totalQuantity === 1 ? "item" : "items"}`;
@@ -280,43 +393,54 @@ function renderCart() {
     cartDescription.textContent =
         `${totalQuantity} ${totalQuantity === 1 ? "item" : "items"} ready for checkout.`;
 
+
     cartItemsContainer.innerHTML = "";
+
 
     let subtotal = 0;
     let savings = 0;
 
-    detailedCart.forEach(item => {
 
-        const itemSubtotal = item.price * item.quantity;
+    cart.forEach(item => {
+
+        const itemTotal =
+            item.price * item.quantity;
+
         const itemSavings =
-            Math.max(0, item.mrp - item.price) * item.quantity;
+            Math.max(0, item.mrp - item.price) *
+            item.quantity;
 
-        subtotal += itemSubtotal;
+        subtotal += itemTotal;
         savings += itemSavings;
 
-        const discountPercentage = item.mrp > item.price
-            ? Math.round(
-                ((item.mrp - item.price) / item.mrp) * 100
-            )
-            : 0;
 
-        const cartItem = document.createElement("article");
+        const discount =
+            item.mrp > item.price
+                ? Math.round(
+                    ((item.mrp - item.price) / item.mrp) * 100
+                )
+                : 0;
 
-        cartItem.className = "cart-item";
 
-        cartItem.innerHTML = `
+        const element =
+            document.createElement("article");
+
+        element.className = "cart-item";
+
+
+        element.innerHTML = `
+
             <a
                 href="/product/${item.id}"
                 class="cart-product-image"
-                aria-label="View ${escapeHTML(item.name)}"
             >
                 <img
-                    src="${escapeAttribute(item.image)}"
-                    alt="${escapeAttribute(item.name)}"
+                    src="${escapeHTML(item.image)}"
+                    alt="${escapeHTML(item.name)}"
                     loading="lazy"
-                    onerror="this.style.display='none'"
                 >
             </a>
+
 
             <div class="cart-item-info">
 
@@ -349,7 +473,7 @@ function renderCart() {
                                 </span>
 
                                 <span class="cart-discount">
-                                    ${discountPercentage}% OFF
+                                    ${discount}% OFF
                                 </span>
                             `
                             : ""
@@ -359,22 +483,20 @@ function renderCart() {
 
             </div>
 
+
             <div class="cart-item-actions">
 
                 <strong class="item-total">
-                    ${formatPrice(itemSubtotal)}
+                    ${formatPrice(itemTotal)}
                 </strong>
 
-                <div
-                    class="quantity-control"
-                    aria-label="Quantity controls for ${escapeAttribute(item.name)}"
-                >
+
+                <div class="quantity-control">
 
                     <button
                         type="button"
                         class="quantity-button decrease-button"
                         data-id="${item.id}"
-                        aria-label="Decrease quantity"
                     >
                         −
                     </button>
@@ -387,12 +509,12 @@ function renderCart() {
                         type="button"
                         class="quantity-button increase-button"
                         data-id="${item.id}"
-                        aria-label="Increase quantity"
                     >
                         +
                     </button>
 
                 </div>
+
 
                 <button
                     type="button"
@@ -403,37 +525,24 @@ function renderCart() {
                 </button>
 
             </div>
+
         `;
 
-        cartItemsContainer.appendChild(cartItem);
+
+        cartItemsContainer.appendChild(element);
+
     });
 
-    subtotalElement.textContent = formatPrice(subtotal);
-    savingsElement.textContent = formatPrice(savings);
 
-    // Delivery is intentionally not calculated on the frontend.
-    // Backend will determine this later.
-    totalElement.textContent = formatPrice(subtotal);
-}
+    subtotalElement.textContent =
+        formatPrice(subtotal);
 
+    savingsElement.textContent =
+        formatPrice(savings);
 
-/* =========================================================
-   ESCAPE HTML
-   Prevents product data from being inserted as raw HTML
-   ========================================================= */
+    totalElement.textContent =
+        formatPrice(subtotal);
 
-function escapeHTML(value) {
-    return String(value)
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
-}
-
-
-function escapeAttribute(value) {
-    return escapeHTML(value);
 }
 
 
@@ -441,33 +550,39 @@ function escapeAttribute(value) {
    CHANGE QUANTITY
    ========================================================= */
 
-function changeQuantity(productId, change) {
+function changeQuantity(id, change) {
+
     const cart = getCart();
 
     const item = cart.find(
-        cartItem => Number(cartItem.id) === Number(productId)
+        product => Number(product.id) === Number(id)
     );
 
     if (!item) {
         return;
     }
 
-    const currentQuantity = Math.max(
-        1,
-        Number(item.quantity) || 1
-    );
 
-    const newQuantity = currentQuantity + change;
+    item.quantity += change;
 
-    if (newQuantity <= 0) {
-        removeItem(productId);
-        return;
+
+    if (item.quantity <= 0) {
+
+        const updated = cart.filter(
+            product => Number(product.id) !== Number(id)
+        );
+
+        saveCart(updated);
+
+    } else {
+
+        saveCart(cart);
+
     }
 
-    item.quantity = newQuantity;
 
-    saveCart(cart);
     renderCart();
+
 }
 
 
@@ -475,193 +590,207 @@ function changeQuantity(productId, change) {
    REMOVE ITEM
    ========================================================= */
 
-function removeItem(productId) {
+function removeItem(id) {
+
     const cart = getCart();
 
-    const updatedCart = cart.filter(
-        item => Number(item.id) !== Number(productId)
-    );
+    const updatedCart =
+        cart.filter(
+            item => Number(item.id) !== Number(id)
+        );
 
     saveCart(updatedCart);
+
     renderCart();
+
 }
+
+
+/* =========================================================
+   CART BUTTONS
+   ========================================================= */
+
+cartItemsContainer.addEventListener(
+    "click",
+    function(event) {
+
+        const increase =
+            event.target.closest(".increase-button");
+
+        const decrease =
+            event.target.closest(".decrease-button");
+
+        const remove =
+            event.target.closest(".remove-item");
+
+
+        if (increase) {
+
+            changeQuantity(
+                Number(increase.dataset.id),
+                1
+            );
+
+            return;
+        }
+
+
+        if (decrease) {
+
+            changeQuantity(
+                Number(decrease.dataset.id),
+                -1
+            );
+
+            return;
+        }
+
+
+        if (remove) {
+
+            removeItem(
+                Number(remove.dataset.id)
+            );
+
+        }
+
+    }
+);
 
 
 /* =========================================================
    CLEAR CART
    ========================================================= */
 
-function openClearModal() {
-    clearModal.classList.add("show");
-    document.body.style.overflow = "hidden";
-}
-
-
-function closeClearModal() {
-    clearModal.classList.remove("show");
-    document.body.style.overflow = "";
-}
-
-
-function clearEntireCart() {
-    localStorage.removeItem(CART_KEY);
-
-    closeClearModal();
-    renderCart();
-}
-
-
-/* =========================================================
-   CART EVENT DELEGATION
-   ========================================================= */
-
-cartItemsContainer.addEventListener("click", event => {
-
-    const increaseButton =
-        event.target.closest(".increase-button");
-
-    const decreaseButton =
-        event.target.closest(".decrease-button");
-
-    const removeButton =
-        event.target.closest(".remove-item");
-
-
-    if (increaseButton) {
-        const productId = Number(
-            increaseButton.dataset.id
-        );
-
-        changeQuantity(productId, 1);
-        return;
-    }
-
-
-    if (decreaseButton) {
-        const productId = Number(
-            decreaseButton.dataset.id
-        );
-
-        changeQuantity(productId, -1);
-        return;
-    }
-
-
-    if (removeButton) {
-        const productId = Number(
-            removeButton.dataset.id
-        );
-
-        removeItem(productId);
-    }
-
-});
-
-
-/* =========================================================
-   CLEAR CART EVENTS
-   ========================================================= */
-
 clearCartButton.addEventListener(
     "click",
-    openClearModal
+    function() {
+
+        clearModal.classList.add("show");
+
+        document.body.style.overflow = "hidden";
+
+    }
 );
+
+
+function closeModal() {
+
+    clearModal.classList.remove("show");
+
+    document.body.style.overflow = "";
+
+}
+
 
 modalClose.addEventListener(
     "click",
-    closeClearModal
+    closeModal
 );
+
 
 modalCancel.addEventListener(
     "click",
-    closeClearModal
+    closeModal
 );
+
 
 modalConfirm.addEventListener(
     "click",
-    clearEntireCart
+    function() {
+
+        localStorage.removeItem("marteyCart");
+        localStorage.removeItem("cart");
+        localStorage.removeItem("MARTEY_CART");
+
+        closeModal();
+
+        renderCart();
+
+    }
 );
 
 
-clearModal.addEventListener("click", event => {
+clearModal.addEventListener(
+    "click",
+    function(event) {
 
-    if (event.target === clearModal) {
-        closeClearModal();
+        if (event.target === clearModal) {
+            closeModal();
+        }
+
     }
-
-});
-
-
-document.addEventListener("keydown", event => {
-
-    if (event.key === "Escape") {
-        closeClearModal();
-    }
-
-});
+);
 
 
 /* =========================================================
    CHECKOUT
    ========================================================= */
 
-checkoutButton.addEventListener("click", () => {
+checkoutButton.addEventListener(
+    "click",
+    function() {
 
-    const cart = getDetailedCart();
+        const cart = getCart();
 
-    if (cart.length === 0) {
-        return;
+        if (cart.length === 0) {
+            return;
+        }
+
+        window.location.href = "/checkout";
+
     }
-
-    /*
-        Checkout page will be created in the next step.
-        The cart itself is ready to send the user there.
-    */
-
-    window.location.href = "/checkout";
-
-});
+);
 
 
 /* =========================================================
    SEARCH
    ========================================================= */
 
-searchForm.addEventListener("submit", event => {
+searchForm.addEventListener(
+    "submit",
+    function(event) {
 
-    event.preventDefault();
+        event.preventDefault();
 
-    const query = searchInput.value.trim();
+        const query =
+            searchInput.value.trim();
 
-    if (!query) {
-        searchInput.focus();
-        return;
+        if (!query) {
+            searchInput.focus();
+            return;
+        }
+
+        window.location.href =
+            `/search?q=${encodeURIComponent(query)}`;
+
     }
+);
 
-    window.location.href =
-        `/search?q=${encodeURIComponent(query)}`;
 
-});
+/* =========================================================
+   STORAGE LISTENER
+   ========================================================= */
+
+window.addEventListener(
+    "storage",
+    function(event) {
+
+        if (
+            event.key === "marteyCart" ||
+            event.key === "cart" ||
+            event.key === "MARTEY_CART"
+        ) {
+            renderCart();
+        }
+
+    }
+);
 
 
 /* =========================================================
    INITIALIZE
    ========================================================= */
 
-document.addEventListener("DOMContentLoaded", () => {
-    renderCart();
-});
-
-
-/* =========================================================
-   HANDLE STORAGE CHANGES
-   Useful if cart changes in another MARTEY tab
-   ========================================================= */
-
-window.addEventListener("storage", event => {
-
-    if (event.key === CART_KEY) {
-        renderCart();
-    }
-
-});
+renderCart();
+updateCartCount();
