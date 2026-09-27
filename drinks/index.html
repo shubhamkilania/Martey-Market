@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Drinks | MARTEY</title>
+    <meta
+        name="description"
+        content="Shop drinks and beverages on MARTEY."
+    >
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header class="site-header">
+
+        <div class="header-inner">
+
+            <a href="/" class="brand" aria-label="MARTEY Home">
+                MARTE<span>Y</span>.
+            </a>
+
+            <button class="location-button" id="locationButton" type="button">
+                <span class="location-icon">⌖</span>
+
+                <span class="location-content">
+                    <small>Deliver to</small>
+                    <strong>Select location</strong>
+                </span>
+
+                <span class="location-arrow">⌄</span>
+            </button>
+
+            <div class="header-search">
+                <span class="search-icon">⌕</span>
+
+                <input
+                    type="search"
+                    id="headerSearch"
+                    placeholder="Search products..."
+                    autocomplete="off"
+                    aria-label="Search products"
+                >
+            </div>
+
+            <div class="header-actions">
+
+                <a href="/account" class="header-action">
+                    <span class="action-icon">♙</span>
+                    <span>Account</span>
+                </a>
+
+                <a href="/cart" class="header-action cart-action">
+                    <span class="cart-icon">🛒</span>
+                    <span>Cart</span>
+                    <b id="cartCount">0</b>
+                </a>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- MAIN -->
+    <main>
+
+        <!-- BREADCRUMB -->
+        <section class="breadcrumb-section">
+            <div class="container">
+
+                <nav class="breadcrumb" aria-label="Breadcrumb">
+                    <a href="/">Home</a>
+                    <span>/</span>
+                    <a href="/categories">Categories</a>
+                    <span>/</span>
+                    <strong>Drinks</strong>
+                </nav>
+
+            </div>
+        </section>
+
+
+        <!-- CATEGORY HERO -->
+        <section class="category-hero">
+            <div class="container">
+
+                <div class="category-heading">
+
+                    <div>
+                        <span class="eyebrow">MARTEY CATEGORY</span>
+
+                        <h1>Drinks</h1>
+
+                        <p>
+                            Refreshing drinks and beverages for every moment.
+                            Browse the available products and add your favourites
+                            to your cart.
+                        </p>
+                    </div>
+
+                    <div class="category-meta">
+                        <span id="productCount">0 products</span>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- PRODUCTS AREA -->
+        <section class="products-section">
+
+            <div class="container">
+
+                <div class="shop-layout">
+
+                    <!-- SIDEBAR -->
+                    <aside class="filter-sidebar">
+
+                        <div class="filter-header">
+                            <h2>Filter</h2>
+
+                            <button
+                                type="button"
+                                id="clearFilters"
+                                class="clear-filter"
+                            >
+                                Clear
+                            </button>
+                        </div>
+
+
+                        <div class="filter-group">
+
+                            <h3>Drink Type</h3>
+
+                            <label class="filter-option">
+                                <input
+                                    type="checkbox"
+                                    name="drinkType"
+                                    value="Soft Drink"
+                                >
+                                <span>Soft Drinks</span>
+                            </label>
+
+                            <label class="filter-option">
+                                <input
+                                    type="checkbox"
+                                    name="drinkType"
+                                    value="Juice"
+                                >
+                                <span>Juices</span>
+                            </label>
+
+                            <label class="filter-option">
+                                <input
+                                    type="checkbox"
+                                    name="drinkType"
+                                    value="Energy Drink"
+                                >
+                                <span>Energy Drinks</span>
+                            </label>
+
+                            <label class="filter-option">
+                                <input
+                                    type="checkbox"
+                                    name="drinkType"
+                                    value="Water"
+                                >
+                                <span>Water</span>
+                            </label>
+
+                        </div>
+
+
+                        <div class="filter-group">
+
+                            <h3>Price</h3>
+
+                            <label class="filter-option">
+                                <input
+                                    type="radio"
+                                    name="priceFilter"
+                                    value="all"
+                                    checked
+                                >
+                                <span>All prices</span>
+                            </label>
+
+                            <label class="filter-option">
+                                <input
+                                    type="radio"
+                                    name="priceFilter"
+                                    value="under50"
+                                >
+                                <span>Under ₹50</span>
+                            </label>
+
+                            <label class="filter-option">
+                                <input
+                                    type="radio"
+                                    name="priceFilter"
+                                    value="50to100"
+                                >
+                                <span>₹50 – ₹100</span>
+                            </label>
+
+                            <label class="filter-option">
+                                <input
+                                    type="radio"
+                                    name="priceFilter"
+                                    value="above100"
+                                >
+                                <span>Above ₹100</span>
+                            </label>
+
+                        </div>
+
+                    </aside>
+
+
+                    <!-- PRODUCTS CONTENT -->
+                    <div class="products-content">
+
+                        <!-- TOOLBAR -->
+                        <div class="products-toolbar">
+
+                            <div>
+                                <button
+                                    type="button"
+                                    class="mobile-filter-button"
+                                    id="mobileFilterButton"
+                                >
+                                    ☰ Filter
+                                </button>
+
+                                <span class="results-text" id="resultsText">
+                                    Showing products
+                                </span>
+                            </div>
+
+                            <div class="sort-wrapper">
+
+                                <label for="sortSelect">
+                                    Sort by
+                                </label>
+
+                                <select id="sortSelect">
+                                    <option value="relevance">
+                                        Relevance
+                                    </option>
+
+                                    <option value="price-low">
+                                        Price: Low to High
+                                    </option>
+
+                                    <option value="price-high">
+                                        Price: High to Low
+                                    </option>
+
+                                    <option value="discount">
+                                        Highest Discount
+                                    </option>
+                                </select>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- PRODUCTS GRID -->
+                        <div
+                            class="product-grid"
+                            id="productGrid"
+                        ></div>
+
+
+                        <!-- EMPTY STATE -->
+                        <div
+                            class="empty-state"
+                            id="emptyState"
+                            hidden
+                        >
+                            <div class="empty-icon">⌕</div>
+
+                            <h2>No drinks found</h2>
+
+                            <p>
+                                Try another search or clear your filters.
+                            </p>
+
+                            <button
+                                type="button"
+                                id="emptyClearButton"
+                                class="primary-button"
+                            >
+                                Clear Filters
+                            </button>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- MOBILE FILTER OVERLAY -->
+    <div class="filter-overlay" id="filterOverlay"></div>
+
+
+    <!-- MOBILE FILTER CLOSE -->
+    <button
+        type="button"
+        class="mobile-filter-close"
+        id="mobileFilterClose"
+        aria-label="Close filters"
+    >
+        ×
+    </button>
+
+
+    <!-- TOAST -->
+    <div
+        class="toast"
+        id="toast"
+        role="status"
+        aria-live="polite"
+    ></div>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
