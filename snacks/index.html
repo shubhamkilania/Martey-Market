@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Snacks - MARTEY</title>
+    <meta name="description" content="Shop chips, namkeen, biscuits, chocolates and more snacks on MARTEY.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header class="site-header">
+        <div class="header-inner">
+
+            <a href="/" class="logo">
+                MARTEY<span>.</span>
+            </a>
+
+            <button class="location-button" id="locationButton">
+                <span class="location-icon">⌖</span>
+
+                <span>
+                    <small>Deliver to</small>
+                    <strong>Select location</strong>
+                </span>
+            </button>
+
+            <div class="header-search">
+                <span class="search-icon">⌕</span>
+
+                <input
+                    type="search"
+                    id="searchInput"
+                    placeholder="Search products..."
+                    autocomplete="off"
+                >
+            </div>
+
+            <a href="/account" class="header-link">
+                <span class="header-icon">◯</span>
+                <span>Account</span>
+            </a>
+
+            <a href="/cart" class="cart-button">
+                <span class="cart-icon">🛒</span>
+                <span>Cart</span>
+                <b id="cartCount">0</b>
+            </a>
+
+        </div>
+    </header>
+
+
+    <!-- MAIN -->
+    <main>
+
+        <!-- BREADCRUMB -->
+        <section class="breadcrumb-section">
+            <div class="container">
+
+                <div class="breadcrumb">
+                    <a href="/">Home</a>
+                    <span>/</span>
+
+                    <a href="/categories">
+                        Categories
+                    </a>
+
+                    <span>/</span>
+
+                    <span>Snacks</span>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- HERO -->
+        <section class="category-hero">
+            <div class="container">
+
+                <div class="category-hero-content">
+
+                    <div>
+
+                        <span class="eyebrow">
+                            QUICK BITES
+                        </span>
+
+                        <h1>Snacks</h1>
+
+                        <p>
+                            Chips, namkeen, biscuits, chocolates
+                            and your favourite quick bites, delivered fast.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- SHOP -->
+        <section class="shop-section">
+
+            <div class="container shop-layout">
+
+                <!-- DESKTOP FILTER -->
+                <aside class="filter-sidebar">
+
+                    <div class="filter-header">
+
+                        <h3>Filters</h3>
+
+                        <button id="clearFilters">
+                            Clear all
+                        </button>
+
+                    </div>
+
+
+                    <!-- CATEGORY -->
+                    <div class="filter-group">
+
+                        <h4>Snack Type</h4>
+
+                        <label class="filter-option">
+                            <input
+                                type="checkbox"
+                                value="Chips"
+                                class="category-filter"
+                            >
+                            <span>Chips</span>
+                        </label>
+
+                        <label class="filter-option">
+                            <input
+                                type="checkbox"
+                                value="Namkeen"
+                                class="category-filter"
+                            >
+                            <span>Namkeen</span>
+                        </label>
+
+                        <label class="filter-option">
+                            <input
+                                type="checkbox"
+                                value="Biscuits"
+                                class="category-filter"
+                            >
+                            <span>Biscuits</span>
+                        </label>
+
+                        <label class="filter-option">
+                            <input
+                                type="checkbox"
+                                value="Chocolates"
+                                class="category-filter"
+                            >
+                            <span>Chocolates</span>
+                        </label>
+
+                        <label class="filter-option">
+                            <input
+                                type="checkbox"
+                                value="Cookies"
+                                class="category-filter"
+                            >
+                            <span>Cookies</span>
+                        </label>
+
+                        <label class="filter-option">
+                            <input
+                                type="checkbox"
+                                value="Instant Snacks"
+                                class="category-filter"
+                            >
+                            <span>Instant Snacks</span>
+                        </label>
+
+                        <label class="filter-option">
+                            <input
+                                type="checkbox"
+                                value="Other Snacks"
+                                class="category-filter"
+                            >
+                            <span>Other Snacks</span>
+                        </label>
+
+                    </div>
+
+
+                    <!-- PRICE -->
+                    <div class="filter-group">
+
+                        <h4>Price</h4>
+
+                        <label class="filter-option">
+                            <input
+                                type="checkbox"
+                                value="under50"
+                                class="price-filter"
+                            >
+                            <span>Under ₹50</span>
+                        </label>
+
+                        <label class="filter-option">
+                            <input
+                                type="checkbox"
+                                value="50to100"
+                                class="price-filter"
+                            >
+                            <span>₹50 – ₹100</span>
+                        </label>
+
+                        <label class="filter-option">
+                            <input
+                                type="checkbox"
+                                value="above100"
+                                class="price-filter"
+                            >
+                            <span>Above ₹100</span>
+                        </label>
+
+                    </div>
+
+                </aside>
+
+
+                <!-- PRODUCTS AREA -->
+                <div class="products-area">
+
+                    <div class="products-topbar">
+
+                        <div>
+
+                            <h2>Popular Snacks</h2>
+
+                            <p id="resultCount">
+                                0 products
+                            </p>
+
+                        </div>
+
+
+                        <div class="topbar-actions">
+
+                            <button
+                                class="mobile-filter-button"
+                                id="mobileFilterButton"
+                            >
+                                Filters
+                            </button>
+
+                            <label class="sort-wrapper">
+
+                                <span>Sort by</span>
+
+                                <select id="sortSelect">
+
+                                    <option value="relevance">
+                                        Relevance
+                                    </option>
+
+                                    <option value="low-high">
+                                        Price: Low to High
+                                    </option>
+
+                                    <option value="high-low">
+                                        Price: High to Low
+                                    </option>
+
+                                    <option value="discount">
+                                        Highest Discount
+                                    </option>
+
+                                </select>
+
+                            </label>
+
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        class="product-grid"
+                        id="productGrid"
+                    ></div>
+
+
+                    <!-- EMPTY -->
+                    <div
+                        class="empty-state"
+                        id="emptyState"
+                    >
+
+                        <div class="empty-icon">
+                            ⌕
+                        </div>
+
+                        <h3>
+                            No snacks found
+                        </h3>
+
+                        <p>
+                            Try changing your filters or
+                            search for another snack.
+                        </p>
+
+                        <button id="resetEmptyState">
+                            View all snacks
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- MOBILE FILTER OVERLAY -->
+    <div
+        class="filter-overlay"
+        id="filterOverlay"
+    ></div>
+
+
+    <!-- MOBILE FILTER PANEL -->
+    <div
+        class="mobile-filter-panel"
+        id="mobileFilterPanel"
+    >
+
+        <div class="mobile-filter-header">
+
+            <h3>Filters</h3>
+
+            <button id="closeMobileFilter">
+                ×
+            </button>
+
+        </div>
+
+
+        <div class="mobile-filter-content">
+
+            <div class="filter-group">
+
+                <h4>Snack Type</h4>
+
+                <label class="filter-option">
+                    <input
+                        type="checkbox"
+                        value="Chips"
+                        class="mobile-category-filter"
+                    >
+                    <span>Chips</span>
+                </label>
+
+                <label class="filter-option">
+                    <input
+                        type="checkbox"
+                        value="Namkeen"
+                        class="mobile-category-filter"
+                    >
+                    <span>Namkeen</span>
+                </label>
+
+                <label class="filter-option">
+                    <input
+                        type="checkbox"
+                        value="Biscuits"
+                        class="mobile-category-filter"
+                    >
+                    <span>Biscuits</span>
+                </label>
+
+                <label class="filter-option">
+                    <input
+                        type="checkbox"
+                        value="Chocolates"
+                        class="mobile-category-filter"
+                    >
+                    <span>Chocolates</span>
+                </label>
+
+                <label class="filter-option">
+                    <input
+                        type="checkbox"
+                        value="Cookies"
+                        class="mobile-category-filter"
+                    >
+                    <span>Cookies</span>
+                </label>
+
+                <label class="filter-option">
+                    <input
+                        type="checkbox"
+                        value="Instant Snacks"
+                        class="mobile-category-filter"
+                    >
+                    <span>Instant Snacks</span>
+                </label>
+
+                <label class="filter-option">
+                    <input
+                        type="checkbox"
+                        value="Other Snacks"
+                        class="mobile-category-filter"
+                    >
+                    <span>Other Snacks</span>
+                </label>
+
+            </div>
+
+
+            <div class="filter-group">
+
+                <h4>Price</h4>
+
+                <label class="filter-option">
+                    <input
+                        type="checkbox"
+                        value="under50"
+                        class="mobile-price-filter"
+                    >
+                    <span>Under ₹50</span>
+                </label>
+
+                <label class="filter-option">
+                    <input
+                        type="checkbox"
+                        value="50to100"
+                        class="mobile-price-filter"
+                    >
+                    <span>₹50 – ₹100</span>
+                </label>
+
+                <label class="filter-option">
+                    <input
+                        type="checkbox"
+                        value="above100"
+                        class="mobile-price-filter"
+                    >
+                    <span>Above ₹100</span>
+                </label>
+
+            </div>
+
+        </div>
+
+
+        <button
+            class="apply-filter-button"
+            id="applyMobileFilters"
+        >
+            Apply Filters
+        </button>
+
+    </div>
+
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+
+        <div class="container footer-inner">
+
+            <div class="footer-brand">
+
+                <a href="/" class="logo">
+                    MARTEY<span>.</span>
+                </a>
+
+                <p>
+                    Everything you need, delivered quickly.
+                </p>
+
+            </div>
+
+
+            <div class="footer-links">
+
+                <a href="/categories">
+                    Categories
+                </a>
+
+                <a href="/orders">
+                    Orders
+                </a>
+
+                <a href="/help">
+                    Help
+                </a>
+
+                <a href="/account">
+                    Account
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+            <div class="container">
+                © 2026 MARTEY. All rights reserved.
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
