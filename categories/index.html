@@ -19,273 +19,280 @@
 
 <body>
 
-    <!-- HEADER -->
-    <header class="site-header">
-        <div class="header-inner">
+<header class="site-header">
+    <div class="header-inner">
+
+        <a href="/" class="logo">
+            MARTEY<span>.</span>
+        </a>
+
+        <button class="location-box" id="locationButton" type="button">
+            <span class="location-icon">⌖</span>
+
+            <span class="location-text">
+                <small>Deliver to</small>
+                <strong>Select location</strong>
+            </span>
+        </button>
+
+        <div class="search-box">
+            <span class="search-icon">⌕</span>
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search for milk, bread, snacks..."
+                autocomplete="off"
+            >
+        </div>
+
+        <div class="header-actions">
+
+            <a href="/account" class="header-action">
+                <span class="action-icon">♙</span>
+                <span>Account</span>
+            </a>
+
+            <a href="/cart" class="header-action cart-action">
+                <span class="action-icon">🛒</span>
+                <span>Cart</span>
+                <b id="cartCount">0</b>
+            </a>
+
+        </div>
+
+    </div>
+</header>
+
+
+<main class="page-container">
+
+    <div class="breadcrumb">
+        <a href="/">Home</a>
+        <span>/</span>
+        <span>Categories</span>
+    </div>
+
+
+    <section class="category-hero">
+
+        <div class="hero-content">
+
+            <span class="eyebrow">
+                SHOP BY CATEGORY
+            </span>
+
+            <h1>
+                Everything you need,
+                <br>
+                <span>in one place.</span>
+            </h1>
+
+            <p>
+                Explore groceries, daily essentials, personal care,
+                electronics and more from MARTEY.
+            </p>
+
+            <a href="#allCategories" class="hero-link">
+                Explore all categories
+                <span>→</span>
+            </a>
+
+        </div>
+
+        <div class="hero-visual">
+
+            <div class="visual-card visual-card-one">
+                <span>🥛</span>
+            </div>
+
+            <div class="visual-card visual-card-two">
+                <span>🥐</span>
+            </div>
+
+            <div class="visual-card visual-card-three">
+                <span>🥤</span>
+            </div>
+
+            <div class="visual-card visual-card-four">
+                <span>🛒</span>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section class="category-search-section">
+
+        <div>
+            <span class="section-label">
+                FIND SOMETHING
+            </span>
+
+            <h2>
+                Browse categories
+            </h2>
+        </div>
+
+        <div class="category-search-box">
+            <span>⌕</span>
+
+            <input
+                type="text"
+                id="categorySearch"
+                placeholder="Search categories..."
+                autocomplete="off"
+            >
+        </div>
+
+    </section>
+
+
+    <section class="categories-section">
+
+        <div class="section-heading">
+
+            <div>
+                <span class="section-label">
+                    POPULAR
+                </span>
+
+                <h2>
+                    Popular categories
+                </h2>
+            </div>
+
+        </div>
+
+        <div
+            class="popular-grid"
+            id="popularGrid"
+        ></div>
+
+    </section>
+
+
+    <section
+        class="categories-section all-categories-section"
+        id="allCategories"
+    >
+
+        <div class="section-heading">
+
+            <div>
+                <span class="section-label">
+                    EXPLORE MARTEY
+                </span>
+
+                <h2>
+                    All categories
+                </h2>
+
+                <p>
+                    Shop across all the categories available on MARTEY.
+                </p>
+            </div>
+
+            <span
+                class="category-result-count"
+                id="categoryResultCount"
+            >
+                15 categories
+            </span>
+
+        </div>
+
+
+        <div
+            class="all-categories-grid"
+            id="allCategoriesGrid"
+        ></div>
+
+
+        <div
+            class="empty-category-state hidden"
+            id="emptyCategoryState"
+        >
+
+            <div class="empty-icon">
+                ⌕
+            </div>
+
+            <h3>
+                No categories found
+            </h3>
+
+            <p>
+                Try searching for another category.
+            </p>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<footer class="site-footer">
+
+    <div class="footer-inner">
+
+        <div class="footer-brand">
 
             <a href="/" class="logo">
                 MARTEY<span>.</span>
             </a>
 
-            <button class="location-box" id="locationButton">
-                <span class="location-icon">⌖</span>
-
-                <span class="location-text">
-                    <small>Deliver to</small>
-                    <strong>Select location</strong>
-                </span>
-            </button>
-
-            <div class="search-box">
-                <span class="search-icon">⌕</span>
-
-                <input
-                    type="text"
-                    id="searchInput"
-                    placeholder="Search for milk, bread, snacks..."
-                    autocomplete="off"
-                >
-            </div>
-
-            <div class="header-actions">
-
-                <a href="/account" class="header-action">
-                    <span class="action-icon">♙</span>
-                    <span>Account</span>
-                </a>
-
-                <a href="/cart" class="header-action cart-action">
-                    <span class="action-icon">🛒</span>
-                    <span>Cart</span>
-                    <b id="cartCount">0</b>
-                </a>
-
-            </div>
+            <p>
+                Fast, simple and reliable everyday delivery.
+            </p>
 
         </div>
-    </header>
 
 
-    <!-- MAIN -->
-    <main class="page-container">
+        <div class="footer-column">
+            <h3>Shop</h3>
 
-        <!-- BREADCRUMB -->
-        <div class="breadcrumb">
-            <a href="/">Home</a>
-            <span>/</span>
-            <span>Categories</span>
+            <a href="/milk">Milk</a>
+            <a href="/bakery">Bakery</a>
+            <a href="/drinks">Drinks</a>
+            <a href="/snacks">Snacks</a>
+            <a href="/fruits-vegetables">Fresh</a>
         </div>
 
 
-        <!-- PAGE HERO -->
-        <section class="category-hero">
+        <div class="footer-column">
+            <h3>MARTEY</h3>
 
-            <div class="hero-content">
-
-                <span class="eyebrow">
-                    SHOP BY CATEGORY
-                </span>
-
-                <h1>
-                    Everything you need,<br>
-                    <span>in one place.</span>
-                </h1>
-
-                <p>
-                    Explore groceries, daily essentials, personal care,
-                    electronics and more from MARTEY.
-                </p>
-
-            </div>
-
-            <div class="hero-visual">
-
-                <div class="visual-card visual-card-one">
-                    <span>🥛</span>
-                </div>
-
-                <div class="visual-card visual-card-two">
-                    <span>🥐</span>
-                </div>
-
-                <div class="visual-card visual-card-three">
-                    <span>🥤</span>
-                </div>
-
-                <div class="visual-card visual-card-four">
-                    <span>🛒</span>
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- CATEGORY SEARCH -->
-        <section class="category-search-section">
-
-            <div>
-                <span class="section-label">
-                    FIND SOMETHING
-                </span>
-
-                <h2>
-                    Browse categories
-                </h2>
-            </div>
-
-            <div class="category-search-box">
-                <span>⌕</span>
-
-                <input
-                    type="text"
-                    id="categorySearch"
-                    placeholder="Search categories..."
-                    autocomplete="off"
-                >
-            </div>
-
-        </section>
-
-
-        <!-- POPULAR CATEGORIES -->
-        <section class="categories-section">
-
-            <div class="section-heading">
-
-                <div>
-                    <span class="section-label">
-                        POPULAR
-                    </span>
-
-                    <h2>
-                        Popular categories
-                    </h2>
-                </div>
-
-            </div>
-
-            <div
-                class="popular-grid"
-                id="popularGrid"
-            >
-                <!-- JS -->
-            </div>
-
-        </section>
-
-
-        <!-- ALL CATEGORIES -->
-        <section class="categories-section all-categories-section">
-
-            <div class="section-heading">
-
-                <div>
-                    <span class="section-label">
-                        EXPLORE MARTEY
-                    </span>
-
-                    <h2>
-                        All categories
-                    </h2>
-
-                    <p>
-                        Shop across all the categories available on MARTEY.
-                    </p>
-                </div>
-
-                <span
-                    class="category-result-count"
-                    id="categoryResultCount"
-                >
-                    15 categories
-                </span>
-
-            </div>
-
-
-            <div
-                class="all-categories-grid"
-                id="allCategoriesGrid"
-            >
-                <!-- JS -->
-            </div>
-
-
-            <!-- EMPTY SEARCH -->
-            <div
-                class="empty-category-state hidden"
-                id="emptyCategoryState"
-            >
-
-                <div class="empty-icon">
-                    ⌕
-                </div>
-
-                <h3>
-                    No categories found
-                </h3>
-
-                <p>
-                    Try searching for another category.
-                </p>
-
-            </div>
-
-        </section>
-
-    </main>
-
-
-    <!-- FOOTER -->
-    <footer class="site-footer">
-
-        <div class="footer-inner">
-
-            <div class="footer-brand">
-
-                <a href="/" class="logo">
-                    MARTEY<span>.</span>
-                </a>
-
-                <p>
-                    Fast, simple and reliable everyday delivery.
-                </p>
-
-            </div>
-
-
-            <div class="footer-links">
-
-                <a href="/categories">
-                    Categories
-                </a>
-
-                <a href="/deals">
-                    Deals
-                </a>
-
-                <a href="/orders">
-                    Orders
-                </a>
-
-                <a href="/help">
-                    Help Center
-                </a>
-
-            </div>
-
+            <a href="/categories">Categories</a>
+            <a href="/deals">Deals</a>
+            <a href="/orders">Orders</a>
+            <a href="/account">Account</a>
         </div>
 
 
-        <div class="footer-bottom">
-            © 2026 MARTEY. All rights reserved.
+        <div class="footer-column">
+            <h3>Help</h3>
+
+            <a href="/help">Help Center</a>
+            <a href="/help">Privacy</a>
+            <a href="/help">Terms</a>
         </div>
 
-    </footer>
+    </div>
 
 
-    <script src="script.js"></script>
+    <div class="footer-bottom">
+        © <span id="currentYear">2026</span> MARTEY. All rights reserved.
+    </div>
+
+</footer>
+
+
+<div class="toast" id="toast"></div>
+
+<script src="script.js"></script>
 
 </body>
 </html>
