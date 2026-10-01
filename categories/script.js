@@ -1,3 +1,7 @@
+/* =========================================================
+   MARTEY — CATEGORIES PAGE
+========================================================= */
+
 const categories = [
 
     {
@@ -151,9 +155,12 @@ const searchInput =
 const locationButton =
     document.getElementById("locationButton");
 
+const currentYear =
+    document.getElementById("currentYear");
+
 
 /* =========================================================
-   CREATE POPULAR CARD
+   POPULAR CARD
 ========================================================= */
 
 function createPopularCard(category) {
@@ -161,28 +168,21 @@ function createPopularCard(category) {
     const card =
         document.createElement("a");
 
-    card.className =
-        "popular-card";
-
-    card.href =
-        category.url;
+    card.className = "popular-card";
+    card.href = category.url;
 
     card.innerHTML = `
-
         <div class="category-icon">
             ${category.icon}
         </div>
 
         <div>
-            <h3>
-                ${category.name}
-            </h3>
+            <h3>${category.name}</h3>
 
             <p>
                 ${category.description}
             </p>
         </div>
-
     `;
 
     return card;
@@ -190,7 +190,7 @@ function createPopularCard(category) {
 
 
 /* =========================================================
-   CREATE CATEGORY CARD
+   CATEGORY CARD
 ========================================================= */
 
 function createCategoryCard(category) {
@@ -198,14 +198,10 @@ function createCategoryCard(category) {
     const card =
         document.createElement("a");
 
-    card.className =
-        "category-card";
-
-    card.href =
-        category.url;
+    card.className = "category-card";
+    card.href = category.url;
 
     card.innerHTML = `
-
         <div class="category-icon">
             ${category.icon}
         </div>
@@ -225,7 +221,6 @@ function createCategoryCard(category) {
         <span class="category-arrow">
             →
         </span>
-
     `;
 
     return card;
@@ -237,6 +232,10 @@ function createCategoryCard(category) {
 ========================================================= */
 
 function renderPopularCategories() {
+
+    if (!popularGrid) {
+        return;
+    }
 
     popularGrid.innerHTML = "";
 
@@ -261,23 +260,29 @@ function renderPopularCategories() {
 
 function renderCategories(list) {
 
+    if (!allCategoriesGrid) {
+        return;
+    }
+
     allCategoriesGrid.innerHTML = "";
 
     if (!list.length) {
 
-        emptyCategoryState.classList.remove(
-            "hidden"
-        );
+        if (emptyCategoryState) {
+            emptyCategoryState.classList.remove("hidden");
+        }
 
-        categoryResultCount.textContent =
-            "0 categories";
+        if (categoryResultCount) {
+            categoryResultCount.textContent =
+                "0 categories";
+        }
 
         return;
     }
 
-    emptyCategoryState.classList.add(
-        "hidden"
-    );
+    if (emptyCategoryState) {
+        emptyCategoryState.classList.add("hidden");
+    }
 
     list.forEach(category => {
 
@@ -287,12 +292,15 @@ function renderCategories(list) {
 
     });
 
-    categoryResultCount.textContent =
-        `${list.length} ${
-            list.length === 1
-                ? "category"
-                : "categories"
-        }`;
+    if (categoryResultCount) {
+
+        categoryResultCount.textContent =
+            `${list.length} ${
+                list.length === 1
+                    ? "category"
+                    : "categories"
+            }`;
+    }
 }
 
 
@@ -301,6 +309,10 @@ function renderCategories(list) {
 ========================================================= */
 
 function filterCategories() {
+
+    if (!categorySearch) {
+        return;
+    }
 
     const query =
         categorySearch.value
@@ -328,11 +340,13 @@ function filterCategories() {
     renderCategories(filtered);
 }
 
+if (categorySearch) {
 
-categorySearch.addEventListener(
-    "input",
-    filterCategories
-);
+    categorySearch.addEventListener(
+        "input",
+        filterCategories
+    );
+}
 
 
 /* =========================================================
@@ -340,6 +354,10 @@ categorySearch.addEventListener(
 ========================================================= */
 
 function handleMainSearch() {
+
+    if (!searchInput) {
+        return;
+    }
 
     const query =
         searchInput.value.trim();
@@ -352,17 +370,19 @@ function handleMainSearch() {
         `/search?q=${encodeURIComponent(query)}`;
 }
 
+if (searchInput) {
 
-searchInput.addEventListener(
-    "keydown",
-    event => {
+    searchInput.addEventListener(
+        "keydown",
+        event => {
 
-        if (event.key === "Enter") {
-            handleMainSearch();
+            if (event.key === "Enter") {
+                handleMainSearch();
+            }
+
         }
-
-    }
-);
+    );
+}
 
 
 /* =========================================================
@@ -370,6 +390,10 @@ searchInput.addEventListener(
 ========================================================= */
 
 function updateCartCount() {
+
+    if (!cartCount) {
+        return;
+    }
 
     const possibleKeys = [
         "marteyCart",
@@ -420,7 +444,9 @@ function updateCartCount() {
 
 
     cartCount.textContent =
-        count;
+        count > 99
+            ? "99+"
+            : count;
 }
 
 
@@ -428,13 +454,36 @@ function updateCartCount() {
    LOCATION
 ========================================================= */
 
-locationButton.addEventListener(
-    "click",
-    () => {
+if (locationButton) {
 
-        alert(
-            "Location selection will be connected to MARTEY's location and nearby-store system later."
-        );
+    locationButton.addEventListener(
+        "click",
+        () => {
+
+            alert(
+                "Location selection will be connected to MARTEY's nearby-store system later."
+            );
+
+        }
+    );
+}
+
+
+/* =========================================================
+   STORAGE SYNC
+========================================================= */
+
+window.addEventListener(
+    "storage",
+    event => {
+
+        if (
+            event.key === "marteyCart" ||
+            event.key === "cart" ||
+            event.key === "MARTEY_CART"
+        ) {
+            updateCartCount();
+        }
 
     }
 );
@@ -452,7 +501,11 @@ function init() {
 
     updateCartCount();
 
-}
+    if (currentYear) {
+        currentYear.textContent =
+            new Date().getFullYear();
+    }
 
+}
 
 init();
