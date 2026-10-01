@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beauty | MARTEY</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="site-header">
+    <div class="header-inner">
+
+        <a href="../" class="logo">
+            MARTEY<span>.</span>
+        </a>
+
+        <button class="location-button" id="locationButton">
+            <span class="location-icon">⌖</span>
+            <span>
+                <small>Deliver to</small>
+                <strong>Select location</strong>
+            </span>
+            <span class="location-arrow">⌄</span>
+        </button>
+
+        <div class="search-wrapper">
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search for products..."
+                autocomplete="off"
+            >
+            <button id="searchButton" aria-label="Search">⌕</button>
+            <div class="search-suggestions" id="searchSuggestions"></div>
+        </div>
+
+        <div class="header-actions">
+            <a href="../account/" class="header-link">
+                <span class="action-icon">♙</span>
+                <span>Account</span>
+            </a>
+
+            <a href="../cart/" class="cart-link">
+                <span class="cart-icon">🛒</span>
+                <span>Cart</span>
+                <b id="cartCount">0</b>
+            </a>
+        </div>
+
+    </div>
+</header>
+
+<main>
+
+    <div class="container">
+
+        <div class="breadcrumb">
+            <a href="../">Home</a>
+            <span>/</span>
+            <a href="../categories/">Categories</a>
+            <span>/</span>
+            <strong>Beauty</strong>
+        </div>
+
+        <section class="category-hero">
+            <div>
+                <span class="hero-label">MARTEY BEAUTY</span>
+                <h1>Beauty</h1>
+                <p>
+                    Everyday beauty essentials, skincare, makeup and grooming
+                    products delivered quickly.
+                </p>
+            </div>
+
+            <div class="hero-icon">✦</div>
+        </section>
+
+        <div class="category-layout">
+
+            <aside class="filter-sidebar" id="filterSidebar">
+
+                <div class="filter-header">
+                    <h3>Filters</h3>
+                    <button id="clearFilters">Clear all</button>
+                </div>
+
+                <div class="filter-section">
+                    <h4>Category</h4>
+
+                    <label>
+                        <input type="checkbox" value="Face Care" class="category-filter">
+                        <span>Face Care</span>
+                    </label>
+
+                    <label>
+                        <input type="checkbox" value="Makeup" class="category-filter">
+                        <span>Makeup</span>
+                    </label>
+
+                    <label>
+                        <input type="checkbox" value="Lip Care" class="category-filter">
+                        <span>Lip Care</span>
+                    </label>
+
+                    <label>
+                        <input type="checkbox" value="Hair Styling" class="category-filter">
+                        <span>Hair Styling</span>
+                    </label>
+
+                    <label>
+                        <input type="checkbox" value="Skincare" class="category-filter">
+                        <span>Skincare</span>
+                    </label>
+
+                    <label>
+                        <input type="checkbox" value="Body Care" class="category-filter">
+                        <span>Body Care</span>
+                    </label>
+
+                    <label>
+                        <input type="checkbox" value="Fragrance" class="category-filter">
+                        <span>Fragrance</span>
+                    </label>
+
+                    <label>
+                        <input type="checkbox" value="Nail Care" class="category-filter">
+                        <span>Nail Care</span>
+                    </label>
+
+                    <label>
+                        <input type="checkbox" value="Beauty Tools" class="category-filter">
+                        <span>Beauty Tools</span>
+                    </label>
+
+                    <label>
+                        <input type="checkbox" value="Men's Grooming" class="category-filter">
+                        <span>Men's Grooming</span>
+                    </label>
+                </div>
+
+                <div class="filter-section">
+                    <h4>Price</h4>
+
+                    <label>
+                        <input type="checkbox" value="under100" class="price-filter">
+                        <span>Under ₹100</span>
+                    </label>
+
+                    <label>
+                        <input type="checkbox" value="100to250" class="price-filter">
+                        <span>₹100 – ₹250</span>
+                    </label>
+
+                    <label>
+                        <input type="checkbox" value="above250" class="price-filter">
+                        <span>Above ₹250</span>
+                    </label>
+                </div>
+
+            </aside>
+
+            <section class="products-section">
+
+                <div class="products-toolbar">
+
+                    <div>
+                        <h2>Beauty Essentials</h2>
+                        <p id="resultCount">0 products</p>
+                    </div>
+
+                    <div class="toolbar-right">
+
+                        <button class="mobile-filter-button" id="mobileFilterButton">
+                            ☰ Filters
+                        </button>
+
+                        <label class="sort-label">
+                            <span>Sort by</span>
+                            <select id="sortSelect">
+                                <option value="relevance">Relevance</option>
+                                <option value="price-low">Price: Low to High</option>
+                                <option value="price-high">Price: High to Low</option>
+                                <option value="discount">Highest Discount</option>
+                            </select>
+                        </label>
+
+                    </div>
+
+                </div>
+
+                <div class="active-filters" id="activeFilters"></div>
+
+                <div class="product-grid" id="productGrid"></div>
+
+                <div class="empty-state" id="emptyState">
+                    <div class="empty-icon">✦</div>
+                    <h3>No products found</h3>
+                    <p>Try changing your filters or search for something else.</p>
+                    <button id="resetEmpty">Clear Filters</button>
+                </div>
+
+            </section>
+
+        </div>
+
+    </div>
+
+</main>
+
+<div class="filter-overlay" id="filterOverlay"></div>
+
+<footer class="site-footer">
+    <div class="footer-inner">
+
+        <div class="footer-brand">
+            <a href="../" class="logo">
+                MARTEY<span>.</span>
+            </a>
+            <p>
+                Everything you need, delivered quickly.
+            </p>
+        </div>
+
+        <div class="footer-column">
+            <h4>MARTEY</h4>
+            <a href="../categories/">Categories</a>
+            <a href="../deals/">Deals</a>
+            <a href="../orders/">Orders</a>
+            <a href="../help/">Help Center</a>
+        </div>
+
+        <div class="footer-column">
+            <h4>Categories</h4>
+            <a href="../milk/">Milk & Dairy</a>
+            <a href="../grocery/">Grocery</a>
+            <a href="../beauty/">Beauty</a>
+            <a href="../personal-care/">Personal Care</a>
+        </div>
+
+        <div class="footer-column">
+            <h4>Account</h4>
+            <a href="../account/">My Account</a>
+            <a href="../orders/">My Orders</a>
+            <a href="../cart/">Cart</a>
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+        <p>© 2026 MARTEY. All rights reserved.</p>
+    </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
