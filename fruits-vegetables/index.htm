@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Fruits & Vegetables | MARTEY</title>
+    <meta
+        name="description"
+        content="Shop fresh fruits and vegetables from MARTEY."
+    >
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header class="site-header">
+        <div class="header-container">
+
+            <a href="/" class="brand">
+                MARTEY<span>.</span>
+            </a>
+
+            <button class="location-button" id="locationButton" type="button">
+                <span class="location-icon">⌖</span>
+                <span class="location-content">
+                    <small>Deliver to</small>
+                    <strong>Select location</strong>
+                </span>
+                <span class="location-arrow">⌄</span>
+            </button>
+
+            <form class="search-box" id="searchForm">
+                <span class="search-icon">⌕</span>
+                <input
+                    type="search"
+                    id="searchInput"
+                    placeholder="Search fruits, vegetables..."
+                    autocomplete="off"
+                >
+                <button type="submit">Search</button>
+            </form>
+
+            <div class="header-actions">
+
+                <a href="/account" class="header-action">
+                    <span class="action-icon">♙</span>
+                    <span>Account</span>
+                </a>
+
+                <a href="/cart" class="cart-action">
+                    <span class="cart-icon">🛒</span>
+                    <span>Cart</span>
+                    <b id="cartCount">0</b>
+                </a>
+
+            </div>
+
+        </div>
+    </header>
+
+
+    <!-- MAIN -->
+    <main>
+
+        <!-- BREADCRUMB -->
+        <section class="breadcrumb-section">
+            <div class="page-container breadcrumb">
+                <a href="/">Home</a>
+                <span>/</span>
+                <a href="/categories">Categories</a>
+                <span>/</span>
+                <strong>Fruits & Vegetables</strong>
+            </div>
+        </section>
+
+
+        <!-- CATEGORY HERO -->
+        <section class="category-hero">
+            <div class="page-container category-hero-inner">
+
+                <div>
+                    <span class="eyebrow">FRESH PICKS</span>
+
+                    <h1>Fruits & Vegetables</h1>
+
+                    <p>
+                        Fresh fruits, vegetables and everyday greens
+                        for your kitchen.
+                    </p>
+                </div>
+
+                <div class="hero-badge">
+                    <span>●</span>
+                    Fresh choices
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- SHOP AREA -->
+        <section class="shop-section">
+            <div class="page-container shop-layout">
+
+                <!-- FILTER SIDEBAR -->
+                <aside class="filter-sidebar" id="filterSidebar">
+
+                    <div class="filter-header">
+                        <h2>Filters</h2>
+
+                        <button
+                            type="button"
+                            id="clearFilters"
+                            class="clear-filters"
+                        >
+                            Clear all
+                        </button>
+                    </div>
+
+
+                    <!-- CATEGORY FILTER -->
+                    <div class="filter-group">
+                        <h3>Category</h3>
+
+                        <label class="filter-option">
+                            <input
+                                type="checkbox"
+                                name="category"
+                                value="Fruits"
+                            >
+                            <span>Fruits</span>
+                            <em>6</em>
+                        </label>
+
+                        <label class="filter-option">
+                            <input
+                                type="checkbox"
+                                name="category"
+                                value="Vegetables"
+                            >
+                            <span>Vegetables</span>
+                            <em>6</em>
+                        </label>
+
+                        <label class="filter-option">
+                            <input
+                                type="checkbox"
+                                name="category"
+                                value="Leafy Greens"
+                            >
+                            <span>Leafy Greens</span>
+                            <em>2</em>
+                        </label>
+
+                        <label class="filter-option">
+                            <input
+                                type="checkbox"
+                                name="category"
+                                value="Herbs"
+                            >
+                            <span>Herbs</span>
+                            <em>2</em>
+                        </label>
+
+                        <label class="filter-option">
+                            <input
+                                type="checkbox"
+                                name="category"
+                                value="Exotic Fruits"
+                            >
+                            <span>Exotic Fruits</span>
+                            <em>2</em>
+                        </label>
+
+                        <label class="filter-option">
+                            <input
+                                type="checkbox"
+                                name="category"
+                                value="Exotic Vegetables"
+                            >
+                            <span>Exotic Vegetables</span>
+                            <em>2</em>
+                        </label>
+                    </div>
+
+
+                    <!-- PRICE FILTER -->
+                    <div class="filter-group">
+                        <h3>Price</h3>
+
+                        <label class="filter-option">
+                            <input
+                                type="checkbox"
+                                name="price"
+                                value="under50"
+                            >
+                            <span>Under ₹50</span>
+                        </label>
+
+                        <label class="filter-option">
+                            <input
+                                type="checkbox"
+                                name="price"
+                                value="50to100"
+                            >
+                            <span>₹50 – ₹100</span>
+                        </label>
+
+                        <label class="filter-option">
+                            <input
+                                type="checkbox"
+                                name="price"
+                                value="above100"
+                            >
+                            <span>Above ₹100</span>
+                        </label>
+                    </div>
+
+                </aside>
+
+
+                <!-- PRODUCTS AREA -->
+                <div class="products-area">
+
+                    <!-- MOBILE FILTER BUTTON -->
+                    <div class="mobile-toolbar">
+                        <button
+                            type="button"
+                            id="filterButton"
+                            class="mobile-filter-button"
+                        >
+                            ☰ Filters
+                        </button>
+
+                        <span id="mobileResultCount">
+                            20 products
+                        </span>
+                    </div>
+
+
+                    <!-- TOP BAR -->
+                    <div class="products-toolbar">
+
+                        <div>
+                            <h2>Fresh picks for you</h2>
+                            <p id="resultCount">20 products</p>
+                        </div>
+
+                        <div class="sort-wrapper">
+                            <label for="sortSelect">Sort by</label>
+
+                            <select id="sortSelect">
+                                <option value="relevance">
+                                    Relevance
+                                </option>
+
+                                <option value="price-low">
+                                    Price: Low to High
+                                </option>
+
+                                <option value="price-high">
+                                    Price: High to Low
+                                </option>
+
+                                <option value="discount">
+                                    Highest Discount
+                                </option>
+                            </select>
+                        </div>
+
+                    </div>
+
+
+                    <!-- PRODUCT GRID -->
+                    <div
+                        class="product-grid"
+                        id="productGrid"
+                    ></div>
+
+
+                    <!-- EMPTY STATE -->
+                    <div
+                        class="empty-state"
+                        id="emptyState"
+                        hidden
+                    >
+                        <div class="empty-icon">🥬</div>
+
+                        <h3>No products found</h3>
+
+                        <p>
+                            Try changing your filters or search
+                            for something else.
+                        </p>
+
+                        <button
+                            type="button"
+                            id="emptyClearButton"
+                        >
+                            Clear Filters
+                        </button>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+        <div class="page-container footer-inner">
+
+            <div class="footer-brand">
+                <a href="/" class="brand">
+                    MARTEY<span>.</span>
+                </a>
+
+                <p>
+                    Everyday essentials, delivered simply.
+                </p>
+            </div>
+
+            <div class="footer-links">
+                <a href="/categories">Categories</a>
+                <a href="/orders">Orders</a>
+                <a href="/help">Help Center</a>
+                <a href="/account">Account</a>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <div class="page-container">
+                © 2026 MARTEY. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- MOBILE FILTER OVERLAY -->
+    <div
+        class="filter-overlay"
+        id="filterOverlay"
+    ></div>
+
+
+    <script src="script.js"></script>
+</body>
+</html>
