@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Electronics & Accessories | MARTEY</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header class="site-header">
+
+    <div class="header-inner">
+
+        <a href="../" class="logo">
+            MARTEY<span>.</span>
+        </a>
+
+        <button class="location-button" id="locationButton">
+            <span class="location-icon">⌖</span>
+
+            <span class="location-text">
+                <small>Deliver to</small>
+                <strong>Select location</strong>
+            </span>
+
+            <span class="location-arrow">⌄</span>
+        </button>
+
+        <div class="search-wrapper">
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search for products..."
+                autocomplete="off"
+            >
+
+            <button id="searchButton" aria-label="Search">
+                ⌕
+            </button>
+
+            <div
+                class="search-suggestions"
+                id="searchSuggestions"
+            ></div>
+
+        </div>
+
+        <div class="header-actions">
+
+            <a href="../account/" class="header-link">
+                <span class="action-icon">♙</span>
+                <span>Account</span>
+            </a>
+
+            <a href="../cart/" class="cart-link">
+
+                <span class="cart-icon">🛒</span>
+                <span>Cart</span>
+
+                <b id="cartCount">0</b>
+
+            </a>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+<main>
+
+    <div class="container">
+
+        <div class="breadcrumb">
+
+            <a href="../">Home</a>
+            <span>/</span>
+
+            <a href="../categories/">Categories</a>
+            <span>/</span>
+
+            <strong>Electronics & Accessories</strong>
+
+        </div>
+
+
+        <section class="category-hero">
+
+            <div>
+
+                <span class="hero-label">
+                    MARTEY ELECTRONICS
+                </span>
+
+                <h1>
+                    Electronics & Accessories
+                </h1>
+
+                <p>
+                    Everyday tech essentials, mobile accessories,
+                    audio products and useful electronics delivered quickly.
+                </p>
+
+            </div>
+
+            <div class="hero-icon">
+                ⚡
+            </div>
+
+        </section>
+
+
+        <div class="category-layout">
+
+            <aside
+                class="filter-sidebar"
+                id="filterSidebar"
+            >
+
+                <div class="filter-header">
+
+                    <h3>Filters</h3>
+
+                    <button id="clearFilters">
+                        Clear all
+                    </button>
+
+                </div>
+
+
+                <div class="filter-section">
+
+                    <h4>Category</h4>
+
+                    <label>
+                        <input
+                            type="checkbox"
+                            value="Chargers & Adapters"
+                            class="category-filter"
+                        >
+                        <span>Chargers & Adapters</span>
+                    </label>
+
+                    <label>
+                        <input
+                            type="checkbox"
+                            value="Power Banks"
+                            class="category-filter"
+                        >
+                        <span>Power Banks</span>
+                    </label>
+
+                    <label>
+                        <input
+                            type="checkbox"
+                            value="Earphones & Headphones"
+                            class="category-filter"
+                        >
+                        <span>Earphones & Headphones</span>
+                    </label>
+
+                    <label>
+                        <input
+                            type="checkbox"
+                            value="Computer Accessories"
+                            class="category-filter"
+                        >
+                        <span>Computer Accessories</span>
+                    </label>
+
+                    <label>
+                        <input
+                            type="checkbox"
+                            value="Keyboards & Mouse"
+                            class="category-filter"
+                        >
+                        <span>Keyboards & Mouse</span>
+                    </label>
+
+                    <label>
+                        <input
+                            type="checkbox"
+                            value="Cables"
+                            class="category-filter"
+                        >
+                        <span>Cables</span>
+                    </label>
+
+                    <label>
+                        <input
+                            type="checkbox"
+                            value="Smart & Utility Electronics"
+                            class="category-filter"
+                        >
+                        <span>Smart & Utility Electronics</span>
+                    </label>
+
+                    <label>
+                        <input
+                            type="checkbox"
+                            value="Mobile Accessories"
+                            class="category-filter"
+                        >
+                        <span>Mobile Accessories</span>
+                    </label>
+
+                    <label>
+                        <input
+                            type="checkbox"
+                            value="Storage & Memory"
+                            class="category-filter"
+                        >
+                        <span>Storage & Memory</span>
+                    </label>
+
+                    <label>
+                        <input
+                            type="checkbox"
+                            value="Electronics Cleaning & Care"
+                            class="category-filter"
+                        >
+                        <span>Electronics Cleaning & Care</span>
+                    </label>
+
+                </div>
+
+
+                <div class="filter-section">
+
+                    <h4>Price</h4>
+
+                    <label>
+                        <input
+                            type="checkbox"
+                            value="under250"
+                            class="price-filter"
+                        >
+                        <span>Under ₹250</span>
+                    </label>
+
+                    <label>
+                        <input
+                            type="checkbox"
+                            value="250to750"
+                            class="price-filter"
+                        >
+                        <span>₹250 – ₹750</span>
+                    </label>
+
+                    <label>
+                        <input
+                            type="checkbox"
+                            value="above750"
+                            class="price-filter"
+                        >
+                        <span>Above ₹750</span>
+                    </label>
+
+                </div>
+
+            </aside>
+
+
+            <section class="products-section">
+
+                <div class="products-toolbar">
+
+                    <div>
+
+                        <h2>
+                            Electronics & Accessories
+                        </h2>
+
+                        <p id="resultCount">
+                            0 products
+                        </p>
+
+                    </div>
+
+
+                    <div class="toolbar-right">
+
+                        <button
+                            class="mobile-filter-button"
+                            id="mobileFilterButton"
+                        >
+                            ☰ Filters
+                        </button>
+
+
+                        <label class="sort-label">
+
+                            <span>Sort by</span>
+
+                            <select id="sortSelect">
+
+                                <option value="relevance">
+                                    Relevance
+                                </option>
+
+                                <option value="price-low">
+                                    Price: Low to High
+                                </option>
+
+                                <option value="price-high">
+                                    Price: High to Low
+                                </option>
+
+                                <option value="discount">
+                                    Highest Discount
+                                </option>
+
+                            </select>
+
+                        </label>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="active-filters"
+                    id="activeFilters"
+                ></div>
+
+
+                <div
+                    class="product-grid"
+                    id="productGrid"
+                ></div>
+
+
+                <div
+                    class="empty-state"
+                    id="emptyState"
+                >
+
+                    <div class="empty-icon">
+                        ⚡
+                    </div>
+
+                    <h3>
+                        No products found
+                    </h3>
+
+                    <p>
+                        Try changing your filters or search for something else.
+                    </p>
+
+                    <button id="resetEmpty">
+                        Clear Filters
+                    </button>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </div>
+
+</main>
+
+
+<div
+    class="filter-overlay"
+    id="filterOverlay"
+></div>
+
+
+<footer class="site-footer">
+
+    <div class="footer-inner">
+
+        <div class="footer-brand">
+
+            <a href="../" class="logo">
+                MARTEY<span>.</span>
+            </a>
+
+            <p>
+                Everything you need, delivered quickly.
+            </p>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h4>MARTEY</h4>
+
+            <a href="../categories/">
+                Categories
+            </a>
+
+            <a href="../deals/">
+                Deals
+            </a>
+
+            <a href="../orders/">
+                Orders
+            </a>
+
+            <a href="../help/">
+                Help Center
+            </a>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h4>Categories</h4>
+
+            <a href="../grocery/">
+                Grocery
+            </a>
+
+            <a href="../beauty/">
+                Beauty
+            </a>
+
+            <a href="../personal-care/">
+                Personal Care
+            </a>
+
+            <a href="../electronics/">
+                Electronics
+            </a>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h4>Account</h4>
+
+            <a href="../account/">
+                My Account
+            </a>
+
+            <a href="../orders/">
+                My Orders
+            </a>
+
+            <a href="../cart/">
+                Cart
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+        <p>
+            © 2026 MARTEY. All rights reserved.
+        </p>
+
+    </div>
+
+</footer>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
