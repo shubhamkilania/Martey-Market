@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Gifts | MARTEY</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header class="site-header">
+
+    <div class="header-inner">
+
+        <a href="/" class="logo">
+            MARTEY<span>.</span>
+        </a>
+
+        <button class="location-box" id="locationBtn">
+
+            <span class="location-icon">⌖</span>
+
+            <span>
+                <small>Deliver to</small>
+                <strong>Select location</strong>
+            </span>
+
+        </button>
+
+
+        <form class="search-box" id="searchForm">
+
+            <span class="search-icon">⌕</span>
+
+            <input
+                type="search"
+                id="searchInput"
+                placeholder="Search for gifts..."
+                autocomplete="off"
+            >
+
+            <button type="submit">
+                Search
+            </button>
+
+            <div
+                class="search-suggestions"
+                id="searchSuggestions"
+            ></div>
+
+        </form>
+
+
+        <div class="header-actions">
+
+            <a href="/account" class="header-action">
+                <span>♙</span>
+                <small>Account</small>
+            </a>
+
+            <a href="/cart" class="cart-action">
+
+                <span class="cart-icon">🛒</span>
+
+                <small>Cart</small>
+
+                <b id="cartCount">0</b>
+
+            </a>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+<main>
+
+    <div class="container">
+
+        <div class="breadcrumb">
+
+            <a href="/">Home</a>
+            <span>/</span>
+
+            <a href="/categories">
+                Categories
+            </a>
+
+            <span>/</span>
+
+            <span>Gifts</span>
+
+        </div>
+
+
+        <section class="category-hero">
+
+            <div>
+
+                <span class="hero-label">
+                    MARTEY GIFTS
+                </span>
+
+                <h1>
+                    Gifts
+                </h1>
+
+                <p>
+                    Thoughtful gifts, celebrations and MARTEY Gift Cards for every occasion.
+                </p>
+
+            </div>
+
+            <div class="hero-icon">
+                🎁
+            </div>
+
+        </section>
+
+
+        <div class="mobile-toolbar">
+
+            <button id="filterOpen">
+                ☰ Filters
+            </button>
+
+            <select id="mobileSort">
+
+                <option value="relevance">
+                    Sort: Relevance
+                </option>
+
+                <option value="price-low">
+                    Price: Low to High
+                </option>
+
+                <option value="price-high">
+                    Price: High to Low
+                </option>
+
+                <option value="discount">
+                    Highest Discount
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div class="shop-layout">
+
+
+            <aside
+                class="filter-sidebar"
+                id="filterSidebar"
+            >
+
+                <div class="filter-header">
+
+                    <h3>
+                        Filters
+                    </h3>
+
+                    <button id="filterClose">
+                        ×
+                    </button>
+
+                </div>
+
+
+                <div class="filter-section">
+
+                    <div class="filter-title">
+                        Categories
+                    </div>
+
+
+                    <label>
+                        <input
+                            type="checkbox"
+                            value="Birthday Gifts"
+                            class="category-filter"
+                        >
+                        Birthday Gifts
+                    </label>
+
+
+                    <label>
+                        <input
+                            type="checkbox"
+                            value="Gift Sets"
+                            class="category-filter"
+                        >
+                        Gift Sets
+                    </label>
+
+
+                    <label>
+                        <input
+                            type="checkbox"
+                            value="Chocolates & Sweet Gifts"
+                            class="category-filter"
+                        >
+                        Chocolates & Sweet Gifts
+                    </label>
+
+
+                    <label>
+                        <input
+                            type="checkbox"
+                            value="Greeting Cards"
+                            class="category-filter"
+                        >
+                        Greeting Cards
+                    </label>
+
+
+                    <label>
+                        <input
+                            type="checkbox"
+                            value="Flowers & Plants"
+                            class="category-filter"
+                        >
+                        Flowers & Plants
+                    </label>
+
+
+                    <label>
+                        <input
+                            type="checkbox"
+                            value="Toys & Games"
+                            class="category-filter"
+                        >
+                        Toys & Games
+                    </label>
+
+
+                    <label>
+                        <input
+                            type="checkbox"
+                            value="Celebration Supplies"
+                            class="category-filter"
+                        >
+                        Celebration Supplies
+                    </label>
+
+
+                    <label>
+                        <input
+                            type="checkbox"
+                            value="Home Gifts"
+                            class="category-filter"
+                        >
+                        Home Gifts
+                    </label>
+
+
+                    <label>
+                        <input
+                            type="checkbox"
+                            value="Small Utility Gifts"
+                            class="category-filter"
+                        >
+                        Small Utility Gifts
+                    </label>
+
+
+                    <label>
+                        <input
+                            type="checkbox"
+                            value="MARTEY Gift Cards"
+                            class="category-filter"
+                        >
+                        MARTEY Gift Cards
+                    </label>
+
+                </div>
+
+
+                <div class="filter-section">
+
+                    <div class="filter-title">
+                        Price
+                    </div>
+
+
+                    <label>
+                        <input
+                            type="checkbox"
+                            value="under250"
+                            class="price-filter"
+                        >
+                        Under ₹250
+                    </label>
+
+
+                    <label>
+                        <input
+                            type="checkbox"
+                            value="250-750"
+                            class="price-filter"
+                        >
+                        ₹250 – ₹750
+                    </label>
+
+
+                    <label>
+                        <input
+                            type="checkbox"
+                            value="above750"
+                            class="price-filter"
+                        >
+                        Above ₹750
+                    </label>
+
+                </div>
+
+
+                <button
+                    class="clear-filters"
+                    id="clearFilters"
+                >
+                    Clear All Filters
+                </button>
+
+            </aside>
+
+
+            <section class="products-area">
+
+                <div class="products-topbar">
+
+                    <div>
+
+                        <h2>
+                            Gifts & Gift Cards
+                        </h2>
+
+                        <p id="productCount">
+                            Showing products
+                        </p>
+
+                    </div>
+
+
+                    <select id="sortSelect">
+
+                        <option value="relevance">
+                            Sort by: Relevance
+                        </option>
+
+                        <option value="price-low">
+                            Price: Low to High
+                        </option>
+
+                        <option value="price-high">
+                            Price: High to Low
+                        </option>
+
+                        <option value="discount">
+                            Highest Discount
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div
+                    class="product-grid"
+                    id="productGrid"
+                ></div>
+
+
+                <div
+                    class="empty-state"
+                    id="emptyState"
+                >
+
+                    <div class="empty-icon">
+                        🎁
+                    </div>
+
+                    <h3>
+                        No gifts found
+                    </h3>
+
+                    <p>
+                        Try changing your search or filters.
+                    </p>
+
+                    <button id="emptyClear">
+                        Clear Filters
+                    </button>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </div>
+
+</main>
+
+
+<div
+    class="filter-overlay"
+    id="filterOverlay"
+></div>
+
+
+<footer class="site-footer">
+
+    <div class="footer-inner">
+
+
+        <div class="footer-brand">
+
+            <a href="/" class="logo">
+                MARTEY<span>.</span>
+            </a>
+
+            <p>
+                Everyday essentials, gifts and more,
+                delivered from nearby stores.
+            </p>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h4>MARTEY</h4>
+
+            <a href="/">
+                Home
+            </a>
+
+            <a href="/categories">
+                Categories
+            </a>
+
+            <a href="/deals">
+                Deals
+            </a>
+
+            <a href="/orders">
+                Orders
+            </a>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h4>Help</h4>
+
+            <a href="/help">
+                Help Center
+            </a>
+
+            <a href="/account">
+                My Account
+            </a>
+
+            <a href="/orders">
+                Track Order
+            </a>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h4>Categories</h4>
+
+            <a href="/grocery">
+                Grocery
+            </a>
+
+            <a href="/snacks">
+                Snacks
+            </a>
+
+            <a href="/stationery">
+                Stationery
+            </a>
+
+            <a href="/gifts">
+                Gifts
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+        <p>
+            © 2026 MARTEY. All rights reserved.
+        </p>
+
+    </div>
+
+</footer>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
