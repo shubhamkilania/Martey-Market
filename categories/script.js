@@ -1,13 +1,9 @@
-/* =========================================================
-   MARTEY — CATEGORIES PAGE
-========================================================= */
-
 const categories = [
 
     {
         name: "Milk & Dairy",
         description: "Milk, curd, butter & more",
-        icon: "🥛",
+        image: "/assets/categories/milk.jpg",
         url: "/milk",
         popular: true
     },
@@ -15,7 +11,7 @@ const categories = [
     {
         name: "Bakery",
         description: "Bread, cakes & bakery",
-        icon: "🥐",
+        image: "/assets/categories/bakery.jpg",
         url: "/bakery",
         popular: true
     },
@@ -23,7 +19,7 @@ const categories = [
     {
         name: "Drinks",
         description: "Juices, beverages & drinks",
-        icon: "🥤",
+        image: "/assets/categories/drinks.jpg",
         url: "/drinks",
         popular: true
     },
@@ -31,7 +27,7 @@ const categories = [
     {
         name: "Snacks",
         description: "Chips, biscuits & snacks",
-        icon: "🍿",
+        image: "/assets/categories/snacks.jpg",
         url: "/snacks",
         popular: true
     },
@@ -39,7 +35,7 @@ const categories = [
     {
         name: "Fruits & Vegetables",
         description: "Fresh fruits & vegetables",
-        icon: "🍎",
+        image: "/assets/categories/fruits-vegetables.jpg",
         url: "/fruits-vegetables",
         popular: true
     },
@@ -47,7 +43,7 @@ const categories = [
     {
         name: "Personal Care",
         description: "Daily personal essentials",
-        icon: "🧴",
+        image: "/assets/categories/personal-care.jpg",
         url: "/personal-care",
         popular: false
     },
@@ -55,7 +51,7 @@ const categories = [
     {
         name: "Household",
         description: "Cleaning & home essentials",
-        icon: "🏠",
+        image: "/assets/categories/household.jpg",
         url: "/household",
         popular: false
     },
@@ -63,7 +59,7 @@ const categories = [
     {
         name: "Baby Care",
         description: "Baby food & essentials",
-        icon: "👶",
+        image: "/assets/categories/baby-care.jpg",
         url: "/baby-care",
         popular: false
     },
@@ -71,7 +67,7 @@ const categories = [
     {
         name: "Pet Supplies",
         description: "Food & care for pets",
-        icon: "🐾",
+        image: "/assets/categories/pet-supplies.jpg",
         url: "/pet-supplies",
         popular: false
     },
@@ -79,7 +75,7 @@ const categories = [
     {
         name: "Grocery",
         description: "Everyday grocery essentials",
-        icon: "🛒",
+        image: "/assets/categories/grocery.jpg",
         url: "/grocery",
         popular: false
     },
@@ -87,7 +83,7 @@ const categories = [
     {
         name: "Beauty",
         description: "Beauty & grooming essentials",
-        icon: "💄",
+        image: "/assets/categories/beauty.jpg",
         url: "/beauty",
         popular: false
     },
@@ -95,7 +91,7 @@ const categories = [
     {
         name: "Electronics & Accessories",
         description: "Useful tech & accessories",
-        icon: "🎧",
+        image: "/assets/categories/electronics.jpg",
         url: "/electronics",
         popular: false
     },
@@ -103,7 +99,7 @@ const categories = [
     {
         name: "Stationery",
         description: "Books, notebooks & supplies",
-        icon: "📚",
+        image: "/assets/categories/stationery.jpg",
         url: "/stationery",
         popular: false
     },
@@ -111,7 +107,7 @@ const categories = [
     {
         name: "Gifts",
         description: "Gifts for every occasion",
-        icon: "🎁",
+        image: "/assets/categories/gifts.jpg",
         url: "/gifts",
         popular: false
     },
@@ -119,7 +115,7 @@ const categories = [
     {
         name: "More",
         description: "Explore more on MARTEY",
-        icon: "＋",
+        image: "/assets/categories/more.jpg",
         url: "/more",
         popular: false
     }
@@ -152,11 +148,29 @@ const cartCount =
 const searchInput =
     document.getElementById("searchInput");
 
+const mainSearchForm =
+    document.getElementById("mainSearchForm");
+
 const locationButton =
     document.getElementById("locationButton");
 
 const currentYear =
     document.getElementById("currentYear");
+
+
+/* =========================================================
+   IMAGE FALLBACK
+========================================================= */
+
+function handleImageError(image) {
+
+    image.style.display = "none";
+
+    image.parentElement.classList.add(
+        "image-fallback"
+    );
+
+}
 
 
 /* =========================================================
@@ -169,28 +183,49 @@ function createPopularCard(category) {
         document.createElement("a");
 
     card.className = "popular-card";
+
     card.href = category.url;
 
     card.innerHTML = `
-        <div class="category-icon">
-            ${category.icon}
+
+        <div class="popular-image">
+
+            <img
+                src="${category.image}"
+                alt="${category.name}"
+                loading="lazy"
+            >
+
         </div>
 
-        <div>
-            <h3>${category.name}</h3>
+        <div class="popular-card-content">
+
+            <h3>
+                ${category.name}
+            </h3>
 
             <p>
                 ${category.description}
             </p>
+
         </div>
+
     `;
+
+    const image =
+        card.querySelector("img");
+
+    image.addEventListener(
+        "error",
+        () => handleImageError(image)
+    );
 
     return card;
 }
 
 
 /* =========================================================
-   CATEGORY CARD
+   ALL CATEGORY CARD
 ========================================================= */
 
 function createCategoryCard(category) {
@@ -199,12 +234,21 @@ function createCategoryCard(category) {
         document.createElement("a");
 
     card.className = "category-card";
+
     card.href = category.url;
 
     card.innerHTML = `
-        <div class="category-icon">
-            ${category.icon}
+
+        <div class="category-card-image">
+
+            <img
+                src="${category.image}"
+                alt="${category.name}"
+                loading="lazy"
+            >
+
         </div>
+
 
         <div class="category-card-content">
 
@@ -218,10 +262,20 @@ function createCategoryCard(category) {
 
         </div>
 
+
         <span class="category-arrow">
             →
         </span>
+
     `;
+
+    const image =
+        card.querySelector("img");
+
+    image.addEventListener(
+        "error",
+        () => handleImageError(image)
+    );
 
     return card;
 }
@@ -251,6 +305,7 @@ function renderPopularCategories() {
         );
 
     });
+
 }
 
 
@@ -266,11 +321,12 @@ function renderCategories(list) {
 
     allCategoriesGrid.innerHTML = "";
 
+
     if (!list.length) {
 
-        if (emptyCategoryState) {
-            emptyCategoryState.classList.remove("hidden");
-        }
+        emptyCategoryState?.classList.remove(
+            "hidden"
+        );
 
         if (categoryResultCount) {
             categoryResultCount.textContent =
@@ -280,9 +336,11 @@ function renderCategories(list) {
         return;
     }
 
-    if (emptyCategoryState) {
-        emptyCategoryState.classList.add("hidden");
-    }
+
+    emptyCategoryState?.classList.add(
+        "hidden"
+    );
+
 
     list.forEach(category => {
 
@@ -292,6 +350,7 @@ function renderCategories(list) {
 
     });
 
+
     if (categoryResultCount) {
 
         categoryResultCount.textContent =
@@ -300,7 +359,9 @@ function renderCategories(list) {
                     ? "category"
                     : "categories"
             }`;
+
     }
+
 }
 
 
@@ -319,12 +380,14 @@ function filterCategories() {
             .trim()
             .toLowerCase();
 
+
     if (!query) {
 
         renderCategories(categories);
 
         return;
     }
+
 
     const filtered =
         categories.filter(category => {
@@ -334,55 +397,51 @@ function filterCategories() {
                 ${category.description}
             `.toLowerCase();
 
-            return searchableText.includes(query);
+            return searchableText.includes(
+                query
+            );
+
         });
 
+
     renderCategories(filtered);
+
 }
 
-if (categorySearch) {
 
-    categorySearch.addEventListener(
-        "input",
-        filterCategories
-    );
-}
+categorySearch?.addEventListener(
+    "input",
+    filterCategories
+);
 
 
 /* =========================================================
    MAIN SEARCH
 ========================================================= */
 
-function handleMainSearch() {
+function handleMainSearch(event) {
 
-    if (!searchInput) {
-        return;
-    }
+    event?.preventDefault();
 
     const query =
-        searchInput.value.trim();
+        searchInput?.value.trim();
+
 
     if (!query) {
         return;
     }
 
+
     window.location.href =
         `/search?q=${encodeURIComponent(query)}`;
+
 }
 
-if (searchInput) {
 
-    searchInput.addEventListener(
-        "keydown",
-        event => {
-
-            if (event.key === "Enter") {
-                handleMainSearch();
-            }
-
-        }
-    );
-}
+mainSearchForm?.addEventListener(
+    "submit",
+    handleMainSearch
+);
 
 
 /* =========================================================
@@ -395,13 +454,16 @@ function updateCartCount() {
         return;
     }
 
+
     const possibleKeys = [
         "marteyCart",
         "cart",
         "MARTEY_CART"
     ];
 
+
     let cart = [];
+
 
     for (const key of possibleKeys) {
 
@@ -412,6 +474,7 @@ function updateCartCount() {
                     localStorage.getItem(key)
                 );
 
+
             if (Array.isArray(stored)) {
 
                 cart = stored;
@@ -420,12 +483,16 @@ function updateCartCount() {
             }
 
         } catch (error) {
+
             // Ignore invalid storage.
+
         }
+
     }
 
 
     let count = 0;
+
 
     cart.forEach(item => {
 
@@ -436,9 +503,11 @@ function updateCartCount() {
                 1
             );
 
-        count += quantity > 0
-            ? quantity
-            : 1;
+
+        count +=
+            quantity > 0
+                ? quantity
+                : 1;
 
     });
 
@@ -447,6 +516,7 @@ function updateCartCount() {
         count > 99
             ? "99+"
             : count;
+
 }
 
 
@@ -454,23 +524,20 @@ function updateCartCount() {
    LOCATION
 ========================================================= */
 
-if (locationButton) {
+locationButton?.addEventListener(
+    "click",
+    () => {
 
-    locationButton.addEventListener(
-        "click",
-        () => {
+        alert(
+            "Location selection will be connected to MARTEY's nearby-store system later."
+        );
 
-            alert(
-                "Location selection will be connected to MARTEY's nearby-store system later."
-            );
-
-        }
-    );
-}
+    }
+);
 
 
 /* =========================================================
-   STORAGE SYNC
+   CART STORAGE SYNC
 ========================================================= */
 
 window.addEventListener(
@@ -482,7 +549,9 @@ window.addEventListener(
             event.key === "cart" ||
             event.key === "MARTEY_CART"
         ) {
+
             updateCartCount();
+
         }
 
     }
@@ -501,11 +570,15 @@ function init() {
 
     updateCartCount();
 
+
     if (currentYear) {
+
         currentYear.textContent =
             new Date().getFullYear();
+
     }
 
 }
+
 
 init();
