@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Grocery | MARTEY</title>
+
+    <meta
+        name="description"
+        content="Shop rice, atta, dal, cooking oil, spices, breakfast essentials, dry fruits and everyday grocery products on MARTEY."
+    >
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header class="site-header">
+
+    <div class="header-inner">
+
+        <a href="/" class="logo">
+            MARTEY<span>.</span>
+        </a>
+
+        <button class="location-button" id="locationButton">
+
+            <span class="location-icon">⌖</span>
+
+            <span class="location-text">
+                <small>Deliver to</small>
+                <strong>Select location</strong>
+            </span>
+
+        </button>
+
+
+        <div class="header-search">
+
+            <span class="search-icon">⌕</span>
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search for products..."
+                autocomplete="off"
+            >
+
+            <button id="searchButton">
+                Search
+            </button>
+
+            <div
+                class="search-suggestions"
+                id="searchSuggestions"
+            ></div>
+
+        </div>
+
+
+        <a href="/account" class="header-action">
+
+            <span class="action-icon">♙</span>
+
+            <span>Account</span>
+
+        </a>
+
+
+        <a href="/cart" class="header-action cart-action">
+
+            <span class="action-icon">🛒</span>
+
+            <span>Cart</span>
+
+            <b id="cartCount">0</b>
+
+        </a>
+
+    </div>
+
+</header>
+
+
+<main>
+
+    <!-- BREADCRUMB -->
+
+    <section class="breadcrumb-section">
+
+        <div class="container">
+
+            <div class="breadcrumb">
+
+                <a href="/">Home</a>
+
+                <span>›</span>
+
+                <a href="/categories">Categories</a>
+
+                <span>›</span>
+
+                <strong>Grocery</strong>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- HERO -->
+
+    <section class="category-hero">
+
+        <div class="container">
+
+            <div class="hero-content">
+
+                <span class="hero-label">
+                    EVERYDAY ESSENTIALS
+                </span>
+
+                <h1>Grocery</h1>
+
+                <p>
+                    Everyday pantry essentials, staples and
+                    packaged foods for your home.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- SHOP -->
+
+    <section class="shop-section">
+
+        <div class="container shop-layout">
+
+
+            <!-- FILTER SIDEBAR -->
+
+            <aside
+                class="filter-sidebar"
+                id="filterSidebar"
+            >
+
+                <div class="filter-header">
+
+                    <h3>Filters</h3>
+
+                    <button id="clearFilters">
+                        Clear all
+                    </button>
+
+                </div>
+
+
+                <!-- CATEGORY -->
+
+                <div class="filter-group">
+
+                    <h4>Category</h4>
+
+
+                    <label class="filter-option">
+
+                        <input
+                            type="checkbox"
+                            value="Rice & Grains"
+                            data-filter="category"
+                        >
+
+                        <span>Rice & Grains</span>
+
+                    </label>
+
+
+                    <label class="filter-option">
+
+                        <input
+                            type="checkbox"
+                            value="Atta & Flour"
+                            data-filter="category"
+                        >
+
+                        <span>Atta & Flour</span>
+
+                    </label>
+
+
+                    <label class="filter-option">
+
+                        <input
+                            type="checkbox"
+                            value="Pulses & Dal"
+                            data-filter="category"
+                        >
+
+                        <span>Pulses & Dal</span>
+
+                    </label>
+
+
+                    <label class="filter-option">
+
+                        <input
+                            type="checkbox"
+                            value="Cooking Oil"
+                            data-filter="category"
+                        >
+
+                        <span>Cooking Oil</span>
+
+                    </label>
+
+
+                    <label class="filter-option">
+
+                        <input
+                            type="checkbox"
+                            value="Spices & Masala"
+                            data-filter="category"
+                        >
+
+                        <span>Spices & Masala</span>
+
+                    </label>
+
+
+                    <label class="filter-option">
+
+                        <input
+                            type="checkbox"
+                            value="Sugar & Salt"
+                            data-filter="category"
+                        >
+
+                        <span>Sugar & Salt</span>
+
+                    </label>
+
+
+                    <label class="filter-option">
+
+                        <input
+                            type="checkbox"
+                            value="Dry Fruits & Nuts"
+                            data-filter="category"
+                        >
+
+                        <span>Dry Fruits & Nuts</span>
+
+                    </label>
+
+
+                    <label class="filter-option">
+
+                        <input
+                            type="checkbox"
+                            value="Breakfast & Cereals"
+                            data-filter="category"
+                        >
+
+                        <span>Breakfast & Cereals</span>
+
+                    </label>
+
+
+                    <label class="filter-option">
+
+                        <input
+                            type="checkbox"
+                            value="Sauces & Spreads"
+                            data-filter="category"
+                        >
+
+                        <span>Sauces & Spreads</span>
+
+                    </label>
+
+
+                    <label class="filter-option">
+
+                        <input
+                            type="checkbox"
+                            value="Instant & Packaged Food"
+                            data-filter="category"
+                        >
+
+                        <span>Instant & Packaged Food</span>
+
+                    </label>
+
+
+                    <label class="filter-option">
+
+                        <input
+                            type="checkbox"
+                            value="Tea & Coffee"
+                            data-filter="category"
+                        >
+
+                        <span>Tea & Coffee</span>
+
+                    </label>
+
+
+                    <label class="filter-option">
+
+                        <input
+                            type="checkbox"
+                            value="Other Grocery"
+                            data-filter="category"
+                        >
+
+                        <span>Other Grocery</span>
+
+                    </label>
+
+                </div>
+
+
+                <!-- PRICE -->
+
+                <div class="filter-group">
+
+                    <h4>Price</h4>
+
+
+                    <label class="filter-option">
+
+                        <input
+                            type="checkbox"
+                            value="under100"
+                            data-filter="price"
+                        >
+
+                        <span>Under ₹100</span>
+
+                    </label>
+
+
+                    <label class="filter-option">
+
+                        <input
+                            type="checkbox"
+                            value="100to250"
+                            data-filter="price"
+                        >
+
+                        <span>₹100 – ₹250</span>
+
+                    </label>
+
+
+                    <label class="filter-option">
+
+                        <input
+                            type="checkbox"
+                            value="above250"
+                            data-filter="price"
+                        >
+
+                        <span>Above ₹250</span>
+
+                    </label>
+
+                </div>
+
+            </aside>
+
+
+            <!-- PRODUCTS -->
+
+            <section class="products-area">
+
+
+                <div class="products-toolbar">
+
+                    <div>
+
+                        <button
+                            class="mobile-filter-button"
+                            id="mobileFilterButton"
+                        >
+                            ☰ Filters
+                        </button>
+
+                        <span
+                            class="result-count"
+                            id="resultCount"
+                        >
+                            0 products
+                        </span>
+
+                    </div>
+
+
+                    <div class="sort-area">
+
+                        <label for="sortSelect">
+                            Sort by
+                        </label>
+
+                        <select id="sortSelect">
+
+                            <option value="relevance">
+                                Relevance
+                            </option>
+
+                            <option value="price-low">
+                                Price: Low to High
+                            </option>
+
+                            <option value="price-high">
+                                Price: High to Low
+                            </option>
+
+                            <option value="discount">
+                                Highest Discount
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="product-grid"
+                    id="productGrid"
+                ></div>
+
+
+                <!-- EMPTY -->
+
+                <div
+                    class="empty-state"
+                    id="emptyState"
+                >
+
+                    <div class="empty-icon">
+                        🛒
+                    </div>
+
+                    <h2>
+                        No products found
+                    </h2>
+
+                    <p>
+                        Try changing your filters or search
+                        for another product.
+                    </p>
+
+                    <button id="emptyClearButton">
+                        Clear Filters
+                    </button>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- FOOTER -->
+
+<footer class="site-footer">
+
+    <div class="container footer-grid">
+
+
+        <div class="footer-brand">
+
+            <a href="/" class="logo footer-logo">
+                MARTEY<span>.</span>
+            </a>
+
+            <p>
+                Fast, simple and reliable everyday shopping.
+            </p>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h4>MARTEY</h4>
+
+            <a href="/categories">
+                Categories
+            </a>
+
+            <a href="/orders">
+                Orders
+            </a>
+
+            <a href="/account">
+                Account
+            </a>
+
+            <a href="/help">
+                Help Center
+            </a>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h4>Shop</h4>
+
+            <a href="/milk">
+                Milk & Dairy
+            </a>
+
+            <a href="/bakery">
+                Bakery
+            </a>
+
+            <a href="/drinks">
+                Drinks
+            </a>
+
+            <a href="/snacks">
+                Snacks
+            </a>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h4>Categories</h4>
+
+            <a href="/personal-care">
+                Personal Care
+            </a>
+
+            <a href="/household">
+                Household
+            </a>
+
+            <a href="/baby-care">
+                Baby Care
+            </a>
+
+            <a href="/pet-supplies">
+                Pet Supplies
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+        <div class="container">
+
+            <p>
+                © 2026 MARTEY. All rights reserved.
+            </p>
+
+        </div>
+
+    </div>
+
+</footer>
+
+
+<div
+    class="mobile-filter-overlay"
+    id="mobileFilterOverlay"
+></div>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
