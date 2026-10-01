@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stationery | MARTEY</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header class="site-header">
+    <div class="header-inner">
+
+        <a href="/" class="logo">MARTEY<span>.</span></a>
+
+        <button class="location-box" id="locationBtn">
+            <span class="location-icon">⌖</span>
+            <span>
+                <small>Deliver to</small>
+                <strong>Select location</strong>
+            </span>
+        </button>
+
+        <form class="search-box" id="searchForm">
+            <span class="search-icon">⌕</span>
+            <input
+                type="search"
+                id="searchInput"
+                placeholder="Search for stationery..."
+                autocomplete="off"
+            >
+            <button type="submit">Search</button>
+
+            <div class="search-suggestions" id="searchSuggestions"></div>
+        </form>
+
+        <div class="header-actions">
+            <a href="/account" class="header-action">
+                <span>♙</span>
+                <small>Account</small>
+            </a>
+
+            <a href="/cart" class="cart-action">
+                <span class="cart-icon">🛒</span>
+                <small>Cart</small>
+                <b id="cartCount">0</b>
+            </a>
+        </div>
+
+    </div>
+</header>
+
+
+<main>
+
+    <div class="container">
+
+        <div class="breadcrumb">
+            <a href="/">Home</a>
+            <span>/</span>
+            <a href="/categories">Categories</a>
+            <span>/</span>
+            <span>Stationery</span>
+        </div>
+
+
+        <section class="category-hero">
+            <div>
+                <span class="hero-label">MARTEY STATIONERY</span>
+                <h1>Stationery</h1>
+                <p>
+                    Everything you need for school, study, office and creativity.
+                </p>
+            </div>
+
+            <div class="hero-icon">✎</div>
+        </section>
+
+
+        <div class="mobile-toolbar">
+            <button id="filterOpen">☰ Filters</button>
+
+            <select id="mobileSort">
+                <option value="relevance">Sort: Relevance</option>
+                <option value="price-low">Price: Low to High</option>
+                <option value="price-high">Price: High to Low</option>
+                <option value="discount">Highest Discount</option>
+            </select>
+        </div>
+
+
+        <div class="shop-layout">
+
+            <aside class="filter-sidebar" id="filterSidebar">
+
+                <div class="filter-header">
+                    <h3>Filters</h3>
+                    <button id="filterClose">×</button>
+                </div>
+
+                <div class="filter-section">
+                    <div class="filter-title">Categories</div>
+
+                    <label>
+                        <input type="checkbox" value="Notebooks & Registers" class="category-filter">
+                        Notebooks & Registers
+                    </label>
+
+                    <label>
+                        <input type="checkbox" value="Pens & Pencils" class="category-filter">
+                        Pens & Pencils
+                    </label>
+
+                    <label>
+                        <input type="checkbox" value="Art & Craft" class="category-filter">
+                        Art & Craft
+                    </label>
+
+                    <label>
+                        <input type="checkbox" value="School Supplies" class="category-filter">
+                        School Supplies
+                    </label>
+
+                    <label>
+                        <input type="checkbox" value="Office Supplies" class="category-filter">
+                        Office Supplies
+                    </label>
+
+                    <label>
+                        <input type="checkbox" value="Paper & Printing" class="category-filter">
+                        Paper & Printing
+                    </label>
+
+                    <label>
+                        <input type="checkbox" value="Markers & Highlighters" class="category-filter">
+                        Markers & Highlighters
+                    </label>
+
+                    <label>
+                        <input type="checkbox" value="School Accessories" class="category-filter">
+                        School Accessories
+                    </label>
+
+                    <label>
+                        <input type="checkbox" value="Geometry & Measuring" class="category-filter">
+                        Geometry & Measuring
+                    </label>
+
+                    <label>
+                        <input type="checkbox" value="Files & Folders" class="category-filter">
+                        Files & Folders
+                    </label>
+                </div>
+
+
+                <div class="filter-section">
+                    <div class="filter-title">Price</div>
+
+                    <label>
+                        <input type="checkbox" value="under100" class="price-filter">
+                        Under ₹100
+                    </label>
+
+                    <label>
+                        <input type="checkbox" value="100-250" class="price-filter">
+                        ₹100 – ₹250
+                    </label>
+
+                    <label>
+                        <input type="checkbox" value="above250" class="price-filter">
+                        Above ₹250
+                    </label>
+                </div>
+
+                <button class="clear-filters" id="clearFilters">
+                    Clear All Filters
+                </button>
+
+            </aside>
+
+
+            <section class="products-area">
+
+                <div class="products-topbar">
+                    <div>
+                        <h2>Stationery Products</h2>
+                        <p id="productCount">Showing products</p>
+                    </div>
+
+                    <select id="sortSelect">
+                        <option value="relevance">Sort by: Relevance</option>
+                        <option value="price-low">Price: Low to High</option>
+                        <option value="price-high">Price: High to Low</option>
+                        <option value="discount">Highest Discount</option>
+                    </select>
+                </div>
+
+
+                <div class="product-grid" id="productGrid"></div>
+
+
+                <div class="empty-state" id="emptyState">
+                    <div class="empty-icon">⌕</div>
+                    <h3>No products found</h3>
+                    <p>Try changing your search or filters.</p>
+                    <button id="emptyClear">Clear Filters</button>
+                </div>
+
+            </section>
+
+        </div>
+
+    </div>
+
+</main>
+
+
+<div class="filter-overlay" id="filterOverlay"></div>
+
+
+<footer class="site-footer">
+
+    <div class="footer-inner">
+
+        <div class="footer-brand">
+            <a href="/" class="logo">MARTEY<span>.</span></a>
+            <p>
+                Everyday essentials, delivered from nearby stores.
+            </p>
+        </div>
+
+        <div class="footer-column">
+            <h4>MARTEY</h4>
+            <a href="/">Home</a>
+            <a href="/categories">Categories</a>
+            <a href="/deals">Deals</a>
+            <a href="/orders">Orders</a>
+        </div>
+
+        <div class="footer-column">
+            <h4>Help</h4>
+            <a href="/help">Help Center</a>
+            <a href="/account">My Account</a>
+            <a href="/orders">Track Order</a>
+        </div>
+
+        <div class="footer-column">
+            <h4>Categories</h4>
+            <a href="/milk">Milk & Dairy</a>
+            <a href="/grocery">Grocery</a>
+            <a href="/snacks">Snacks</a>
+            <a href="/stationery">Stationery</a>
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+        <p>© 2026 MARTEY. All rights reserved.</p>
+    </div>
+
+</footer>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
