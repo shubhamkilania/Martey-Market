@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Personal Care | MARTEY</title>
+    <meta name="description" content="Shop personal care essentials on MARTEY.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header class="site-header">
+    <div class="header-container">
+
+        <a href="/" class="brand">
+            MARTEY<span>.</span>
+        </a>
+
+        <button class="location-button" id="locationButton" type="button">
+            <span class="location-icon">⌖</span>
+
+            <span class="location-content">
+                <small>Deliver to</small>
+                <strong>Select location</strong>
+            </span>
+
+            <span class="location-arrow">⌄</span>
+        </button>
+
+        <form class="search-box" id="searchForm">
+            <span class="search-icon">⌕</span>
+
+            <input
+                type="search"
+                id="searchInput"
+                placeholder="Search personal care..."
+                autocomplete="off"
+            >
+
+            <button type="submit">Search</button>
+        </form>
+
+        <div class="header-actions">
+
+            <a href="/account" class="header-action">
+                <span class="action-icon">♙</span>
+                <span>Account</span>
+            </a>
+
+            <a href="/cart" class="cart-action">
+                <span class="cart-icon">🛒</span>
+                <span>Cart</span>
+                <b id="cartCount">0</b>
+            </a>
+
+        </div>
+
+    </div>
+</header>
+
+
+<main>
+
+    <!-- BREADCRUMB -->
+    <section class="breadcrumb-section">
+        <div class="page-container breadcrumb">
+            <a href="/">Home</a>
+            <span>/</span>
+            <a href="/categories">Categories</a>
+            <span>/</span>
+            <strong>Personal Care</strong>
+        </div>
+    </section>
+
+
+    <!-- HERO -->
+    <section class="category-hero">
+        <div class="page-container category-hero-inner">
+
+            <div>
+                <span class="eyebrow">EVERYDAY ESSENTIALS</span>
+
+                <h1>Personal Care</h1>
+
+                <p>
+                    Everyday personal care essentials for your
+                    daily routine, all in one place.
+                </p>
+            </div>
+
+            <div class="hero-badge">
+                <span>●</span>
+                Daily essentials
+            </div>
+
+        </div>
+    </section>
+
+
+    <!-- SHOP -->
+    <section class="shop-section">
+
+        <div class="page-container shop-layout">
+
+            <!-- FILTERS -->
+            <aside class="filter-sidebar" id="filterSidebar">
+
+                <div class="filter-header">
+                    <h2>Filters</h2>
+
+                    <button
+                        type="button"
+                        id="clearFilters"
+                        class="clear-filters"
+                    >
+                        Clear all
+                    </button>
+                </div>
+
+
+                <!-- CATEGORY -->
+                <div class="filter-group">
+
+                    <h3>Category</h3>
+
+                    <label class="filter-option">
+                        <input
+                            type="checkbox"
+                            name="category"
+                            value="Shampoo & Conditioner"
+                        >
+                        <span>Shampoo & Conditioner</span>
+                        <em>4</em>
+                    </label>
+
+                    <label class="filter-option">
+                        <input
+                            type="checkbox"
+                            name="category"
+                            value="Soap & Body Wash"
+                        >
+                        <span>Soap & Body Wash</span>
+                        <em>4</em>
+                    </label>
+
+                    <label class="filter-option">
+                        <input
+                            type="checkbox"
+                            name="category"
+                            value="Oral Care"
+                        >
+                        <span>Oral Care</span>
+                        <em>3</em>
+                    </label>
+
+                    <label class="filter-option">
+                        <input
+                            type="checkbox"
+                            name="category"
+                            value="Skin Care"
+                        >
+                        <span>Skin Care</span>
+                        <em>3</em>
+                    </label>
+
+                    <label class="filter-option">
+                        <input
+                            type="checkbox"
+                            name="category"
+                            value="Hair Care"
+                        >
+                        <span>Hair Care</span>
+                        <em>3</em>
+                    </label>
+
+                    <label class="filter-option">
+                        <input
+                            type="checkbox"
+                            name="category"
+                            value="Grooming"
+                        >
+                        <span>Grooming</span>
+                        <em>2</em>
+                    </label>
+
+                    <label class="filter-option">
+                        <input
+                            type="checkbox"
+                            name="category"
+                            value="Deodorants"
+                        >
+                        <span>Deodorants</span>
+                        <em>2</em>
+                    </label>
+
+                    <label class="filter-option">
+                        <input
+                            type="checkbox"
+                            name="category"
+                            value="Feminine Hygiene"
+                        >
+                        <span>Feminine Hygiene</span>
+                        <em>2</em>
+                    </label>
+
+                </div>
+
+
+                <!-- PRICE -->
+                <div class="filter-group">
+
+                    <h3>Price</h3>
+
+                    <label class="filter-option">
+                        <input
+                            type="checkbox"
+                            name="price"
+                            value="under100"
+                        >
+                        <span>Under ₹100</span>
+                    </label>
+
+                    <label class="filter-option">
+                        <input
+                            type="checkbox"
+                            name="price"
+                            value="100to250"
+                        >
+                        <span>₹100 – ₹250</span>
+                    </label>
+
+                    <label class="filter-option">
+                        <input
+                            type="checkbox"
+                            name="price"
+                            value="above250"
+                        >
+                        <span>Above ₹250</span>
+                    </label>
+
+                </div>
+
+            </aside>
+
+
+            <!-- PRODUCTS -->
+            <div class="products-area">
+
+                <div class="mobile-toolbar">
+
+                    <button
+                        type="button"
+                        id="filterButton"
+                        class="mobile-filter-button"
+                    >
+                        ☰ Filters
+                    </button>
+
+                    <span id="mobileResultCount">
+                        23 products
+                    </span>
+
+                </div>
+
+
+                <div class="products-toolbar">
+
+                    <div>
+                        <h2>Personal care essentials</h2>
+
+                        <p id="resultCount">
+                            23 products
+                        </p>
+                    </div>
+
+                    <div class="sort-wrapper">
+
+                        <label for="sortSelect">
+                            Sort by
+                        </label>
+
+                        <select id="sortSelect">
+
+                            <option value="relevance">
+                                Relevance
+                            </option>
+
+                            <option value="price-low">
+                                Price: Low to High
+                            </option>
+
+                            <option value="price-high">
+                                Price: High to Low
+                            </option>
+
+                            <option value="discount">
+                                Highest Discount
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="product-grid"
+                    id="productGrid"
+                ></div>
+
+
+                <div
+                    class="empty-state"
+                    id="emptyState"
+                    hidden
+                >
+
+                    <div class="empty-icon">🧴</div>
+
+                    <h3>No products found</h3>
+
+                    <p>
+                        Try changing your filters or search
+                        for something else.
+                    </p>
+
+                    <button
+                        type="button"
+                        id="emptyClearButton"
+                    >
+                        Clear Filters
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<!-- FOOTER -->
+<footer class="site-footer">
+
+    <div class="page-container footer-inner">
+
+        <div class="footer-brand">
+
+            <a href="/" class="brand">
+                MARTEY<span>.</span>
+            </a>
+
+            <p>
+                Everyday essentials, delivered simply.
+            </p>
+
+        </div>
+
+        <div class="footer-links">
+            <a href="/categories">Categories</a>
+            <a href="/orders">Orders</a>
+            <a href="/help">Help Center</a>
+            <a href="/account">Account</a>
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+        <div class="page-container">
+            © 2026 MARTEY. All rights reserved.
+        </div>
+    </div>
+
+</footer>
+
+
+<div
+    class="filter-overlay"
+    id="filterOverlay"
+></div>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
