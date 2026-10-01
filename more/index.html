@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>More — MARTEY</title>
+    <meta
+        name="description"
+        content="Shop kitchen, travel, fitness, lifestyle and everyday utility essentials on MARTEY."
+    >
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header class="site-header">
+
+    <div class="header-inner">
+
+        <a href="/" class="logo">
+            MARTEY<span>.</span>
+        </a>
+
+        <button class="location-button" id="locationButton" type="button">
+            <span class="location-icon">⌖</span>
+            <span class="location-content">
+                <small>DELIVER TO</small>
+                <strong>Select location</strong>
+            </span>
+            <span class="location-arrow">⌄</span>
+        </button>
+
+        <div class="search-wrapper">
+            <form class="search-form" id="searchForm">
+                <span class="search-icon">⌕</span>
+                <input
+                    type="search"
+                    id="searchInput"
+                    placeholder="Search products..."
+                    autocomplete="off"
+                >
+                <button type="submit">Search</button>
+            </form>
+
+            <div class="search-suggestions" id="searchSuggestions"></div>
+        </div>
+
+        <div class="header-actions">
+
+            <a href="/account" class="header-action">
+                <span class="action-icon">♙</span>
+                <span>Account</span>
+            </a>
+
+            <a href="/cart" class="header-action cart-action">
+                <span class="action-icon">🛒</span>
+                <span>Cart</span>
+                <b id="cartCount">0</b>
+            </a>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+<main>
+
+    <div class="page-container">
+
+        <div class="breadcrumb">
+            <a href="/">Home</a>
+            <span>›</span>
+            <a href="/categories">Categories</a>
+            <span>›</span>
+            <strong>More</strong>
+        </div>
+
+
+        <section class="category-hero">
+
+            <div>
+                <span class="hero-label">MARTEY COLLECTION</span>
+
+                <h1>More</h1>
+
+                <p>
+                    Discover useful everyday products across kitchen,
+                    travel, fitness, lifestyle and more.
+                </p>
+            </div>
+
+            <div class="hero-count">
+                <strong id="productCount">37</strong>
+                <span>Products</span>
+            </div>
+
+        </section>
+
+
+        <div class="category-layout">
+
+            <!-- SIDEBAR -->
+
+            <aside class="filters-sidebar" id="filtersSidebar">
+
+                <div class="filter-header">
+                    <h3>Filters</h3>
+
+                    <button id="clearFilters" type="button">
+                        Clear All
+                    </button>
+                </div>
+
+
+                <div class="filter-section">
+
+                    <h4>Category</h4>
+
+                    <label class="filter-option">
+                        <input
+                            type="checkbox"
+                            value="Kitchen & Dining"
+                            class="category-filter"
+                        >
+                        <span>Kitchen & Dining</span>
+                    </label>
+
+                    <label class="filter-option">
+                        <input
+                            type="checkbox"
+                            value="Home Utility"
+                            class="category-filter"
+                        >
+                        <span>Home Utility</span>
+                    </label>
+
+                    <label class="filter-option">
+                        <input
+                            type="checkbox"
+                            value="Travel Essentials"
+                            class="category-filter"
+                        >
+                        <span>Travel Essentials</span>
+                    </label>
+
+                    <label class="filter-option">
+                        <input
+                            type="checkbox"
+                            value="Car & Bike Accessories"
+                            class="category-filter"
+                        >
+                        <span>Car & Bike Accessories</span>
+                    </label>
+
+                    <label class="filter-option">
+                        <input
+                            type="checkbox"
+                            value="Fitness & Sports"
+                            class="category-filter"
+                        >
+                        <span>Fitness & Sports</span>
+                    </label>
+
+                    <label class="filter-option">
+                        <input
+                            type="checkbox"
+                            value="Seasonal Essentials"
+                            class="category-filter"
+                        >
+                        <span>Seasonal Essentials</span>
+                    </label>
+
+                    <label class="filter-option">
+                        <input
+                            type="checkbox"
+                            value="Lifestyle"
+                            class="category-filter"
+                        >
+                        <span>Lifestyle</span>
+                    </label>
+
+                    <label class="filter-option">
+                        <input
+                            type="checkbox"
+                            value="Miscellaneous"
+                            class="category-filter"
+                        >
+                        <span>Miscellaneous</span>
+                    </label>
+
+                </div>
+
+
+                <div class="filter-section">
+
+                    <h4>Price</h4>
+
+                    <label class="filter-option">
+                        <input
+                            type="checkbox"
+                            value="under-250"
+                            class="price-filter"
+                        >
+                        <span>Under ₹250</span>
+                    </label>
+
+                    <label class="filter-option">
+                        <input
+                            type="checkbox"
+                            value="250-750"
+                            class="price-filter"
+                        >
+                        <span>₹250 – ₹750</span>
+                    </label>
+
+                    <label class="filter-option">
+                        <input
+                            type="checkbox"
+                            value="above-750"
+                            class="price-filter"
+                        >
+                        <span>Above ₹750</span>
+                    </label>
+
+                </div>
+
+            </aside>
+
+
+            <!-- PRODUCTS -->
+
+            <section class="products-section">
+
+                <div class="products-toolbar">
+
+                    <button
+                        class="mobile-filter-button"
+                        id="mobileFilterButton"
+                        type="button"
+                    >
+                        ☰ Filters
+                    </button>
+
+                    <div class="results-text">
+                        <strong id="resultsCount">37</strong>
+                        products
+                    </div>
+
+                    <div class="sort-wrapper">
+
+                        <label for="sortSelect">Sort by</label>
+
+                        <select id="sortSelect">
+                            <option value="relevance">Relevance</option>
+                            <option value="low-high">Price: Low to High</option>
+                            <option value="high-low">Price: High to Low</option>
+                            <option value="discount">Highest Discount</option>
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <div class="active-filters" id="activeFilters"></div>
+
+
+                <div class="product-grid" id="productGrid"></div>
+
+
+                <div class="empty-state" id="emptyState">
+
+                    <div class="empty-icon">⌕</div>
+
+                    <h3>No products found</h3>
+
+                    <p>
+                        Try changing your filters or search for another product.
+                    </p>
+
+                    <button id="resetEmptyState" type="button">
+                        Clear Filters
+                    </button>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </div>
+
+</main>
+
+
+<footer class="site-footer">
+
+    <div class="footer-inner">
+
+        <div class="footer-brand">
+
+            <a href="/" class="footer-logo">
+                MARTEY<span>.</span>
+            </a>
+
+            <p>
+                Everything you need, delivered fast.
+            </p>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h4>MARTEY</h4>
+
+            <a href="/categories">Categories</a>
+            <a href="/deals">Deals</a>
+            <a href="/orders">Orders</a>
+            <a href="/help">Help Center</a>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h4>Shop</h4>
+
+            <a href="/grocery">Grocery</a>
+            <a href="/drinks">Drinks</a>
+            <a href="/personal-care">Personal Care</a>
+            <a href="/electronics">Electronics</a>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h4>Account</h4>
+
+            <a href="/account">My Account</a>
+            <a href="/cart">Cart</a>
+            <a href="/orders">My Orders</a>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer-bottom">
+        <p>© 2026 MARTEY. All rights reserved.</p>
+    </div>
+
+</footer>
+
+
+<div class="mobile-filter-overlay" id="mobileFilterOverlay"></div>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
