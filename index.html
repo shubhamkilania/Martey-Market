@@ -2,14 +2,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>MARTEY — Everything. For Everyone.</title>
     <meta
         name="description"
-        content="MARTEY — Shop everyday essentials, groceries, drinks, bakery, fresh products and more."
+        content="MARTEY — Everyday essentials delivered quickly."
     >
 
+    <title>MARTEY — Everything. For Everyone.</title>
+
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
@@ -23,472 +26,608 @@
 
 <body>
 
-<!-- ================= HEADER ================= -->
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
 
-<header class="site-header">
+    <header class="site-header">
 
-    <div class="header-inner">
+        <div class="header-container">
 
-        <a href="/" class="logo">
-            MARTEY<span>.</span>
-        </a>
-
-        <a href="/account" class="location-box">
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M12 21s7-6.2 7-12A7 7 0 0 0 5 9c0 5.8 7 12 7 12Z"></path>
-                <circle cx="12" cy="9" r="2.3"></circle>
-            </svg>
-
-            <span>
-                <small>Deliver to</small>
-                <strong>Select location</strong>
-            </span>
-
-            <svg class="chevron" viewBox="0 0 24 24" aria-hidden="true">
-                <path d="m7 10 5 5 5-5"></path>
-            </svg>
-        </a>
-
-        <!-- SEARCH -->
-
-        <form class="search-wrapper" id="searchForm" action="/search" method="GET">
-
-            <svg class="search-icon" viewBox="0 0 24 24" aria-hidden="true">
-                <circle cx="11" cy="11" r="6.5"></circle>
-                <path d="m16 16 5 5"></path>
-            </svg>
-
-            <input
-                type="search"
-                id="searchInput"
-                name="q"
-                autocomplete="off"
-                placeholder="Search for milk"
-                aria-label="Search products"
-            >
-
-            <button type="submit" class="search-button">
-                Search
-            </button>
-
-            <div class="search-dropdown" id="searchDropdown"></div>
-
-        </form>
-
-        <nav class="header-actions">
-
-            <a href="/account" class="header-action">
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <circle cx="12" cy="8" r="3.2"></circle>
-                    <path d="M5 20c.8-3.2 3.1-5 7-5s6.2 1.8 7 5"></path>
-                </svg>
-                <span>Account</span>
+            <!-- Logo -->
+            <a href="/" class="brand" aria-label="MARTEY Home">
+                <span class="brand-name">MARTEY<span class="brand-dot">.</span></span>
             </a>
 
-            <a href="/cart" class="header-action cart-action">
-                <svg viewBox="0 0 24 24" aria-hidden="true">
-                    <path d="M3 4h2l2 11h10l3-8H6"></path>
-                    <circle cx="9" cy="19" r="1.5"></circle>
-                    <circle cx="17" cy="19" r="1.5"></circle>
-                </svg>
 
-                <span>Cart</span>
-                <b id="cartCount">0</b>
-            </a>
+            <!-- Location -->
+            <a href="/account" class="location-box" aria-label="Select delivery location">
 
-        </nav>
-
-    </div>
-
-</header>
-
-
-<!-- ================= MAIN ================= -->
-
-<main>
-
-    <!-- HERO -->
-
-    <section class="hero-section">
-
-        <div class="hero-content">
-
-            <span class="eyebrow">
-                MARTEY QUICK COMMERCE
-            </span>
-
-            <h1>
-                Everyday essentials,
-                <span>made simple.</span>
-            </h1>
-
-            <p>
-                Discover groceries, fresh products, drinks, bakery,
-                personal care and more — all in one place.
-            </p>
-
-            <div class="hero-buttons">
-
-                <a href="/categories" class="primary-button">
-                    Shop now
-                    <svg viewBox="0 0 24 24">
-                        <path d="M5 12h14"></path>
-                        <path d="m13 6 6 6-6 6"></path>
+                <div class="location-icon">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path
+                            d="M12 21s7-6.1 7-12a7 7 0 1 0-14 0c0 5.9 7 12 7 12Z"
+                        />
+                        <circle cx="12" cy="9" r="2.5"></circle>
                     </svg>
-                </a>
+                </div>
 
-                <a href="/deals" class="secondary-button">
-                    Today's deals
-                </a>
+                <div class="location-content">
+                    <span class="location-label">Deliver to</span>
+                    <span class="location-value">Select location</span>
+                </div>
 
-            </div>
+                <span class="location-arrow">⌄</span>
 
-        </div>
+            </a>
 
 
-        <div class="hero-visual">
+            <!-- Search -->
+            <form class="search-form" id="searchForm" action="/search" method="GET">
 
-            <div class="hero-image-card">
+                <div class="search-input-wrapper">
 
-                <img
-                    src="assets/hero/hero-grocery.jpg"
-                    alt="MARTEY grocery products"
+                    <svg class="search-icon" viewBox="0 0 24 24" aria-hidden="true">
+                        <circle cx="11" cy="11" r="6.5"></circle>
+                        <path d="m16 16 5 5"></path>
+                    </svg>
+
+                    <input
+                        type="search"
+                        id="searchInput"
+                        name="q"
+                        autocomplete="off"
+                        placeholder="Search for products..."
+                        aria-label="Search products"
+                    >
+
+                    <button
+                        type="button"
+                        class="search-clear"
+                        id="searchClear"
+                        aria-label="Clear search"
+                    >
+                        ×
+                    </button>
+
+                </div>
+
+                <button
+                    type="submit"
+                    class="search-button"
+                    aria-label="Search"
                 >
+                    Search
+                </button>
 
-            </div>
+                <div
+                    class="search-dropdown"
+                    id="searchDropdown"
+                    aria-hidden="true"
+                ></div>
 
-            <div class="hero-floating-card">
+            </form>
 
-                <div class="mini-icon">
-                    <svg viewBox="0 0 24 24">
-                        <path d="M4 7h16"></path>
-                        <path d="M6 7v12h12V7"></path>
-                        <path d="M8 7a4 4 0 0 1 8 0"></path>
-                    </svg>
+
+            <!-- Header Actions -->
+            <nav class="header-actions" aria-label="Main navigation">
+
+                <a href="/account" class="header-action">
+                    <span class="action-icon">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <circle cx="12" cy="8" r="3.5"></circle>
+                            <path d="M5 20c.8-4 3.2-6 7-6s6.2 2 7 6"></path>
+                        </svg>
+                    </span>
+                    <span class="action-text">Account</span>
+                </a>
+
+
+                <a href="/cart" class="header-action cart-action">
+
+                    <span class="action-icon cart-icon-wrapper">
+
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M3 4h2l2.2 10.5a2 2 0 0 0 2 1.5h7.6a2 2 0 0 0 1.9-1.4L21 8H6"></path>
+                            <circle cx="10" cy="20" r="1.2"></circle>
+                            <circle cx="18" cy="20" r="1.2"></circle>
+                        </svg>
+
+                        <span class="cart-count" id="cartCount">0</span>
+
+                    </span>
+
+                    <span class="action-text">Cart</span>
+
+                </a>
+
+            </nav>
+
+        </div>
+
+    </header>
+
+
+    <main>
+
+        <!-- =====================================================
+             HERO
+        ====================================================== -->
+
+        <section class="hero-section">
+
+            <div class="container">
+
+                <div class="hero">
+
+                    <div class="hero-content">
+
+                        <span class="hero-eyebrow">
+                            MARTEY QUICK COMMERCE
+                        </span>
+
+                        <h1>
+                            Everyday essentials,
+                            <span>made simple.</span>
+                        </h1>
+
+                        <p>
+                            Shop groceries, daily essentials and more
+                            from your nearby MARTEY store.
+                        </p>
+
+                        <div class="hero-actions">
+
+                            <a href="/categories" class="btn btn-primary">
+                                Shop now
+                                <span>→</span>
+                            </a>
+
+                            <a href="/deals" class="btn btn-secondary">
+                                Today's deals
+                            </a>
+
+                        </div>
+
+                        <div class="hero-note">
+                            <span class="hero-note-dot"></span>
+                            Fast delivery from nearby stores
+                        </div>
+
+                    </div>
+
+
+                    <div class="hero-visual">
+
+                        <div class="hero-image-wrap">
+
+                            <img
+                                src="assets/hero/hero-grocery.jpg"
+                                alt="MARTEY grocery essentials"
+                                class="hero-image"
+                                loading="eager"
+                            >
+
+                        </div>
+
+                        <div class="hero-floating-card">
+
+                            <div class="floating-icon">
+                                ✓
+                            </div>
+
+                            <div>
+                                <strong>Fresh & ready</strong>
+                                <span>Everyday essentials</span>
+                            </div>
+
+                        </div>
+
+                    </div>
+
                 </div>
 
-                <div>
-                    <strong>Everything you need</strong>
-                    <span>In one marketplace</span>
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             QUICK CATEGORIES
+        ====================================================== -->
+
+        <section class="section categories-section">
+
+            <div class="container">
+
+                <div class="section-heading">
+
+                    <div>
+                        <span class="section-eyebrow">SHOP BY CATEGORY</span>
+                        <h2>Quick categories</h2>
+                    </div>
+
+                    <a href="/categories" class="view-all-link">
+                        View all
+                        <span>→</span>
+                    </a>
+
+                </div>
+
+
+                <div class="category-grid">
+
+                    <a href="/milk" class="category-card">
+
+                        <div class="category-image">
+                            <img
+                                src="assets/categories/milk.jpg"
+                                alt="Milk & Dairy"
+                                loading="lazy"
+                            >
+                        </div>
+
+                        <div class="category-info">
+                            <h3>Milk & Dairy</h3>
+                            <span>Fresh essentials</span>
+                        </div>
+
+                    </a>
+
+
+                    <a href="/bakery" class="category-card">
+
+                        <div class="category-image">
+                            <img
+                                src="assets/categories/bakery.jpg"
+                                alt="Bakery"
+                                loading="lazy"
+                            >
+                        </div>
+
+                        <div class="category-info">
+                            <h3>Bakery</h3>
+                            <span>Breads & more</span>
+                        </div>
+
+                    </a>
+
+
+                    <a href="/drinks" class="category-card">
+
+                        <div class="category-image">
+                            <img
+                                src="assets/categories/drinks.jpg"
+                                alt="Drinks"
+                                loading="lazy"
+                            >
+                        </div>
+
+                        <div class="category-info">
+                            <h3>Drinks</h3>
+                            <span>Cool & refreshing</span>
+                        </div>
+
+                    </a>
+
+
+                    <a href="/snacks" class="category-card">
+
+                        <div class="category-image">
+                            <img
+                                src="assets/categories/snacks.jpg"
+                                alt="Snacks"
+                                loading="lazy"
+                            >
+                        </div>
+
+                        <div class="category-info">
+                            <h3>Snacks</h3>
+                            <span>Quick bites</span>
+                        </div>
+
+                    </a>
+
+
+                    <a href="/fruits-vegetables" class="category-card">
+
+                        <div class="category-image">
+                            <img
+                                src="assets/categories/fruits-vegetables.jpg"
+                                alt="Fruits & Vegetables"
+                                loading="lazy"
+                            >
+                        </div>
+
+                        <div class="category-info">
+                            <h3>Fruits & Vegetables</h3>
+                            <span>Fresh produce</span>
+                        </div>
+
+                    </a>
+
+
+                    <a href="/personal-care" class="category-card">
+
+                        <div class="category-image">
+                            <img
+                                src="assets/categories/personal-care.jpg"
+                                alt="Personal Care"
+                                loading="lazy"
+                            >
+                        </div>
+
+                        <div class="category-info">
+                            <h3>Personal Care</h3>
+                            <span>Daily care</span>
+                        </div>
+
+                    </a>
+
+
+                    <a href="/household" class="category-card">
+
+                        <div class="category-image">
+                            <img
+                                src="assets/categories/household.jpg"
+                                alt="Household"
+                                loading="lazy"
+                            >
+                        </div>
+
+                        <div class="category-info">
+                            <h3>Household</h3>
+                            <span>Home essentials</span>
+                        </div>
+
+                    </a>
+
+
+                    <a href="/more" class="category-card">
+
+                        <div class="category-image category-more-image">
+                            <span class="more-symbol">+</span>
+                        </div>
+
+                        <div class="category-info">
+                            <h3>More</h3>
+                            <span>Explore MARTEY</span>
+                        </div>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             DEALS
+        ====================================================== -->
+
+        <section class="section products-section">
+
+            <div class="container">
+
+                <div class="section-heading">
+
+                    <div>
+                        <span class="section-eyebrow">SAVE MORE</span>
+                        <h2>Today's deals</h2>
+                    </div>
+
+                    <a href="/deals" class="view-all-link">
+                        View all
+                        <span>→</span>
+                    </a>
+
+                </div>
+
+                <div
+                    class="product-grid"
+                    id="dealProducts"
+                ></div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             ESSENTIALS
+        ====================================================== -->
+
+        <section class="section products-section essentials-section">
+
+            <div class="container">
+
+                <div class="section-heading">
+
+                    <div>
+                        <span class="section-eyebrow">EVERYDAY PICKS</span>
+                        <h2>Essentials for you</h2>
+                    </div>
+
+                    <a href="/categories" class="view-all-link">
+                        Explore
+                        <span>→</span>
+                    </a>
+
+                </div>
+
+                <div
+                    class="product-grid"
+                    id="essentialProducts"
+                ></div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             TRUST STRIP
+        ====================================================== -->
+
+        <section class="trust-section">
+
+            <div class="container">
+
+                <div class="trust-grid">
+
+                    <div class="trust-item">
+
+                        <div class="trust-icon">✓</div>
+
+                        <div>
+                            <strong>Quality products</strong>
+                            <span>Everyday essentials</span>
+                        </div>
+
+                    </div>
+
+
+                    <div class="trust-item">
+
+                        <div class="trust-icon">↗</div>
+
+                        <div>
+                            <strong>Nearby stores</strong>
+                            <span>Local inventory</span>
+                        </div>
+
+                    </div>
+
+
+                    <div class="trust-item">
+
+                        <div class="trust-icon">⚡</div>
+
+                        <div>
+                            <strong>Quick delivery</strong>
+                            <span>Fast & convenient</span>
+                        </div>
+
+                    </div>
+
+
+                    <div class="trust-item">
+
+                        <div class="trust-icon">₹</div>
+
+                        <div>
+                            <strong>Great value</strong>
+                            <span>Smart everyday prices</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
+
+    <footer class="site-footer">
+
+        <div class="container">
+
+            <div class="footer-main">
+
+                <!-- Brand -->
+                <div class="footer-brand">
+
+                    <a href="/" class="footer-logo">
+                        MARTEY<span>.</span>
+                    </a>
+
+                    <p>
+                        Everyday essentials, made simple.
+                        Shop from nearby MARTEY stores.
+                    </p>
+
+                </div>
+
+
+                <!-- Shop -->
+                <div class="footer-column">
+
+                    <h3>Shop</h3>
+
+                    <a href="/milk">Milk & Dairy</a>
+                    <a href="/bakery">Bakery</a>
+                    <a href="/drinks">Drinks</a>
+                    <a href="/snacks">Snacks</a>
+                    <a href="/fruits-vegetables">Fresh</a>
+
+                </div>
+
+
+                <!-- MARTEY -->
+                <div class="footer-column">
+
+                    <h3>MARTEY</h3>
+
+                    <a href="/categories">Categories</a>
+                    <a href="/deals">Deals</a>
+                    <a href="/orders">Orders</a>
+                    <a href="/account">Account</a>
+
+                </div>
+
+
+                <!-- Help -->
+                <div class="footer-column">
+
+                    <h3>Help</h3>
+
+                    <a href="/help">Help centre</a>
+                    <a href="/help">Delivery information</a>
+                    <a href="/help">Returns</a>
+                    <a href="/help">Contact us</a>
+
+                </div>
+
+            </div>
+
+
+            <div class="footer-bottom">
+
+                <p>
+                    © <span id="currentYear"></span> MARTEY. All rights reserved.
+                </p>
+
+                <div class="footer-bottom-links">
+                    <a href="/help">Privacy</a>
+                    <a href="/help">Terms</a>
                 </div>
 
             </div>
 
         </div>
 
-    </section>
+    </footer>
 
 
-    <!-- ================= QUICK CATEGORIES ================= -->
+    <!-- Toast -->
+    <div
+        class="toast"
+        id="toast"
+        role="status"
+        aria-live="polite"
+    ></div>
 
-    <section class="section">
 
-        <div class="section-heading">
-
-            <div>
-                <span class="section-label">SHOP BY CATEGORY</span>
-                <h2>Quick categories</h2>
-            </div>
-
-            <a href="/categories" class="view-all">
-                View all
-                <svg viewBox="0 0 24 24">
-                    <path d="M5 12h14"></path>
-                    <path d="m13 6 6 6-6 6"></path>
-                </svg>
-            </a>
-
-        </div>
-
-
-        <div class="category-grid">
-
-            <a href="/milk" class="category-card">
-                <div class="category-image">
-                    <img src="assets/categories/milk.jpg" alt="Milk and dairy">
-                </div>
-                <span>Milk & Dairy</span>
-            </a>
-
-
-            <a href="/bakery" class="category-card">
-                <div class="category-image">
-                    <img src="assets/categories/bakery.jpg" alt="Bakery">
-                </div>
-                <span>Bakery</span>
-            </a>
-
-
-            <a href="/drinks" class="category-card">
-                <div class="category-image">
-                    <img src="assets/categories/drinks.jpg" alt="Drinks">
-                </div>
-                <span>Drinks</span>
-            </a>
-
-
-            <a href="/snacks" class="category-card">
-                <div class="category-image">
-                    <img src="assets/categories/snacks.jpg" alt="Snacks">
-                </div>
-                <span>Snacks</span>
-            </a>
-
-
-            <a href="/fruits-vegetables" class="category-card">
-                <div class="category-image">
-                    <img
-                        src="assets/categories/fresh.jpg"
-                        alt="Fruits and vegetables"
-                    >
-                </div>
-                <span>Fresh</span>
-            </a>
-
-
-            <a href="/personal-care" class="category-card">
-                <div class="category-image">
-                    <img
-                        src="assets/categories/personal-care.jpg"
-                        alt="Personal care"
-                    >
-                </div>
-                <span>Personal Care</span>
-            </a>
-
-
-            <a href="/household" class="category-card">
-                <div class="category-image">
-                    <img
-                        src="assets/categories/household.jpg"
-                        alt="Household products"
-                    >
-                </div>
-                <span>Household</span>
-            </a>
-
-
-            <a href="/categories" class="category-card">
-                <div class="category-image">
-                    <img
-                        src="assets/categories/more.jpg"
-                        alt="More categories"
-                    >
-                </div>
-                <span>More</span>
-            </a>
-
-        </div>
-
-    </section>
-
-
-    <!-- ================= DEALS ================= -->
-
-    <section class="section deals-section">
-
-        <div class="section-heading">
-
-            <div>
-                <span class="section-label">TODAY</span>
-                <h2>Today's deals</h2>
-            </div>
-
-            <a href="/deals" class="view-all">
-                View all
-                <svg viewBox="0 0 24 24">
-                    <path d="M5 12h14"></path>
-                    <path d="m13 6 6 6-6 6"></path>
-                </svg>
-            </a>
-
-        </div>
-
-
-        <div class="product-grid" id="dealProducts"></div>
-
-    </section>
-
-
-    <!-- ================= ESSENTIALS ================= -->
-
-    <section class="section">
-
-        <div class="section-heading">
-
-            <div>
-                <span class="section-label">EVERYDAY PICKS</span>
-                <h2>Popular essentials</h2>
-            </div>
-
-            <a href="/categories" class="view-all">
-                Explore all
-                <svg viewBox="0 0 24 24">
-                    <path d="M5 12h14"></path>
-                    <path d="m13 6 6 6-6 6"></path>
-                </svg>
-            </a>
-
-        </div>
-
-
-        <div class="product-grid" id="essentialProducts"></div>
-
-    </section>
-
-
-    <!-- ================= TRUST STRIP ================= -->
-
-    <section class="trust-section">
-
-        <div class="trust-item">
-
-            <div class="trust-icon">
-                <svg viewBox="0 0 24 24">
-                    <path d="M12 3 5 6v5c0 5 3 8.5 7 10 4-1.5 7-5 7-10V6l-7-3Z"></path>
-                    <path d="m9 12 2 2 4-4"></path>
-                </svg>
-            </div>
-
-            <div>
-                <strong>Secure shopping</strong>
-                <span>Protected checkout experience</span>
-            </div>
-
-        </div>
-
-
-        <div class="trust-item">
-
-            <div class="trust-icon">
-                <svg viewBox="0 0 24 24">
-                    <path d="M3 7h11v10H3z"></path>
-                    <path d="M14 10h4l3 3v4h-7z"></path>
-                    <circle cx="7" cy="19" r="1.5"></circle>
-                    <circle cx="18" cy="19" r="1.5"></circle>
-                </svg>
-            </div>
-
-            <div>
-                <strong>Reliable delivery</strong>
-                <span>Track your order journey</span>
-            </div>
-
-        </div>
-
-
-        <div class="trust-item">
-
-            <div class="trust-icon">
-                <svg viewBox="0 0 24 24">
-                    <path d="M20 7v5h-5"></path>
-                    <path d="M19 12a7 7 0 1 1-2-5"></path>
-                </svg>
-            </div>
-
-            <div>
-                <strong>Easy returns</strong>
-                <span>Simple return experience</span>
-            </div>
-
-        </div>
-
-
-        <div class="trust-item">
-
-            <div class="trust-icon">
-                <svg viewBox="0 0 24 24">
-                    <path d="M12 3v18"></path>
-                    <path d="M5 7h14"></path>
-                    <path d="M6 7c0 3 2 5 6 5s6 2 6 5"></path>
-                </svg>
-            </div>
-
-            <div>
-                <strong>Wide selection</strong>
-                <span>Products for everyday needs</span>
-            </div>
-
-        </div>
-
-    </section>
-
-</main>
-
-
-<!-- ================= FOOTER ================= -->
-
-<footer class="site-footer">
-
-    <div class="footer-main">
-
-        <div class="footer-brand">
-
-            <a href="/" class="logo footer-logo">
-                MARTEY<span>.</span>
-            </a>
-
-            <p>
-                Everything. For Everyone.
-            </p>
-
-        </div>
-
-
-        <div class="footer-column">
-
-            <h3>Shop</h3>
-
-            <a href="/milk">Milk & Dairy</a>
-            <a href="/bakery">Bakery</a>
-            <a href="/drinks">Drinks</a>
-            <a href="/snacks">Snacks</a>
-            <a href="/fruits-vegetables">Fresh</a>
-
-        </div>
-
-
-        <div class="footer-column">
-
-            <h3>MARTEY</h3>
-
-            <a href="/categories">Categories</a>
-            <a href="/deals">Deals</a>
-            <a href="/orders">Orders</a>
-            <a href="/account">Account</a>
-
-        </div>
-
-
-        <div class="footer-column">
-
-            <h3>Help</h3>
-
-            <a href="/help">Help centre</a>
-            <a href="/help">Delivery information</a>
-            <a href="/help">Returns</a>
-            <a href="/help">Contact us</a>
-
-        </div>
-
-    </div>
-
-
-    <div class="footer-bottom">
-
-        <span>© 2026 MARTEY. All rights reserved.</span>
-
-        <div>
-            <a href="/help">Privacy</a>
-            <a href="/help">Terms</a>
-        </div>
-
-    </div>
-
-</footer>
-
-
-<script src="script.js"></script>
+    <script src="script.js"></script>
 
 </body>
 </html>
