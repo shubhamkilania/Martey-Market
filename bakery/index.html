@@ -2,159 +2,309 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Bakery - MARTEY</title>
-    <meta name="description" content="Shop fresh bakery products on MARTEY.">
-    
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    >
+
+    <meta name="theme-color" content="#111111">
+
+    <title>Bakery — MARTEY</title>
+
+    <meta
+        name="description"
+        content="Shop fresh bread, buns, cakes, cookies and bakery essentials on MARTEY."
+    >
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <link rel="icon" type="image/png" href="../favicon.png">
 
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <!-- HEADER -->
-    <header class="site-header">
-        <div class="header-inner">
+<header class="site-header">
+    <div class="header-inner">
 
-            <a href="/" class="logo">
-                MARTEY<span>.</span>
-            </a>
+        <a href="/" class="logo" aria-label="MARTEY home">
+            MARTEY<span>.</span>
+        </a>
 
-            <button class="location-button" id="locationButton">
-                <span class="location-icon">⌖</span>
-                <span>
-                    <small>Deliver to</small>
-                    <strong>Select location</strong>
-                </span>
-            </button>
+        <button
+            class="location-button"
+            id="locationButton"
+            type="button"
+            aria-label="Select delivery location"
+        >
+            <span class="location-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 21s7-6.1 7-12a7 7 0 1 0-14 0c0 5.9 7 12 7 12Z"></path>
+                    <circle cx="12" cy="9" r="2.2"></circle>
+                </svg>
+            </span>
 
-            <div class="header-search">
-                <span class="search-icon">⌕</span>
-                <input
-                    type="search"
-                    id="searchInput"
-                    placeholder="Search products..."
-                    autocomplete="off"
-                >
+            <span class="location-text">
+                <small>Deliver to</small>
+                <strong>Select location</strong>
+            </span>
+        </button>
+
+        <form class="header-search" id="searchForm" action="/search">
+            <svg class="search-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="11" cy="11" r="6.5"></circle>
+                <path d="m16 16 5 5"></path>
+            </svg>
+
+            <input
+                type="search"
+                id="searchInput"
+                name="q"
+                placeholder="Search products, brands and categories..."
+                autocomplete="off"
+                aria-label="Search products"
+            >
+
+            <div
+                class="search-dropdown"
+                id="searchDropdown"
+                aria-hidden="true"
+            ></div>
+        </form>
+
+        <a href="/account" class="header-action account-action">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="12" cy="8" r="3.2"></circle>
+                <path d="M5.5 20c.7-3.7 3-5.5 6.5-5.5s5.8 1.8 6.5 5.5"></path>
+            </svg>
+            <span>Account</span>
+        </a>
+
+        <a href="/cart" class="header-action cart-action">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M3 4h2l2 11h10l3-8H6"></path>
+                <circle cx="9" cy="19" r="1.4"></circle>
+                <circle cx="17" cy="19" r="1.4"></circle>
+            </svg>
+
+            <span>Cart</span>
+            <b id="cartCount">0</b>
+        </a>
+
+    </div>
+</header>
+
+
+<main>
+
+    <!-- BREADCRUMB -->
+    <section class="breadcrumb-section">
+        <div class="container breadcrumb">
+            <a href="/">Home</a>
+            <span>/</span>
+            <a href="/categories">Categories</a>
+            <span>/</span>
+            <strong>Bakery</strong>
+        </div>
+    </section>
+
+
+    <!-- HERO -->
+    <section class="category-hero">
+        <div class="container">
+
+            <div class="hero-card">
+
+                <div class="hero-content">
+
+                    <span class="eyebrow">
+                        FRESH EVERY DAY
+                    </span>
+
+                    <h1>
+                        Fresh bakery,
+                        <span>made for every moment.</span>
+                    </h1>
+
+                    <p>
+                        Fresh bread, buns, cakes, cookies and more,
+                        delivered quickly to your doorstep.
+                    </p>
+
+                    <div class="hero-pills">
+                        <span>Fresh picks</span>
+                        <span>Everyday essentials</span>
+                        <span>Quick delivery</span>
+                    </div>
+
+                </div>
+
+                <div class="hero-visual">
+                    <div class="hero-image hero-image-one"></div>
+                    <div class="hero-image hero-image-two"></div>
+                    <div class="hero-image hero-image-three"></div>
+                </div>
+
             </div>
-
-            <a href="/account" class="header-link">
-                <span class="header-icon">◯</span>
-                <span>Account</span>
-            </a>
-
-            <a href="/cart" class="cart-button">
-                <span class="cart-icon">🛒</span>
-                <span>Cart</span>
-                <b id="cartCount">0</b>
-            </a>
 
         </div>
-    </header>
+    </section>
 
 
-    <!-- MAIN -->
-    <main>
+    <!-- SHOP -->
+    <section class="shop-section">
+        <div class="container">
 
-        <!-- BREADCRUMB -->
-        <section class="breadcrumb-section">
-            <div class="container">
-                <div class="breadcrumb">
-                    <a href="/">Home</a>
-                    <span>/</span>
-                    <a href="/categories">Categories</a>
-                    <span>/</span>
-                    <span>Bakery</span>
+            <div class="shop-heading">
+
+                <div>
+                    <span class="eyebrow">
+                        EXPLORE BAKERY
+                    </span>
+
+                    <h2>
+                        Shop bakery essentials
+                    </h2>
+
+                    <p>
+                        Fresh favourites for breakfast, snacks and celebrations.
+                    </p>
                 </div>
+
+                <button
+                    class="mobile-filter-button"
+                    id="mobileFilterButton"
+                    type="button"
+                >
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M4 6h16M7 12h10M10 18h4"></path>
+                    </svg>
+                    Filters
+                </button>
+
             </div>
-        </section>
 
 
-        <!-- CATEGORY HERO -->
-        <section class="category-hero">
-            <div class="container">
-                <div class="category-hero-content">
-                    <div>
-                        <span class="eyebrow">FRESH EVERY DAY</span>
-                        <h1>Bakery</h1>
-                        <p>
-                            Fresh bread, buns, cakes, cookies and more,
-                            delivered quickly to your doorstep.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-
-        <!-- SHOP SECTION -->
-        <section class="shop-section">
-            <div class="container shop-layout">
+            <div class="shop-layout">
 
                 <!-- SIDEBAR -->
                 <aside class="filter-sidebar">
 
                     <div class="filter-header">
-                        <h3>Filters</h3>
-                        <button id="clearFilters">Clear all</button>
+                        <div>
+                            <span class="filter-eyebrow">REFINE</span>
+                            <h3>Filters</h3>
+                        </div>
+
+                        <button
+                            id="clearFilters"
+                            type="button"
+                        >
+                            Clear all
+                        </button>
                     </div>
 
+
                     <div class="filter-group">
+
                         <h4>Bakery Type</h4>
 
                         <label class="filter-option">
-                            <input type="checkbox" value="Bread" class="category-filter">
+                            <input
+                                type="checkbox"
+                                value="Bread"
+                                class="category-filter"
+                            >
                             <span>Bread</span>
                         </label>
 
                         <label class="filter-option">
-                            <input type="checkbox" value="Buns" class="category-filter">
+                            <input
+                                type="checkbox"
+                                value="Buns"
+                                class="category-filter"
+                            >
                             <span>Buns</span>
                         </label>
 
                         <label class="filter-option">
-                            <input type="checkbox" value="Cakes" class="category-filter">
+                            <input
+                                type="checkbox"
+                                value="Cakes"
+                                class="category-filter"
+                            >
                             <span>Cakes</span>
                         </label>
 
                         <label class="filter-option">
-                            <input type="checkbox" value="Cookies" class="category-filter">
+                            <input
+                                type="checkbox"
+                                value="Cookies"
+                                class="category-filter"
+                            >
                             <span>Cookies</span>
                         </label>
 
                         <label class="filter-option">
-                            <input type="checkbox" value="Croissants" class="category-filter">
+                            <input
+                                type="checkbox"
+                                value="Croissants"
+                                class="category-filter"
+                            >
                             <span>Croissants</span>
                         </label>
 
                         <label class="filter-option">
-                            <input type="checkbox" value="Other Bakery" class="category-filter">
+                            <input
+                                type="checkbox"
+                                value="Other Bakery"
+                                class="category-filter"
+                            >
                             <span>Other Bakery</span>
                         </label>
+
                     </div>
 
 
                     <div class="filter-group">
+
                         <h4>Price</h4>
 
                         <label class="filter-option">
-                            <input type="checkbox" value="under50" class="price-filter">
+                            <input
+                                type="checkbox"
+                                value="under50"
+                                class="price-filter"
+                            >
                             <span>Under ₹50</span>
                         </label>
 
                         <label class="filter-option">
-                            <input type="checkbox" value="50to100" class="price-filter">
+                            <input
+                                type="checkbox"
+                                value="50to100"
+                                class="price-filter"
+                            >
                             <span>₹50 – ₹100</span>
                         </label>
 
                         <label class="filter-option">
-                            <input type="checkbox" value="above100" class="price-filter">
+                            <input
+                                type="checkbox"
+                                value="above100"
+                                class="price-filter"
+                            >
                             <span>Above ₹100</span>
                         </label>
+
                     </div>
 
                 </aside>
@@ -163,49 +313,74 @@
                 <!-- PRODUCTS -->
                 <div class="products-area">
 
-                    <div class="products-topbar">
+                    <div class="products-toolbar">
 
                         <div>
                             <h2>Fresh Bakery</h2>
-                            <p id="resultCount">0 products</p>
+
+                            <p id="resultCount">
+                                0 products
+                            </p>
                         </div>
 
-                        <div class="topbar-actions">
+                        <label class="sort-wrapper">
+                            <span>Sort by</span>
 
-                            <button class="mobile-filter-button" id="mobileFilterButton">
-                                Filters
-                            </button>
+                            <select id="sortSelect">
+                                <option value="relevance">
+                                    Relevance
+                                </option>
 
-                            <label class="sort-wrapper">
-                                <span>Sort by</span>
+                                <option value="low-high">
+                                    Price: Low to High
+                                </option>
 
-                                <select id="sortSelect">
-                                    <option value="relevance">Relevance</option>
-                                    <option value="low-high">Price: Low to High</option>
-                                    <option value="high-low">Price: High to Low</option>
-                                    <option value="discount">Highest Discount</option>
-                                </select>
-                            </label>
+                                <option value="high-low">
+                                    Price: High to Low
+                                </option>
 
-                        </div>
+                                <option value="discount">
+                                    Highest Discount
+                                </option>
+                            </select>
+                        </label>
 
                     </div>
 
 
-                    <div class="product-grid" id="productGrid">
-                        <!-- Products generated by JavaScript -->
-                    </div>
+                    <div
+                        class="product-grid"
+                        id="productGrid"
+                    ></div>
 
 
-                    <!-- EMPTY STATE -->
-                    <div class="empty-state" id="emptyState">
-                        <div class="empty-icon">⌕</div>
-                        <h3>No products found</h3>
+                    <div
+                        class="empty-state"
+                        id="emptyState"
+                    >
+                        <div class="empty-icon">
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <circle cx="11" cy="11" r="6"></circle>
+                                <path d="m16 16 5 5"></path>
+                            </svg>
+                        </div>
+
+                        <span class="eyebrow">
+                            NO MATCH
+                        </span>
+
+                        <h3>
+                            No bakery products found
+                        </h3>
+
                         <p>
-                            Try changing your filters or search for another bakery product.
+                            Try changing your filters or searching for another bakery product.
                         </p>
 
-                        <button id="resetEmptyState">
+                        <button
+                            id="resetEmptyState"
+                            type="button"
+                        >
                             View all bakery products
                         </button>
                     </div>
@@ -213,117 +388,241 @@
                 </div>
 
             </div>
-        </section>
 
-    </main>
+        </div>
+    </section>
+
+</main>
 
 
-    <!-- MOBILE FILTER OVERLAY -->
-    <div class="filter-overlay" id="filterOverlay"></div>
+<!-- MOBILE FILTER -->
+<div
+    class="filter-overlay"
+    id="filterOverlay"
+></div>
 
-    <div class="mobile-filter-panel" id="mobileFilterPanel">
+<aside
+    class="mobile-filter-panel"
+    id="mobileFilterPanel"
+    aria-label="Filters"
+>
 
-        <div class="mobile-filter-header">
+    <div class="mobile-filter-header">
+
+        <div>
+            <span class="filter-eyebrow">
+                REFINE
+            </span>
+
             <h3>Filters</h3>
-            <button id="closeMobileFilter">×</button>
         </div>
 
-        <div class="mobile-filter-content">
-
-            <div class="filter-group">
-                <h4>Bakery Type</h4>
-
-                <label class="filter-option">
-                    <input type="checkbox" value="Bread" class="mobile-category-filter">
-                    <span>Bread</span>
-                </label>
-
-                <label class="filter-option">
-                    <input type="checkbox" value="Buns" class="mobile-category-filter">
-                    <span>Buns</span>
-                </label>
-
-                <label class="filter-option">
-                    <input type="checkbox" value="Cakes" class="mobile-category-filter">
-                    <span>Cakes</span>
-                </label>
-
-                <label class="filter-option">
-                    <input type="checkbox" value="Cookies" class="mobile-category-filter">
-                    <span>Cookies</span>
-                </label>
-
-                <label class="filter-option">
-                    <input type="checkbox" value="Croissants" class="mobile-category-filter">
-                    <span>Croissants</span>
-                </label>
-
-                <label class="filter-option">
-                    <input type="checkbox" value="Other Bakery" class="mobile-category-filter">
-                    <span>Other Bakery</span>
-                </label>
-            </div>
-
-            <div class="filter-group">
-                <h4>Price</h4>
-
-                <label class="filter-option">
-                    <input type="checkbox" value="under50" class="mobile-price-filter">
-                    <span>Under ₹50</span>
-                </label>
-
-                <label class="filter-option">
-                    <input type="checkbox" value="50to100" class="mobile-price-filter">
-                    <span>₹50 – ₹100</span>
-                </label>
-
-                <label class="filter-option">
-                    <input type="checkbox" value="above100" class="mobile-price-filter">
-                    <span>Above ₹100</span>
-                </label>
-            </div>
-
-        </div>
-
-        <button class="apply-filter-button" id="applyMobileFilters">
-            Apply Filters
+        <button
+            id="closeMobileFilter"
+            type="button"
+            aria-label="Close filters"
+        >
+            ×
         </button>
 
     </div>
 
 
-    <!-- FOOTER -->
-    <footer class="site-footer">
-        <div class="container footer-inner">
+    <div class="mobile-filter-content">
 
-            <div class="footer-brand">
-                <a href="/" class="logo">
-                    MARTEY<span>.</span>
-                </a>
+        <div class="filter-group">
 
-                <p>
-                    Everything you need, delivered quickly.
-                </p>
-            </div>
+            <h4>Bakery Type</h4>
 
-            <div class="footer-links">
-                <a href="/categories">Categories</a>
-                <a href="/orders">Orders</a>
-                <a href="/help">Help</a>
-                <a href="/account">Account</a>
+            <label class="filter-option">
+                <input
+                    type="checkbox"
+                    value="Bread"
+                    class="mobile-category-filter"
+                >
+                <span>Bread</span>
+            </label>
+
+            <label class="filter-option">
+                <input
+                    type="checkbox"
+                    value="Buns"
+                    class="mobile-category-filter"
+                >
+                <span>Buns</span>
+            </label>
+
+            <label class="filter-option">
+                <input
+                    type="checkbox"
+                    value="Cakes"
+                    class="mobile-category-filter"
+                >
+                <span>Cakes</span>
+            </label>
+
+            <label class="filter-option">
+                <input
+                    type="checkbox"
+                    value="Cookies"
+                    class="mobile-category-filter"
+                >
+                <span>Cookies</span>
+            </label>
+
+            <label class="filter-option">
+                <input
+                    type="checkbox"
+                    value="Croissants"
+                    class="mobile-category-filter"
+                >
+                <span>Croissants</span>
+            </label>
+
+            <label class="filter-option">
+                <input
+                    type="checkbox"
+                    value="Other Bakery"
+                    class="mobile-category-filter"
+                >
+                <span>Other Bakery</span>
+            </label>
+
+        </div>
+
+
+        <div class="filter-group">
+
+            <h4>Price</h4>
+
+            <label class="filter-option">
+                <input
+                    type="checkbox"
+                    value="under50"
+                    class="mobile-price-filter"
+                >
+                <span>Under ₹50</span>
+            </label>
+
+            <label class="filter-option">
+                <input
+                    type="checkbox"
+                    value="50to100"
+                    class="mobile-price-filter"
+                >
+                <span>₹50 – ₹100</span>
+            </label>
+
+            <label class="filter-option">
+                <input
+                    type="checkbox"
+                    value="above100"
+                    class="mobile-price-filter"
+                >
+                <span>Above ₹100</span>
+            </label>
+
+        </div>
+
+    </div>
+
+
+    <button
+        class="apply-filter-button"
+        id="applyMobileFilters"
+        type="button"
+    >
+        Apply Filters
+    </button>
+
+</aside>
+
+
+<!-- FOOTER -->
+<footer class="site-footer">
+
+    <div class="container footer-main">
+
+        <div class="footer-brand">
+
+            <a href="/" class="logo">
+                MARTEY<span>.</span>
+            </a>
+
+            <p>
+                Everything you need, delivered quickly.
+            </p>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h4>Shop</h4>
+
+            <a href="/milk">Milk & Dairy</a>
+            <a href="/bakery">Bakery</a>
+            <a href="/drinks">Drinks</a>
+            <a href="/snacks">Snacks</a>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h4>MARTEY</h4>
+
+            <a href="/categories">Categories</a>
+            <a href="/deals">Deals</a>
+            <a href="/orders">Orders</a>
+            <a href="/account">Account</a>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h4>Help</h4>
+
+            <a href="/help">Help & Support</a>
+            <a href="/help">Shipping</a>
+            <a href="/help">Returns</a>
+            <a href="/help">Contact</a>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+        <div class="container footer-bottom-inner">
+
+            <span>
+                © <span id="currentYear">2026</span> MARTEY. All rights reserved.
+            </span>
+
+            <div>
+                <a href="/help">Privacy</a>
+                <a href="/help">Terms</a>
             </div>
 
         </div>
 
-        <div class="footer-bottom">
-            <div class="container">
-                © 2026 MARTEY. All rights reserved.
-            </div>
-        </div>
-    </footer>
+    </div>
+
+</footer>
 
 
-    <script src="script.js"></script>
+<div
+    class="toast"
+    id="toast"
+    role="status"
+    aria-live="polite"
+></div>
+
+
+<script src="script.js"></script>
 
 </body>
 </html>
