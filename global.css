@@ -1,0 +1,833 @@
+/* =========================================================
+   MARTEY — GLOBAL DESIGN SYSTEM
+   White + Black + MARTEY Blue
+   Shared Header / Search / Footer / Layout
+========================================================= */
+
+
+/* =========================================================
+   1. ROOT VARIABLES
+========================================================= */
+
+:root {
+    --blue: #155EEF;
+    --blue-dark: #0B3AA4;
+
+    --black: #111111;
+    --text: #111111;
+    --muted: #667085;
+
+    --white: #FFFFFF;
+    --soft: #F7F8FA;
+    --border: #E4E7EC;
+
+    --green: #16A34A;
+    --red: #E53935;
+
+    --shadow-sm: 0 3px 12px rgba(16, 24, 40, 0.05);
+    --shadow-md: 0 12px 32px rgba(16, 24, 40, 0.09);
+
+    --radius-sm: 10px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --radius-xl: 22px;
+
+    --header-height: 76px;
+}
+
+
+/* =========================================================
+   2. RESET
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "DM Sans", sans-serif;
+    background: var(--white);
+    color: var(--text);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+button,
+input,
+select,
+textarea {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+
+/* =========================================================
+   3. COMMON TYPOGRAPHY
+========================================================= */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: "Manrope", sans-serif;
+    color: var(--black);
+}
+
+p {
+    color: var(--muted);
+}
+
+
+/* =========================================================
+   4. COMMON CONTAINER
+========================================================= */
+
+.page-container {
+    width: min(1180px, calc(100% - 48px));
+    margin: 0 auto;
+}
+
+
+/* =========================================================
+   5. GLOBAL HEADER
+========================================================= */
+
+.site-header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+
+    width: 100%;
+
+    background: rgba(255, 255, 255, 0.96);
+    border-bottom: 1px solid var(--border);
+
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+}
+
+.header-inner {
+    width: min(1320px, calc(100% - 48px));
+    min-height: var(--header-height);
+
+    margin: 0 auto;
+
+    display: flex;
+    align-items: center;
+
+    gap: 28px;
+}
+
+
+/* =========================================================
+   6. MARTEY LOGO
+========================================================= */
+
+.logo,
+.footer-logo {
+    font-family: "Manrope", sans-serif;
+    font-weight: 800;
+
+    color: var(--black);
+
+    letter-spacing: -0.7px;
+    white-space: nowrap;
+}
+
+.logo {
+    font-size: 26px;
+    line-height: 1;
+}
+
+.logo span,
+.footer-logo span {
+    color: var(--blue);
+}
+
+
+/* =========================================================
+   7. LOCATION
+========================================================= */
+
+.location-box {
+    display: flex;
+    align-items: center;
+
+    gap: 9px;
+
+    min-width: 180px;
+
+    padding: 5px 8px;
+
+    border: 0;
+    background: transparent;
+
+    color: var(--black);
+
+    text-align: left;
+}
+
+.location-icon {
+    width: 36px;
+    height: 36px;
+
+    flex: 0 0 36px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid #DCE6FF;
+    border-radius: 10px;
+
+    background: #F4F7FF;
+}
+
+.location-icon svg {
+    width: 18px;
+    height: 18px;
+
+    fill: none;
+    stroke: var(--blue);
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.location-text {
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.location-text small {
+    color: var(--muted);
+
+    font-size: 11px;
+    line-height: 1.2;
+}
+
+.location-text strong {
+    max-width: 120px;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    color: var(--black);
+
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+.location-chevron {
+    width: 15px;
+    height: 15px;
+
+    margin-left: auto;
+
+    fill: none;
+    stroke: var(--muted);
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+
+/* =========================================================
+   8. GLOBAL SEARCH
+========================================================= */
+
+.search-box {
+    position: relative;
+
+    flex: 1;
+    width: 100%;
+    max-width: 620px;
+    height: 46px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+
+    padding: 0 6px 0 14px;
+
+    background: var(--soft);
+
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+.search-box:focus-within {
+    background: var(--white);
+
+    border-color: #B7C8F8;
+
+    box-shadow: 0 0 0 3px rgba(21, 94, 239, 0.08);
+}
+
+.search-icon {
+    width: 19px;
+    height: 19px;
+
+    flex: 0 0 19px;
+
+    fill: none;
+    stroke: var(--muted);
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+.search-box:focus-within .search-icon {
+    stroke: var(--blue);
+}
+
+.search-box input {
+    min-width: 0;
+    flex: 1;
+
+    height: 100%;
+
+    border: 0;
+    outline: 0;
+
+    background: transparent;
+
+    color: var(--black);
+
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.search-box input::placeholder {
+    color: #98A2B3;
+    opacity: 1;
+}
+
+
+/* =========================================================
+   9. SEARCH BUTTON
+========================================================= */
+
+.search-submit {
+    height: 34px;
+
+    flex: 0 0 auto;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0 14px;
+
+    border: 0;
+    border-radius: 8px;
+
+    background: var(--blue);
+    color: var(--white);
+
+    font-size: 12px;
+    font-weight: 700;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+.search-submit:hover {
+    background: var(--blue-dark);
+}
+
+.search-submit:active {
+    transform: scale(0.97);
+}
+
+
+/* =========================================================
+   10. HEADER ACTIONS
+========================================================= */
+
+.header-actions {
+    display: flex;
+    align-items: center;
+
+    gap: 22px;
+
+    margin-left: auto;
+}
+
+.header-action {
+    display: inline-flex;
+    align-items: center;
+
+    gap: 7px;
+
+    color: var(--black);
+
+    font-size: 13px;
+    font-weight: 700;
+
+    white-space: nowrap;
+
+    transition: color 0.2s ease;
+}
+
+.header-action:hover {
+    color: var(--blue);
+}
+
+.header-action svg {
+    width: 20px;
+    height: 20px;
+
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.7;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+
+/* =========================================================
+   11. CART ICON + BADGE
+========================================================= */
+
+.cart-icon-wrap {
+    position: relative;
+
+    width: 24px;
+    height: 24px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cart-icon-wrap svg {
+    width: 21px;
+    height: 21px;
+}
+
+.cart-icon-wrap b {
+    position: absolute;
+
+    top: -8px;
+    right: -9px;
+
+    min-width: 17px;
+    height: 17px;
+
+    padding: 0 4px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 2px solid var(--white);
+    border-radius: 999px;
+
+    background: var(--blue);
+    color: var(--white);
+
+    font-size: 9px;
+    line-height: 1;
+    font-weight: 800;
+}
+
+
+/* =========================================================
+   12. COMMON BREADCRUMB
+========================================================= */
+
+.breadcrumb {
+    display: flex;
+    align-items: center;
+
+    gap: 7px;
+
+    padding: 25px 0 18px;
+
+    color: var(--muted);
+
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.breadcrumb a {
+    color: var(--muted);
+
+    transition: color 0.2s ease;
+}
+
+.breadcrumb a:hover {
+    color: var(--blue);
+}
+
+.breadcrumb svg {
+    width: 14px;
+    height: 14px;
+
+    fill: none;
+    stroke: #98A2B3;
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+
+
+/* =========================================================
+   13. COMMON BUTTON
+========================================================= */
+
+.primary-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 44px;
+
+    padding: 0 18px;
+
+    border: 1px solid var(--blue);
+    border-radius: 10px;
+
+    background: var(--blue);
+    color: var(--white);
+
+    font-size: 13px;
+    font-weight: 700;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.primary-button:hover {
+    background: var(--blue-dark);
+    border-color: var(--blue-dark);
+}
+
+.primary-button:active {
+    transform: translateY(1px);
+}
+
+
+/* =========================================================
+   14. GLOBAL FOOTER
+========================================================= */
+
+.site-footer {
+    margin-top: 80px;
+
+    background: var(--black);
+    color: var(--white);
+}
+
+.footer-inner {
+    width: min(1180px, calc(100% - 48px));
+
+    margin: 0 auto;
+
+    padding: 58px 0 48px;
+
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+
+    gap: 40px;
+}
+
+.footer-brand {
+    max-width: 300px;
+}
+
+.footer-logo {
+    display: inline-block;
+
+    margin-bottom: 12px;
+
+    color: var(--white);
+
+    font-size: 25px;
+}
+
+.footer-brand p {
+    max-width: 250px;
+
+    color: #98A2B3;
+
+    font-size: 13px;
+    line-height: 1.7;
+}
+
+.footer-column {
+    display: flex;
+    flex-direction: column;
+
+    gap: 10px;
+}
+
+.footer-column h3 {
+    margin-bottom: 7px;
+
+    color: var(--white);
+
+    font-family: "DM Sans", sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.footer-column a {
+    width: fit-content;
+
+    color: #98A2B3;
+
+    font-size: 13px;
+
+    transition: color 0.2s ease;
+}
+
+.footer-column a:hover {
+    color: var(--white);
+}
+
+.footer-bottom {
+    width: min(1180px, calc(100% - 48px));
+
+    margin: 0 auto;
+
+    padding: 18px 0 22px;
+
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+
+    color: #667085;
+
+    font-size: 12px;
+}
+
+
+/* =========================================================
+   15. HIDDEN UTILITY
+========================================================= */
+
+.hidden {
+    display: none !important;
+}
+
+
+/* =========================================================
+   16. TABLET
+========================================================= */
+
+@media (max-width: 1050px) {
+
+    .header-inner {
+        gap: 17px;
+    }
+
+    .location-box {
+        min-width: 155px;
+    }
+
+    .header-actions {
+        gap: 16px;
+    }
+
+    .footer-inner {
+        grid-template-columns: 1.5fr 1fr 1fr 1fr;
+        gap: 28px;
+    }
+}
+
+
+/* =========================================================
+   17. MOBILE
+========================================================= */
+
+@media (max-width: 760px) {
+
+    :root {
+        --header-height: auto;
+    }
+
+    .site-header {
+        position: sticky;
+    }
+
+    .header-inner {
+        width: calc(100% - 30px);
+
+        min-height: auto;
+
+        padding: 13px 0;
+
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+        grid-template-areas:
+            "logo location actions"
+            "search search search";
+
+        gap: 11px 12px;
+    }
+
+    .logo {
+        grid-area: logo;
+
+        font-size: 24px;
+    }
+
+    .location-box {
+        grid-area: location;
+
+        justify-self: center;
+
+        min-width: 0;
+        padding: 0;
+    }
+
+    .location-text {
+        display: none;
+    }
+
+    .location-chevron {
+        display: none;
+    }
+
+    .location-icon {
+        width: 35px;
+        height: 35px;
+    }
+
+    .search-box {
+        grid-area: search;
+
+        max-width: none;
+
+        height: 46px;
+
+        padding-left: 12px;
+    }
+
+    .search-submit {
+        padding: 0 13px;
+    }
+
+    .header-actions {
+        grid-area: actions;
+
+        gap: 13px;
+
+        margin-left: 0;
+    }
+
+    .header-action > span:not(.cart-icon-wrap) {
+        display: none;
+    }
+
+    .header-action svg {
+        width: 21px;
+        height: 21px;
+    }
+
+    .page-container {
+        width: calc(100% - 30px);
+    }
+
+    .breadcrumb {
+        padding-top: 20px;
+    }
+
+    .footer-inner {
+        width: calc(100% - 30px);
+
+        grid-template-columns: 1fr 1fr;
+
+        gap: 34px 24px;
+
+        padding: 45px 0 38px;
+    }
+
+    .footer-brand {
+        grid-column: 1 / -1;
+    }
+
+    .footer-bottom {
+        width: calc(100% - 30px);
+    }
+}
+
+
+/* =========================================================
+   18. SMALL MOBILE
+========================================================= */
+
+@media (max-width: 480px) {
+
+    .header-inner {
+        grid-template-columns: auto 1fr auto;
+        gap: 10px;
+    }
+
+    .logo {
+        font-size: 22px;
+    }
+
+    .location-icon {
+        width: 33px;
+        height: 33px;
+    }
+
+    .search-box {
+        height: 44px;
+    }
+
+    .search-submit {
+        height: 32px;
+        padding: 0 11px;
+
+        font-size: 11px;
+    }
+
+    .search-box input {
+        font-size: 13px;
+    }
+
+    .footer-inner {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-brand {
+        grid-column: auto;
+    }
+}
