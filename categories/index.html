@@ -63,29 +63,23 @@
         </button>
 
 
-        <form
-            class="search-box"
-            id="mainSearchForm"
-        >
+       <form class="search-box" id="mainSearchForm">
+    <svg class="search-icon" viewBox="0 0 24 24" aria-hidden="true">
+        <circle cx="11" cy="11" r="6.5"/>
+        <path d="m16 16 5 5"/>
+    </svg>
 
-            <svg
-                class="search-icon"
-                viewBox="0 0 24 24"
-                aria-hidden="true"
-            >
-                <circle cx="11" cy="11" r="6.5"/>
-                <path d="m16 16 5 5"/>
-            </svg>
+    <input
+        type="search"
+        id="searchInput"
+        placeholder="Search for milk..."
+        autocomplete="off"
+    >
 
-            <input
-                type="search"
-                id="searchInput"
-                placeholder="Search for milk, bread, snacks..."
-                autocomplete="off"
-            >
-
-        </form>
-
+    <button type="submit" class="search-submit">
+        Search
+    </button>
+</form>
 
         <nav class="header-actions">
 
