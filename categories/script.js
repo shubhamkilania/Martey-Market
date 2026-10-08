@@ -157,7 +157,73 @@ const locationButton =
 const currentYear =
     document.getElementById("currentYear");
 
+/* =========================================================
+   ROTATING SEARCH PLACEHOLDER
+========================================================= */
 
+const searchSuggestions = [
+    "Search for milk...",
+    "Search for bakery...",
+    "Search for drinks...",
+    "Search for snacks...",
+    "Search for fruits & vegetables...",
+    "Search for personal care...",
+    "Search for household...",
+    "Search for baby care...",
+    "Search for grocery...",
+    "Search for beauty...",
+    "Search for electronics..."
+];
+
+let suggestionIndex = 0;
+
+function startSearchPlaceholderRotation() {
+    if (!searchInput) return;
+
+    setInterval(() => {
+
+        // Do not rotate while user is typing
+        if (searchInput.value.trim()) {
+            return;
+        }
+
+        // Do not change placeholder while input is focused
+        if (document.activeElement === searchInput) {
+            return;
+        }
+
+        searchInput.placeholder =
+            searchSuggestions[suggestionIndex];
+
+        suggestionIndex =
+            (suggestionIndex + 1) % searchSuggestions.length;
+
+    }, 1800);
+}
+
+startSearchPlaceholderRotation();
+
+
+/* =========================================================
+   SEARCH FOCUS
+========================================================= */
+
+if (searchInput) {
+
+    searchInput.addEventListener("focus", () => {
+        if (!searchInput.value.trim()) {
+            searchInput.placeholder = "What are you looking for?";
+        }
+    });
+
+    searchInput.addEventListener("blur", () => {
+        if (!searchInput.value.trim()) {
+            searchInput.placeholder =
+                searchSuggestions[suggestionIndex];
+        }
+    });
+
+}
 /* =========================================================
    IMAGE FALLBACK
 ========================================================= */
