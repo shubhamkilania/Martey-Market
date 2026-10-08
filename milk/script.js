@@ -1,14 +1,8 @@
-/* =========================================================
-   MARTEY — MILK & DAIRY CATEGORY PAGE
-========================================================= */
-
-
-/* =========================================================
-   PRODUCT DATA
-   Frontend demo data only.
-========================================================= */
-
 const products = [
+
+    /* =========================
+       MILK
+    ========================= */
 
     {
         id: 1001,
@@ -21,7 +15,6 @@ const products = [
         discount: 6,
         image: "../assets/products/milk.jpg"
     },
-
     {
         id: 1020,
         name: "Toned Milk",
@@ -33,7 +26,6 @@ const products = [
         discount: 6,
         image: "../assets/products/milk.jpg"
     },
-
     {
         id: 1021,
         name: "Double Toned Milk",
@@ -45,6 +37,43 @@ const products = [
         discount: 7,
         image: "../assets/products/milk.jpg"
     },
+    {
+        id: 1029,
+        name: "Full Cream Milk",
+        category: "Milk",
+        size: "500 ml",
+        price: 34,
+        mrp: 36,
+        rating: 4.5,
+        discount: 6,
+        image: "../assets/products/milk.jpg"
+    },
+    {
+        id: 1030,
+        name: "Toned Milk",
+        category: "Milk",
+        size: "500 ml",
+        price: 29,
+        mrp: 31,
+        rating: 4.4,
+        discount: 6,
+        image: "../assets/products/milk.jpg"
+    },
+    {
+        id: 1031,
+        name: "Fresh Milk",
+        category: "Milk",
+        size: "2 L",
+        price: 126,
+        mrp: 136,
+        rating: 4.6,
+        discount: 7,
+        image: "../assets/products/milk.jpg"
+    },
+
+    /* =========================
+       CURD & YOGURT
+    ========================= */
 
     {
         id: 1022,
@@ -57,7 +86,6 @@ const products = [
         discount: 10,
         image: "../assets/products/curd.jpg"
     },
-
     {
         id: 1023,
         name: "Thick Natural Yogurt",
@@ -69,6 +97,43 @@ const products = [
         discount: 15,
         image: "../assets/products/yogurt.jpg"
     },
+    {
+        id: 1032,
+        name: "Fresh Curd",
+        category: "Curd & Yogurt",
+        size: "200 g",
+        price: 25,
+        mrp: 28,
+        rating: 4.4,
+        discount: 11,
+        image: "../assets/products/curd.jpg"
+    },
+    {
+        id: 1033,
+        name: "Natural Yogurt",
+        category: "Curd & Yogurt",
+        size: "1 kg",
+        price: 105,
+        mrp: 120,
+        rating: 4.6,
+        discount: 13,
+        image: "../assets/products/yogurt.jpg"
+    },
+    {
+        id: 1034,
+        name: "Greek Style Yogurt",
+        category: "Curd & Yogurt",
+        size: "400 g",
+        price: 95,
+        mrp: 110,
+        rating: 4.5,
+        discount: 14,
+        image: "../assets/products/yogurt.jpg"
+    },
+
+    /* =========================
+       BUTTER
+    ========================= */
 
     {
         id: 1024,
@@ -81,6 +146,43 @@ const products = [
         discount: 11,
         image: "../assets/products/butter.jpg"
     },
+    {
+        id: 1035,
+        name: "Salted Butter",
+        category: "Butter",
+        size: "100 g",
+        price: 55,
+        mrp: 62,
+        rating: 4.6,
+        discount: 11,
+        image: "../assets/products/butter.jpg"
+    },
+    {
+        id: 1036,
+        name: "Salted Butter",
+        category: "Butter",
+        size: "500 g",
+        price: 245,
+        mrp: 275,
+        rating: 4.7,
+        discount: 11,
+        image: "../assets/products/butter.jpg"
+    },
+    {
+        id: 1037,
+        name: "Unsalted Butter",
+        category: "Butter",
+        size: "500 g",
+        price: 255,
+        mrp: 285,
+        rating: 4.6,
+        discount: 11,
+        image: "../assets/products/butter.jpg"
+    },
+
+    /* =========================
+       PANEER
+    ========================= */
 
     {
         id: 1025,
@@ -93,7 +195,6 @@ const products = [
         discount: 11,
         image: "../assets/products/paneer.jpg"
     },
-
     {
         id: 1026,
         name: "Premium Paneer",
@@ -105,6 +206,32 @@ const products = [
         discount: 11,
         image: "../assets/products/paneer.jpg"
     },
+    {
+        id: 1038,
+        name: "Fresh Paneer",
+        category: "Paneer",
+        size: "100 g",
+        price: 45,
+        mrp: 50,
+        rating: 4.5,
+        discount: 10,
+        image: "../assets/products/paneer.jpg"
+    },
+    {
+        id: 1039,
+        name: "Malai Paneer",
+        category: "Paneer",
+        size: "200 g",
+        price: 105,
+        mrp: 120,
+        rating: 4.6,
+        discount: 13,
+        image: "../assets/products/paneer.jpg"
+    },
+
+    /* =========================
+       CHEESE
+    ========================= */
 
     {
         id: 1027,
@@ -117,7 +244,6 @@ const products = [
         discount: 14,
         image: "../assets/products/cheese.jpg"
     },
-
     {
         id: 1028,
         name: "Cheese Block",
@@ -128,6 +254,142 @@ const products = [
         rating: 4.4,
         discount: 12,
         image: "../assets/products/cheese.jpg"
+    },
+    {
+        id: 1040,
+        name: "Cheese Slices",
+        category: "Cheese",
+        size: "100 g",
+        price: 69,
+        mrp: 80,
+        rating: 4.5,
+        discount: 14,
+        image: "../assets/products/cheese.jpg"
+    },
+    {
+        id: 1041,
+        name: "Cheese Block",
+        category: "Cheese",
+        size: "500 g",
+        price: 315,
+        mrp: 350,
+        rating: 4.6,
+        discount: 10,
+        image: "../assets/products/cheese.jpg"
+    },
+
+    /* =========================
+       CREAM
+    ========================= */
+
+    {
+        id: 1042,
+        name: "Fresh Dairy Cream",
+        category: "Cream",
+        size: "200 ml",
+        price: 65,
+        mrp: 72,
+        rating: 4.5,
+        discount: 10,
+        image: "../assets/products/cream.jpg"
+    },
+    {
+        id: 1043,
+        name: "Fresh Dairy Cream",
+        category: "Cream",
+        size: "500 ml",
+        price: 145,
+        mrp: 160,
+        rating: 4.6,
+        discount: 9,
+        image: "../assets/products/cream.jpg"
+    },
+
+    /* =========================
+       GHEE
+    ========================= */
+
+    {
+        id: 1044,
+        name: "Pure Cow Ghee",
+        category: "Ghee",
+        size: "500 ml",
+        price: 315,
+        mrp: 350,
+        rating: 4.7,
+        discount: 10,
+        image: "../assets/products/ghee.jpg"
+    },
+    {
+        id: 1045,
+        name: "Pure Cow Ghee",
+        category: "Ghee",
+        size: "1 L",
+        price: 595,
+        mrp: 650,
+        rating: 4.7,
+        discount: 8,
+        image: "../assets/products/ghee.jpg"
+    },
+    {
+        id: 1046,
+        name: "Desi Ghee",
+        category: "Ghee",
+        size: "500 ml",
+        price: 345,
+        mrp: 390,
+        rating: 4.6,
+        discount: 12,
+        image: "../assets/products/ghee.jpg"
+    },
+
+    /* =========================
+       LASSI & FLAVOURED
+    ========================= */
+
+    {
+        id: 1047,
+        name: "Classic Sweet Lassi",
+        category: "Lassi & Flavoured Dairy",
+        size: "200 ml",
+        price: 25,
+        mrp: 28,
+        rating: 4.5,
+        discount: 11,
+        image: "../assets/products/lassi.jpg"
+    },
+    {
+        id: 1048,
+        name: "Mango Lassi",
+        category: "Lassi & Flavoured Dairy",
+        size: "200 ml",
+        price: 30,
+        mrp: 35,
+        rating: 4.5,
+        discount: 14,
+        image: "../assets/products/lassi.jpg"
+    },
+    {
+        id: 1049,
+        name: "Plain Chaas",
+        category: "Lassi & Flavoured Dairy",
+        size: "200 ml",
+        price: 20,
+        mrp: 25,
+        rating: 4.4,
+        discount: 20,
+        image: "../assets/products/lassi.jpg"
+    },
+    {
+        id: 1050,
+        name: "Masala Chaas",
+        category: "Lassi & Flavoured Dairy",
+        size: "200 ml",
+        price: 22,
+        mrp: 25,
+        rating: 4.5,
+        discount: 12,
+        image: "../assets/products/lassi.jpg"
     }
 
 ];
@@ -137,29 +399,17 @@ const products = [
    DOM
 ========================================================= */
 
-const productGrid =
-    document.getElementById("productGrid");
+const productGrid = document.getElementById("productGrid");
+const emptyState = document.getElementById("emptyState");
+const productCount = document.getElementById("heroProductCount");
+const resultsText = document.getElementById("resultsText");
 
-const emptyState =
-    document.getElementById("emptyState");
+const sortSelect = document.getElementById("sortSelect");
+const headerSearch = document.getElementById("headerSearch");
+const headerSearchForm = document.getElementById("headerSearchForm");
 
-const productCount =
-    document.getElementById("productCount");
-
-const resultsText =
-    document.getElementById("resultsText");
-
-const sortSelect =
-    document.getElementById("sortSelect");
-
-const headerSearch =
-    document.getElementById("headerSearch");
-
-const clearFilters =
-    document.getElementById("clearFilters");
-
-const emptyClearButton =
-    document.getElementById("emptyClearButton");
+const clearFilters = document.getElementById("clearFilters");
+const emptyClearButton = document.getElementById("emptyClearButton");
 
 const mobileFilterButton =
     document.getElementById("mobileFilterButton");
@@ -168,7 +418,7 @@ const mobileFilterClose =
     document.getElementById("mobileFilterClose");
 
 const filterSidebar =
-    document.querySelector(".filter-sidebar");
+    document.getElementById("filterSidebar");
 
 const filterOverlay =
     document.getElementById("filterOverlay");
@@ -181,6 +431,9 @@ const cartCount =
 
 const toast =
     document.getElementById("toast");
+
+const currentYear =
+    document.getElementById("currentYear");
 
 
 /* =========================================================
@@ -207,8 +460,7 @@ function getDiscount(product) {
     }
 
     return Math.round(
-        ((product.mrp - product.price) /
-            product.mrp) * 100
+        ((product.mrp - product.price) / product.mrp) * 100
     );
 }
 
@@ -230,18 +482,13 @@ function escapeHTML(value) {
 
 function imageFallback(imageElement) {
 
-    if (
-        imageElement.dataset.fallbackApplied ===
-        "true"
-    ) {
+    if (imageElement.dataset.fallbackApplied === "true") {
         return;
     }
 
-    imageElement.dataset.fallbackApplied =
-        "true";
+    imageElement.dataset.fallbackApplied = "true";
 
-    imageElement.src =
-        "../assets/products/milk.jpg";
+    imageElement.src = "../assets/categories/milk.jpg";
 }
 
 
@@ -251,25 +498,23 @@ function imageFallback(imageElement) {
 
 function getCart() {
 
-    const possibleKeys = [
+    const keys = [
         "marteyCart",
         "cart",
         "MARTEY_CART"
     ];
 
-    for (const key of possibleKeys) {
+    for (const key of keys) {
 
         try {
 
-            const stored =
-                localStorage.getItem(key);
+            const stored = localStorage.getItem(key);
 
             if (!stored) {
                 continue;
             }
 
-            const parsed =
-                JSON.parse(stored);
+            const parsed = JSON.parse(stored);
 
             if (Array.isArray(parsed)) {
                 return parsed;
@@ -283,12 +528,7 @@ function getCart() {
             }
 
         } catch (error) {
-
-            console.warn(
-                `Could not read cart from ${key}`,
-                error
-            );
-
+            console.warn("Cart read error:", error);
         }
     }
 
@@ -312,10 +552,7 @@ function normalizeCartItem(item) {
         item.qty ??
         1;
 
-    if (
-        id === undefined ||
-        id === null
-    ) {
+    if (id === undefined || id === null) {
         return null;
     }
 
@@ -340,54 +577,37 @@ function saveCart(cart) {
 
 function updateCartCount() {
 
-    const rawCart =
-        getCart();
+    const cart = getCart()
+        .map(normalizeCartItem)
+        .filter(Boolean);
 
-    const cart =
-        rawCart
-            .map(normalizeCartItem)
-            .filter(Boolean);
-
-    const totalQuantity =
-        cart.reduce(
-            (total, item) =>
-                total + item.quantity,
-            0
-        );
+    const total = cart.reduce(
+        (sum, item) => sum + item.quantity,
+        0
+    );
 
     cartCount.textContent =
-        totalQuantity;
+        total > 99 ? "99+" : total;
 }
 
 
 function addToCart(productId) {
 
-    const rawCart =
-        getCart();
+    const cart = getCart()
+        .map(normalizeCartItem)
+        .filter(Boolean);
 
-    let cart =
-        rawCart
-            .map(normalizeCartItem)
-            .filter(Boolean);
+    const existing = cart.find(
+        item => item.id === Number(productId)
+    );
 
-    const existingItem =
-        cart.find(
-            item =>
-                item.id ===
-                Number(productId)
-        );
-
-    if (existingItem) {
-
-        existingItem.quantity += 1;
-
+    if (existing) {
+        existing.quantity += 1;
     } else {
-
         cart.push({
             id: Number(productId),
             quantity: 1
         });
-
     }
 
     saveCart(cart);
@@ -404,19 +624,16 @@ function addToCart(productId) {
 function createProductCard(product) {
 
     const discount =
-        product.discount ||
-        getDiscount(product);
+        product.discount || getDiscount(product);
 
-    const card =
-        document.createElement("article");
+    const card = document.createElement("article");
 
-    card.className =
-        "product-card";
+    card.className = "product-card";
 
     card.innerHTML = `
 
         <a
-            href="/product/${product.id}"
+            href="/product/?id=${product.id}"
             class="product-image-link"
             aria-label="View ${escapeHTML(product.name)}"
         >
@@ -451,14 +668,12 @@ function createProductCard(product) {
                 ${escapeHTML(product.category)}
             </div>
 
-
             <a
-                href="/product/${product.id}"
+                href="/product/?id=${product.id}"
                 class="product-name"
             >
                 ${escapeHTML(product.name)}
             </a>
-
 
             <div class="product-meta">
 
@@ -472,7 +687,6 @@ function createProductCard(product) {
                 </span>
 
             </div>
-
 
             <div class="price-row">
 
@@ -502,7 +716,6 @@ function createProductCard(product) {
 
             </div>
 
-
             <button
                 type="button"
                 class="add-button"
@@ -528,18 +741,15 @@ function getSelectedDairyTypes() {
         document.querySelectorAll(
             'input[name="dairyType"]:checked'
         )
-    ).map(
-        input => input.value
-    );
+    ).map(input => input.value);
 }
 
 
 function getSelectedPriceFilter() {
 
-    const selected =
-        document.querySelector(
-            'input[name="priceFilter"]:checked'
-        );
+    const selected = document.querySelector(
+        'input[name="priceFilter"]:checked'
+    );
 
     return selected
         ? selected.value
@@ -547,27 +757,52 @@ function getSelectedPriceFilter() {
 }
 
 
-function matchesPriceFilter(
-    product,
-    filter
-) {
+function getSelectedDiscountFilters() {
+
+    return Array.from(
+        document.querySelectorAll(
+            'input[name="discountFilter"]:checked'
+        )
+    ).map(input => Number(input.value));
+}
+
+
+function matchesPriceFilter(product, filter) {
 
     if (filter === "under50") {
         return product.price < 50;
     }
 
     if (filter === "50to100") {
-        return (
-            product.price >= 50 &&
-            product.price <= 100
-        );
+        return product.price >= 50 &&
+               product.price <= 100;
     }
 
-    if (filter === "above100") {
-        return product.price > 100;
+    if (filter === "100to200") {
+        return product.price >= 100 &&
+               product.price <= 200;
+    }
+
+    if (filter === "above200") {
+        return product.price > 200;
     }
 
     return true;
+}
+
+
+function matchesDiscountFilter(product, filters) {
+
+    if (!filters.length) {
+        return true;
+    }
+
+    const discount =
+        product.discount || getDiscount(product);
+
+    return filters.some(
+        minimum => discount >= minimum
+    );
 }
 
 
@@ -579,12 +814,17 @@ function filterProducts() {
     const selectedPrice =
         getSelectedPriceFilter();
 
+    const discountFilters =
+        getSelectedDiscountFilters();
+
     return products.filter(product => {
 
         const searchText =
             currentSearch.toLowerCase();
 
         const searchMatch =
+            !searchText ||
+
             product.name
                 .toLowerCase()
                 .includes(searchText) ||
@@ -599,9 +839,7 @@ function filterProducts() {
 
         const typeMatch =
             selectedTypes.length === 0 ||
-            selectedTypes.includes(
-                product.category
-            );
+            selectedTypes.includes(product.category);
 
         const priceMatch =
             matchesPriceFilter(
@@ -609,10 +847,17 @@ function filterProducts() {
                 selectedPrice
             );
 
+        const discountMatch =
+            matchesDiscountFilter(
+                product,
+                discountFilters
+            );
+
         return (
             searchMatch &&
             typeMatch &&
-            priceMatch
+            priceMatch &&
+            discountMatch
         );
     });
 }
@@ -622,46 +867,34 @@ function filterProducts() {
    SORT
 ========================================================= */
 
-function sortProducts(productList) {
+function sortProducts(list) {
 
-    const sorted =
-        [...productList];
+    const sorted = [...list];
 
-    if (
-        currentSort ===
-        "price-low"
-    ) {
+    if (currentSort === "price-low") {
 
         sorted.sort(
-            (a, b) =>
-                a.price - b.price
+            (a, b) => a.price - b.price
         );
 
-    } else if (
-        currentSort ===
-        "price-high"
-    ) {
+    } else if (currentSort === "price-high") {
 
         sorted.sort(
-            (a, b) =>
-                b.price - a.price
+            (a, b) => b.price - a.price
         );
 
-    } else if (
-        currentSort ===
-        "discount"
-    ) {
+    } else if (currentSort === "discount") {
 
         sorted.sort(
             (a, b) =>
-                (
-                    b.discount ||
-                    getDiscount(b)
-                ) -
-                (
-                    a.discount ||
-                    getDiscount(a)
-                )
+                (b.discount || getDiscount(b)) -
+                (a.discount || getDiscount(a))
+        );
+
+    } else if (currentSort === "rating") {
+
+        sorted.sort(
+            (a, b) => b.rating - a.rating
         );
     }
 
@@ -675,22 +908,13 @@ function sortProducts(productList) {
 
 function renderProducts() {
 
-    const filtered =
-        filterProducts();
-
-    const sorted =
-        sortProducts(filtered);
+    const filtered = filterProducts();
+    const sorted = sortProducts(filtered);
 
     productGrid.innerHTML = "";
 
-
     productCount.textContent =
-        `${sorted.length} ${
-            sorted.length === 1
-                ? "product"
-                : "products"
-        }`;
-
+        `${products.length}+`;
 
     resultsText.textContent =
         `Showing ${sorted.length} ${
@@ -699,21 +923,17 @@ function renderProducts() {
                 : "products"
         }`;
 
-
-    if (sorted.length === 0) {
+    if (!sorted.length) {
 
         emptyState.hidden = false;
 
         return;
     }
 
-
     emptyState.hidden = true;
-
 
     const fragment =
         document.createDocumentFragment();
-
 
     sorted.forEach(product => {
 
@@ -723,15 +943,12 @@ function renderProducts() {
 
     });
 
-
-    productGrid.appendChild(
-        fragment
-    );
+    productGrid.appendChild(fragment);
 }
 
 
 /* =========================================================
-   HEADER SEARCH
+   SEARCH
 ========================================================= */
 
 function handleHeaderSearch() {
@@ -748,14 +965,11 @@ function handleHeaderSearch() {
 }
 
 
-headerSearch.addEventListener(
-    "keydown",
+headerSearchForm.addEventListener(
+    "submit",
     event => {
-
-        if (event.key === "Enter") {
-            handleHeaderSearch();
-        }
-
+        event.preventDefault();
+        handleHeaderSearch();
     }
 );
 
@@ -770,20 +984,13 @@ function showToast(message) {
 
     clearTimeout(toastTimer);
 
-    toast.textContent =
-        message;
+    toast.textContent = message;
 
     toast.classList.add("show");
 
-
-    toastTimer =
-        setTimeout(() => {
-
-            toast.classList.remove(
-                "show"
-            );
-
-        }, 1800);
+    toastTimer = setTimeout(() => {
+        toast.classList.remove("show");
+    }, 1800);
 }
 
 
@@ -795,35 +1002,28 @@ function clearAllFilters() {
 
     currentSearch = "";
 
+    headerSearch.value = "";
 
     document
         .querySelectorAll(
-            'input[name="dairyType"]'
+            'input[name="dairyType"], input[name="discountFilter"]'
         )
         .forEach(input => {
-
             input.checked = false;
-
         });
-
 
     const allPrice =
         document.querySelector(
             'input[name="priceFilter"][value="all"]'
         );
 
-
     if (allPrice) {
         allPrice.checked = true;
     }
 
+    currentSort = "relevance";
 
-    currentSort =
-        "relevance";
-
-    sortSelect.value =
-        "relevance";
-
+    sortSelect.value = "relevance";
 
     renderProducts();
 
@@ -837,39 +1037,21 @@ function clearAllFilters() {
 
 function openMobileFilters() {
 
-    filterSidebar.classList.add(
-        "mobile-open"
-    );
+    filterSidebar.classList.add("mobile-open");
+    filterOverlay.classList.add("show");
+    mobileFilterClose.classList.add("show");
 
-    filterOverlay.classList.add(
-        "show"
-    );
-
-    mobileFilterClose.classList.add(
-        "show"
-    );
-
-    document.body.style.overflow =
-        "hidden";
+    document.body.style.overflow = "hidden";
 }
 
 
 function closeMobileFilters() {
 
-    filterSidebar.classList.remove(
-        "mobile-open"
-    );
+    filterSidebar.classList.remove("mobile-open");
+    filterOverlay.classList.remove("show");
+    mobileFilterClose.classList.remove("show");
 
-    filterOverlay.classList.remove(
-        "show"
-    );
-
-    mobileFilterClose.classList.remove(
-        "show"
-    );
-
-    document.body.style.overflow =
-        "";
+    document.body.style.overflow = "";
 }
 
 
@@ -881,18 +1063,16 @@ sortSelect.addEventListener(
     "change",
     event => {
 
-        currentSort =
-            event.target.value;
+        currentSort = event.target.value;
 
         renderProducts();
-
     }
 );
 
 
 document
     .querySelectorAll(
-        'input[name="dairyType"], input[name="priceFilter"]'
+        'input[name="dairyType"], input[name="priceFilter"], input[name="discountFilter"]'
     )
     .forEach(input => {
 
@@ -900,7 +1080,6 @@ document
             "change",
             renderProducts
         );
-
     });
 
 
@@ -943,40 +1122,24 @@ productGrid.addEventListener(
     event => {
 
         const button =
-            event.target.closest(
-                ".add-button"
-            );
+            event.target.closest(".add-button");
 
         if (!button) {
             return;
         }
 
-
         const productId =
-            Number(
-                button.dataset.productId
-            );
-
+            Number(button.dataset.productId);
 
         addToCart(productId);
 
-
-        button.textContent =
-            "Added ✓";
-
-        button.classList.add(
-            "added"
-        );
-
+        button.textContent = "Added ✓";
+        button.classList.add("added");
 
         setTimeout(() => {
 
-            button.textContent =
-                "Add to Cart";
-
-            button.classList.remove(
-                "added"
-            );
+            button.textContent = "Add to Cart";
+            button.classList.remove("added");
 
         }, 1200);
     }
@@ -994,9 +1157,18 @@ locationButton.addEventListener(
         showToast(
             "Location selection will be connected later."
         );
-
     }
 );
+
+
+/* =========================================================
+   YEAR
+========================================================= */
+
+if (currentYear) {
+    currentYear.textContent =
+        new Date().getFullYear();
+}
 
 
 /* =========================================================
