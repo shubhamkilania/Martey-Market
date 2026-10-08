@@ -1,9 +1,7 @@
+"use strict";
+
+
 const products = [
-
-    /* =========================
-       MILK
-    ========================= */
-
     {
         id: 1001,
         name: "Fresh Full Cream Milk",
@@ -15,6 +13,7 @@ const products = [
         discount: 6,
         image: "../assets/products/milk.jpg"
     },
+
     {
         id: 1020,
         name: "Toned Milk",
@@ -26,6 +25,7 @@ const products = [
         discount: 6,
         image: "../assets/products/milk.jpg"
     },
+
     {
         id: 1021,
         name: "Double Toned Milk",
@@ -37,43 +37,6 @@ const products = [
         discount: 7,
         image: "../assets/products/milk.jpg"
     },
-    {
-        id: 1029,
-        name: "Full Cream Milk",
-        category: "Milk",
-        size: "500 ml",
-        price: 34,
-        mrp: 36,
-        rating: 4.5,
-        discount: 6,
-        image: "../assets/products/milk.jpg"
-    },
-    {
-        id: 1030,
-        name: "Toned Milk",
-        category: "Milk",
-        size: "500 ml",
-        price: 29,
-        mrp: 31,
-        rating: 4.4,
-        discount: 6,
-        image: "../assets/products/milk.jpg"
-    },
-    {
-        id: 1031,
-        name: "Fresh Milk",
-        category: "Milk",
-        size: "2 L",
-        price: 126,
-        mrp: 136,
-        rating: 4.6,
-        discount: 7,
-        image: "../assets/products/milk.jpg"
-    },
-
-    /* =========================
-       CURD & YOGURT
-    ========================= */
 
     {
         id: 1022,
@@ -86,6 +49,7 @@ const products = [
         discount: 10,
         image: "../assets/products/curd.jpg"
     },
+
     {
         id: 1023,
         name: "Thick Natural Yogurt",
@@ -97,43 +61,6 @@ const products = [
         discount: 15,
         image: "../assets/products/yogurt.jpg"
     },
-    {
-        id: 1032,
-        name: "Fresh Curd",
-        category: "Curd & Yogurt",
-        size: "200 g",
-        price: 25,
-        mrp: 28,
-        rating: 4.4,
-        discount: 11,
-        image: "../assets/products/curd.jpg"
-    },
-    {
-        id: 1033,
-        name: "Natural Yogurt",
-        category: "Curd & Yogurt",
-        size: "1 kg",
-        price: 105,
-        mrp: 120,
-        rating: 4.6,
-        discount: 13,
-        image: "../assets/products/yogurt.jpg"
-    },
-    {
-        id: 1034,
-        name: "Greek Style Yogurt",
-        category: "Curd & Yogurt",
-        size: "400 g",
-        price: 95,
-        mrp: 110,
-        rating: 4.5,
-        discount: 14,
-        image: "../assets/products/yogurt.jpg"
-    },
-
-    /* =========================
-       BUTTER
-    ========================= */
 
     {
         id: 1024,
@@ -146,43 +73,6 @@ const products = [
         discount: 11,
         image: "../assets/products/butter.jpg"
     },
-    {
-        id: 1035,
-        name: "Salted Butter",
-        category: "Butter",
-        size: "100 g",
-        price: 55,
-        mrp: 62,
-        rating: 4.6,
-        discount: 11,
-        image: "../assets/products/butter.jpg"
-    },
-    {
-        id: 1036,
-        name: "Salted Butter",
-        category: "Butter",
-        size: "500 g",
-        price: 245,
-        mrp: 275,
-        rating: 4.7,
-        discount: 11,
-        image: "../assets/products/butter.jpg"
-    },
-    {
-        id: 1037,
-        name: "Unsalted Butter",
-        category: "Butter",
-        size: "500 g",
-        price: 255,
-        mrp: 285,
-        rating: 4.6,
-        discount: 11,
-        image: "../assets/products/butter.jpg"
-    },
-
-    /* =========================
-       PANEER
-    ========================= */
 
     {
         id: 1025,
@@ -195,6 +85,7 @@ const products = [
         discount: 11,
         image: "../assets/products/paneer.jpg"
     },
+
     {
         id: 1026,
         name: "Premium Paneer",
@@ -206,32 +97,6 @@ const products = [
         discount: 11,
         image: "../assets/products/paneer.jpg"
     },
-    {
-        id: 1038,
-        name: "Fresh Paneer",
-        category: "Paneer",
-        size: "100 g",
-        price: 45,
-        mrp: 50,
-        rating: 4.5,
-        discount: 10,
-        image: "../assets/products/paneer.jpg"
-    },
-    {
-        id: 1039,
-        name: "Malai Paneer",
-        category: "Paneer",
-        size: "200 g",
-        price: 105,
-        mrp: 120,
-        rating: 4.6,
-        discount: 13,
-        image: "../assets/products/paneer.jpg"
-    },
-
-    /* =========================
-       CHEESE
-    ========================= */
 
     {
         id: 1027,
@@ -244,6 +109,7 @@ const products = [
         discount: 14,
         image: "../assets/products/cheese.jpg"
     },
+
     {
         id: 1028,
         name: "Cheese Block",
@@ -254,144 +120,7 @@ const products = [
         rating: 4.4,
         discount: 12,
         image: "../assets/products/cheese.jpg"
-    },
-    {
-        id: 1040,
-        name: "Cheese Slices",
-        category: "Cheese",
-        size: "100 g",
-        price: 69,
-        mrp: 80,
-        rating: 4.5,
-        discount: 14,
-        image: "../assets/products/cheese.jpg"
-    },
-    {
-        id: 1041,
-        name: "Cheese Block",
-        category: "Cheese",
-        size: "500 g",
-        price: 315,
-        mrp: 350,
-        rating: 4.6,
-        discount: 10,
-        image: "../assets/products/cheese.jpg"
-    },
-
-    /* =========================
-       CREAM
-    ========================= */
-
-    {
-        id: 1042,
-        name: "Fresh Dairy Cream",
-        category: "Cream",
-        size: "200 ml",
-        price: 65,
-        mrp: 72,
-        rating: 4.5,
-        discount: 10,
-        image: "../assets/products/cream.jpg"
-    },
-    {
-        id: 1043,
-        name: "Fresh Dairy Cream",
-        category: "Cream",
-        size: "500 ml",
-        price: 145,
-        mrp: 160,
-        rating: 4.6,
-        discount: 9,
-        image: "../assets/products/cream.jpg"
-    },
-
-    /* =========================
-       GHEE
-    ========================= */
-
-    {
-        id: 1044,
-        name: "Pure Cow Ghee",
-        category: "Ghee",
-        size: "500 ml",
-        price: 315,
-        mrp: 350,
-        rating: 4.7,
-        discount: 10,
-        image: "../assets/products/ghee.jpg"
-    },
-    {
-        id: 1045,
-        name: "Pure Cow Ghee",
-        category: "Ghee",
-        size: "1 L",
-        price: 595,
-        mrp: 650,
-        rating: 4.7,
-        discount: 8,
-        image: "../assets/products/ghee.jpg"
-    },
-    {
-        id: 1046,
-        name: "Desi Ghee",
-        category: "Ghee",
-        size: "500 ml",
-        price: 345,
-        mrp: 390,
-        rating: 4.6,
-        discount: 12,
-        image: "../assets/products/ghee.jpg"
-    },
-
-    /* =========================
-       LASSI & FLAVOURED
-    ========================= */
-
-    {
-        id: 1047,
-        name: "Classic Sweet Lassi",
-        category: "Lassi & Flavoured Dairy",
-        size: "200 ml",
-        price: 25,
-        mrp: 28,
-        rating: 4.5,
-        discount: 11,
-        image: "../assets/products/lassi.jpg"
-    },
-    {
-        id: 1048,
-        name: "Mango Lassi",
-        category: "Lassi & Flavoured Dairy",
-        size: "200 ml",
-        price: 30,
-        mrp: 35,
-        rating: 4.5,
-        discount: 14,
-        image: "../assets/products/lassi.jpg"
-    },
-    {
-        id: 1049,
-        name: "Plain Chaas",
-        category: "Lassi & Flavoured Dairy",
-        size: "200 ml",
-        price: 20,
-        mrp: 25,
-        rating: 4.4,
-        discount: 20,
-        image: "../assets/products/lassi.jpg"
-    },
-    {
-        id: 1050,
-        name: "Masala Chaas",
-        category: "Lassi & Flavoured Dairy",
-        size: "200 ml",
-        price: 22,
-        mrp: 25,
-        rating: 4.5,
-        discount: 12,
-        image: "../assets/products/lassi.jpg"
     }
-
 ];
 
 
@@ -401,47 +130,39 @@ const products = [
 
 const productGrid = document.getElementById("productGrid");
 const emptyState = document.getElementById("emptyState");
-const productCount = document.getElementById("heroProductCount");
+
+const productCount = document.getElementById("productCount");
 const resultsText = document.getElementById("resultsText");
 
 const sortSelect = document.getElementById("sortSelect");
+
+const searchForm = document.getElementById("searchForm");
 const headerSearch = document.getElementById("headerSearch");
-const headerSearchForm = document.getElementById("headerSearchForm");
+const searchClear = document.getElementById("searchClear");
+const searchDropdown = document.getElementById("searchDropdown");
+
+const cartCount = document.getElementById("cartCount");
 
 const clearFilters = document.getElementById("clearFilters");
 const emptyClearButton = document.getElementById("emptyClearButton");
 
-const mobileFilterButton =
-    document.getElementById("mobileFilterButton");
+const mobileFilterButton = document.getElementById("mobileFilterButton");
+const mobileFilterClose = document.getElementById("mobileFilterClose");
+const filterOverlay = document.getElementById("filterOverlay");
+const mobileFilterContent = document.getElementById("mobileFilterContent");
 
-const mobileFilterClose =
-    document.getElementById("mobileFilterClose");
+const locationButton = document.getElementById("locationButton");
+const locationText = document.getElementById("locationText");
 
-const filterSidebar =
-    document.getElementById("filterSidebar");
+const locationOverlay = document.getElementById("locationOverlay");
+const locationClose = document.getElementById("locationClose");
+const locationInput = document.getElementById("locationInput");
+const saveLocationButton = document.getElementById("saveLocation");
+const useCurrentLocation = document.getElementById("useCurrentLocation");
+const locationStatus = document.getElementById("locationStatus");
 
-const filterOverlay =
-    document.getElementById("filterOverlay");
-
-const locationButton =
-    document.getElementById("locationButton");
-
-const cartCount =
-    document.getElementById("cartCount");
-
-const toast =
-    document.getElementById("toast");
-
-const currentYear =
-    document.getElementById("currentYear");
-
-
-/* =========================================================
-   STATE
-========================================================= */
-
-let currentSearch = "";
-let currentSort = "relevance";
+const toast = document.getElementById("toast");
+const currentYear = document.getElementById("currentYear");
 
 
 /* =========================================================
@@ -449,24 +170,11 @@ let currentSort = "relevance";
 ========================================================= */
 
 function formatPrice(value) {
-    return `₹${value}`;
-}
-
-
-function getDiscount(product) {
-
-    if (product.mrp <= product.price) {
-        return 0;
-    }
-
-    return Math.round(
-        ((product.mrp - product.price) / product.mrp) * 100
-    );
+    return `₹${Number(value).toLocaleString("en-IN")}`;
 }
 
 
 function escapeHTML(value) {
-
     return String(value)
         .replaceAll("&", "&amp;")
         .replaceAll("<", "&lt;")
@@ -477,37 +185,18 @@ function escapeHTML(value) {
 
 
 /* =========================================================
-   IMAGE FALLBACK
-========================================================= */
-
-function imageFallback(imageElement) {
-
-    if (imageElement.dataset.fallbackApplied === "true") {
-        return;
-    }
-
-    imageElement.dataset.fallbackApplied = "true";
-
-    imageElement.src = "../assets/categories/milk.jpg";
-}
-
-
-/* =========================================================
    CART
 ========================================================= */
 
 function getCart() {
-
-    const keys = [
+    const possibleKeys = [
         "marteyCart",
         "cart",
         "MARTEY_CART"
     ];
 
-    for (const key of keys) {
-
+    for (const key of possibleKeys) {
         try {
-
             const stored = localStorage.getItem(key);
 
             if (!stored) {
@@ -519,16 +208,8 @@ function getCart() {
             if (Array.isArray(parsed)) {
                 return parsed;
             }
-
-            if (
-                parsed &&
-                Array.isArray(parsed.items)
-            ) {
-                return parsed.items;
-            }
-
         } catch (error) {
-            console.warn("Cart read error:", error);
+            console.warn("Could not read cart:", error);
         }
     }
 
@@ -537,83 +218,92 @@ function getCart() {
 
 
 function normalizeCartItem(item) {
-
-    if (!item) {
+    if (!item || typeof item !== "object") {
         return null;
     }
 
     const id =
         item.id ??
         item.productId ??
-        item.productID;
-
-    const quantity =
-        item.quantity ??
-        item.qty ??
-        1;
+        item.productID ??
+        item.product_id;
 
     if (id === undefined || id === null) {
         return null;
     }
 
+    const quantity =
+        Number(item.quantity ?? item.qty ?? 1) || 1;
+
     return {
-        id: Number(id),
-        quantity: Math.max(
-            1,
-            Number(quantity) || 1
-        )
+        ...item,
+        id: String(id),
+        quantity: Math.max(1, quantity)
     };
 }
 
 
 function saveCart(cart) {
+    try {
+        localStorage.setItem("marteyCart", JSON.stringify(cart));
+        window.dispatchEvent(new Event("storage"));
+    } catch (error) {
+        console.warn("Could not save cart:", error);
+    }
 
-    localStorage.setItem(
-        "marteyCart",
-        JSON.stringify(cart)
-    );
+    updateCartCount();
 }
 
 
 function updateCartCount() {
+    const cart = getCart();
 
-    const cart = getCart()
-        .map(normalizeCartItem)
-        .filter(Boolean);
+    const total = cart.reduce((sum, item) => {
+        const normalized = normalizeCartItem(item);
 
-    const total = cart.reduce(
-        (sum, item) => sum + item.quantity,
-        0
-    );
+        if (!normalized) {
+            return sum;
+        }
 
-    cartCount.textContent =
-        total > 99 ? "99+" : total;
+        return sum + normalized.quantity;
+    }, 0);
+
+    if (!cartCount) {
+        return;
+    }
+
+    cartCount.textContent = total > 99 ? "99+" : String(total);
 }
 
 
-function addToCart(productId) {
-
+function addToCart(product) {
     const cart = getCart()
         .map(normalizeCartItem)
         .filter(Boolean);
 
     const existing = cart.find(
-        item => item.id === Number(productId)
+        item => String(item.id) === String(product.id)
     );
 
     if (existing) {
         existing.quantity += 1;
     } else {
         cart.push({
-            id: Number(productId),
+            id: String(product.id),
+            name: product.name,
+            category: product.category,
+            size: product.size,
+            price: product.price,
+            mrp: product.mrp,
+            discount: product.discount,
+            image: product.image,
             quantity: 1
         });
     }
 
     saveCart(cart);
-    updateCartCount();
 
-    showToast("Added to cart");
+    showToast(`${product.name} added to cart.`);
 }
 
 
@@ -623,106 +313,68 @@ function addToCart(productId) {
 
 function createProductCard(product) {
 
-    const discount =
-        product.discount || getDiscount(product);
-
     const card = document.createElement("article");
-
     card.className = "product-card";
 
     card.innerHTML = `
-
         <a
-            href="/product/?id=${product.id}"
             class="product-image-link"
+            href="/product/?id=${encodeURIComponent(product.id)}"
             aria-label="View ${escapeHTML(product.name)}"
         >
+            <img
+                class="product-image"
+                src="${escapeHTML(product.image)}"
+                alt="${escapeHTML(product.name)}"
+                loading="lazy"
+                onerror="this.style.opacity='0.25'"
+            >
 
-            <div class="product-image">
-
-                ${
-                    discount > 0
-                        ? `
-                            <span class="discount-badge">
-                                ${discount}% OFF
-                            </span>
-                          `
-                        : ""
-                }
-
-                <img
-                    src="${escapeHTML(product.image)}"
-                    alt="${escapeHTML(product.name)}"
-                    loading="lazy"
-                    onerror="imageFallback(this)"
-                >
-
-            </div>
-
+            ${
+                product.discount > 0
+                    ? `<span class="discount-badge">${product.discount}% OFF</span>`
+                    : ""
+            }
         </a>
-
 
         <div class="product-info">
 
-            <div class="product-category">
+            <span class="product-category">
                 ${escapeHTML(product.category)}
-            </div>
+            </span>
 
             <a
-                href="/product/?id=${product.id}"
+                href="/product/?id=${encodeURIComponent(product.id)}"
                 class="product-name"
             >
                 ${escapeHTML(product.name)}
             </a>
 
-            <div class="product-meta">
+            <span class="product-size">
+                ${escapeHTML(product.size)}
+            </span>
 
-                <span class="product-size">
-                    ${escapeHTML(product.size)}
-                </span>
+            <div class="product-bottom">
 
-                <span class="rating">
-                    <span>★</span>
-                    ${product.rating}
-                </span>
+                <div class="product-prices">
+                    <span class="product-price">
+                        ${formatPrice(product.price)}
+                    </span>
 
-            </div>
+                    <span class="product-mrp">
+                        ${formatPrice(product.mrp)}
+                    </span>
+                </div>
 
-            <div class="price-row">
-
-                <strong class="product-price">
-                    ${formatPrice(product.price)}
-                </strong>
-
-                ${
-                    product.mrp > product.price
-                        ? `
-                            <span class="product-mrp">
-                                ${formatPrice(product.mrp)}
-                            </span>
-                          `
-                        : ""
-                }
-
-                ${
-                    discount > 0
-                        ? `
-                            <span class="product-discount">
-                                Save ${discount}%
-                            </span>
-                          `
-                        : ""
-                }
+                <button
+                    type="button"
+                    class="add-button"
+                    data-product-id="${escapeHTML(product.id)}"
+                >
+                    Add
+                </button>
 
             </div>
-
-            <button
-                type="button"
-                class="add-button"
-                data-product-id="${product.id}"
-            >
-                Add to Cart
-            </button>
 
         </div>
     `;
@@ -736,34 +388,17 @@ function createProductCard(product) {
 ========================================================= */
 
 function getSelectedDairyTypes() {
-
-    return Array.from(
-        document.querySelectorAll(
-            'input[name="dairyType"]:checked'
-        )
-    ).map(input => input.value);
+    return [...document.querySelectorAll(".dairy-filter:checked")]
+        .map(input => input.value);
 }
 
 
 function getSelectedPriceFilter() {
-
     const selected = document.querySelector(
-        'input[name="priceFilter"]:checked'
+        'input[name="price"]:checked'
     );
 
-    return selected
-        ? selected.value
-        : "all";
-}
-
-
-function getSelectedDiscountFilters() {
-
-    return Array.from(
-        document.querySelectorAll(
-            'input[name="discountFilter"]:checked'
-        )
-    ).map(input => Number(input.value));
+    return selected ? selected.value : "all";
 }
 
 
@@ -774,91 +409,32 @@ function matchesPriceFilter(product, filter) {
     }
 
     if (filter === "50to100") {
-        return product.price >= 50 &&
-               product.price <= 100;
+        return product.price >= 50 && product.price <= 100;
     }
 
-    if (filter === "100to200") {
-        return product.price >= 100 &&
-               product.price <= 200;
-    }
-
-    if (filter === "above200") {
-        return product.price > 200;
+    if (filter === "above100") {
+        return product.price > 100;
     }
 
     return true;
 }
 
 
-function matchesDiscountFilter(product, filters) {
-
-    if (!filters.length) {
-        return true;
-    }
-
-    const discount =
-        product.discount || getDiscount(product);
-
-    return filters.some(
-        minimum => discount >= minimum
-    );
-}
-
-
 function filterProducts() {
 
-    const selectedTypes =
-        getSelectedDairyTypes();
-
-    const selectedPrice =
-        getSelectedPriceFilter();
-
-    const discountFilters =
-        getSelectedDiscountFilters();
+    const dairyTypes = getSelectedDairyTypes();
+    const priceFilter = getSelectedPriceFilter();
 
     return products.filter(product => {
 
-        const searchText =
-            currentSearch.toLowerCase();
-
-        const searchMatch =
-            !searchText ||
-
-            product.name
-                .toLowerCase()
-                .includes(searchText) ||
-
-            product.category
-                .toLowerCase()
-                .includes(searchText) ||
-
-            product.size
-                .toLowerCase()
-                .includes(searchText);
-
-        const typeMatch =
-            selectedTypes.length === 0 ||
-            selectedTypes.includes(product.category);
+        const dairyMatch =
+            dairyTypes.length === 0 ||
+            dairyTypes.includes(product.category);
 
         const priceMatch =
-            matchesPriceFilter(
-                product,
-                selectedPrice
-            );
+            matchesPriceFilter(product, priceFilter);
 
-        const discountMatch =
-            matchesDiscountFilter(
-                product,
-                discountFilters
-            );
-
-        return (
-            searchMatch &&
-            typeMatch &&
-            priceMatch &&
-            discountMatch
-        );
+        return dairyMatch && priceMatch;
     });
 }
 
@@ -871,31 +447,23 @@ function sortProducts(list) {
 
     const sorted = [...list];
 
-    if (currentSort === "price-low") {
+    switch (sortSelect.value) {
 
-        sorted.sort(
-            (a, b) => a.price - b.price
-        );
+        case "price-low":
+            sorted.sort((a, b) => a.price - b.price);
+            break;
 
-    } else if (currentSort === "price-high") {
+        case "price-high":
+            sorted.sort((a, b) => b.price - a.price);
+            break;
 
-        sorted.sort(
-            (a, b) => b.price - a.price
-        );
+        case "discount":
+            sorted.sort((a, b) => b.discount - a.discount);
+            break;
 
-    } else if (currentSort === "discount") {
-
-        sorted.sort(
-            (a, b) =>
-                (b.discount || getDiscount(b)) -
-                (a.discount || getDiscount(a))
-        );
-
-    } else if (currentSort === "rating") {
-
-        sorted.sort(
-            (a, b) => b.rating - a.rating
-        );
+        default:
+            sorted.sort((a, b) => a.id - b.id);
+            break;
     }
 
     return sorted;
@@ -908,39 +476,31 @@ function sortProducts(list) {
 
 function renderProducts() {
 
-    const filtered = filterProducts();
-    const sorted = sortProducts(filtered);
+    const filtered = sortProducts(filterProducts());
 
     productGrid.innerHTML = "";
 
-    productCount.textContent =
-        `${products.length}+`;
+    if (productCount) {
+        productCount.textContent =
+            `${filtered.length} ${filtered.length === 1 ? "product" : "products"}`;
+    }
 
-    resultsText.textContent =
-        `Showing ${sorted.length} ${
-            sorted.length === 1
-                ? "product"
-                : "products"
-        }`;
+    if (resultsText) {
+        resultsText.textContent =
+            `${filtered.length} ${filtered.length === 1 ? "product" : "products"}`;
+    }
 
-    if (!sorted.length) {
-
+    if (filtered.length === 0) {
         emptyState.hidden = false;
-
         return;
     }
 
     emptyState.hidden = true;
 
-    const fragment =
-        document.createDocumentFragment();
+    const fragment = document.createDocumentFragment();
 
-    sorted.forEach(product => {
-
-        fragment.appendChild(
-            createProductCard(product)
-        );
-
+    filtered.forEach(product => {
+        fragment.appendChild(createProductCard(product));
     });
 
     productGrid.appendChild(fragment);
@@ -951,47 +511,149 @@ function renderProducts() {
    SEARCH
 ========================================================= */
 
-function handleHeaderSearch() {
+function goToSearch(query) {
 
-    const query =
-        headerSearch.value.trim();
+    const cleanQuery = String(query || "").trim();
 
-    if (!query) {
+    if (!cleanQuery) {
         return;
     }
 
     window.location.href =
-        `/search?q=${encodeURIComponent(query)}`;
+        `/search?q=${encodeURIComponent(cleanQuery)}`;
 }
 
 
-headerSearchForm.addEventListener(
-    "submit",
-    event => {
-        event.preventDefault();
-        handleHeaderSearch();
+function updateSearchUI() {
+
+    const query = headerSearch.value.trim();
+
+    if (query) {
+        searchClear.classList.add("visible");
+    } else {
+        searchClear.classList.remove("visible");
     }
-);
 
+    if (!query) {
+        searchDropdown.classList.remove("active");
+        searchDropdown.innerHTML = "";
+        return;
+    }
 
-/* =========================================================
-   TOAST
-========================================================= */
+    const lowerQuery = query.toLowerCase();
 
-let toastTimer;
+    const matches = products
+        .filter(product =>
+            product.name.toLowerCase().includes(lowerQuery) ||
+            product.category.toLowerCase().includes(lowerQuery)
+        )
+        .slice(0, 5);
 
-function showToast(message) {
+    if (matches.length === 0) {
+        searchDropdown.innerHTML = `
+            <div class="search-result">
+                <div class="search-result-info">
+                    <strong>No matching Milk & Dairy product</strong>
+                    <span>Press Enter to search all MARTEY products</span>
+                </div>
+            </div>
+        `;
 
-    clearTimeout(toastTimer);
+        searchDropdown.classList.add("active");
+        return;
+    }
 
-    toast.textContent = message;
+    searchDropdown.innerHTML = matches.map(product => `
+        <button
+            type="button"
+            class="search-result"
+            data-search-product-id="${escapeHTML(product.id)}"
+        >
+            <span class="search-result-image">
+                <img
+                    src="${escapeHTML(product.image)}"
+                    alt=""
+                    onerror="this.style.opacity='0.25'"
+                >
+            </span>
 
-    toast.classList.add("show");
+            <span class="search-result-info">
+                <strong>${escapeHTML(product.name)}</strong>
+                <span>
+                    ${escapeHTML(product.size)} · ${formatPrice(product.price)}
+                </span>
+            </span>
+        </button>
+    `).join("");
 
-    toastTimer = setTimeout(() => {
-        toast.classList.remove("show");
-    }, 1800);
+    searchDropdown.classList.add("active");
 }
+
+
+if (searchForm) {
+    searchForm.addEventListener("submit", event => {
+        event.preventDefault();
+        goToSearch(headerSearch.value);
+    });
+}
+
+
+if (headerSearch) {
+
+    headerSearch.addEventListener("input", updateSearchUI);
+
+    headerSearch.addEventListener("keydown", event => {
+        if (event.key === "Enter") {
+            event.preventDefault();
+            goToSearch(headerSearch.value);
+        }
+
+        if (event.key === "Escape") {
+            searchDropdown.classList.remove("active");
+        }
+    });
+}
+
+
+if (searchClear) {
+
+    searchClear.addEventListener("click", () => {
+        headerSearch.value = "";
+        updateSearchUI();
+        headerSearch.focus();
+    });
+}
+
+
+if (searchDropdown) {
+
+    searchDropdown.addEventListener("click", event => {
+
+        const button =
+            event.target.closest("[data-search-product-id]");
+
+        if (!button) {
+            return;
+        }
+
+        const productId =
+            button.dataset.searchProductId;
+
+        window.location.href =
+            `/product/?id=${encodeURIComponent(productId)}`;
+    });
+}
+
+
+document.addEventListener("click", event => {
+
+    if (
+        searchForm &&
+        !searchForm.contains(event.target)
+    ) {
+        searchDropdown.classList.remove("active");
+    }
+});
 
 
 /* =========================================================
@@ -1000,34 +662,45 @@ function showToast(message) {
 
 function clearAllFilters() {
 
-    currentSearch = "";
-
-    headerSearch.value = "";
-
-    document
-        .querySelectorAll(
-            'input[name="dairyType"], input[name="discountFilter"]'
-        )
-        .forEach(input => {
-            input.checked = false;
-        });
+    document.querySelectorAll(".dairy-filter").forEach(input => {
+        input.checked = false;
+    });
 
     const allPrice =
-        document.querySelector(
-            'input[name="priceFilter"][value="all"]'
-        );
+        document.querySelector('input[name="price"][value="all"]');
 
     if (allPrice) {
         allPrice.checked = true;
     }
 
-    currentSort = "relevance";
-
     sortSelect.value = "relevance";
 
     renderProducts();
+}
 
-    closeMobileFilters();
+
+if (clearFilters) {
+    clearFilters.addEventListener("click", clearAllFilters);
+}
+
+
+if (emptyClearButton) {
+    emptyClearButton.addEventListener("click", clearAllFilters);
+}
+
+
+document.querySelectorAll(".dairy-filter").forEach(input => {
+    input.addEventListener("change", renderProducts);
+});
+
+
+document.querySelectorAll('input[name="price"]').forEach(input => {
+    input.addEventListener("change", renderProducts);
+});
+
+
+if (sortSelect) {
+    sortSelect.addEventListener("change", renderProducts);
 }
 
 
@@ -1035,91 +708,485 @@ function clearAllFilters() {
    MOBILE FILTER
 ========================================================= */
 
+function createMobileFilters() {
+
+    if (!mobileFilterContent) {
+        return;
+    }
+
+    const sidebar = document.getElementById("filterSidebar");
+
+    if (!sidebar) {
+        return;
+    }
+
+    mobileFilterContent.innerHTML = sidebar.innerHTML;
+
+    mobileFilterContent
+        .querySelectorAll(".dairy-filter")
+        .forEach(input => {
+
+            input.addEventListener("change", event => {
+
+                const value = event.target.value;
+                const checked = event.target.checked;
+
+                const desktopInput =
+                    document.querySelector(
+                        `.dairy-filter[value="${CSS.escape(value)}"]`
+                    );
+
+                if (desktopInput) {
+                    desktopInput.checked = checked;
+                }
+
+                renderProducts();
+            });
+        });
+
+
+    mobileFilterContent
+        .querySelectorAll('input[name="price"]')
+        .forEach(input => {
+
+            input.addEventListener("change", event => {
+
+                const value = event.target.value;
+
+                const desktopInput =
+                    document.querySelector(
+                        `input[name="price"][value="${CSS.escape(value)}"]`
+                    );
+
+                if (desktopInput) {
+                    desktopInput.checked = true;
+                }
+
+                renderProducts();
+            });
+        });
+
+
+    const mobileClear =
+        mobileFilterContent.querySelector("#clearFilters");
+
+    if (mobileClear) {
+        mobileClear.addEventListener("click", () => {
+            clearAllFilters();
+            closeMobileFilters();
+        });
+    }
+}
+
+
+function syncMobileFilters() {
+
+    if (!mobileFilterContent) {
+        return;
+    }
+
+    const desktopChecks =
+        [...document.querySelectorAll(".dairy-filter")];
+
+    const mobileChecks =
+        [...mobileFilterContent.querySelectorAll(".dairy-filter")];
+
+    mobileChecks.forEach(input => {
+
+        const desktopInput =
+            desktopChecks.find(
+                item => item.value === input.value
+            );
+
+        if (desktopInput) {
+            input.checked = desktopInput.checked;
+        }
+    });
+
+
+    const desktopPrice =
+        document.querySelector('input[name="price"]:checked');
+
+    const mobilePrice =
+        mobileFilterContent.querySelectorAll(
+            'input[name="price"]'
+        );
+
+    mobilePrice.forEach(input => {
+        input.checked =
+            desktopPrice &&
+            input.value === desktopPrice.value;
+    });
+}
+
+
 function openMobileFilters() {
 
-    filterSidebar.classList.add("mobile-open");
-    filterOverlay.classList.add("show");
-    mobileFilterClose.classList.add("show");
+    syncMobileFilters();
 
+    filterOverlay.hidden = false;
     document.body.style.overflow = "hidden";
 }
 
 
 function closeMobileFilters() {
 
-    filterSidebar.classList.remove("mobile-open");
-    filterOverlay.classList.remove("show");
-    mobileFilterClose.classList.remove("show");
-
+    filterOverlay.hidden = true;
     document.body.style.overflow = "";
 }
 
 
-/* =========================================================
-   EVENTS
-========================================================= */
-
-sortSelect.addEventListener(
-    "change",
-    event => {
-
-        currentSort = event.target.value;
-
-        renderProducts();
-    }
-);
+if (mobileFilterButton) {
+    mobileFilterButton.addEventListener(
+        "click",
+        openMobileFilters
+    );
+}
 
 
-document
-    .querySelectorAll(
-        'input[name="dairyType"], input[name="priceFilter"], input[name="discountFilter"]'
-    )
-    .forEach(input => {
+if (mobileFilterClose) {
+    mobileFilterClose.addEventListener(
+        "click",
+        closeMobileFilters
+    );
+}
 
-        input.addEventListener(
-            "change",
-            renderProducts
-        );
+
+if (filterOverlay) {
+
+    filterOverlay.addEventListener("click", event => {
+
+        if (event.target === filterOverlay) {
+            closeMobileFilters();
+        }
     });
+}
 
 
-clearFilters.addEventListener(
-    "click",
-    clearAllFilters
-);
-
-
-emptyClearButton.addEventListener(
-    "click",
-    clearAllFilters
-);
-
-
-mobileFilterButton.addEventListener(
-    "click",
-    openMobileFilters
-);
-
-
-mobileFilterClose.addEventListener(
-    "click",
-    closeMobileFilters
-);
-
-
-filterOverlay.addEventListener(
-    "click",
-    closeMobileFilters
-);
+createMobileFilters();
 
 
 /* =========================================================
-   ADD TO CART
+   LOCATION SYSTEM
 ========================================================= */
 
-productGrid.addEventListener(
-    "click",
-    event => {
+const LOCATION_KEY = "marteyLocation";
+
+
+function getSavedLocation() {
+
+    try {
+        const saved = localStorage.getItem(LOCATION_KEY);
+
+        if (!saved) {
+            return null;
+        }
+
+        return JSON.parse(saved);
+
+    } catch (error) {
+        console.warn("Could not read saved location:", error);
+        return null;
+    }
+}
+
+
+function saveLocationData(location) {
+
+    try {
+        localStorage.setItem(
+            LOCATION_KEY,
+            JSON.stringify(location)
+        );
+
+        updateLocationDisplay();
+
+    } catch (error) {
+        console.warn("Could not save location:", error);
+    }
+}
+
+
+function updateLocationDisplay() {
+
+    const saved = getSavedLocation();
+
+    if (!locationText) {
+        return;
+    }
+
+    if (!saved) {
+        locationText.textContent = "Select location";
+        return;
+    }
+
+    if (saved.label) {
+        locationText.textContent = saved.label;
+        return;
+    }
+
+    locationText.textContent = "Location selected";
+}
+
+
+function openLocationModal() {
+
+    if (!locationOverlay) {
+        return;
+    }
+
+    const saved = getSavedLocation();
+
+    if (saved && saved.label) {
+        locationInput.value = saved.label;
+    } else {
+        locationInput.value = "";
+    }
+
+    locationStatus.textContent = "";
+    locationStatus.className = "location-status";
+
+    locationOverlay.hidden = false;
+    document.body.style.overflow = "hidden";
+
+    setTimeout(() => {
+        locationInput.focus();
+    }, 50);
+}
+
+
+function closeLocationModal() {
+
+    if (!locationOverlay) {
+        return;
+    }
+
+    locationOverlay.hidden = true;
+    document.body.style.overflow = "";
+}
+
+
+function showLocationStatus(message, type = "") {
+
+    locationStatus.textContent = message;
+    locationStatus.className =
+        `location-status ${type}`.trim();
+}
+
+
+if (locationButton) {
+    locationButton.addEventListener(
+        "click",
+        openLocationModal
+    );
+}
+
+
+if (locationClose) {
+    locationClose.addEventListener(
+        "click",
+        closeLocationModal
+    );
+}
+
+
+if (locationOverlay) {
+
+    locationOverlay.addEventListener("click", event => {
+
+        if (event.target === locationOverlay) {
+            closeLocationModal();
+        }
+    });
+}
+
+
+if (saveLocationButton) {
+
+    saveLocationButton.addEventListener("click", () => {
+
+        const value = locationInput.value.trim();
+
+        if (!value) {
+            showLocationStatus(
+                "Please enter your area or locality.",
+                "error"
+            );
+
+            locationInput.focus();
+            return;
+        }
+
+        saveLocationData({
+            type: "manual",
+            label: value,
+            savedAt: new Date().toISOString()
+        });
+
+        showLocationStatus(
+            "Location saved successfully.",
+            "success"
+        );
+
+        showToast(`Delivering to ${value}.`);
+
+        setTimeout(() => {
+            closeLocationModal();
+        }, 600);
+    });
+}
+
+
+if (locationInput) {
+
+    locationInput.addEventListener("keydown", event => {
+
+        if (event.key === "Enter") {
+            event.preventDefault();
+
+            saveLocationButton.click();
+        }
+    });
+}
+
+
+/* =========================================================
+   CURRENT LOCATION
+========================================================= */
+
+function handleCurrentLocation() {
+
+    if (!navigator.geolocation) {
+
+        showLocationStatus(
+            "Your browser does not support location access. Enter your area manually.",
+            "error"
+        );
+
+        return;
+    }
+
+    showLocationStatus(
+        "Requesting your current location..."
+    );
+
+    useCurrentLocation.disabled = true;
+
+    navigator.geolocation.getCurrentPosition(
+        position => {
+
+            const latitude =
+                Number(position.coords.latitude).toFixed(5);
+
+            const longitude =
+                Number(position.coords.longitude).toFixed(5);
+
+            saveLocationData({
+                type: "current",
+                label: "Current location",
+                latitude,
+                longitude,
+                savedAt: new Date().toISOString()
+            });
+
+            locationInput.value = "Current location";
+
+            showLocationStatus(
+                "Current location selected successfully.",
+                "success"
+            );
+
+            showToast("Current delivery location selected.");
+
+            useCurrentLocation.disabled = false;
+
+            setTimeout(() => {
+                closeLocationModal();
+            }, 700);
+        },
+
+        error => {
+
+            useCurrentLocation.disabled = false;
+
+            let message =
+                "Location access was not available. Please enter your area manually.";
+
+            if (error.code === 1) {
+                message =
+                    "Location permission was denied. Please enter your area manually.";
+            }
+
+            if (error.code === 2) {
+                message =
+                    "Your current location could not be determined. Try manual entry.";
+            }
+
+            if (error.code === 3) {
+                message =
+                    "Location request timed out. Please try again or enter your area.";
+            }
+
+            showLocationStatus(message, "error");
+        },
+
+        {
+            enableHighAccuracy: true,
+            timeout: 10000,
+            maximumAge: 300000
+        }
+    );
+}
+
+
+if (useCurrentLocation) {
+    useCurrentLocation.addEventListener(
+        "click",
+        handleCurrentLocation
+    );
+}
+
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+let toastTimer = null;
+
+
+function showToast(message) {
+
+    if (!toast) {
+        return;
+    }
+
+    toast.textContent = message;
+    toast.classList.add("show");
+
+    clearTimeout(toastTimer);
+
+    toastTimer = setTimeout(() => {
+        toast.classList.remove("show");
+    }, 2400);
+}
+
+
+/* =========================================================
+   STORAGE SYNC
+========================================================= */
+
+window.addEventListener("storage", () => {
+    updateCartCount();
+});
+
+
+/* =========================================================
+   ADD TO CART EVENT DELEGATION
+========================================================= */
+
+if (productGrid) {
+
+    productGrid.addEventListener("click", event => {
 
         const button =
             event.target.closest(".add-button");
@@ -1128,52 +1195,56 @@ productGrid.addEventListener(
             return;
         }
 
+        event.preventDefault();
+        event.stopPropagation();
+
         const productId =
             Number(button.dataset.productId);
 
-        addToCart(productId);
+        const product =
+            products.find(item => item.id === productId);
 
-        button.textContent = "Added ✓";
-        button.classList.add("added");
+        if (!product) {
+            return;
+        }
 
-        setTimeout(() => {
-
-            button.textContent = "Add to Cart";
-            button.classList.remove("added");
-
-        }, 1200);
-    }
-);
-
-
-/* =========================================================
-   LOCATION
-========================================================= */
-
-locationButton.addEventListener(
-    "click",
-    () => {
-
-        showToast(
-            "Location selection will be connected later."
-        );
-    }
-);
-
-
-/* =========================================================
-   YEAR
-========================================================= */
-
-if (currentYear) {
-    currentYear.textContent =
-        new Date().getFullYear();
+        addToCart(product);
+    });
 }
 
 
 /* =========================================================
-   INITIAL LOAD
+   ESCAPE KEY
 ========================================================= */
 
+document.addEventListener("keydown", event => {
+
+    if (event.key !== "Escape") {
+        return;
+    }
+
+    if (locationOverlay && !locationOverlay.hidden) {
+        closeLocationModal();
+    }
+
+    if (filterOverlay && !filterOverlay.hidden) {
+        closeMobileFilters();
+    }
+
+    if (searchDropdown) {
+        searchDropdown.classList.remove("active");
+    }
+});
+
+
+/* =========================================================
+   INITIALIZE
+========================================================= */
+
+if (currentYear) {
+    currentYear.textContent = new Date().getFullYear();
+}
+
+updateLocationDisplay();
 updateCartCount();
 renderProducts();
