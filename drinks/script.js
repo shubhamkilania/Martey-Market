@@ -105,11 +105,13 @@ const productGrid = document.getElementById("productGrid");
 const emptyState = document.getElementById("emptyState");
 
 const productCount = document.getElementById("productCount");
+const heroProductCount = document.getElementById("heroProductCount");
 const resultsText = document.getElementById("resultsText");
 
 const sortSelect = document.getElementById("sortSelect");
 
 const headerSearch = document.getElementById("headerSearch");
+const headerSearchForm = document.getElementById("headerSearchForm");
 
 const clearFilters = document.getElementById("clearFilters");
 const emptyClearButton = document.getElementById("emptyClearButton");
@@ -135,6 +137,9 @@ const cartCount =
 const toast =
     document.getElementById("toast");
 
+const currentYear =
+    document.getElementById("currentYear");
+
 
 /* =========================================================
    STATE
@@ -154,6 +159,7 @@ function formatPrice(value) {
 
 
 function getDiscount(product) {
+
     if (product.mrp <= product.price) {
         return 0;
     }
@@ -165,6 +171,7 @@ function getDiscount(product) {
 
 
 function escapeHTML(value) {
+
     return String(value)
         .replaceAll("&", "&amp;")
         .replaceAll("<", "&lt;")
@@ -176,12 +183,13 @@ function escapeHTML(value) {
 
 /* =========================================================
    IMAGE FALLBACK
-   Allows the page to work before all studio images
-   are uploaded.
 ========================================================= */
 
 function imageFallback(imageElement) {
-    if (imageElement.dataset.fallbackApplied === "true") {
+
+    if (
+        imageElement.dataset.fallbackApplied === "true"
+    ) {
         return;
     }
 
@@ -197,6 +205,7 @@ function imageFallback(imageElement) {
 ========================================================= */
 
 function getCart() {
+
     const possibleKeys = [
         "marteyCart",
         "cart",
@@ -207,13 +216,15 @@ function getCart() {
 
         try {
 
-            const stored = localStorage.getItem(key);
+            const stored =
+                localStorage.getItem(key);
 
             if (!stored) {
                 continue;
             }
 
-            const parsed = JSON.parse(stored);
+            const parsed =
+                JSON.parse(stored);
 
             if (Array.isArray(parsed)) {
                 return parsed;
@@ -227,6 +238,7 @@ function getCart() {
             }
 
         } catch (error) {
+
             console.warn(
                 `Could not read cart from ${key}`,
                 error
@@ -254,18 +266,25 @@ function normalizeCartItem(item) {
         item.qty ??
         1;
 
-    if (id === undefined || id === null) {
+    if (
+        id === undefined ||
+        id === null
+    ) {
         return null;
     }
 
     return {
         id: Number(id),
-        quantity: Math.max(1, Number(quantity) || 1)
+        quantity: Math.max(
+            1,
+            Number(quantity) || 1
+        )
     };
 }
 
 
 function saveCart(cart) {
+
     localStorage.setItem(
         "marteyCart",
         JSON.stringify(cart)
@@ -275,36 +294,50 @@ function saveCart(cart) {
 
 function updateCartCount() {
 
-    const rawCart = getCart();
+    const rawCart =
+        getCart();
 
-    const cart = rawCart
-        .map(normalizeCartItem)
-        .filter(Boolean);
+    const cart =
+        rawCart
+            .map(normalizeCartItem)
+            .filter(Boolean);
 
-    const totalQuantity = cart.reduce(
-        (total, item) => total + item.quantity,
-        0
-    );
+    const totalQuantity =
+        cart.reduce(
+            (total, item) =>
+                total + item.quantity,
+            0
+        );
 
-    cartCount.textContent = totalQuantity;
+    cartCount.textContent =
+        totalQuantity > 99
+            ? "99+"
+            : totalQuantity;
 }
 
 
 function addToCart(productId) {
 
-    const rawCart = getCart();
+    const rawCart =
+        getCart();
 
-    let cart = rawCart
-        .map(normalizeCartItem)
-        .filter(Boolean);
+    let cart =
+        rawCart
+            .map(normalizeCartItem)
+            .filter(Boolean);
 
-    const existingItem = cart.find(
-        item => item.id === Number(productId)
-    );
+    const existingItem =
+        cart.find(
+            item =>
+                item.id === Number(productId)
+        );
 
     if (existingItem) {
+
         existingItem.quantity += 1;
+
     } else {
+
         cart.push({
             id: Number(productId),
             quantity: 1
@@ -325,15 +358,17 @@ function addToCart(productId) {
 function createProductCard(product) {
 
     const discount =
-        product.discount || getDiscount(product);
+        product.discount ||
+        getDiscount(product);
 
-    const card = document.createElement("article");
+    const card =
+        document.createElement("article");
 
     card.className = "product-card";
 
     card.innerHTML = `
         <a
-            href="/product/${product.id}"
+            href="/product/?id=${product.id}"
             class="product-image-link"
             aria-label="View ${escapeHTML(product.name)}"
         >
@@ -341,9 +376,11 @@ function createProductCard(product) {
 
                 ${
                     discount > 0
-                        ? `<span class="discount-badge">
-                            ${discount}% OFF
-                           </span>`
+                        ? `
+                            <span class="discount-badge">
+                                ${discount}% OFF
+                            </span>
+                        `
                         : ""
                 }
 
@@ -366,7 +403,7 @@ function createProductCard(product) {
 
 
             <a
-                href="/product/${product.id}"
+                href="/product/?id=${product.id}"
                 class="product-name"
             >
                 ${escapeHTML(product.name)}
@@ -441,7 +478,9 @@ function getSelectedDrinkTypes() {
         document.querySelectorAll(
             'input[name="drinkType"]:checked'
         )
-    ).map(input => input.value);
+    ).map(
+        input => input.value
+    );
 }
 
 
@@ -458,15 +497,20 @@ function getSelectedPriceFilter() {
 }
 
 
-function matchesPriceFilter(product, filter) {
+function matchesPriceFilter(
+    product,
+    filter
+) {
 
     if (filter === "under50") {
         return product.price < 50;
     }
 
     if (filter === "50to100") {
-        return product.price >= 50 &&
-               product.price <= 100;
+        return (
+            product.price >= 50 &&
+            product.price <= 100
+        );
     }
 
     if (filter === "above100") {
@@ -487,20 +531,26 @@ function filterProducts() {
 
     return products.filter(product => {
 
+        const search =
+            currentSearch.toLowerCase();
+
         const searchMatch =
+            !search ||
             product.name
                 .toLowerCase()
-                .includes(currentSearch.toLowerCase()) ||
+                .includes(search) ||
             product.category
                 .toLowerCase()
-                .includes(currentSearch.toLowerCase()) ||
+                .includes(search) ||
             product.size
                 .toLowerCase()
-                .includes(currentSearch.toLowerCase());
+                .includes(search);
 
         const typeMatch =
             selectedTypes.length === 0 ||
-            selectedTypes.includes(product.category);
+            selectedTypes.includes(
+                product.category
+            );
 
         const priceMatch =
             matchesPriceFilter(
@@ -508,9 +558,11 @@ function filterProducts() {
                 selectedPrice
             );
 
-        return searchMatch &&
-               typeMatch &&
-               priceMatch;
+        return (
+            searchMatch &&
+            typeMatch &&
+            priceMatch
+        );
     });
 }
 
@@ -521,28 +573,35 @@ function filterProducts() {
 
 function sortProducts(productList) {
 
-    const sorted = [...productList];
+    const sorted = [
+        ...productList
+    ];
 
     if (currentSort === "price-low") {
 
         sorted.sort(
-            (a, b) => a.price - b.price
+            (a, b) =>
+                a.price - b.price
         );
 
-    } else if (currentSort === "price-high") {
+    } else if (
+        currentSort === "price-high"
+    ) {
 
         sorted.sort(
-            (a, b) => b.price - a.price
+            (a, b) =>
+                b.price - a.price
         );
 
-    } else if (currentSort === "discount") {
+    } else if (
+        currentSort === "discount"
+    ) {
 
         sorted.sort(
             (a, b) =>
                 (b.discount || getDiscount(b)) -
                 (a.discount || getDiscount(a))
         );
-
     }
 
     return sorted;
@@ -563,20 +622,21 @@ function renderProducts() {
 
     productGrid.innerHTML = "";
 
-    productCount.textContent =
+    const countLabel =
         `${sorted.length} ${
             sorted.length === 1
                 ? "product"
                 : "products"
         }`;
 
-    resultsText.textContent =
-        `Showing ${sorted.length} ${
-            sorted.length === 1
-                ? "product"
-                : "products"
-        }`;
+    productCount.textContent =
+        countLabel;
 
+    heroProductCount.textContent =
+        `${products.length} products`;
+
+    resultsText.textContent =
+        `Showing ${countLabel}`;
 
     if (sorted.length === 0) {
 
@@ -585,9 +645,7 @@ function renderProducts() {
         return;
     }
 
-
     emptyState.hidden = true;
-
 
     const fragment =
         document.createDocumentFragment();
@@ -597,10 +655,11 @@ function renderProducts() {
         fragment.appendChild(
             createProductCard(product)
         );
-
     });
 
-    productGrid.appendChild(fragment);
+    productGrid.appendChild(
+        fragment
+    );
 }
 
 
@@ -622,6 +681,17 @@ function handleHeaderSearch() {
 }
 
 
+headerSearchForm.addEventListener(
+    "submit",
+    event => {
+
+        event.preventDefault();
+
+        handleHeaderSearch();
+    }
+);
+
+
 /* =========================================================
    TOAST
 ========================================================= */
@@ -632,13 +702,19 @@ function showToast(message) {
 
     clearTimeout(toastTimer);
 
-    toast.textContent = message;
+    toast.textContent =
+        message;
 
     toast.classList.add("show");
 
-    toastTimer = setTimeout(() => {
-        toast.classList.remove("show");
-    }, 1800);
+    toastTimer =
+        setTimeout(() => {
+
+            toast.classList.remove(
+                "show"
+            );
+
+        }, 1800);
 }
 
 
@@ -650,11 +726,14 @@ function clearAllFilters() {
 
     currentSearch = "";
 
+    headerSearch.value = "";
+
     document
         .querySelectorAll(
             'input[name="drinkType"]'
         )
         .forEach(input => {
+
             input.checked = false;
         });
 
@@ -668,10 +747,10 @@ function clearAllFilters() {
         allPrice.checked = true;
     }
 
-
     currentSort = "relevance";
 
-    sortSelect.value = "relevance";
+    sortSelect.value =
+        "relevance";
 
     renderProducts();
 
@@ -697,7 +776,8 @@ function openMobileFilters() {
         "show"
     );
 
-    document.body.style.overflow = "hidden";
+    document.body.style.overflow =
+        "hidden";
 }
 
 
@@ -715,7 +795,8 @@ function closeMobileFilters() {
         "show"
     );
 
-    document.body.style.overflow = "";
+    document.body.style.overflow =
+        "";
 }
 
 
@@ -745,7 +826,6 @@ document
             "change",
             renderProducts
         );
-
     });
 
 
@@ -779,7 +859,9 @@ filterOverlay.addEventListener(
 );
 
 
-/* Add to Cart event delegation */
+/* =========================================================
+   ADD TO CART
+========================================================= */
 
 productGrid.addEventListener(
     "click",
@@ -804,7 +886,9 @@ productGrid.addEventListener(
         button.textContent =
             "Added ✓";
 
-        button.classList.add("added");
+        button.classList.add(
+            "added"
+        );
 
         setTimeout(() => {
 
@@ -820,21 +904,9 @@ productGrid.addEventListener(
 );
 
 
-/* Header search */
-
-headerSearch.addEventListener(
-    "keydown",
-    event => {
-
-        if (event.key === "Enter") {
-            handleHeaderSearch();
-        }
-
-    }
-);
-
-
-/* Location */
+/* =========================================================
+   LOCATION
+========================================================= */
 
 locationButton.addEventListener(
     "click",
@@ -843,9 +915,18 @@ locationButton.addEventListener(
         showToast(
             "Location selection will be connected later."
         );
-
     }
 );
+
+
+/* =========================================================
+   YEAR
+========================================================= */
+
+if (currentYear) {
+    currentYear.textContent =
+        new Date().getFullYear();
+}
 
 
 /* =========================================================
