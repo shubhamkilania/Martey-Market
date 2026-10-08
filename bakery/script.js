@@ -139,12 +139,26 @@ const bakeryProducts = [
    ELEMENTS
 ========================================================= */
 
-const productGrid = document.getElementById("productGrid");
-const resultCount = document.getElementById("resultCount");
-const emptyState = document.getElementById("emptyState");
+const productGrid =
+    document.getElementById("productGrid");
 
-const searchInput = document.getElementById("searchInput");
-const sortSelect = document.getElementById("sortSelect");
+const resultCount =
+    document.getElementById("resultCount");
+
+const emptyState =
+    document.getElementById("emptyState");
+
+const searchForm =
+    document.getElementById("searchForm");
+
+const searchInput =
+    document.getElementById("searchInput");
+
+const searchDropdown =
+    document.getElementById("searchDropdown");
+
+const sortSelect =
+    document.getElementById("sortSelect");
 
 const categoryFilters =
     document.querySelectorAll(".category-filter");
@@ -164,9 +178,6 @@ const cartCount =
 const locationButton =
     document.getElementById("locationButton");
 
-
-/* MOBILE FILTER */
-
 const mobileFilterButton =
     document.getElementById("mobileFilterButton");
 
@@ -183,10 +194,30 @@ const applyMobileFilters =
     document.getElementById("applyMobileFilters");
 
 const mobileCategoryFilters =
-    document.querySelectorAll(".mobile-category-filter");
+    document.querySelectorAll(
+        ".mobile-category-filter"
+    );
 
 const mobilePriceFilters =
-    document.querySelectorAll(".mobile-price-filter");
+    document.querySelectorAll(
+        ".mobile-price-filter"
+    );
+
+const toast =
+    document.getElementById("toast");
+
+const currentYear =
+    document.getElementById("currentYear");
+
+
+/* =========================================================
+   YEAR
+========================================================= */
+
+if (currentYear) {
+    currentYear.textContent =
+        new Date().getFullYear();
+}
 
 
 /* =========================================================
@@ -195,16 +226,25 @@ const mobilePriceFilters =
 
 function imageFallback(img) {
 
-    img.onerror = function () {
+    if (!img) {
+        return;
+    }
 
-        if (!this.dataset.fallbackApplied) {
+    img.addEventListener(
+        "error",
+        function () {
 
-            this.dataset.fallbackApplied = "true";
+            if (this.dataset.fallbackApplied) {
+                return;
+            }
+
+            this.dataset.fallbackApplied =
+                "true";
 
             this.src =
                 "../assets/products/bread.jpg";
         }
-    };
+    );
 }
 
 
@@ -214,12 +254,18 @@ function imageFallback(img) {
 
 function getDiscount(product) {
 
-    if (!product.mrp || product.mrp <= product.price) {
+    if (
+        !product.mrp ||
+        product.mrp <= product.price
+    ) {
         return 0;
     }
 
     return Math.round(
-        ((product.mrp - product.price) / product.mrp) * 100
+        (
+            (product.mrp - product.price) /
+            product.mrp
+        ) * 100
     );
 }
 
@@ -242,11 +288,9 @@ function getCart() {
         const parsed =
             JSON.parse(stored);
 
-        if (!Array.isArray(parsed)) {
-            return [];
-        }
-
-        return parsed;
+        return Array.isArray(parsed)
+            ? parsed
+            : [];
 
     } catch (error) {
 
@@ -268,6 +312,10 @@ function saveCart(cart) {
     );
 
     updateCartCount();
+
+    window.dispatchEvent(
+        new Event("marteyCartUpdated")
+    );
 }
 
 
@@ -293,13 +341,16 @@ function getItemQuantity(item) {
 
 function addToCart(product) {
 
-    const cart = getCart();
+    const cart =
+        getCart();
 
     const existing =
         cart.find(
             item =>
-                getItemId(item) === Number(product.id)
+                getItemId(item) ===
+                Number(product.id)
         );
+
 
     if (existing) {
 
@@ -312,17 +363,28 @@ function addToCart(product) {
             id: product.id,
             quantity: 1
         });
+
     }
+
 
     saveCart(cart);
 
     showAddedState(product.id);
+
+    showToast(
+        `${product.name} added to cart`
+    );
 }
 
 
 function updateCartCount() {
 
-    const cart = getCart();
+    if (!cartCount) {
+        return;
+    }
+
+    const cart =
+        getCart();
 
     const total =
         cart.reduce(
@@ -331,7 +393,38 @@ function updateCartCount() {
             0
         );
 
-    cartCount.textContent = total;
+    cartCount.textContent =
+        total > 99
+            ? "99+"
+            : total;
+}
+
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+let toastTimer;
+
+function showToast(message) {
+
+    if (!toast) {
+        return;
+    }
+
+    toast.textContent =
+        message;
+
+    toast.classList.add("show");
+
+    clearTimeout(toastTimer);
+
+    toastTimer =
+        setTimeout(() => {
+
+            toast.classList.remove("show");
+
+        }, 1800);
 }
 
 
@@ -353,7 +446,9 @@ function showAddedState(productId) {
     const originalText =
         button.textContent;
 
-    button.textContent = "Added";
+    button.textContent =
+        "Added";
+
     button.classList.add("added");
 
     setTimeout(() => {
@@ -393,7 +488,9 @@ function getFilteredProducts() {
     if (activeSearch) {
 
         const query =
-            activeSearch.toLowerCase().trim();
+            activeSearch
+                .toLowerCase()
+                .trim();
 
         products =
             products.filter(product => {
@@ -422,7 +519,9 @@ function getFilteredProducts() {
 
     /* CATEGORY */
 
-    if (selectedCategories.length > 0) {
+    if (
+        selectedCategories.length > 0
+    ) {
 
         products =
             products.filter(product =>
@@ -435,30 +534,47 @@ function getFilteredProducts() {
 
     /* PRICE */
 
-    if (selectedPrices.length > 0) {
+    if (
+        selectedPrices.length > 0
+    ) {
 
         products =
             products.filter(product => {
 
-                return selectedPrices.some(range => {
+                return selectedPrices.some(
+                    range => {
 
-                    if (range === "under50") {
-                        return product.price < 50;
+                        if (
+                            range ===
+                            "under50"
+                        ) {
+                            return (
+                                product.price < 50
+                            );
+                        }
+
+                        if (
+                            range ===
+                            "50to100"
+                        ) {
+                            return (
+                                product.price >= 50 &&
+                                product.price <= 100
+                            );
+                        }
+
+                        if (
+                            range ===
+                            "above100"
+                        ) {
+                            return (
+                                product.price > 100
+                            );
+                        }
+
+                        return false;
                     }
-
-                    if (range === "50to100") {
-                        return (
-                            product.price >= 50 &&
-                            product.price <= 100
-                        );
-                    }
-
-                    if (range === "above100") {
-                        return product.price > 100;
-                    }
-
-                    return false;
-                });
+                );
 
             });
     }
@@ -467,7 +583,9 @@ function getFilteredProducts() {
     /* SORT */
 
     const sort =
-        sortSelect.value;
+        sortSelect
+            ? sortSelect.value
+            : "relevance";
 
 
     if (sort === "low-high") {
@@ -477,14 +595,18 @@ function getFilteredProducts() {
                 a.price - b.price
         );
 
-    } else if (sort === "high-low") {
+    } else if (
+        sort === "high-low"
+    ) {
 
         products.sort(
             (a, b) =>
                 b.price - a.price
         );
 
-    } else if (sort === "discount") {
+    } else if (
+        sort === "discount"
+    ) {
 
         products.sort(
             (a, b) =>
@@ -499,24 +621,187 @@ function getFilteredProducts() {
 
 
 /* =========================================================
+   PRODUCT CARD
+========================================================= */
+
+function createProductCard(product) {
+
+    const discount =
+        getDiscount(product);
+
+    const card =
+        document.createElement("article");
+
+    card.className =
+        "product-card";
+
+
+    card.innerHTML = `
+
+        <a
+            href="/product/?id=${product.id}"
+            class="product-image-wrap"
+            aria-label="${product.name}"
+        >
+
+            ${
+                discount > 0
+                    ? `
+                        <span class="discount-badge">
+                            ${discount}% OFF
+                        </span>
+                    `
+                    : ""
+            }
+
+            <img
+                src="${product.image}"
+                alt="${product.name}"
+                loading="lazy"
+            >
+
+        </a>
+
+
+        <div class="product-info">
+
+            <div class="product-category">
+                ${product.category}
+            </div>
+
+
+            <a
+                href="/product/?id=${product.id}"
+                class="product-name"
+            >
+                ${product.name}
+            </a>
+
+
+            <div class="product-size">
+                ${product.size}
+            </div>
+
+
+            <div class="product-rating">
+
+                <span class="rating-star">
+                    ★
+                </span>
+
+                ${product.rating}
+
+            </div>
+
+
+            <div class="product-bottom">
+
+                <div class="price-area">
+
+                    <div>
+
+                        <span class="product-price">
+                            ₹${product.price}
+                        </span>
+
+                        ${
+                            product.mrp >
+                            product.price
+                                ? `
+                                    <span class="product-mrp">
+                                        ₹${product.mrp}
+                                    </span>
+                                `
+                                : ""
+                        }
+
+                    </div>
+
+
+                    ${
+                        discount > 0
+                            ? `
+                                <div class="product-discount">
+                                    Save ${discount}%
+                                </div>
+                            `
+                            : ""
+                    }
+
+                </div>
+
+
+                <button
+                    class="add-button"
+                    data-id="${product.id}"
+                    type="button"
+                >
+                    Add
+                </button>
+
+            </div>
+
+        </div>
+    `;
+
+
+    productGrid.appendChild(card);
+
+
+    const image =
+        card.querySelector("img");
+
+    imageFallback(image);
+
+
+    const addButton =
+        card.querySelector(".add-button");
+
+
+    addButton.addEventListener(
+        "click",
+        event => {
+
+            event.preventDefault();
+            event.stopPropagation();
+
+            addToCart(product);
+
+        }
+    );
+
+
+    return card;
+}
+
+
+/* =========================================================
    RENDER PRODUCTS
 ========================================================= */
 
 function renderProducts() {
 
+    if (!productGrid) {
+        return;
+    }
+
     const products =
         getFilteredProducts();
 
 
-    productGrid.innerHTML = "";
+    productGrid.innerHTML =
+        "";
 
 
-    resultCount.textContent =
-        `${products.length} ${
-            products.length === 1
-                ? "product"
-                : "products"
-        }`;
+    if (resultCount) {
+
+        resultCount.textContent =
+            `${products.length} ${
+                products.length === 1
+                    ? "product"
+                    : "products"
+            }`;
+    }
 
 
     if (products.length === 0) {
@@ -524,8 +809,10 @@ function renderProducts() {
         productGrid.style.display =
             "none";
 
-        emptyState.style.display =
-            "block";
+        if (emptyState) {
+            emptyState.style.display =
+                "block";
+        }
 
         return;
     }
@@ -534,143 +821,17 @@ function renderProducts() {
     productGrid.style.display =
         "grid";
 
-    emptyState.style.display =
-        "none";
+
+    if (emptyState) {
+        emptyState.style.display =
+            "none";
+    }
 
 
-    products.forEach(product => {
-
-        const discount =
-            getDiscount(product);
-
-
-        const card =
-            document.createElement("article");
-
-        card.className =
-            "product-card";
-
-
-        card.innerHTML = `
-
-            <a
-                href="/product/${product.id}"
-                class="product-image-wrap"
-                aria-label="${product.name}"
-            >
-
-                ${
-                    discount > 0
-                        ? `
-                            <span class="discount-badge">
-                                ${discount}% OFF
-                            </span>
-                        `
-                        : ""
-                }
-
-                <img
-                    src="${product.image}"
-                    alt="${product.name}"
-                >
-
-            </a>
-
-
-            <div class="product-info">
-
-                <div class="product-category">
-                    ${product.category}
-                </div>
-
-                <a
-                    href="/product/${product.id}"
-                    class="product-name"
-                >
-                    ${product.name}
-                </a>
-
-                <div class="product-size">
-                    ${product.size}
-                </div>
-
-                <div class="product-rating">
-                    <span class="rating-star">★</span>
-                    ${product.rating}
-                </div>
-
-
-                <div class="product-bottom">
-
-                    <div class="price-area">
-
-                        <div>
-                            <span class="product-price">
-                                ₹${product.price}
-                            </span>
-
-                            ${
-                                product.mrp > product.price
-                                    ? `
-                                        <span class="product-mrp">
-                                            ₹${product.mrp}
-                                        </span>
-                                    `
-                                    : ""
-                            }
-                        </div>
-
-                        ${
-                            discount > 0
-                                ? `
-                                    <div class="product-discount">
-                                        Save ${discount}%
-                                    </div>
-                                `
-                                : ""
-                        }
-
-                    </div>
-
-
-                    <button
-                        class="add-button"
-                        data-id="${product.id}"
-                    >
-                        Add
-                    </button>
-
-                </div>
-
-            </div>
-        `;
-
-
-        productGrid.appendChild(card);
-
-
-        const img =
-            card.querySelector("img");
-
-        imageFallback(img);
-
-
-        const addButton =
-            card.querySelector(".add-button");
-
-
-        addButton.addEventListener(
-            "click",
-            function (event) {
-
-                event.preventDefault();
-                event.stopPropagation();
-
-                addToCart(product);
-            }
-        );
-
-    });
+    products.forEach(
+        product =>
+            createProductCard(product)
+    );
 }
 
 
@@ -682,35 +843,49 @@ function readDesktopFilters() {
 
     selectedCategories =
         Array.from(categoryFilters)
-            .filter(input => input.checked)
-            .map(input => input.value);
+            .filter(
+                input => input.checked
+            )
+            .map(
+                input => input.value
+            );
 
 
     selectedPrices =
         Array.from(priceFilters)
-            .filter(input => input.checked)
-            .map(input => input.value);
+            .filter(
+                input => input.checked
+            )
+            .map(
+                input => input.value
+            );
 }
 
 
 function syncDesktopFilters() {
 
-    categoryFilters.forEach(input => {
+    categoryFilters.forEach(
+        input => {
 
-        input.checked =
-            selectedCategories.includes(
-                input.value
-            );
-    });
+            input.checked =
+                selectedCategories.includes(
+                    input.value
+                );
+
+        }
+    );
 
 
-    priceFilters.forEach(input => {
+    priceFilters.forEach(
+        input => {
 
-        input.checked =
-            selectedPrices.includes(
-                input.value
-            );
-    });
+            input.checked =
+                selectedPrices.includes(
+                    input.value
+                );
+
+        }
+    );
 }
 
 
@@ -721,15 +896,27 @@ function syncDesktopFilters() {
 function readMobileFilters() {
 
     selectedCategories =
-        Array.from(mobileCategoryFilters)
-            .filter(input => input.checked)
-            .map(input => input.value);
+        Array.from(
+            mobileCategoryFilters
+        )
+            .filter(
+                input => input.checked
+            )
+            .map(
+                input => input.value
+            );
 
 
     selectedPrices =
-        Array.from(mobilePriceFilters)
-            .filter(input => input.checked)
-            .map(input => input.value);
+        Array.from(
+            mobilePriceFilters
+        )
+            .filter(
+                input => input.checked
+            )
+            .map(
+                input => input.value
+            );
 
 
     syncDesktopFilters();
@@ -740,143 +927,322 @@ function readMobileFilters() {
    DESKTOP FILTER EVENTS
 ========================================================= */
 
-categoryFilters.forEach(input => {
+categoryFilters.forEach(
+    input => {
 
-    input.addEventListener(
-        "change",
-        () => {
+        input.addEventListener(
+            "change",
+            () => {
 
-            readDesktopFilters();
+                readDesktopFilters();
 
-            renderProducts();
-        }
-    );
-});
+                renderProducts();
+
+            }
+        );
+
+    }
+);
 
 
-priceFilters.forEach(input => {
+priceFilters.forEach(
+    input => {
 
-    input.addEventListener(
-        "change",
-        () => {
+        input.addEventListener(
+            "change",
+            () => {
 
-            readDesktopFilters();
+                readDesktopFilters();
 
-            renderProducts();
-        }
-    );
-});
+                renderProducts();
+
+            }
+        );
+
+    }
+);
 
 
 /* =========================================================
    CLEAR FILTERS
 ========================================================= */
 
-clearFilters.addEventListener(
-    "click",
-    () => {
+function resetFilters() {
 
-        selectedCategories = [];
-        selectedPrices = [];
+    selectedCategories = [];
+    selectedPrices = [];
+    activeSearch = "";
 
-        categoryFilters.forEach(
-            input =>
-                input.checked = false
-        );
 
-        priceFilters.forEach(
-            input =>
-                input.checked = false
-        );
+    categoryFilters.forEach(
+        input =>
+            input.checked = false
+    );
 
-        mobileCategoryFilters.forEach(
-            input =>
-                input.checked = false
-        );
+    priceFilters.forEach(
+        input =>
+            input.checked = false
+    );
 
-        mobilePriceFilters.forEach(
-            input =>
-                input.checked = false
-        );
+    mobileCategoryFilters.forEach(
+        input =>
+            input.checked = false
+    );
 
-        activeSearch = "";
+    mobilePriceFilters.forEach(
+        input =>
+            input.checked = false
+    );
 
+
+    if (searchInput) {
         searchInput.value = "";
+    }
 
+    if (sortSelect) {
         sortSelect.value =
             "relevance";
-
-        renderProducts();
     }
-);
 
 
-/* =========================================================
-   EMPTY STATE RESET
-========================================================= */
+    closeFilterPanel();
 
-resetEmptyState.addEventListener(
-    "click",
-    () => {
+    closeSearchDropdown();
 
-        selectedCategories = [];
-        selectedPrices = [];
+    renderProducts();
+}
 
-        categoryFilters.forEach(
-            input =>
-                input.checked = false
-        );
 
-        priceFilters.forEach(
-            input =>
-                input.checked = false
-        );
+if (clearFilters) {
 
-        activeSearch = "";
+    clearFilters.addEventListener(
+        "click",
+        resetFilters
+    );
 
-        searchInput.value = "";
+}
 
-        sortSelect.value =
-            "relevance";
 
-        renderProducts();
-    }
-);
+if (resetEmptyState) {
+
+    resetEmptyState.addEventListener(
+        "click",
+        resetFilters
+    );
+
+}
 
 
 /* =========================================================
    SORT
 ========================================================= */
 
-sortSelect.addEventListener(
-    "change",
-    renderProducts
-);
+if (sortSelect) {
+
+    sortSelect.addEventListener(
+        "change",
+        renderProducts
+    );
+
+}
 
 
 /* =========================================================
    SEARCH
 ========================================================= */
 
-searchInput.addEventListener(
-    "keydown",
+function getSearchMatches(query) {
+
+    if (!query) {
+        return [];
+    }
+
+    const normalized =
+        query.toLowerCase().trim();
+
+    return bakeryProducts
+        .filter(product =>
+            `${product.name} ${product.category} ${product.size}`
+                .toLowerCase()
+                .includes(normalized)
+        )
+        .slice(0, 5);
+}
+
+
+function renderSearchDropdown(query) {
+
+    if (!searchDropdown) {
+        return;
+    }
+
+    const matches =
+        getSearchMatches(query);
+
+
+    if (!query || matches.length === 0) {
+
+        closeSearchDropdown();
+
+        return;
+    }
+
+
+    searchDropdown.innerHTML =
+        "";
+
+
+    matches.forEach(product => {
+
+        const result =
+            document.createElement("a");
+
+        result.className =
+            "search-result";
+
+        result.href =
+            `/product/?id=${product.id}`;
+
+
+        result.innerHTML = `
+
+            <img
+                class="search-result-image"
+                src="${product.image}"
+                alt=""
+            >
+
+            <span>
+
+                <strong>
+                    ${product.name}
+                </strong>
+
+                <small>
+                    ${product.category} · ${product.size} · ₹${product.price}
+                </small>
+
+            </span>
+        `;
+
+
+        searchDropdown.appendChild(result);
+
+
+        const image =
+            result.querySelector("img");
+
+        imageFallback(image);
+
+    });
+
+
+    searchDropdown.classList.add(
+        "open"
+    );
+
+    searchDropdown.setAttribute(
+        "aria-hidden",
+        "false"
+    );
+}
+
+
+function closeSearchDropdown() {
+
+    if (!searchDropdown) {
+        return;
+    }
+
+    searchDropdown.classList.remove(
+        "open"
+    );
+
+    searchDropdown.setAttribute(
+        "aria-hidden",
+        "true"
+    );
+}
+
+
+if (searchInput) {
+
+    searchInput.addEventListener(
+        "input",
+        () => {
+
+            activeSearch =
+                searchInput.value
+                    .trim()
+                    .toLowerCase();
+
+            renderSearchDropdown(
+                searchInput.value
+            );
+
+            renderProducts();
+
+        }
+    );
+
+
+    searchInput.addEventListener(
+        "keydown",
+        event => {
+
+            if (
+                event.key !== "Enter"
+            ) {
+                return;
+            }
+
+            const query =
+                searchInput.value.trim();
+
+
+            if (!query) {
+                return;
+            }
+
+
+            event.preventDefault();
+
+
+            window.location.href =
+                `/search?q=${encodeURIComponent(query)}`;
+
+        }
+    );
+
+
+    searchInput.addEventListener(
+        "focus",
+        () => {
+
+            renderSearchDropdown(
+                searchInput.value
+            );
+
+        }
+    );
+
+}
+
+
+document.addEventListener(
+    "click",
     event => {
 
-        if (event.key !== "Enter") {
-            return;
+        if (
+            !event.target.closest(
+                ".header-search"
+            )
+        ) {
+
+            closeSearchDropdown();
+
         }
 
-        const query =
-            searchInput.value.trim();
-
-
-        if (!query) {
-            return;
-        }
-
-
-        window.location.href =
-            `/search?q=${encodeURIComponent(query)}`;
     }
 );
 
@@ -885,39 +1251,51 @@ searchInput.addEventListener(
    LOCATION
 ========================================================= */
 
-locationButton.addEventListener(
-    "click",
-    () => {
+if (locationButton) {
 
-        alert(
-            "Location selection will be connected with MARTEY's delivery system later."
-        );
-    }
-);
+    locationButton.addEventListener(
+        "click",
+        () => {
 
+            showToast(
+                "Location selection will be connected to MARTEY delivery later."
+            );
 
-/* =========================================================
-   MOBILE FILTER OPEN
-========================================================= */
+        }
+    );
 
-mobileFilterButton.addEventListener(
-    "click",
-    () => {
-
-        mobileFilterPanel.classList.add("open");
-        filterOverlay.classList.add("open");
-
-        document.body.style.overflow =
-            "hidden";
-    }
-);
+}
 
 
 /* =========================================================
-   MOBILE FILTER CLOSE
+   MOBILE FILTER
 ========================================================= */
+
+function openFilterPanel() {
+
+    if (!mobileFilterPanel) {
+        return;
+    }
+
+    mobileFilterPanel.classList.add(
+        "open"
+    );
+
+    filterOverlay.classList.add(
+        "open"
+    );
+
+    document.body.classList.add(
+        "no-scroll"
+    );
+}
+
 
 function closeFilterPanel() {
+
+    if (!mobileFilterPanel) {
+        return;
+    }
 
     mobileFilterPanel.classList.remove(
         "open"
@@ -927,37 +1305,88 @@ function closeFilterPanel() {
         "open"
     );
 
-    document.body.style.overflow =
-        "";
+    document.body.classList.remove(
+        "no-scroll"
+    );
 }
 
 
-closeMobileFilter.addEventListener(
-    "click",
-    closeFilterPanel
-);
+if (mobileFilterButton) {
+
+    mobileFilterButton.addEventListener(
+        "click",
+        openFilterPanel
+    );
+
+}
 
 
-filterOverlay.addEventListener(
-    "click",
-    closeFilterPanel
-);
+if (closeMobileFilter) {
+
+    closeMobileFilter.addEventListener(
+        "click",
+        closeFilterPanel
+    );
+
+}
+
+
+if (filterOverlay) {
+
+    filterOverlay.addEventListener(
+        "click",
+        closeFilterPanel
+    );
+
+}
 
 
 /* =========================================================
    APPLY MOBILE FILTERS
 ========================================================= */
 
-applyMobileFilters.addEventListener(
-    "click",
-    () => {
+if (applyMobileFilters) {
 
-        readMobileFilters();
+    applyMobileFilters.addEventListener(
+        "click",
+        () => {
 
-        renderProducts();
+            readMobileFilters();
 
-        closeFilterPanel();
+            renderProducts();
+
+            closeFilterPanel();
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   CART STORAGE SYNC
+========================================================= */
+
+window.addEventListener(
+    "storage",
+    event => {
+
+        if (
+            event.key ===
+            "marteyCart"
+        ) {
+
+            updateCartCount();
+
+        }
+
     }
+);
+
+
+window.addEventListener(
+    "marteyCartUpdated",
+    updateCartCount
 );
 
 
