@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="MARTEY Account — Manage your profile, orders, addresses and preferences."
+    >
+
+    <title>Account — MARTEY</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- =====================================================
+         HEADER
+    ====================================================== -->
+
+    <header class="site-header">
+
+        <div class="header-container">
+
+            <!-- Logo -->
+            <a href="/" class="brand" aria-label="MARTEY Home">
+                <span class="brand-name">
+                    MARTEY<span class="brand-dot">.</span>
+                </span>
+            </a>
+
+
+            <!-- Location -->
+            <a
+                href="/account"
+                class="location-box"
+                aria-label="Select delivery location"
+            >
+
+                <div class="location-icon">
+
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path
+                            d="M12 21s7-6.1 7-12a7 7 0 1 0-14 0c0 5.9 7 12 7 12Z"
+                        ></path>
+
+                        <circle
+                            cx="12"
+                            cy="9"
+                            r="2.5"
+                        ></circle>
+                    </svg>
+
+                </div>
+
+                <div class="location-content">
+
+                    <span class="location-label">
+                        Deliver to
+                    </span>
+
+                    <span class="location-value">
+                        Select location
+                    </span>
+
+                </div>
+
+                <span class="location-arrow">
+                    ⌄
+                </span>
+
+            </a>
+
+
+            <!-- Search -->
+            <form
+                class="search-form"
+                id="searchForm"
+                action="/search"
+                method="GET"
+            >
+
+                <div class="search-input-wrapper">
+
+                    <svg
+                        class="search-icon"
+                        viewBox="0 0 24 24"
+                        aria-hidden="true"
+                    >
+                        <circle
+                            cx="11"
+                            cy="11"
+                            r="6.5"
+                        ></circle>
+
+                        <path
+                            d="m16 16 5 5"
+                        ></path>
+                    </svg>
+
+                    <input
+                        type="search"
+                        id="searchInput"
+                        name="q"
+                        autocomplete="off"
+                        placeholder="Search for products..."
+                        aria-label="Search products"
+                    >
+
+                    <button
+                        type="button"
+                        class="search-clear"
+                        id="searchClear"
+                        aria-label="Clear search"
+                    >
+                        ×
+                    </button>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="search-button"
+                    aria-label="Search"
+                >
+                    Search
+                </button>
+
+
+                <div
+                    class="search-dropdown"
+                    id="searchDropdown"
+                    aria-hidden="true"
+                ></div>
+
+            </form>
+
+
+            <!-- Header actions -->
+            <nav
+                class="header-actions"
+                aria-label="Main navigation"
+            >
+
+                <a
+                    href="/account"
+                    class="header-action active"
+                >
+
+                    <span class="action-icon">
+
+                        <svg
+                            viewBox="0 0 24 24"
+                            aria-hidden="true"
+                        >
+                            <circle
+                                cx="12"
+                                cy="8"
+                                r="3.5"
+                            ></circle>
+
+                            <path
+                                d="M5 20c.8-4 3.2-6 7-6s6.2 2 7 6"
+                            ></path>
+                        </svg>
+
+                    </span>
+
+                    <span class="action-text">
+                        Account
+                    </span>
+
+                </a>
+
+
+                <a
+                    href="/cart"
+                    class="header-action cart-action"
+                >
+
+                    <span class="action-icon cart-icon-wrapper">
+
+                        <svg
+                            viewBox="0 0 24 24"
+                            aria-hidden="true"
+                        >
+                            <path
+                                d="M3 4h2l2.2 10.5a2 2 0 0 0 2 1.5h7.6a2 2 0 0 0 1.9-1.4L21 8H6"
+                            ></path>
+
+                            <circle
+                                cx="10"
+                                cy="20"
+                                r="1.2"
+                            ></circle>
+
+                            <circle
+                                cx="18"
+                                cy="20"
+                                r="1.2"
+                            ></circle>
+                        </svg>
+
+                        <span
+                            class="cart-count"
+                            id="cartCount"
+                        >
+                            0
+                        </span>
+
+                    </span>
+
+                    <span class="action-text">
+                        Cart
+                    </span>
+
+                </a>
+
+            </nav>
+
+        </div>
+
+    </header>
+
+
+    <!-- =====================================================
+         MAIN
+    ====================================================== -->
+
+    <main>
+
+        <!-- =================================================
+             ACCOUNT HERO
+        ================================================== -->
+
+        <section class="account-hero">
+
+            <div class="container">
+
+                <div class="breadcrumb">
+
+                    <a href="/">
+                        Home
+                    </a>
+
+                    <span>/</span>
+
+                    <strong>
+                        Account
+                    </strong>
+
+                </div>
+
+
+                <div class="account-hero-content">
+
+                    <div>
+
+                        <span class="section-eyebrow">
+                            YOUR MARTEY
+                        </span>
+
+                        <h1>
+                            Your account,
+                            <span>your control.</span>
+                        </h1>
+
+                        <p>
+                            Manage your orders, addresses,
+                            profile and shopping preferences
+                            in one place.
+                        </p>
+
+                    </div>
+
+
+                    <div class="profile-preview">
+
+                        <div class="profile-avatar">
+                            M
+                        </div>
+
+                        <div class="profile-preview-text">
+
+                            <span class="profile-label">
+                                Welcome to MARTEY
+                            </span>
+
+                            <strong id="profileName">
+                                Guest User
+                            </strong>
+
+                            <span id="profileStatus">
+                                Sign in to manage your account
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             ACCOUNT CONTENT
+        ================================================== -->
+
+        <section class="account-section">
+
+            <div class="container">
+
+                <div class="account-layout">
+
+                    <!-- =====================================
+                         MAIN COLUMN
+                    ====================================== -->
+
+                    <div class="account-main">
+
+                        <!-- Sign in card -->
+                        <section class="account-card welcome-card">
+
+                            <div class="card-heading">
+
+                                <div>
+
+                                    <span class="card-eyebrow">
+                                        ACCOUNT ACCESS
+                                    </span>
+
+                                    <h2>
+                                        Sign in to MARTEY
+                                    </h2>
+
+                                </div>
+
+                                <span class="secure-badge">
+                                    Secure
+                                </span>
+
+                            </div>
+
+
+                            <p class="card-description">
+                                Sign in to view your orders,
+                                manage addresses and keep your
+                                MARTEY account preferences saved.
+                            </p>
+
+
+                            <div class="auth-actions">
+
+                                <button
+                                    type="button"
+                                    class="btn btn-primary"
+                                    id="loginButton"
+                                >
+                                    Sign in
+                                    <span>→</span>
+                                </button>
+
+                                <button
+                                    type="button"
+                                    class="btn btn-secondary"
+                                    id="signupButton"
+                                >
+                                    Create account
+                                </button>
+
+                            </div>
+
+                        </section>
+
+
+                        <!-- Quick actions -->
+                        <section class="quick-section">
+
+                            <div class="section-heading">
+
+                                <div>
+
+                                    <span class="section-eyebrow">
+                                        QUICK ACCESS
+                                    </span>
+
+                                    <h2>
+                                        Manage your account
+                                    </h2>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="account-grid">
+
+                                <!-- Orders -->
+                                <a
+                                    href="/orders"
+                                    class="account-action-card"
+                                >
+
+                                    <div class="action-card-icon">
+
+                                        <svg
+                                            viewBox="0 0 24 24"
+                                            aria-hidden="true"
+                                        >
+                                            <path
+                                                d="M6 3h12v18H6z"
+                                            ></path>
+
+                                            <path
+                                                d="M9 7h6M9 11h6M9 15h4"
+                                            ></path>
+                                        </svg>
+
+                                    </div>
+
+                                    <div class="action-card-content">
+
+                                        <h3>
+                                            My Orders
+                                        </h3>
+
+                                        <p>
+                                            View your recent
+                                            and previous orders.
+                                        </p>
+
+                                    </div>
+
+                                    <span class="card-arrow">
+                                        →
+                                    </span>
+
+                                </a>
+
+
+                                <!-- Addresses -->
+                                <a
+                                    href="#"
+                                    class="account-action-card"
+                                    data-feature="addresses"
+                                >
+
+                                    <div class="action-card-icon">
+
+                                        <svg
+                                            viewBox="0 0 24 24"
+                                            aria-hidden="true"
+                                        >
+                                            <path
+                                                d="M12 21s7-6.1 7-12a7 7 0 1 0-14 0c0 5.9 7 12 7 12Z"
+                                            ></path>
+
+                                            <circle
+                                                cx="12"
+                                                cy="9"
+                                                r="2.5"
+                                            ></circle>
+                                        </svg>
+
+                                    </div>
+
+                                    <div class="action-card-content">
+
+                                        <h3>
+                                            Saved Addresses
+                                        </h3>
+
+                                        <p>
+                                            Manage your delivery
+                                            addresses.
+                                        </p>
+
+                                    </div>
+
+                                    <span class="card-arrow">
+                                        →
+                                    </span>
+
+                                </a>
+
+
+                                <!-- Wishlist -->
+                                <a
+                                    href="#"
+                                    class="account-action-card"
+                                    data-feature="wishlist"
+                                >
+
+                                    <div class="action-card-icon">
+
+                                        <svg
+                                            viewBox="0 0 24 24"
+                                            aria-hidden="true"
+                                        >
+                                            <path
+                                                d="M20.8 8.8c0 5.5-8.8 10.2-8.8 10.2S3.2 14.3 3.2 8.8A4.8 4.8 0 0 1 12 6a4.8 4.8 0 0 1 8.8 2.8Z"
+                                            ></path>
+                                        </svg>
+
+                                    </div>
+
+                                    <div class="action-card-content">
+
+                                        <h3>
+                                            Wishlist
+                                        </h3>
+
+                                        <p>
+                                            Save products you want
+                                            to buy later.
+                                        </p>
+
+                                    </div>
+
+                                    <span class="card-arrow">
+                                        →
+                                    </span>
+
+                                </a>
+
+
+                                <!-- Profile -->
+                                <a
+                                    href="#"
+                                    class="account-action-card"
+                                    data-feature="profile"
+                                >
+
+                                    <div class="action-card-icon">
+
+                                        <svg
+                                            viewBox="0 0 24 24"
+                                            aria-hidden="true"
+                                        >
+                                            <circle
+                                                cx="12"
+                                                cy="8"
+                                                r="3.5"
+                                            ></circle>
+
+                                            <path
+                                                d="M5 20c.8-4 3.2-6 7-6s6.2 2 7 6"
+                                            ></path>
+                                        </svg>
+
+                                    </div>
+
+                                    <div class="action-card-content">
+
+                                        <h3>
+                                            Profile
+                                        </h3>
+
+                                        <p>
+                                            Update your personal
+                                            account details.
+                                        </p>
+
+                                    </div>
+
+                                    <span class="card-arrow">
+                                        →
+                                    </span>
+
+                                </a>
+
+                            </div>
+
+                        </section>
+
+
+                        <!-- Preferences -->
+                        <section class="account-card preferences-card">
+
+                            <div class="card-heading">
+
+                                <div>
+
+                                    <span class="card-eyebrow">
+                                        PREFERENCES
+                                    </span>
+
+                                    <h2>
+                                        Shopping preferences
+                                    </h2>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="preference-list">
+
+                                <div class="preference-row">
+
+                                    <div>
+
+                                        <strong>
+                                            Delivery updates
+                                        </strong>
+
+                                        <span>
+                                            Receive updates about
+                                            your orders.
+                                        </span>
+
+                                    </div>
+
+                                    <label class="toggle">
+
+                                        <input
+                                            type="checkbox"
+                                            id="deliveryUpdates"
+                                            checked
+                                        >
+
+                                        <span class="toggle-slider"></span>
+
+                                    </label>
+
+                                </div>
+
+
+                                <div class="preference-row">
+
+                                    <div>
+
+                                        <strong>
+                                            Deals & offers
+                                        </strong>
+
+                                        <span>
+                                            Get information about
+                                            MARTEY offers.
+                                        </span>
+
+                                    </div>
+
+                                    <label class="toggle">
+
+                                        <input
+                                            type="checkbox"
+                                            id="dealUpdates"
+                                        >
+
+                                        <span class="toggle-slider"></span>
+
+                                    </label>
+
+                                </div>
+
+                            </div>
+
+                        </section>
+
+                    </div>
+
+
+                    <!-- =====================================
+                         SIDEBAR
+                    ====================================== -->
+
+                    <aside class="account-sidebar">
+
+                        <div class="sidebar-card">
+
+                            <div class="sidebar-profile">
+
+                                <div class="sidebar-avatar">
+                                    M
+                                </div>
+
+                                <div>
+
+                                    <span>
+                                        Account
+                                    </span>
+
+                                    <strong>
+                                        Guest User
+                                    </strong>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="sidebar-divider"></div>
+
+
+                            <a href="/orders">
+                                <span>My Orders</span>
+                                <span>→</span>
+                            </a>
+
+                            <a
+                                href="#"
+                                data-feature="addresses"
+                            >
+                                <span>Addresses</span>
+                                <span>→</span>
+                            </a>
+
+                            <a
+                                href="#"
+                                data-feature="wishlist"
+                            >
+                                <span>Wishlist</span>
+                                <span>→</span>
+                            </a>
+
+                            <a
+                                href="#"
+                                data-feature="profile"
+                            >
+                                <span>Profile</span>
+                                <span>→</span>
+                            </a>
+
+
+                            <div class="sidebar-divider"></div>
+
+
+                            <a
+                                href="/help"
+                                class="sidebar-help"
+                            >
+                                <span>Help & Support</span>
+                                <span>→</span>
+                            </a>
+
+                        </div>
+
+
+                        <div class="sidebar-note">
+
+                            <span class="note-icon">
+                                ✓
+                            </span>
+
+                            <div>
+
+                                <strong>
+                                    MARTEY account
+                                </strong>
+
+                                <p>
+                                    Your account will keep
+                                    your shopping experience
+                                    simple and organized.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+                    </aside>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
+
+    <footer class="site-footer">
+
+        <div class="container">
+
+            <div class="footer-main">
+
+                <div class="footer-brand">
+
+                    <a href="/" class="footer-logo">
+                        MARTEY<span>.</span>
+                    </a>
+
+                    <p>
+                        Everyday essentials, made simple.
+                        Shop from nearby MARTEY stores.
+                    </p>
+
+                </div>
+
+
+                <div class="footer-column">
+
+                    <h3>
+                        Shop
+                    </h3>
+
+                    <a href="/milk">
+                        Milk & Dairy
+                    </a>
+
+                    <a href="/bakery">
+                        Bakery
+                    </a>
+
+                    <a href="/drinks">
+                        Drinks
+                    </a>
+
+                    <a href="/snacks">
+                        Snacks
+                    </a>
+
+                    <a href="/fruits-vegetables">
+                        Fresh
+                    </a>
+
+                </div>
+
+
+                <div class="footer-column">
+
+                    <h3>
+                        MARTEY
+                    </h3>
+
+                    <a href="/categories">
+                        Categories
+                    </a>
+
+                    <a href="/deals">
+                        Deals
+                    </a>
+
+                    <a href="/orders">
+                        Orders
+                    </a>
+
+                    <a href="/account">
+                        Account
+                    </a>
+
+                </div>
+
+
+                <div class="footer-column">
+
+                    <h3>
+                        Help
+                    </h3>
+
+                    <a href="/help">
+                        Help centre
+                    </a>
+
+                    <a href="/help">
+                        Delivery information
+                    </a>
+
+                    <a href="/help">
+                        Returns
+                    </a>
+
+                    <a href="/help">
+                        Contact us
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div class="footer-bottom">
+
+                <p>
+                    ©
+                    <span id="currentYear"></span>
+                    MARTEY. All rights reserved.
+                </p>
+
+                <div class="footer-bottom-links">
+
+                    <a href="/help">
+                        Privacy
+                    </a>
+
+                    <a href="/help">
+                        Terms
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    <!-- Toast -->
+    <div
+        class="toast"
+        id="toast"
+        role="status"
+        aria-live="polite"
+    ></div>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
