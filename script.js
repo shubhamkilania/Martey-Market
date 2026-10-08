@@ -498,7 +498,7 @@ function createProductCard(product) {
         <article class="product-card">
 
             <a
-                href="/product/${product.id}"
+                href="/product/?id=${product.id}"
                 class="product-image-link"
                 aria-label="View ${escapeHTML(product.name)}"
             >
@@ -531,7 +531,7 @@ function createProductCard(product) {
                 </div>
 
                 <a
-                    href="/product/${product.id}"
+                    href="/product/?id=${product.id}"
                     class="product-name"
                 >
                     ${escapeHTML(product.name)}
@@ -770,7 +770,7 @@ function renderSearchDropdown(query) {
 
                     return `
                         <a
-                            href="/product/${product.id}"
+                            href="/product/?id=${product.id}"
                             class="search-suggestion"
                         >
 
@@ -1047,7 +1047,6 @@ function setCurrentYear() {
 
 /* =========================================================
    STORAGE SYNC
-   Keeps cart count updated if another MARTEY tab changes it.
 ========================================================= */
 
 window.addEventListener(
@@ -1079,10 +1078,6 @@ function initMarteyHomepage() {
 
     setCurrentYear();
 
-    /*
-       Make image fallback function available
-       to inline image error handlers.
-    */
     window.handleImageError =
         handleImageError;
 }
