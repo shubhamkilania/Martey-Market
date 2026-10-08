@@ -7,8 +7,10 @@
     <title>Milk & Dairy | MARTEY</title>
     <meta
         name="description"
-        content="Shop milk and dairy products on MARTEY."
+        content="Shop fresh milk, curd, paneer, butter, cheese, ghee and dairy essentials on MARTEY."
     >
+
+    <link rel="icon" type="image/png" href="../favicon.png">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,352 +25,447 @@
 
 <body>
 
-    <!-- HEADER -->
-    <header class="site-header">
-        <div class="header-inner">
+<header class="site-header">
+    <div class="header-inner">
 
-            <a href="/" class="brand" aria-label="MARTEY Home">
-                MARTE<span>Y</span>.
+        <a href="/" class="brand" aria-label="MARTEY Home">
+            MARTE<span>Y</span>.
+        </a>
+
+        <button
+            class="location-button"
+            id="locationButton"
+            type="button"
+        >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 21s7-6.1 7-12a7 7 0 1 0-14 0c0 5.9 7 12 7 12Z"/>
+                <circle cx="12" cy="9" r="2.3"/>
+            </svg>
+
+            <span class="location-content">
+                <small>Deliver to</small>
+                <strong>Select location</strong>
+            </span>
+
+            <svg class="chevron" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="m7 10 5 5 5-5"/>
+            </svg>
+        </button>
+
+        <form class="header-search" id="headerSearchForm">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="11" cy="11" r="6.5"/>
+                <path d="m16 16 4.5 4.5"/>
+            </svg>
+
+            <input
+                type="search"
+                id="headerSearch"
+                placeholder="Search products..."
+                autocomplete="off"
+                aria-label="Search products"
+            >
+        </form>
+
+        <div class="header-actions">
+
+            <a href="/account" class="header-action">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <circle cx="12" cy="8" r="3.2"/>
+                    <path d="M5.5 20c.7-3.5 3-5.2 6.5-5.2s5.8 1.7 6.5 5.2"/>
+                </svg>
+                <span>Account</span>
             </a>
 
-            <button
-                class="location-button"
-                id="locationButton"
-                type="button"
-            >
-                <span class="location-icon">⌖</span>
+            <a href="/cart" class="header-action cart-action">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M3.5 5h2l1.6 10.1a2 2 0 0 0 2 1.7h7.7a2 2 0 0 0 1.9-1.4L21 8H7"/>
+                    <circle cx="9.5" cy="20" r="1.2"/>
+                    <circle cx="17.5" cy="20" r="1.2"/>
+                </svg>
+                <span>Cart</span>
+                <b id="cartCount">0</b>
+            </a>
 
-                <span class="location-content">
-                    <small>Deliver to</small>
-                    <strong>Select location</strong>
-                </span>
+        </div>
 
-                <span class="location-arrow">⌄</span>
-            </button>
+    </div>
+</header>
 
-            <div class="header-search">
-                <span class="search-icon">⌕</span>
 
-                <input
-                    type="search"
-                    id="headerSearch"
-                    placeholder="Search products..."
-                    autocomplete="off"
-                    aria-label="Search products"
-                >
-            </div>
+<main>
 
-            <div class="header-actions">
+    <section class="breadcrumb-section">
+        <div class="container">
 
-                <a href="/account" class="header-action">
-                    <span class="action-icon">♙</span>
-                    <span>Account</span>
-                </a>
+            <nav class="breadcrumb" aria-label="Breadcrumb">
+                <a href="/">Home</a>
+                <span>/</span>
+                <a href="/categories">Categories</a>
+                <span>/</span>
+                <strong>Milk &amp; Dairy</strong>
+            </nav>
 
-                <a href="/cart" class="header-action cart-action">
-                    <span class="cart-icon">🛒</span>
-                    <span>Cart</span>
-                    <b id="cartCount">0</b>
-                </a>
+        </div>
+    </section>
+
+
+    <section class="category-hero">
+        <div class="container">
+
+            <div class="category-hero-grid">
+
+                <div class="category-heading">
+
+                    <span class="eyebrow">MARTEY CATEGORY</span>
+
+                    <h1>
+                        Milk &amp; Dairy
+                    </h1>
+
+                    <p>
+                        Fresh everyday dairy essentials including milk,
+                        curd, paneer, butter, cheese, ghee and more.
+                    </p>
+
+                    <div class="hero-points">
+                        <span>Fresh essentials</span>
+                        <span>Everyday value</span>
+                        <span>Quick delivery</span>
+                    </div>
+
+                </div>
+
+                <div class="category-visual">
+                    <img
+                        src="../assets/categories/milk.jpg"
+                        alt="Milk and dairy products"
+                    >
+                    <div class="visual-label">
+                        <strong id="heroProductCount">30+</strong>
+                        <span>dairy essentials</span>
+                    </div>
+                </div>
 
             </div>
 
         </div>
-    </header>
+    </section>
 
 
-    <!-- MAIN -->
-    <main>
+    <section class="products-section">
+        <div class="container">
 
-        <!-- BREADCRUMB -->
-        <section class="breadcrumb-section">
-            <div class="container">
+            <div class="shop-layout">
 
-                <nav class="breadcrumb" aria-label="Breadcrumb">
-                    <a href="/">Home</a>
-                    <span>/</span>
-                    <a href="/categories">Categories</a>
-                    <span>/</span>
-                    <strong>Milk &amp; Dairy</strong>
-                </nav>
+                <aside class="filter-sidebar" id="filterSidebar">
 
-            </div>
-        </section>
+                    <div class="filter-header">
+                        <h2>Filters</h2>
+
+                        <button
+                            type="button"
+                            id="clearFilters"
+                            class="clear-filter"
+                        >
+                            Clear all
+                        </button>
+                    </div>
 
 
-        <!-- CATEGORY HERO -->
-        <section class="category-hero">
-            <div class="container">
+                    <div class="filter-group">
 
-                <div class="category-heading">
+                        <h3>Dairy Type</h3>
 
-                    <div>
-                        <span class="eyebrow">MARTEY CATEGORY</span>
+                        <label class="filter-option">
+                            <input type="checkbox" name="dairyType" value="Milk">
+                            <span>Milk</span>
+                        </label>
 
-                        <h1>Milk &amp; Dairy</h1>
+                        <label class="filter-option">
+                            <input type="checkbox" name="dairyType" value="Curd & Yogurt">
+                            <span>Curd &amp; Yogurt</span>
+                        </label>
+
+                        <label class="filter-option">
+                            <input type="checkbox" name="dairyType" value="Butter">
+                            <span>Butter</span>
+                        </label>
+
+                        <label class="filter-option">
+                            <input type="checkbox" name="dairyType" value="Paneer">
+                            <span>Paneer</span>
+                        </label>
+
+                        <label class="filter-option">
+                            <input type="checkbox" name="dairyType" value="Cheese">
+                            <span>Cheese</span>
+                        </label>
+
+                        <label class="filter-option">
+                            <input type="checkbox" name="dairyType" value="Cream">
+                            <span>Cream</span>
+                        </label>
+
+                        <label class="filter-option">
+                            <input type="checkbox" name="dairyType" value="Ghee">
+                            <span>Ghee</span>
+                        </label>
+
+                        <label class="filter-option">
+                            <input type="checkbox" name="dairyType" value="Lassi & Flavoured Dairy">
+                            <span>Lassi &amp; Flavoured Dairy</span>
+                        </label>
+
+                    </div>
+
+
+                    <div class="filter-group">
+
+                        <h3>Price</h3>
+
+                        <label class="filter-option">
+                            <input
+                                type="radio"
+                                name="priceFilter"
+                                value="all"
+                                checked
+                            >
+                            <span>All prices</span>
+                        </label>
+
+                        <label class="filter-option">
+                            <input
+                                type="radio"
+                                name="priceFilter"
+                                value="under50"
+                            >
+                            <span>Under ₹50</span>
+                        </label>
+
+                        <label class="filter-option">
+                            <input
+                                type="radio"
+                                name="priceFilter"
+                                value="50to100"
+                            >
+                            <span>₹50 – ₹100</span>
+                        </label>
+
+                        <label class="filter-option">
+                            <input
+                                type="radio"
+                                name="priceFilter"
+                                value="100to200"
+                            >
+                            <span>₹100 – ₹200</span>
+                        </label>
+
+                        <label class="filter-option">
+                            <input
+                                type="radio"
+                                name="priceFilter"
+                                value="above200"
+                            >
+                            <span>Above ₹200</span>
+                        </label>
+
+                    </div>
+
+
+                    <div class="filter-group">
+
+                        <h3>Discount</h3>
+
+                        <label class="filter-option">
+                            <input
+                                type="checkbox"
+                                name="discountFilter"
+                                value="10"
+                            >
+                            <span>10% &amp; above</span>
+                        </label>
+
+                        <label class="filter-option">
+                            <input
+                                type="checkbox"
+                                name="discountFilter"
+                                value="20"
+                            >
+                            <span>20% &amp; above</span>
+                        </label>
+
+                    </div>
+
+                </aside>
+
+
+                <div class="products-content">
+
+                    <div class="products-toolbar">
+
+                        <div class="toolbar-left">
+
+                            <button
+                                type="button"
+                                class="mobile-filter-button"
+                                id="mobileFilterButton"
+                            >
+                                <svg viewBox="0 0 24 24" aria-hidden="true">
+                                    <path d="M4 7h16M7 12h10M10 17h4"/>
+                                </svg>
+                                Filter
+                            </button>
+
+                            <span
+                                class="results-text"
+                                id="resultsText"
+                            >
+                                Showing products
+                            </span>
+
+                        </div>
+
+
+                        <div class="sort-wrapper">
+
+                            <label for="sortSelect">
+                                Sort by
+                            </label>
+
+                            <select id="sortSelect">
+                                <option value="relevance">Relevance</option>
+                                <option value="price-low">Price: Low to High</option>
+                                <option value="price-high">Price: High to Low</option>
+                                <option value="discount">Highest Discount</option>
+                                <option value="rating">Top Rated</option>
+                            </select>
+
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        class="product-grid"
+                        id="productGrid"
+                    ></div>
+
+
+                    <div
+                        class="empty-state"
+                        id="emptyState"
+                        hidden
+                    >
+
+                        <div class="empty-icon">
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <circle cx="11" cy="11" r="6.5"/>
+                                <path d="m16 16 4.5 4.5"/>
+                            </svg>
+                        </div>
+
+                        <h2>No dairy products found</h2>
 
                         <p>
-                            Everyday milk and dairy essentials for your home.
-                            Browse the available products and add what you need
-                            to your cart.
+                            Try another search or clear your filters.
                         </p>
-                    </div>
 
-                    <div class="category-meta">
-                        <span id="productCount">0 products</span>
-                    </div>
-
-                </div>
-
-            </div>
-        </section>
-
-
-        <!-- PRODUCTS -->
-        <section class="products-section">
-            <div class="container">
-
-                <div class="shop-layout">
-
-                    <!-- FILTER SIDEBAR -->
-                    <aside class="filter-sidebar">
-
-                        <div class="filter-header">
-                            <h2>Filter</h2>
-
-                            <button
-                                type="button"
-                                id="clearFilters"
-                                class="clear-filter"
-                            >
-                                Clear
-                            </button>
-                        </div>
-
-
-                        <!-- DAIRY TYPE -->
-                        <div class="filter-group">
-
-                            <h3>Dairy Type</h3>
-
-                            <label class="filter-option">
-                                <input
-                                    type="checkbox"
-                                    name="dairyType"
-                                    value="Milk"
-                                >
-                                <span>Milk</span>
-                            </label>
-
-                            <label class="filter-option">
-                                <input
-                                    type="checkbox"
-                                    name="dairyType"
-                                    value="Curd & Yogurt"
-                                >
-                                <span>Curd &amp; Yogurt</span>
-                            </label>
-
-                            <label class="filter-option">
-                                <input
-                                    type="checkbox"
-                                    name="dairyType"
-                                    value="Butter"
-                                >
-                                <span>Butter</span>
-                            </label>
-
-                            <label class="filter-option">
-                                <input
-                                    type="checkbox"
-                                    name="dairyType"
-                                    value="Paneer"
-                                >
-                                <span>Paneer</span>
-                            </label>
-
-                            <label class="filter-option">
-                                <input
-                                    type="checkbox"
-                                    name="dairyType"
-                                    value="Cheese"
-                                >
-                                <span>Cheese</span>
-                            </label>
-
-                        </div>
-
-
-                        <!-- PRICE -->
-                        <div class="filter-group">
-
-                            <h3>Price</h3>
-
-                            <label class="filter-option">
-                                <input
-                                    type="radio"
-                                    name="priceFilter"
-                                    value="all"
-                                    checked
-                                >
-                                <span>All prices</span>
-                            </label>
-
-                            <label class="filter-option">
-                                <input
-                                    type="radio"
-                                    name="priceFilter"
-                                    value="under50"
-                                >
-                                <span>Under ₹50</span>
-                            </label>
-
-                            <label class="filter-option">
-                                <input
-                                    type="radio"
-                                    name="priceFilter"
-                                    value="50to100"
-                                >
-                                <span>₹50 – ₹100</span>
-                            </label>
-
-                            <label class="filter-option">
-                                <input
-                                    type="radio"
-                                    name="priceFilter"
-                                    value="above100"
-                                >
-                                <span>Above ₹100</span>
-                            </label>
-
-                        </div>
-
-                    </aside>
-
-
-                    <!-- PRODUCTS CONTENT -->
-                    <div class="products-content">
-
-                        <!-- TOOLBAR -->
-                        <div class="products-toolbar">
-
-                            <div>
-                                <button
-                                    type="button"
-                                    class="mobile-filter-button"
-                                    id="mobileFilterButton"
-                                >
-                                    ☰ Filter
-                                </button>
-
-                                <span
-                                    class="results-text"
-                                    id="resultsText"
-                                >
-                                    Showing products
-                                </span>
-                            </div>
-
-
-                            <div class="sort-wrapper">
-
-                                <label for="sortSelect">
-                                    Sort by
-                                </label>
-
-                                <select id="sortSelect">
-
-                                    <option value="relevance">
-                                        Relevance
-                                    </option>
-
-                                    <option value="price-low">
-                                        Price: Low to High
-                                    </option>
-
-                                    <option value="price-high">
-                                        Price: High to Low
-                                    </option>
-
-                                    <option value="discount">
-                                        Highest Discount
-                                    </option>
-
-                                </select>
-
-                            </div>
-
-                        </div>
-
-
-                        <!-- PRODUCT GRID -->
-                        <div
-                            class="product-grid"
-                            id="productGrid"
-                        ></div>
-
-
-                        <!-- EMPTY STATE -->
-                        <div
-                            class="empty-state"
-                            id="emptyState"
-                            hidden
+                        <button
+                            type="button"
+                            id="emptyClearButton"
+                            class="primary-button"
                         >
-
-                            <div class="empty-icon">⌕</div>
-
-                            <h2>No dairy products found</h2>
-
-                            <p>
-                                Try another search or clear your filters.
-                            </p>
-
-                            <button
-                                type="button"
-                                id="emptyClearButton"
-                                class="primary-button"
-                            >
-                                Clear Filters
-                            </button>
-
-                        </div>
+                            Clear filters
+                        </button>
 
                     </div>
 
                 </div>
 
             </div>
-        </section>
 
-    </main>
+        </div>
+    </section>
 
-
-    <!-- MOBILE FILTER -->
-    <div
-        class="filter-overlay"
-        id="filterOverlay"
-    ></div>
-
-    <button
-        type="button"
-        class="mobile-filter-close"
-        id="mobileFilterClose"
-        aria-label="Close filters"
-    >
-        ×
-    </button>
+</main>
 
 
-    <!-- TOAST -->
-    <div
-        class="toast"
-        id="toast"
-        role="status"
-        aria-live="polite"
-    ></div>
+<footer class="site-footer">
+
+    <div class="container">
+
+        <div class="footer-grid">
+
+            <div class="footer-brand">
+                <a href="/" class="footer-logo">
+                    MARTE<span>Y</span>.
+                </a>
+
+                <p>
+                    Everyday essentials, delivered simply.
+                </p>
+            </div>
+
+            <div class="footer-column">
+                <h3>Shop</h3>
+                <a href="/milk">Milk &amp; Dairy</a>
+                <a href="/bakery">Bakery</a>
+                <a href="/drinks">Drinks</a>
+                <a href="/snacks">Snacks</a>
+            </div>
+
+            <div class="footer-column">
+                <h3>MARTEY</h3>
+                <a href="/categories">Categories</a>
+                <a href="/deals">Deals</a>
+                <a href="/orders">Orders</a>
+                <a href="/account">Account</a>
+            </div>
+
+            <div class="footer-column">
+                <h3>Help</h3>
+                <a href="/help">Help &amp; Support</a>
+                <a href="/help">Privacy</a>
+                <a href="/help">Terms</a>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <span>© <span id="currentYear"></span> MARTEY. All rights reserved.</span>
+            <span>Made for everyday life.</span>
+        </div>
+
+    </div>
+
+</footer>
 
 
-    <script src="script.js"></script>
+<div
+    class="filter-overlay"
+    id="filterOverlay"
+></div>
+
+<button
+    type="button"
+    class="mobile-filter-close"
+    id="mobileFilterClose"
+    aria-label="Close filters"
+>
+    ×
+</button>
+
+
+<div
+    class="toast"
+    id="toast"
+    role="status"
+    aria-live="polite"
+></div>
+
+
+<script src="script.js"></script>
 
 </body>
 </html>
