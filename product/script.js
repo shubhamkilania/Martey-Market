@@ -1,16 +1,19 @@
-const products = [
+"use strict";
 
+
+const products = [
     {
         id: 1001,
-        name: "Fresh Milk",
+        name: "Fresh Full Cream Milk",
         category: "Milk & Dairy",
         size: "1 L",
-        price: 62,
-        mrp: 68,
-        rating: 4.6,
-        image: "../assets/products/milk.jpg",
+        price: 68,
+        mrp: 72,
+        discount: 6,
+        rating: 4.7,
+        image: "assets/products/milk.jpg",
         description:
-            "A quality everyday milk product selected for convenient and reliable shopping through MARTEY."
+            "Fresh full cream milk for everyday use. A convenient choice for tea, coffee, breakfast and home cooking."
     },
 
     {
@@ -20,49 +23,53 @@ const products = [
         size: "400 g",
         price: 45,
         mrp: 50,
-        rating: 4.5,
-        image: "../assets/products/bread.jpg",
+        discount: 10,
+        rating: 4.6,
+        image: "assets/products/bread.jpg",
         description:
-            "A fresh everyday bakery essential suitable for breakfast, snacks and quick meals."
+            "Soft classic white bread made for everyday breakfasts, sandwiches and quick snacks."
     },
 
     {
         id: 1003,
-        name: "Orange Fruit Drink",
+        name: "Fresh Orange Drink",
         category: "Drinks",
-        size: "1 L",
-        price: 85,
-        mrp: 100,
-        rating: 4.4,
-        image: "../assets/products/orange-drink.jpg",
+        size: "750 ml",
+        price: 55,
+        mrp: 60,
+        discount: 8,
+        rating: 4.5,
+        image: "assets/products/orange-drink.jpg",
         description:
-            "A refreshing fruit drink for everyday moments and quick refreshment."
+            "A refreshing orange drink that is perfect for a chilled everyday beverage."
     },
 
     {
         id: 1004,
-        name: "Classic Potato Chips",
+        name: "Classic Salted Chips",
         category: "Snacks",
         size: "100 g",
-        price: 30,
-        mrp: 35,
+        price: 28,
+        mrp: 30,
+        discount: 7,
         rating: 4.5,
-        image: "../assets/products/chips.jpg",
+        image: "assets/products/chips.jpg",
         description:
-            "Crispy potato chips made for convenient snacking throughout the day."
+            "Classic salted chips with a crisp texture, perfect for quick snacking."
     },
 
     {
         id: 1005,
         name: "Fresh Bananas",
-        category: "Fresh",
+        category: "Fruits & Vegetables",
         size: "1 kg",
-        price: 55,
-        mrp: 65,
+        price: 49,
+        mrp: 55,
+        discount: 11,
         rating: 4.7,
-        image: "../assets/products/bananas.jpg",
+        image: "assets/products/bananas.jpg",
         description:
-            "Fresh bananas selected for everyday household consumption."
+            "Fresh bananas selected for everyday consumption and convenient home use."
     },
 
     {
@@ -72,10 +79,11 @@ const products = [
         size: "180 ml",
         price: 149,
         mrp: 175,
+        discount: 15,
         rating: 4.4,
-        image: "../assets/products/shampoo.jpg",
+        image: "assets/products/shampoo.jpg",
         description:
-            "An everyday personal-care essential available through MARTEY."
+            "A daily-use shampoo designed for a simple and convenient hair-care routine."
     },
 
     {
@@ -85,36 +93,39 @@ const products = [
         size: "1 L",
         price: 189,
         mrp: 220,
+        discount: 14,
         rating: 4.5,
-        image: "../assets/products/detergent.jpg",
+        image: "assets/products/detergent.jpg",
         description:
-            "A practical household laundry essential for regular cleaning."
+            "Liquid laundry detergent for everyday washing and household cleaning needs."
     },
 
     {
         id: 1008,
-        name: "Baby Soft Wipes",
+        name: "Soft Baby Wipes",
         category: "Baby Care",
-        size: "72 wipes",
-        price: 125,
-        mrp: 150,
+        size: "80 wipes",
+        price: 99,
+        mrp: 120,
+        discount: 18,
         rating: 4.6,
-        image: "../assets/products/baby-wipes.jpg",
+        image: "assets/products/baby-wipes.jpg",
         description:
-            "Convenient soft wipes for everyday baby-care needs."
+            "Soft everyday baby wipes designed for convenient cleaning and care."
     },
 
     {
         id: 1009,
-        name: "Butter Biscuits",
+        name: "Crunchy Butter Biscuits",
         category: "Snacks",
-        size: "250 g",
-        price: 55,
-        mrp: 65,
+        size: "200 g",
+        price: 42,
+        mrp: 50,
+        discount: 16,
         rating: 4.5,
-        image: "../assets/products/biscuits.jpg",
+        image: "assets/products/biscuits.jpg",
         description:
-            "Light and convenient biscuits for everyday snacking."
+            "Crunchy butter biscuits that make a convenient snack for tea time and everyday breaks."
     },
 
     {
@@ -123,11 +134,12 @@ const products = [
         category: "Pet Supplies",
         size: "1 kg",
         price: 299,
-        mrp: 349,
+        mrp: 340,
+        discount: 12,
         rating: 4.6,
-        image: "../assets/products/pet-food.jpg",
+        image: "assets/products/pet-food.jpg",
         description:
-            "An everyday pet-care food option available through MARTEY."
+            "Premium everyday pet food for convenient feeding at home."
     },
 
     {
@@ -135,289 +147,231 @@ const products = [
         name: "Wireless Headphones",
         category: "Electronics & Accessories",
         size: "1 unit",
-        price: 799,
-        mrp: 999,
-        rating: 4.3,
-        image: "../assets/products/headphones.jpg",
+        price: 899,
+        mrp: 1199,
+        discount: 25,
+        rating: 4.4,
+        image: "assets/products/headphones.jpg",
         description:
-            "Wireless headphones designed for convenient everyday listening."
+            "Wireless headphones designed for everyday entertainment, calls and music."
     },
 
     {
         id: 1012,
-        name: "Premium Notebook",
+        name: "Premium Spiral Notebook",
         category: "Stationery",
-        size: "A5",
+        size: "200 pages",
         price: 99,
-        mrp: 120,
+        mrp: 125,
+        discount: 21,
         rating: 4.6,
-        image: "../assets/products/notebook.jpg",
+        image: "assets/products/notebook.jpg",
         description:
-            "A practical notebook for writing, planning and everyday use."
+            "A premium spiral notebook suitable for school, planning, notes and everyday writing."
     }
-
 ];
 
 
 /* =========================================================
-   ELEMENTS
+   DOM
 ========================================================= */
 
-const productImage =
-    document.getElementById("productImage");
+const productImage = document.getElementById("productImage");
+const productDiscount = document.getElementById("productDiscount");
+const productCategory = document.getElementById("productCategory");
+const productName = document.getElementById("productName");
+const productRating = document.getElementById("productRating");
+const ratingText = document.getElementById("ratingText");
+const productPrice = document.getElementById("productPrice");
+const productMrp = document.getElementById("productMrp");
+const productSave = document.getElementById("productSave");
+const productSize = document.getElementById("productSize");
 
-const productName =
-    document.getElementById("productName");
+const deliveryText = document.getElementById("deliveryText");
 
-const productCategory =
-    document.getElementById("productCategory");
+const quantityValue = document.getElementById("quantityValue");
+const decreaseQty = document.getElementById("decreaseQty");
+const increaseQty = document.getElementById("increaseQty");
 
-const productSize =
-    document.getElementById("productSize");
+const addToCartButton = document.getElementById("addToCart");
+const buyNowButton = document.getElementById("buyNow");
 
-const productPrice =
-    document.getElementById("productPrice");
+const descriptionText = document.getElementById("descriptionText");
 
-const productMrp =
-    document.getElementById("productMrp");
+const infoCategory = document.getElementById("infoCategory");
+const infoSize = document.getElementById("infoSize");
+const infoMrp = document.getElementById("infoMrp");
+const infoDiscount = document.getElementById("infoDiscount");
 
-const productDiscount =
-    document.getElementById("productDiscount");
+const reviewScore = document.getElementById("reviewScore");
 
-const discountBadge =
-    document.getElementById("discountBadge");
+const relatedProducts = document.getElementById("relatedProducts");
 
-const productRating =
-    document.getElementById("productRating");
+const cartCount = document.getElementById("cartCount");
 
-const productDescription =
-    document.getElementById("productDescription");
+const searchForm = document.getElementById("searchForm");
+const searchInput = document.getElementById("searchInput");
+const searchClear = document.getElementById("searchClear");
+const searchDropdown = document.getElementById("searchDropdown");
 
-const infoCategory =
-    document.getElementById("infoCategory");
+const locationButton = document.getElementById("locationButton");
+const changeLocation = document.getElementById("changeLocation");
 
-const infoSize =
-    document.getElementById("infoSize");
+const toast = document.getElementById("toast");
+const currentYear = document.getElementById("currentYear");
 
-const infoId =
-    document.getElementById("infoId");
-
-const reviewRating =
-    document.getElementById("reviewRating");
-
-const breadcrumbCategory =
-    document.getElementById("breadcrumbCategory");
-
-const breadcrumbProduct =
-    document.getElementById("breadcrumbProduct");
-
-const quantityElement =
-    document.getElementById("quantity");
-
-const cartCount =
-    document.getElementById("cartCount");
-
-const relatedProducts =
-    document.getElementById("relatedProducts");
-
-const searchInput =
-    document.getElementById("searchInput");
-
-const searchForm =
-    document.getElementById("searchForm");
-
-const searchSuggestions =
-    document.getElementById("searchSuggestions");
+const breadcrumbProduct = document.getElementById("breadcrumbProduct");
 
 
 /* =========================================================
-   GET PRODUCT ID
+   PRODUCT ID
 ========================================================= */
 
 function getProductId() {
+    const path = window.location.pathname.replace(/\/+$/, "");
+    const parts = path.split("/");
 
-    const path =
-        window.location.pathname;
+    const lastPart = parts[parts.length - 1];
 
-    const parts =
-        path.split("/").filter(Boolean);
+    const pathId = Number(lastPart);
 
-    const productIndex =
-        parts.indexOf("product");
-
-    if (productIndex === -1) {
-        return 1001;
+    if (Number.isInteger(pathId) && pathId > 0) {
+        return pathId;
     }
 
-    const id =
-        Number(parts[productIndex + 1]);
+    const queryId = Number(
+        new URLSearchParams(window.location.search).get("id")
+    );
 
-    return Number.isFinite(id)
-        ? id
-        : 1001;
+    if (Number.isInteger(queryId) && queryId > 0) {
+        return queryId;
+    }
+
+    return 1001;
 }
 
 
-const productId =
-    getProductId();
+const currentProductId = getProductId();
+
+const currentProduct =
+    products.find(product => product.id === currentProductId) ||
+    products[0];
 
 
 /* =========================================================
-   FIND PRODUCT
+   HELPERS
 ========================================================= */
 
-const product =
-    products.find(item =>
-        item.id === productId
-    );
+function formatPrice(value) {
+    return `₹${Number(value).toLocaleString("en-IN")}`;
+}
 
 
-/* =========================================================
-   DISCOUNT
-========================================================= */
+function escapeHtml(value) {
+    return String(value)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+}
 
-function getDiscount(price, mrp) {
 
-    if (mrp <= price) {
-        return 0;
-    }
+function showToast(message) {
+    if (!toast) return;
 
-    return Math.round(
-        ((mrp - price) / mrp) * 100
-    );
+    toast.textContent = message;
+    toast.classList.add("show");
+
+    clearTimeout(showToast.timer);
+
+    showToast.timer = setTimeout(() => {
+        toast.classList.remove("show");
+    }, 2200);
 }
 
 
 /* =========================================================
-   LOAD PRODUCT
+   IMAGE FALLBACK
 ========================================================= */
 
-function loadProduct() {
+function applyImageFallback(imageElement) {
+    if (!imageElement) return;
 
-    if (!product) {
-
-        document.title =
-            "Product Not Found | MARTEY";
-
-        productName.textContent =
-            "Product not found";
-
-        productCategory.textContent =
-            "MARTEY";
-
-        productDescription.textContent =
-            "The product you are looking for could not be found.";
-
-        return;
-    }
+    imageElement.addEventListener("error", () => {
+        imageElement.src =
+            "https://placehold.co/700x700/F7F8FA/667085?text=MARTEY";
+    });
+}
 
 
-    const discount =
-        getDiscount(
-            product.price,
-            product.mrp
-        );
+/* =========================================================
+   RENDER PRODUCT
+========================================================= */
 
+function renderProduct() {
 
-    document.title =
-        `${product.name} | MARTEY`;
+    document.title = `${currentProduct.name} | MARTEY`;
 
+    breadcrumbProduct.textContent = currentProduct.name;
 
-    productImage.src =
-        product.image;
-
-    productImage.alt =
-        product.name;
-
-
-    productName.textContent =
-        product.name;
-
-    productCategory.textContent =
-        product.category;
-
-    productSize.textContent =
-        product.size;
-
-    productPrice.textContent =
-        `₹${product.price}`;
-
-    productMrp.textContent =
-        `₹${product.mrp}`;
+    productImage.src = currentProduct.image;
+    productImage.alt = currentProduct.name;
 
     productDiscount.textContent =
-        discount > 0
-            ? `${discount}% OFF`
-            : "";
+        `${currentProduct.discount}% OFF`;
 
-    discountBadge.textContent =
-        discount > 0
-            ? `${discount}% OFF`
-            : "";
+    productCategory.textContent =
+        currentProduct.category;
 
-    discountBadge.style.display =
-        discount > 0
-            ? "block"
-            : "none";
-
+    productName.textContent =
+        currentProduct.name;
 
     productRating.textContent =
-        product.rating;
+        currentProduct.rating.toFixed(1);
 
-    reviewRating.textContent =
-        product.rating;
+    ratingText.textContent =
+        currentProduct.rating >= 4.6
+            ? "Highly rated"
+            : "Good rating";
 
+    productPrice.textContent =
+        formatPrice(currentProduct.price);
 
-    productDescription.textContent =
-        product.description;
+    productMrp.textContent =
+        formatPrice(currentProduct.mrp);
 
+    const savings =
+        currentProduct.mrp - currentProduct.price;
+
+    productSave.textContent =
+        `Save ${formatPrice(savings)}`;
+
+    productSize.textContent =
+        currentProduct.size;
+
+    deliveryText.textContent =
+        "Select your location to check nearby delivery availability.";
+
+    descriptionText.textContent =
+        currentProduct.description;
 
     infoCategory.textContent =
-        product.category;
+        currentProduct.category;
 
     infoSize.textContent =
-        product.size;
+        currentProduct.size;
 
-    infoId.textContent =
-        product.id;
+    infoMrp.textContent =
+        formatPrice(currentProduct.mrp);
 
+    infoDiscount.textContent =
+        `${currentProduct.discount}% OFF`;
 
-    breadcrumbProduct.textContent =
-        product.name;
+    reviewScore.textContent =
+        currentProduct.rating.toFixed(1);
 
-
-    breadcrumbCategory.textContent =
-        product.category;
-
-
-    breadcrumbCategory.href =
-        getCategoryUrl(product.category);
-
-
-    renderRelatedProducts();
-}
-
-
-/* =========================================================
-   CATEGORY URL
-========================================================= */
-
-function getCategoryUrl(category) {
-
-    const categoryMap = {
-
-        "Milk & Dairy": "/milk",
-        "Bakery": "/bakery",
-        "Drinks": "/drinks",
-        "Snacks": "/snacks",
-        "Fresh": "/fruits-vegetables",
-        "Personal Care": "/personal-care",
-        "Household": "/household"
-
-    };
-
-    return categoryMap[category]
-        || "/categories";
+    applyImageFallback(productImage);
 }
 
 
@@ -428,237 +382,181 @@ function getCategoryUrl(category) {
 let quantity = 1;
 
 
-document
-    .getElementById("increaseQuantity")
-    .addEventListener(
-        "click",
-        () => {
-
-            if (quantity >= 20) {
-                return;
-            }
-
-            quantity++;
-
-            quantityElement.textContent =
-                quantity;
-        }
-    );
+function updateQuantity() {
+    quantityValue.textContent = quantity;
+}
 
 
-document
-    .getElementById("decreaseQuantity")
-    .addEventListener(
-        "click",
-        () => {
+decreaseQty.addEventListener("click", () => {
 
-            if (quantity <= 1) {
-                return;
-            }
+    if (quantity <= 1) return;
 
-            quantity--;
+    quantity -= 1;
 
-            quantityElement.textContent =
-                quantity;
-        }
-    );
+    updateQuantity();
+});
+
+
+increaseQty.addEventListener("click", () => {
+
+    if (quantity >= 20) {
+        showToast("Maximum quantity is 20.");
+        return;
+    }
+
+    quantity += 1;
+
+    updateQuantity();
+});
 
 
 /* =========================================================
    CART
 ========================================================= */
 
-let cart =
-    JSON.parse(
-        localStorage.getItem("marteyCart") || "[]"
-    );
+const CART_KEY = "marteyCart";
 
 
-function updateCartCount() {
+function getCart() {
 
-    const total =
-        cart.reduce(
-            (sum, item) =>
-                sum + (item.quantity || 1),
-            0
-        );
+    try {
+        const saved =
+            localStorage.getItem(CART_KEY);
 
-    cartCount.textContent =
-        total;
+        if (!saved) return [];
+
+        const parsed =
+            JSON.parse(saved);
+
+        return Array.isArray(parsed)
+            ? parsed
+            : [];
+
+    } catch {
+        return [];
+    }
 }
 
 
-updateCartCount();
-
-
-function addCurrentProductToCart() {
-
-    if (!product) {
-        return;
-    }
-
-
-    const existing =
-        cart.find(
-            item => item.id === product.id
-        );
-
-
-    if (existing) {
-
-        existing.quantity += quantity;
-
-    } else {
-
-        cart.push({
-            id: product.id,
-            quantity: quantity
-        });
-
-    }
-
+function saveCart(cart) {
 
     localStorage.setItem(
-        "marteyCart",
+        CART_KEY,
         JSON.stringify(cart)
     );
-
 
     updateCartCount();
 }
 
 
-/* =========================================================
-   ADD TO CART BUTTON
-========================================================= */
+function getItemId(item) {
 
-document
-    .getElementById("addToCart")
-    .addEventListener(
-        "click",
-        () => {
-
-            addCurrentProductToCart();
-
-            const button =
-                document.getElementById("addToCart");
-
-            button.textContent =
-                "Added to Cart ✓";
-
-            button.style.background =
-                "#155EEF";
-
-            button.style.color =
-                "#FFFFFF";
-
-
-            setTimeout(() => {
-
-                button.textContent =
-                    "Add to Cart";
-
-                button.style.background =
-                    "";
-
-                button.style.color =
-                    "";
-
-            }, 1200);
-        }
+    return Number(
+        item.id ??
+        item.productId ??
+        item.productID
     );
-
-
-/* =========================================================
-   BUY NOW
-========================================================= */
-
-document
-    .getElementById("buyNow")
-    .addEventListener(
-        "click",
-        () => {
-
-            addCurrentProductToCart();
-
-            window.location.href =
-                "/cart";
-        }
-    );
-
-
-/* =========================================================
-   WISHLIST
-========================================================= */
-
-const wishlistButton =
-    document.getElementById(
-        "wishlistButton"
-    );
-
-
-let wishlist =
-    JSON.parse(
-        localStorage.getItem("marteyWishlist") || "[]"
-    );
-
-
-function updateWishlistButton() {
-
-    if (!product) {
-        return;
-    }
-
-    const exists =
-        wishlist.includes(product.id);
-
-    wishlistButton.classList.toggle(
-        "active",
-        exists
-    );
-
-    wishlistButton.textContent =
-        exists
-            ? "♥ Added to Wishlist"
-            : "♡ Add to Wishlist";
 }
 
 
-wishlistButton.addEventListener(
-    "click",
-    () => {
+function getItemQuantity(item) {
 
-        if (!product) {
-            return;
-        }
+    const quantityValue =
+        Number(
+            item.quantity ??
+            item.qty ??
+            1
+        );
 
-
-        const index =
-            wishlist.indexOf(product.id);
-
-
-        if (index === -1) {
-
-            wishlist.push(product.id);
-
-        } else {
-
-            wishlist.splice(index, 1);
-        }
+    return Number.isFinite(quantityValue) &&
+        quantityValue > 0
+        ? quantityValue
+        : 1;
+}
 
 
-        localStorage.setItem(
-            "marteyWishlist",
-            JSON.stringify(wishlist)
+function updateCartCount() {
+
+    const cart = getCart();
+
+    const total = cart.reduce(
+        (sum, item) =>
+            sum + getItemQuantity(item),
+        0
+    );
+
+    if (total > 99) {
+        cartCount.textContent = "99+";
+    } else {
+        cartCount.textContent = String(total);
+    }
+}
+
+
+function addProductToCart(redirectToCart = false) {
+
+    const cart = getCart();
+
+    const existingIndex =
+        cart.findIndex(
+            item =>
+                getItemId(item) === currentProduct.id
         );
 
 
-        updateWishlistButton();
+    if (existingIndex !== -1) {
+
+        const existing =
+            cart[existingIndex];
+
+        existing.quantity =
+            Math.min(
+                getItemQuantity(existing) + quantity,
+                20
+            );
+
+    } else {
+
+        cart.push({
+            id: currentProduct.id,
+            name: currentProduct.name,
+            category: currentProduct.category,
+            size: currentProduct.size,
+            price: currentProduct.price,
+            mrp: currentProduct.mrp,
+            discount: currentProduct.discount,
+            image: currentProduct.image,
+            quantity: quantity
+        });
     }
+
+
+    saveCart(cart);
+
+    if (redirectToCart) {
+
+        window.location.href = "/cart";
+
+        return;
+    }
+
+
+    showToast(
+        `${currentProduct.name} added to cart`
+    );
+}
+
+
+addToCartButton.addEventListener(
+    "click",
+    () => addProductToCart(false)
 );
 
 
-updateWishlistButton();
+buyNowButton.addEventListener(
+    "click",
+    () => addProductToCart(true)
+);
 
 
 /* =========================================================
@@ -667,146 +565,390 @@ updateWishlistButton();
 
 function renderRelatedProducts() {
 
-    if (!product) {
-        return;
-    }
+    if (!relatedProducts) return;
+
+    const related =
+        products
+            .filter(
+                product =>
+                    product.id !== currentProduct.id &&
+                    product.category === currentProduct.category
+            )
+            .slice(0, 4);
 
 
-    let related =
-        products.filter(item =>
-            item.id !== product.id &&
-            item.category === product.category
-        );
+    const fallbackRelated =
+        products
+            .filter(
+                product =>
+                    product.id !== currentProduct.id
+            )
+            .slice(0, 4);
 
 
-    if (related.length < 4) {
-
-        const additional =
-            products.filter(item =>
-                item.id !== product.id &&
-                !related.includes(item)
-            );
-
-        related =
-            [
-                ...related,
-                ...additional
-            ];
-    }
-
-
-    related =
-        related.slice(0, 4);
+    const finalProducts =
+        related.length >= 4
+            ? related
+            : fallbackRelated;
 
 
     relatedProducts.innerHTML =
-        related.map(item => `
+        finalProducts
+            .map(product => {
 
-            <a
-                href="/product/${item.id}"
-                class="related-card"
-            >
+                return `
+                    <article class="product-card">
 
-                <div class="related-image">
+                        <a
+                            href="/product/${product.id}"
+                            aria-label="View ${escapeHtml(product.name)}"
+                        >
+                            <div class="product-card-image">
 
-                    <img
-                        src="${item.image}"
-                        alt="${item.name}"
-                        loading="lazy"
-                    >
+                                <span class="product-card-discount">
+                                    ${product.discount}% OFF
+                                </span>
 
-                </div>
+                                <img
+                                    src="${product.image}"
+                                    alt="${escapeHtml(product.name)}"
+                                >
+
+                            </div>
+                        </a>
+
+                        <div class="product-card-body">
+
+                            <p class="product-card-category">
+                                ${escapeHtml(product.category)}
+                            </p>
+
+                            <a
+                                href="/product/${product.id}"
+                                class="product-card-name"
+                            >
+                                ${escapeHtml(product.name)}
+                            </a>
+
+                            <p class="product-card-size">
+                                ${escapeHtml(product.size)}
+                            </p>
+
+                            <div class="product-card-bottom">
+
+                                <div class="product-card-price">
+
+                                    <strong>
+                                        ${formatPrice(product.price)}
+                                    </strong>
+
+                                    <span>
+                                        ${formatPrice(product.mrp)}
+                                    </span>
+
+                                </div>
+
+                                <button
+                                    type="button"
+                                    class="product-add"
+                                    data-add-id="${product.id}"
+                                >
+                                    ADD
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+                `;
+
+            })
+            .join("");
 
 
-                <div class="related-content">
-
-                    <span class="related-category">
-                        ${item.category}
-                    </span>
-
-                    <span class="related-name">
-                        ${item.name}
-                    </span>
-
-                    <div class="related-price">
-                        ₹${item.price}
-                    </div>
-
-                </div>
-
-            </a>
-
-        `).join("");
+    relatedProducts
+        .querySelectorAll("img")
+        .forEach(applyImageFallback);
 }
 
 
+relatedProducts.addEventListener(
+    "click",
+    event => {
+
+        const button =
+            event.target.closest(
+                "[data-add-id]"
+            );
+
+        if (!button) return;
+
+        event.preventDefault();
+        event.stopPropagation();
+
+        const productId =
+            Number(button.dataset.addId);
+
+        const selected =
+            products.find(
+                product =>
+                    product.id === productId
+            );
+
+        if (!selected) return;
+
+
+        const cart = getCart();
+
+        const existingIndex =
+            cart.findIndex(
+                item =>
+                    getItemId(item) === selected.id
+            );
+
+
+        if (existingIndex !== -1) {
+
+            cart[existingIndex].quantity =
+                Math.min(
+                    getItemQuantity(
+                        cart[existingIndex]
+                    ) + 1,
+                    20
+                );
+
+        } else {
+
+            cart.push({
+                id: selected.id,
+                name: selected.name,
+                category: selected.category,
+                size: selected.size,
+                price: selected.price,
+                mrp: selected.mrp,
+                discount: selected.discount,
+                image: selected.image,
+                quantity: 1
+            });
+        }
+
+
+        saveCart(cart);
+
+        showToast(
+            `${selected.name} added to cart`
+        );
+    }
+);
+
+
 /* =========================================================
-   PRODUCT TABS
+   INFORMATION TABS
 ========================================================= */
 
-const tabs =
-    document.querySelectorAll(
-        ".details-tab"
-    );
+const infoTabs =
+    document.querySelectorAll(".info-tab");
 
 const tabContents =
-    document.querySelectorAll(
-        ".tab-content"
-    );
+    document.querySelectorAll(".tab-content");
 
 
-tabs.forEach(tab => {
+infoTabs.forEach(tab => {
 
-    tab.addEventListener(
-        "click",
-        () => {
+    tab.addEventListener("click", () => {
 
-            const target =
-                tab.dataset.tab;
+        const target =
+            tab.dataset.tab;
 
 
-            tabs.forEach(item =>
-                item.classList.remove("active")
-            );
+        infoTabs.forEach(item =>
+            item.classList.remove("active")
+        );
+
+        tabContents.forEach(content =>
+            content.classList.remove("active")
+        );
 
 
-            tabContents.forEach(item =>
-                item.classList.remove("active")
-            );
+        tab.classList.add("active");
 
+        const targetContent =
+            document.getElementById(target);
 
-            tab.classList.add("active");
-
-
-            document
-                .getElementById(target)
-                .classList.add("active");
+        if (targetContent) {
+            targetContent.classList.add("active");
         }
-    );
+
+    });
 
 });
 
 
 /* =========================================================
-   LOCATION
-========================================================= */
-
-document
-    .getElementById("changeLocation")
-    .addEventListener(
-        "click",
-        () => {
-
-            alert(
-                "Location selection will be connected to MARTEY's location system later."
-            );
-        }
-    );
-
-
-/* =========================================================
    SEARCH
 ========================================================= */
+
+const searchExamples = [
+    "milk",
+    "bread",
+    "chips",
+    "shampoo",
+    "biscuits"
+];
+
+let searchExampleIndex = 0;
+
+function rotateSearchPlaceholder() {
+
+    if (
+        document.activeElement === searchInput ||
+        searchInput.value.trim()
+    ) {
+        return;
+    }
+
+    searchInput.placeholder =
+        `Search for ${searchExamples[searchExampleIndex]}...`;
+
+    searchExampleIndex =
+        (searchExampleIndex + 1) %
+        searchExamples.length;
+}
+
+
+setInterval(
+    rotateSearchPlaceholder,
+    2200
+);
+
+
+function renderSearchResults(query) {
+
+    const value =
+        query.trim().toLowerCase();
+
+
+    if (!value) {
+
+        searchDropdown.classList.remove("show");
+        searchDropdown.innerHTML = "";
+
+        return;
+    }
+
+
+    const matches =
+        products
+            .filter(product =>
+                `${product.name} ${product.category}`
+                    .toLowerCase()
+                    .includes(value)
+            )
+            .slice(0, 6);
+
+
+    if (!matches.length) {
+
+        searchDropdown.innerHTML = `
+            <div class="search-result">
+                <div>
+                    <strong>No products found</strong>
+                    <small>Try another search.</small>
+                </div>
+            </div>
+        `;
+
+        searchDropdown.classList.add("show");
+
+        return;
+    }
+
+
+    searchDropdown.innerHTML =
+        matches
+            .map(product => {
+
+                return `
+                    <a
+                        class="search-result"
+                        href="/product/${product.id}"
+                    >
+
+                        <img
+                            src="${product.image}"
+                            alt=""
+                        >
+
+                        <div>
+                            <strong>
+                                ${escapeHtml(product.name)}
+                            </strong>
+
+                            <small>
+                                ${escapeHtml(product.category)}
+                                · ${formatPrice(product.price)}
+                            </small>
+                        </div>
+
+                    </a>
+                `;
+
+            })
+            .join("");
+
+
+    searchDropdown
+        .querySelectorAll("img")
+        .forEach(applyImageFallback);
+
+
+    searchDropdown.classList.add("show");
+}
+
+
+searchInput.addEventListener(
+    "input",
+    () => {
+
+        const value =
+            searchInput.value.trim();
+
+        searchClear.hidden =
+            !value;
+
+        renderSearchResults(value);
+    }
+);
+
+
+searchInput.addEventListener(
+    "focus",
+    () => {
+
+        if (searchInput.value.trim()) {
+            renderSearchResults(
+                searchInput.value
+            );
+        }
+    }
+);
+
+
+searchClear.addEventListener(
+    "click",
+    () => {
+
+        searchInput.value = "";
+
+        searchClear.hidden = true;
+
+        searchDropdown.classList.remove("show");
+
+        searchInput.focus();
+    }
+);
+
 
 searchForm.addEventListener(
     "submit",
@@ -817,9 +959,7 @@ searchForm.addEventListener(
         const query =
             searchInput.value.trim();
 
-        if (!query) {
-            return;
-        }
+        if (!query) return;
 
         window.location.href =
             `/search?q=${encodeURIComponent(query)}`;
@@ -827,131 +967,89 @@ searchForm.addEventListener(
 );
 
 
-searchInput.addEventListener(
-    "input",
-    () => {
-
-        const query =
-            searchInput.value
-                .trim()
-                .toLowerCase();
-
-
-        if (!query) {
-
-            searchSuggestions.classList.remove(
-                "active"
-            );
-
-            return;
-        }
-
-
-        const matches =
-            products
-                .filter(item => {
-
-                    const text = `
-                        ${item.name}
-                        ${item.category}
-                        ${item.size}
-                    `.toLowerCase();
-
-                    return text.includes(query);
-                })
-                .slice(0, 5);
-
-
-        if (matches.length === 0) {
-
-            searchSuggestions.innerHTML = `
-
-                <div class="suggestion-item">
-
-                    <div class="suggestion-info">
-
-                        <strong>
-                            No products found
-                        </strong>
-
-                        <span>
-                            Try another search
-                        </span>
-
-                    </div>
-
-                </div>
-
-            `;
-
-        } else {
-
-            searchSuggestions.innerHTML =
-                matches.map(item => `
-
-                    <a
-                        href="/product/${item.id}"
-                        class="suggestion-item"
-                    >
-
-                        <img
-                            src="${item.image}"
-                            alt="${item.name}"
-                        >
-
-                        <div class="suggestion-info">
-
-                            <strong>
-                                ${item.name}
-                            </strong>
-
-                            <span>
-                                ${item.size}
-                                ·
-                                ${item.category}
-                            </span>
-
-                        </div>
-
-                        <span class="suggestion-price">
-                            ₹${item.price}
-                        </span>
-
-                    </a>
-
-                `).join("");
-        }
-
-
-        searchSuggestions.classList.add(
-            "active"
-        );
-    }
-);
-
-
-/* =========================================================
-   CLOSE SEARCH SUGGESTIONS
-========================================================= */
-
 document.addEventListener(
     "click",
     event => {
 
         if (
-            !searchForm.contains(event.target)
+            !event.target.closest(".search-form")
         ) {
-
-            searchSuggestions.classList.remove(
-                "active"
+            searchDropdown.classList.remove(
+                "show"
             );
         }
     }
 );
+
+
+document.addEventListener(
+    "keydown",
+    event => {
+
+        if (event.key === "Escape") {
+            searchDropdown.classList.remove(
+                "show"
+            );
+        }
+    }
+);
+
+
+/* =========================================================
+   LOCATION
+========================================================= */
+
+function showLocationMessage() {
+
+    showToast(
+        "Location selection will be connected later."
+    );
+}
+
+
+locationButton.addEventListener(
+    "click",
+    showLocationMessage
+);
+
+
+changeLocation.addEventListener(
+    "click",
+    showLocationMessage
+);
+
+
+/* =========================================================
+   STORAGE SYNC
+========================================================= */
+
+window.addEventListener(
+    "storage",
+    event => {
+
+        if (event.key === CART_KEY) {
+            updateCartCount();
+        }
+    }
+);
+
+
+/* =========================================================
+   YEAR
+========================================================= */
+
+currentYear.textContent =
+    new Date().getFullYear();
 
 
 /* =========================================================
    INITIALIZE
 ========================================================= */
 
-loadProduct();
+renderProduct();
+
+renderRelatedProducts();
+
+updateQuantity();
+
+updateCartCount();
