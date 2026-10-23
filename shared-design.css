@@ -129,3 +129,12 @@
     font-size: 24px;
   }
 }
+
+/* MARTEY Logo Color Fix */
+.site-header .brand-name {
+  color: #111111 !important;
+}
+
+.site-header .brand-name .brand-dot {
+  color: #155EEF !important;
+}
