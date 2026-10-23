@@ -1,0 +1,89 @@
+
+/* MARTEY — Shared Header Layout Fix */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  width: 100%;
+  background: #fff;
+  border-bottom: 1px solid #E4E7EC;
+}
+
+.site-header .header-inner,
+.site-header .header-container,
+.site-header .container.header-inner {
+  width: min(1320px, calc(100% - 40px));
+  max-width: 1320px;
+  min-height: 76px;
+  margin-inline: auto;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.site-header .logo,
+.site-header .brand,
+.site-header .brand-name {
+  flex-shrink: 0;
+  color: #111;
+  font-family: Manrope, sans-serif;
+  font-size: 26px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.site-header .logo span,
+.site-header .brand span,
+.site-header .brand-dot {
+  color: #155EEF;
+}
+
+.site-header .location-box,
+.site-header .location-button,
+.site-header .location-btn,
+.site-header .delivery-location {
+  flex-shrink: 0;
+}
+
+.site-header .header-search,
+.site-header .search-box,
+.site-header .search-form,
+.site-header .search-wrapper {
+  flex: 1 1 300px;
+  min-width: 0;
+}
+
+.site-header .header-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+  margin-left: auto;
+}
+
+@media (max-width: 760px) {
+  .site-header .header-inner,
+  .site-header .header-container,
+  .site-header .container.header-inner {
+    width: calc(100% - 24px);
+    gap: 10px;
+    flex-wrap: wrap;
+    padding-block: 10px;
+  }
+
+  .site-header .logo,
+  .site-header .brand,
+  .site-header .brand-name {
+    font-size: 23px;
+  }
+
+  .site-header .header-search,
+  .site-header .search-box,
+  .site-header .search-form,
+  .site-header .search-wrapper {
+    flex: 1 1 100%;
+    order: 3;
+  }
+}
+  
