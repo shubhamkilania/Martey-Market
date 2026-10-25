@@ -6,7 +6,7 @@
 :root {
   --martey-blue: #155EEF;
   --martey-blue-dark: #0B3AA4;
-  --martey-ink: #111111;
+  --martey-black: #111111;
   --martey-muted: #667085;
   --martey-border: #E4E7EC;
   --martey-soft: #F7F8FA;
@@ -45,7 +45,7 @@
 .site-header .logo,
 .site-header .brand,
 .site-header .brand-name {
-  color: var(--martey-ink) !important;
+  color: var(--martey-black) !important;
   font-family: Manrope, "DM Sans", sans-serif !important;
   font-size: 26px;
   font-weight: 800 !important;
